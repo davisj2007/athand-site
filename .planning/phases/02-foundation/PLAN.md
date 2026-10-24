@@ -156,7 +156,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: `npm run build` emits dist/404.html; it contains `lang="en"`, the skip link, one `<header>`, `<main id="main">`, one `<footer>`, the noindex meta, the lockup link named "atHand, home", the group named "Appearance" with three buttons and the `hidden` attribute in the HTML, the "Made by Jacob Davis" link to https://jacobdavis.co, a link to `/` in main and to `/support.html` in the footer (FND-11), and not the removed developer sentence; `npm run check` reports 0 errors; `cmp` of the SVG with the app repo succeeds.
   Verify command: `npm run build && npm run check && cmp src/assets/logo-lockup-mark.svg "${ATHAND_APP_DIR:-../athandapp}"/athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/assets/logo-lockup-mark.svg && f=dist/404.html && grep -q '<html lang="en"' $f && grep -q 'href="#main"' $f && grep -q '<main id="main"' $f && grep -q 'name="robots" content="noindex"' $f && grep -q 'aria-label="atHand, home"' $f && grep -q 'aria-label="Appearance"' $f && [ $(grep -o 'data-theme-set=' $f | wc -l) -eq 3 ] && grep -q 'href="https://jacobdavis.co"' $f && grep -q 'Made by Jacob Davis' $f && grep -q 'href="/support.html"' $f && ! grep -q 'individual developer in New York' $f`
 
-- [ ] 02-05: check:external and check:content scripts
+- [x] 02-05: check:external and check:content scripts
   Requirements: FND-12, FND-13
   Files: scripts/check-external.mjs, scripts/check-main-text.mjs
   Copy entries: none
