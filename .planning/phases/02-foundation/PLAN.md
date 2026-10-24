@@ -327,4 +327,19 @@ Re-run 2026-10-24 at REVISE (wave 2b, task 02-11, pins Node 22.23.4 in the Deplo
 
 ## Fix wave
 
-(added by VERIFY if needed)
+Added by VERIFY 2026-10-24. Standalone text links are 20 to 21 CSS px tall, below the 44px target floor CONTEXT.md locks (Locked by the brief and CLAUDE.md; CLAUDE.md, Hard rules). See VERIFY.md, Gap. CSS only; no markup or copy changes.
+
+- [ ] 02-12: 44px targets for standalone links
+  Requirements: FND-10, FND-11 (and the locked accessibility floor)
+  Files: src/styles/site.css, src/pages/404.astro
+  Copy entries: none
+  Steps:
+  1. site.css: give `footer.site a` and `.links a` `display: inline-flex; align-items: center; min-height: var(--touch-min)`. Keep the underline and the 3px focus outline. Reduce the vertical part of the `footer.site ul` and `.links` gaps if the taller links make the spacing look loose; keep the horizontal gaps.
+  2. 404.astro: add a scoped `<style>` block after `</Base>` with `p > a { display: inline-flex; align-items: center; min-height: var(--touch-min); }`. Astro scopes it to this page's own elements, so only "Go to the atHand home page" changes. Do not edit the main markup (check:content compares text and links, and decision 17 keeps main unchanged).
+  3. Inline links inside sentences stay as they are (WCAG 2.5.8 inline exception).
+  Acceptance: in the built-in browser against `npm run preview`, on every page in light and dark, each footer link, each home "Learn more" link, and the 404 home link measure at least 44 CSS px tall; links stay underlined; no horizontal scrolling at a 320 CSS px viewport; static checks 17 and 18 still return nothing; check:content still passes.
+  Verify command: `npm run build && npm run check && npm run check:external && npm run check:content && grep -A4 'footer.site a' src/styles/site.css | grep -q 'min-height: var(--touch-min)' && grep -A4 '\.links a' src/styles/site.css | grep -q 'min-height: var(--touch-min)' && grep -q 'min-height: var(--touch-min)' src/pages/404.astro`
+
+Fix wave checks: `npm ci`, `npm run build`, `npm run check`, `npm run tokens:check`, `npm run check:external`, `npm run check:content`, every static check above, and the browser measurement in 02-12's acceptance.
+
+Live site after this wave: the same pages with taller tap areas on the standalone links; no URL, copy, or request changes.
