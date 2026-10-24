@@ -1,6 +1,6 @@
 # Phase 03: pages-and-copy - Context
 
-Status: Needs answers
+Status: Ready
 Date: 2026-10-24
 
 ## Goal
@@ -54,7 +54,7 @@ App repo davisj2007/athandapp at 60032bf3848847b642443a59178ee40e385c9850 (origi
 
 ## Implementation decisions
 
-1. New pages: src/pages/features.astro builds /features.html, src/pages/pricing.astro builds /pricing.html, and the Privacy overview builds at the URL Jake picks in question 1 (default /privacy-overview.html). Support stays src/pages/support.astro at /support.html. Reason: build.format "file" (phase 02) gives each page a .html URL like the existing ones.
+1. New pages: src/pages/features.astro builds /features.html, src/pages/pricing.astro builds /pricing.html, and src/pages/privacy-overview.astro builds the Privacy overview at /privacy-overview.html (Jake, ANSWERS question 1). Support stays src/pages/support.astro at /support.html. Reason: build.format "file" (phase 02) gives each page a .html URL like the existing ones.
 2. Header navigation in src/components/Header.astro: a `<nav aria-label="Main">` with four links in this order: Features, Pricing, Privacy, Support. Home is reached through the logo lockup, as today. Reason: PAGE-07; the lockup is already the home link, and a fifth "Home" link would repeat it.
 3. Current page: Base.astro passes the current path to the header (from `Astro.url.pathname`). The matching nav link gets `aria-current="page"`; on the home page the lockup link gets it. The current link is marked visually by weight and a solid 3px underline, not by color alone. Reason: PAGE-07; CLAUDE.md, no color-only meaning.
 4. Header layout: lockup, then nav, then the theme control, in the existing wrapping flex row. Nav links are at least 44 by 44px and wrap onto more lines at narrow widths and at 400% zoom. No menu button and no JavaScript for the nav. Reason: PAGE-07 and the 400% zoom rule; four short labels fit without a disclosure menu, and a JavaScript menu would add a failure mode.
@@ -67,215 +67,216 @@ App repo davisj2007/athandapp at 60032bf3848847b642443a59178ee40e385c9850 (origi
 11. Each page gets its own title in the form "Page | atHand" and its own meta description (copy entries below). Home keeps "atHand: Your Info, Ready", the App Store listing name. Reason: FND-08 pattern; brief, Brand. Athan disambiguation in metadata is SEO-04, phase 04.
 12. The PR for each wave that places copy lists every claim with its brief section, taken from the Copy drafts entries it uses. Reason: PAGE-06; CLAUDE.md, Hard rules.
 13. New styles go in src/styles/site.css using token variables only, matching the phase 02 approach. No new dependencies. Reason: README rule 10.
+14. Privacy overview URL is /privacy-overview.html. The header link is labeled "Privacy" and goes to the overview; the footer link to /privacy.html is labeled "Privacy policy" (F1). Source: Jake, ANSWERS question 1.
+15. Accessibility claims (VoiceOver, larger text, Dynamic Type) stay out of this phase. REQUIREMENTS.md adds FEAT-01 for phase 04: a Features section on VoiceOver, larger text (Dynamic Type), and light and dark, drafted only after the app repo records its TestFlight VoiceOver and Dynamic Type passes as done; until then it stays out. Source: Jake, ANSWERS question 2.
+16. The site may repeat statements from the approved privacy policy that the brief does not spell out word for word: V17 (IP address) and V21 (camera and photos access is optional). Source: Jake, ANSWERS question 3.
+17. No FAQ entries for purchase error, cancellation, or Ask to Buy states in this phase. Source: Jake, ANSWERS question 4.
+18. Suggestion copy names only signals the app collects. The brief's Contextual suggestions lists car connectivity, but the app collects no car-connectivity signal (athandapp lib/signals.ts at 60032bf), so the site does not claim it (FE17); logged in BACKLOG.md as an app repo brief-versus-code item. The no-confidence rule withholds only the banner; time-of-day and recently viewed cards can still appear (athandapp lib/contextRules.ts), so FE19 and S49 say "no banner" or "no suggestion banner", not "nothing". Source: Jake, ANSWERS copy edits 1 to 3.
+19. The import confirmation names the app's button label "Replace all data on this device" (athandapp app/backup.tsx:249 at 60032bf). Source: Jake, ANSWERS copy edit 4.
 
 ## Copy drafts
 
-All strings are Draft until Jake approves them in ANSWERS. Entries marked "existing" are on the live site today and are listed so the approval covers every string on these pages (PAGE-06). Brief citations are to Brief v4.12. A citation of "/privacy.html" means the string repeats a statement from the policy approved in phase 01 that the brief does not spell out word for word; question 3 asks about these.
+Jake approved every string in ANSWERS (2026-10-24), as drafted except FE17, FE19, S49, and S15, which carry his edits. Entries marked "existing" are on the live site today and are listed so the approval covers every string on these pages (PAGE-06). Brief citations are to Brief v4.12. A citation of "/privacy.html" means the string repeats a statement from the policy approved in phase 01 that the brief does not spell out word for word; decision 16 allows these.
 
 ### Shared
 
-N1. Header / nav accessible name (not visible): "Main". Not a claim. Status: Draft.
-N2. Header / nav links: "Features", "Pricing", "Privacy", "Support". Not claims. Status: Draft.
-F1. Footer / link to /privacy.html: "Privacy policy" (was "Privacy"). Not a claim. Status: Draft.
-C1. Home, Features, Pricing / coming-soon line (existing): "Coming soon to the App Store for iPhone." Brief: Current milestone (iPhone only). Status: Draft.
+N1. Header / nav accessible name (not visible): "Main". Not a claim. Status: Approved.
+N2. Header / nav links: "Features", "Pricing", "Privacy", "Support". Not claims. Status: Approved.
+F1. Footer / link to /privacy.html: "Privacy policy" (was "Privacy"). Not a claim. Status: Approved.
+C1. Home, Features, Pricing / coming-soon line (existing): "Coming soon to the App Store for iPhone." Brief: Current milestone (iPhone only). Status: Approved.
 
 ### Home (/index.html)
 
-H1. Title (existing): "atHand: Your Info, Ready". Brief: Brand (App Store listing name). Status: Draft.
-H2. Meta description: "atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help." Brief: Concept; Information architecture (self and household); Contextual suggestions. Status: Draft.
-H3. H1 (existing): "Your info, ready when you need it". Brief: Concept. Status: Draft.
-H4. Lede (existing): "atHand keeps the details you look up all the time, such as people, vehicles, pets, homes, financial accounts, and contacts, in one place on your iPhone." Brief: Concept; Information architecture. Status: Draft.
-H5. Section heading: "For the moments you need it". Brief: Concept. Status: Draft.
-H6. Paragraph: "At the doctor’s office, at a traffic stop, or at the airport, you need a member ID, a license number, or a passport number right away. atHand keeps them on your iPhone, for you and the people, vehicles, pets, and homes you look after." Brief: Concept (doctor’s office, traffic stop, airport); Information architecture. Status: Draft.
-H7. Section heading: "What it does". Not a claim. Status: Draft.
-H8. List item: "Keep records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record for anything else." Brief: Information architecture. Status: Draft.
-H9. List item: "Scan a driver’s license, passport, insurance card, VIN, vaccine record, or business card instead of typing. You check every field before it is saved." Brief: Document capture; Scan-first creation. Status: Draft.
-H10. List item: "Get a suggestion for the record that is likely to help right now, based on the time of day and, if you allow them, your calendar and location." Brief: Contextual suggestions. Status: Draft.
-H11. List item: "Lock atHand with Face ID, Touch ID, or your device passcode, and export an encrypted backup protected by a passphrase you choose." Brief: App lock; Backup and restore. Status: Draft.
-H12. Link: "See all features" (to /features.html). Not a claim. Status: Draft.
-H13. Section heading (existing): "Privacy in short". Not a claim. Status: Draft.
-H14. List item: "Your information stays on your iPhone. It leaves only inside an encrypted backup file that you choose to export." Brief: Privacy (first bullet). Status: Draft.
-H15. List item (existing): "There is no account and no sign-in." Brief: Concept (no account). Status: Draft.
-H16. List item: "atHand connects to Apple and RevenueCat for purchases, to Google for anonymous scanning diagnostics, and, if you allow location, to Apple to look up the name of a nearby place. It never sends your scans, photos, recognized text, or anything you enter." Brief: Privacy (v1 network activity). Status: Draft.
-H17. List item: "The developer added no advertising, tracking, analytics, or crash-reporting tools." Brief: Privacy (no analytics, advertising, tracking, or crash-reporting SDKs). Status: Draft.
-H18. Links: "How atHand handles your information" (to the Privacy overview) and "Read the full privacy policy" (to /privacy.html). Not claims. Status: Draft.
-H19. Section heading: "Free to start". Brief: Business model and entitlement. Status: Draft.
-H20. Paragraph: "Your own record is free. A one-time purchase unlocks everything else. There is no subscription." Brief: Business model and entitlement (Free vs paid; no subscription at launch). Status: Draft.
-H21. Link: "See pricing" (to /pricing.html). Not a claim. Status: Draft.
-H22. Removed (existing, no replacement): "How it works" section, index.astro:10-14; its points move into H8 to H11. "The developer runs no server and cannot see your information." (index.astro:21). The unqualified "No advertising, tracking, analytics, or crash-reporting tools." (index.astro:22), replaced by H17. "Read the full privacy policy." sentence (index.astro:24), replaced by H18. "Learn more" list (index.astro:27-31). Status: Draft (removal).
+H1. Title (existing): "atHand: Your Info, Ready". Brief: Brand (App Store listing name). Status: Approved.
+H2. Meta description: "atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help." Brief: Concept; Information architecture (self and household); Contextual suggestions. Status: Approved.
+H3. H1 (existing): "Your info, ready when you need it". Brief: Concept. Status: Approved.
+H4. Lede (existing): "atHand keeps the details you look up all the time, such as people, vehicles, pets, homes, financial accounts, and contacts, in one place on your iPhone." Brief: Concept; Information architecture. Status: Approved.
+H5. Section heading: "For the moments you need it". Brief: Concept. Status: Approved.
+H6. Paragraph: "At the doctor’s office, at a traffic stop, or at the airport, you need a member ID, a license number, or a passport number right away. atHand keeps them on your iPhone, for you and the people, vehicles, pets, and homes you look after." Brief: Concept (doctor’s office, traffic stop, airport); Information architecture. Status: Approved.
+H7. Section heading: "What it does". Not a claim. Status: Approved.
+H8. List item: "Keep records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record for anything else." Brief: Information architecture. Status: Approved.
+H9. List item: "Scan a driver’s license, passport, insurance card, VIN, vaccine record, or business card instead of typing. You check every field before it is saved." Brief: Document capture; Scan-first creation. Status: Approved.
+H10. List item: "Get a suggestion for the record that is likely to help right now, based on the time of day and, if you allow them, your calendar and location." Brief: Contextual suggestions. Status: Approved.
+H11. List item: "Lock atHand with Face ID, Touch ID, or your device passcode, and export an encrypted backup protected by a passphrase you choose." Brief: App lock; Backup and restore. Status: Approved.
+H12. Link: "See all features" (to /features.html). Not a claim. Status: Approved.
+H13. Section heading (existing): "Privacy in short". Not a claim. Status: Approved.
+H14. List item: "Your information stays on your iPhone. It leaves only inside an encrypted backup file that you choose to export." Brief: Privacy (first bullet). Status: Approved.
+H15. List item (existing): "There is no account and no sign-in." Brief: Concept (no account). Status: Approved.
+H16. List item: "atHand connects to Apple and RevenueCat for purchases, to Google for anonymous scanning diagnostics, and, if you allow location, to Apple to look up the name of a nearby place. It never sends your scans, photos, recognized text, or anything you enter." Brief: Privacy (v1 network activity). Status: Approved.
+H17. List item: "The developer added no advertising, tracking, analytics, or crash-reporting tools." Brief: Privacy (no analytics, advertising, tracking, or crash-reporting SDKs). Status: Approved.
+H18. Links: "How atHand handles your information" (to the Privacy overview) and "Read the full privacy policy" (to /privacy.html). Not claims. Status: Approved.
+H19. Section heading: "Free to start". Brief: Business model and entitlement. Status: Approved.
+H20. Paragraph: "Your own record is free. A one-time purchase unlocks everything else. There is no subscription." Brief: Business model and entitlement (Free vs paid; no subscription at launch). Status: Approved.
+H21. Link: "See pricing" (to /pricing.html). Not a claim. Status: Approved.
+H22. Removed (existing, no replacement): "How it works" section, index.astro:10-14; its points move into H8 to H11. "The developer runs no server and cannot see your information." (index.astro:21). The unqualified "No advertising, tracking, analytics, or crash-reporting tools." (index.astro:22), replaced by H17. "Read the full privacy policy." sentence (index.astro:24), replaced by H18. "Learn more" list (index.astro:27-31). Status: Approved (removal).
 
 ### Features (/features.html)
 
-FE1. Title: "Features | atHand". Not a claim. Status: Draft.
-FE2. Meta description: "What atHand does on iPhone: records for your household, document scanning, suggestions, app lock, and encrypted backups." Brief: Current milestone (in scope). Status: Draft.
-FE3. H1: "Features". Not a claim. Status: Draft.
-FE4. Lede: "atHand stores the details you look up all the time and brings up the right record when it can help." Brief: Concept. Status: Draft.
-FE5. Section heading: "Records for everything you look after". Brief: Information architecture. Status: Draft.
-FE6. Paragraph: "Add records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record with your own labels." Brief: Information architecture (Custom: user-defined labels). Status: Draft.
-FE7. Paragraph: "Each detail is stored once, on the record it belongs to. A person holds identity, medical, insurance, and document details. A vehicle holds its plate, VIN, insurance, and roadside assistance number. A pet holds its microchip number, vet, and vaccine records." Brief: Information architecture (Person, Vehicle, Pet; store each field once). Status: Draft.
-FE8. Paragraph: "Contacts, such as a doctor, a mechanic, or a vet, are records of their own, and you can link one to any person, pet, or vehicle." Brief: Information architecture (Contact). Status: Draft.
-FE9. Paragraph: "Adding a record takes you through one section at a time, and you can save and close at any step. To make a change later, pick the section you want to edit." Brief: Entity creation and editing. Status: Draft.
-FE10. Section heading: "Scan instead of typing". Brief: Document capture. Status: Draft.
-FE11. Paragraph: "Scan a driver’s license, passport, insurance card, VIN, vaccine record, utility bill, payment card, or business card." Brief: Document capture (Tier A and Tier B); Scan-first creation (business card). Status: Draft.
-FE12. Paragraph: "atHand reads the barcode on a driver’s license and the machine-readable lines in a passport, and suggests matches from the text on other documents. Recognition runs on your iPhone." Brief: Document capture; Privacy. Status: Draft.
-FE13. Paragraph: "Nothing is saved until you check it. atHand marks any field it is unsure of with “Check this,” and you can correct any field or retake the photo before saving." Brief: Document capture (read once, confirm before saving; shared confirmation screen). Status: Draft.
-FE14. Paragraph: "Start with Scan to add on the home screen and atHand works out what kind of record the document belongs to. It recognizes licenses, passports, VINs, and contact QR codes, and asks you to choose for anything else." Brief: Scan-first creation. Status: Draft.
-FE15. Section heading: "The right record at the right time". Brief: Concept (contextual surfacing). Status: Draft.
-FE16. Paragraph: "atHand can suggest a record when it is likely to help, such as before an appointment on your calendar." Brief: Contextual suggestions. Status: Draft.
-FE17. Paragraph: "Suggestions use the time of day, the day of the week, the records you used recently, whether your iPhone is connected to your car, and, if you allow them, your calendar and location. Matching runs on your iPhone." Brief: Contextual suggestions (Device only signals). Status: Draft.
-FE18. Paragraph: "If you allow location, Apple’s geocoding service receives your location to return the name of a nearby place. Read how atHand handles your information." The second sentence links to the Privacy overview. Brief: Contextual suggestions; Privacy. Status: Draft.
-FE19. Paragraph: "A suggestion says only that a record is ready. It never names a category, such as medical. When nothing matches with confidence, atHand shows no suggestion, and you can turn suggestions off at any time." Brief: Contextual suggestions (banner never names a category; no weak guesses; Off). Status: Draft.
-FE20. Section heading: "Locked to you". Brief: App lock. Status: Draft.
-FE21. Paragraph: "Lock atHand with Face ID or Touch ID, with your device passcode as the fallback. There is no separate password to remember." Brief: App lock (no in-app password). Status: Draft.
-FE22. Paragraph: "The lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. Choose whether atHand locks again as soon as you leave it, or after 5 minutes, 30 minutes, or 1 hour." Brief: App lock (default on; re-auth timing). Status: Draft.
-FE23. Paragraph: "When you switch away from atHand, a cover hides your information in the app switcher, whether or not the lock is on." Brief: App lock (privacy cover). Status: Draft.
-FE24. Paragraph: "Sensitive numbers, such as passport numbers, account numbers, alarm codes, and Wi-Fi passwords, stay hidden until you tap Reveal, and hide again when you leave the app." Brief: Secure fields. Status: Draft.
-FE25. Section heading: "Backups you control". Brief: Backup and restore. Status: Draft.
-FE26. Paragraph: "Export an encrypted backup of your records and photos, protected by a passphrase you choose, and save it wherever you like." Brief: Backup and restore (export; share sheet). Status: Draft.
-FE27. Paragraph: "A backup is a one-time copy, not sync. Importing one replaces all the data on that iPhone, and atHand asks you to confirm first." Brief: Backup and restore. Status: Draft.
-FE28. Paragraph: "A backup never includes your purchase, your settings, or your app lock setting." Brief: Backup and restore (never included). Status: Draft.
-FE29. Section heading: "Light and dark". Brief: Brand. Status: Draft.
-FE30. Paragraph: "atHand follows your iPhone’s appearance, or you can choose Light or Dark in Settings." Brief: Brand (System / Light / Dark setting). Status: Draft.
-FE31. Accessibility section: not drafted. See question 2.
+FE1. Title: "Features | atHand". Not a claim. Status: Approved.
+FE2. Meta description: "What atHand does on iPhone: records for your household, document scanning, suggestions, app lock, and encrypted backups." Brief: Current milestone (in scope). Status: Approved.
+FE3. H1: "Features". Not a claim. Status: Approved.
+FE4. Lede: "atHand stores the details you look up all the time and brings up the right record when it can help." Brief: Concept. Status: Approved.
+FE5. Section heading: "Records for everything you look after". Brief: Information architecture. Status: Approved.
+FE6. Paragraph: "Add records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record with your own labels." Brief: Information architecture (Custom: user-defined labels). Status: Approved.
+FE7. Paragraph: "Each detail is stored once, on the record it belongs to. A person holds identity, medical, insurance, and document details. A vehicle holds its plate, VIN, insurance, and roadside assistance number. A pet holds its microchip number, vet, and vaccine records." Brief: Information architecture (Person, Vehicle, Pet; store each field once). Status: Approved.
+FE8. Paragraph: "Contacts, such as a doctor, a mechanic, or a vet, are records of their own, and you can link one to any person, pet, or vehicle." Brief: Information architecture (Contact). Status: Approved.
+FE9. Paragraph: "Adding a record takes you through one section at a time, and you can save and close at any step. To make a change later, pick the section you want to edit." Brief: Entity creation and editing. Status: Approved.
+FE10. Section heading: "Scan instead of typing". Brief: Document capture. Status: Approved.
+FE11. Paragraph: "Scan a driver’s license, passport, insurance card, VIN, vaccine record, utility bill, payment card, or business card." Brief: Document capture (Tier A and Tier B); Scan-first creation (business card). Status: Approved.
+FE12. Paragraph: "atHand reads the barcode on a driver’s license and the machine-readable lines in a passport, and suggests matches from the text on other documents. Recognition runs on your iPhone." Brief: Document capture; Privacy. Status: Approved.
+FE13. Paragraph: "Nothing is saved until you check it. atHand marks any field it is unsure of with “Check this,” and you can correct any field or retake the photo before saving." Brief: Document capture (read once, confirm before saving; shared confirmation screen). Status: Approved.
+FE14. Paragraph: "Start with Scan to add on the home screen and atHand works out what kind of record the document belongs to. It recognizes licenses, passports, VINs, and contact QR codes, and asks you to choose for anything else." Brief: Scan-first creation. Status: Approved.
+FE15. Section heading: "The right record at the right time". Brief: Concept (contextual surfacing). Status: Approved.
+FE16. Paragraph: "atHand can suggest a record when it is likely to help, such as before an appointment on your calendar." Brief: Contextual suggestions. Status: Approved.
+FE17. Paragraph: "Suggestions use the time of day, whether it is a weekday or the weekend, the records you opened recently, and, if you allow them, your calendar and location. Matching runs on your iPhone." Brief: Contextual suggestions (Device only signals), less car connectivity, which the app does not collect (decision 18). Status: Approved.
+FE18. Paragraph: "If you allow location, Apple’s geocoding service receives your location to return the name of a nearby place. Read how atHand handles your information." The second sentence links to the Privacy overview. Brief: Contextual suggestions; Privacy. Status: Approved.
+FE19. Paragraph: "The suggestion banner says only that your information is ready. It never names a category, such as medical. When nothing matches with confidence, atHand shows no banner, and you can turn suggestions off at any time." Brief: Contextual suggestions (banner never names a category; no weak guesses; Off); decision 18. Status: Approved.
+FE20. Section heading: "Locked to you". Brief: App lock. Status: Approved.
+FE21. Paragraph: "Lock atHand with Face ID or Touch ID, with your device passcode as the fallback. There is no separate password to remember." Brief: App lock (no in-app password). Status: Approved.
+FE22. Paragraph: "The lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. Choose whether atHand locks again as soon as you leave it, or after 5 minutes, 30 minutes, or 1 hour." Brief: App lock (default on; re-auth timing). Status: Approved.
+FE23. Paragraph: "When you switch away from atHand, a cover hides your information in the app switcher, whether or not the lock is on." Brief: App lock (privacy cover). Status: Approved.
+FE24. Paragraph: "Sensitive numbers, such as passport numbers, account numbers, alarm codes, and Wi-Fi passwords, stay hidden until you tap Reveal, and hide again when you leave the app." Brief: Secure fields. Status: Approved.
+FE25. Section heading: "Backups you control". Brief: Backup and restore. Status: Approved.
+FE26. Paragraph: "Export an encrypted backup of your records and photos, protected by a passphrase you choose, and save it wherever you like." Brief: Backup and restore (export; share sheet). Status: Approved.
+FE27. Paragraph: "A backup is a one-time copy, not sync. Importing one replaces all the data on that iPhone, and atHand asks you to confirm first." Brief: Backup and restore. Status: Approved.
+FE28. Paragraph: "A backup never includes your purchase, your settings, or your app lock setting." Brief: Backup and restore (never included). Status: Approved.
+FE29. Section heading: "Light and dark". Brief: Brand. Status: Approved.
+FE30. Paragraph: "atHand follows your iPhone’s appearance, or you can choose Light or Dark in Settings." Brief: Brand (System / Light / Dark setting). Status: Approved.
+FE31. Accessibility section: not in this phase (decision 15; FEAT-01, phase 04).
 
 ### Pricing (/pricing.html)
 
-P1. Title: "Pricing | atHand". Not a claim. Status: Draft.
-P2. Meta description: "atHand is a free download. A one-time purchase unlocks every record type. There is no subscription." Brief: Business model and entitlement. Status: Draft.
-P3. H1: "Pricing". Not a claim. Status: Draft.
-P4. Lede: "atHand is a free download. A one-time purchase unlocks full use. There is no subscription, no ads, and no account." Brief: Business model and entitlement (free download; one-time purchase; no subscription; paywall perk "No subscription, no ads, no account"). Status: Draft.
-P5. Section heading: "Free". Brief: Business model and entitlement (Free vs paid). Status: Draft.
-P6. Paragraph: "Without a purchase, you can:" Not a claim. Status: Draft.
-P7. List: "Create, view, and edit your own record." / "Scan documents and attach photos to your own record." / "Use the app lock, appearance, and suggestion settings." / "Export and import backups." Brief: Business model and entitlement (Free vs paid, free list). Status: Draft.
-P8. Section heading: "One-time purchase". Brief: Business model and entitlement. Status: Draft.
-P9. Paragraph: "The unlock adds:" Not a claim. Status: Draft.
-P10. List: "Records for your household, vehicles, pets, homes, financial accounts, contacts, and custom records." / "Scanning documents for every record, not just yours." / "Opening every record, including records that arrive in a backup you import." Brief: Business model and entitlement (Requires the unlock; paywall perks). Status: Draft.
-P11. Paragraph: "You pay once, and the unlock is yours to keep. The App Store shows the price in your local currency before you buy." Brief: Business model and entitlement (paywall price line "One time. Yours to keep."; localized store price, never a hardcoded amount). Status: Draft.
-P12. Section heading: "Your purchase and your Apple ID". Brief: Business model and entitlement (Scope of a purchase). Status: Draft.
-P13. Paragraph: "A purchase belongs to the Apple ID you used to buy it. It unlocks every iPhone signed in to that Apple ID after you tap Restore purchase." Brief: Business model and entitlement (Scope of a purchase; Restore purchase on the paywall and in Settings). Status: Draft.
-P14. Paragraph: "Someone with a different Apple ID, such as a partner, buys separately. Family Sharing is not available for the unlock." Brief: Business model and entitlement (a different Apple ID must buy separately; Family Sharing off). Status: Draft.
-P15. Paragraph: "Purchases are handled by Apple." Brief: Business model and entitlement (paywall links). Status: Draft.
-P16. Section heading: "Backups never unlock". Brief: Business model and entitlement (Import never unlocks). Status: Draft.
-P17. Paragraph: "A backup file carries your information only, never the purchase. On a new iPhone, tap Restore purchase to unlock atHand with your Apple ID." Brief: Business model and entitlement. Status: Draft.
-P18. Paragraph: "If you import a backup without the unlock, every record in it still appears on your home screen. Your own record stays free, and opening any other record asks you to unlock." Brief: Business model and entitlement (Free vs paid rules: self flag travels in backups; locked entities still appear; tapping opens the paywall). Status: Draft.
-P19. Link: "Questions about purchases? See Support." with "See Support" linking to /support.html. Not a claim. Status: Draft.
+P1. Title: "Pricing | atHand". Not a claim. Status: Approved.
+P2. Meta description: "atHand is a free download. A one-time purchase unlocks every record type. There is no subscription." Brief: Business model and entitlement. Status: Approved.
+P3. H1: "Pricing". Not a claim. Status: Approved.
+P4. Lede: "atHand is a free download. A one-time purchase unlocks full use. There is no subscription, no ads, and no account." Brief: Business model and entitlement (free download; one-time purchase; no subscription; paywall perk "No subscription, no ads, no account"). Status: Approved.
+P5. Section heading: "Free". Brief: Business model and entitlement (Free vs paid). Status: Approved.
+P6. Paragraph: "Without a purchase, you can:" Not a claim. Status: Approved.
+P7. List: "Create, view, and edit your own record." / "Scan documents and attach photos to your own record." / "Use the app lock, appearance, and suggestion settings." / "Export and import backups." Brief: Business model and entitlement (Free vs paid, free list). Status: Approved.
+P8. Section heading: "One-time purchase". Brief: Business model and entitlement. Status: Approved.
+P9. Paragraph: "The unlock adds:" Not a claim. Status: Approved.
+P10. List: "Records for your household, vehicles, pets, homes, financial accounts, contacts, and custom records." / "Scanning documents for every record, not just yours." / "Opening every record, including records that arrive in a backup you import." Brief: Business model and entitlement (Requires the unlock; paywall perks). Status: Approved.
+P11. Paragraph: "You pay once, and the unlock is yours to keep. The App Store shows the price in your local currency before you buy." Brief: Business model and entitlement (paywall price line "One time. Yours to keep."; localized store price, never a hardcoded amount). Status: Approved.
+P12. Section heading: "Your purchase and your Apple ID". Brief: Business model and entitlement (Scope of a purchase). Status: Approved.
+P13. Paragraph: "A purchase belongs to the Apple ID you used to buy it. It unlocks every iPhone signed in to that Apple ID after you tap Restore purchase." Brief: Business model and entitlement (Scope of a purchase; Restore purchase on the paywall and in Settings). Status: Approved.
+P14. Paragraph: "Someone with a different Apple ID, such as a partner, buys separately. Family Sharing is not available for the unlock." Brief: Business model and entitlement (a different Apple ID must buy separately; Family Sharing off). Status: Approved.
+P15. Paragraph: "Purchases are handled by Apple." Brief: Business model and entitlement (paywall links). Status: Approved.
+P16. Section heading: "Backups never unlock". Brief: Business model and entitlement (Import never unlocks). Status: Approved.
+P17. Paragraph: "A backup file carries your information only, never the purchase. On a new iPhone, tap Restore purchase to unlock atHand with your Apple ID." Brief: Business model and entitlement. Status: Approved.
+P18. Paragraph: "If you import a backup without the unlock, every record in it still appears on your home screen. Your own record stays free, and opening any other record asks you to unlock." Brief: Business model and entitlement (Free vs paid rules: self flag travels in backups; locked entities still appear; tapping opens the paywall). Status: Approved.
+P19. Link: "Questions about purchases? See Support." with "See Support" linking to /support.html. Not a claim. Status: Approved.
 
-### Privacy overview (URL per question 1)
+### Privacy overview (/privacy-overview.html)
 
-V1. Title: "How atHand handles your information | atHand". Not a claim. Status: Draft.
-V2. Meta description: "A plain-language summary of what stays on your iPhone and every connection atHand makes." Brief: Privacy. Status: Draft.
-V3. H1: "How atHand handles your information". Not a claim. Status: Draft.
-V4. Lede: "Your information stays on your iPhone. This page explains, in plain language, when atHand connects to an outside service and what each one receives. The full privacy policy has every detail." Brief: Privacy. Status: Draft.
-V5. Section heading: "What stays on your iPhone". Brief: Privacy. Status: Draft.
-V6. Paragraph: "Everything you add to atHand, including your records, scans, and photos, is stored on your iPhone. It leaves your iPhone only inside an encrypted backup file that you choose to export and share." Brief: Privacy (first bullet); Information architecture (photos stay on the device except inside an encrypted backup). Status: Draft.
-V7. Paragraph: "There is no account and no sign-in, and the developer cannot see your information." Brief: Concept (no account); Privacy (personal information never leaves the device except in a backup the user shares). Status: Draft.
-V8. Paragraph: "Scanning runs on your iPhone. atHand never sends your scans, photos, recognized text, or anything you enter to any service." Brief: Privacy (no scans, photos, recognized text, or user-entered information are ever sent). Status: Draft.
-V9. Section heading: "When atHand connects to the internet". Brief: Privacy. Status: Draft.
-V10. Paragraph: "atHand makes three kinds of connection. None of them carries your records, scans, photos, or anything you type." Brief: Privacy (v1 network activity is limited to three). Status: Draft.
-V11. Subheading: "Purchases: Apple and RevenueCat". Brief: Privacy. Status: Draft.
-V12. Paragraph: "When you buy or restore the unlock, Apple handles the purchase and RevenueCat, a purchase service, confirms it so atHand can unlock. The privacy policy lists what RevenueCat receives." Brief: Privacy; Business model and entitlement (RevenueCat confirms the entitlement). Status: Draft.
-V13. Subheading: "Scanning diagnostics: Google". Brief: Privacy. Status: Draft.
-V14. Paragraph: "The scanning library, Google ML Kit, sends Google anonymous diagnostics: your iPhone model, iOS version, the app’s version, a random per-installation identifier, and performance data." Brief: Privacy (ML Kit diagnostics list). Status: Draft.
-V15. Subheading: "Place lookup: Apple, only if you allow location". Brief: Privacy. Status: Draft.
-V16. Paragraph: "If you allow location for suggestions, Apple’s geocoding service receives your location coordinates and returns the name of a nearby place. atHand sorts that name into a category on your iPhone, then discards the coordinates." Brief: Privacy; Contextual suggestions (coordinates discarded after categorization). Status: Draft.
-V17. Paragraph: "As with any internet connection, these services can see your device’s IP address." Brief: Privacy names the connections; the IP address statement comes from /privacy.html. See question 3. Status: Draft.
-V18. Section heading: "What atHand leaves out". Not a claim. Status: Draft.
-V19. List: "The developer added no advertising, tracking, analytics, or crash-reporting tools." / "atHand keeps your personal information out of its logs." Brief: Privacy (no analytics, advertising, tracking, or crash-reporting SDKs; no personal data in logs). Status: Draft.
-V20. Section heading: "Optional permissions". Brief: Onboarding (permissions optional). Status: Draft.
-V21. Paragraph: "Camera, photos, calendar, and location access are all optional. atHand works without them, and you can change each one in iPhone Settings." Brief: Onboarding (step 5, optional permissions); /privacy.html (Optional permissions). See question 3. Status: Draft.
-V22. Paragraph: "If you allow calendar access, atHand compares the titles of upcoming events with a keyword list on your iPhone. Event details are never sent." Brief: Contextual suggestions (calendar keywords against a local keyword table); Privacy. Status: Draft.
-V23. Section heading: "The full policy". Not a claim. Status: Draft.
-V24. Paragraph: "Read the full privacy policy for every detail, including what each service receives and how to delete your data. Questions? Email support@athandapp.com." "full privacy policy" links to /privacy.html; the address is a mailto link. Not a claim. Status: Draft.
+V1. Title: "How atHand handles your information | atHand". Not a claim. Status: Approved.
+V2. Meta description: "A plain-language summary of what stays on your iPhone and every connection atHand makes." Brief: Privacy. Status: Approved.
+V3. H1: "How atHand handles your information". Not a claim. Status: Approved.
+V4. Lede: "Your information stays on your iPhone. This page explains, in plain language, when atHand connects to an outside service and what each one receives. The full privacy policy has every detail." Brief: Privacy. Status: Approved.
+V5. Section heading: "What stays on your iPhone". Brief: Privacy. Status: Approved.
+V6. Paragraph: "Everything you add to atHand, including your records, scans, and photos, is stored on your iPhone. It leaves your iPhone only inside an encrypted backup file that you choose to export and share." Brief: Privacy (first bullet); Information architecture (photos stay on the device except inside an encrypted backup). Status: Approved.
+V7. Paragraph: "There is no account and no sign-in, and the developer cannot see your information." Brief: Concept (no account); Privacy (personal information never leaves the device except in a backup the user shares). Status: Approved.
+V8. Paragraph: "Scanning runs on your iPhone. atHand never sends your scans, photos, recognized text, or anything you enter to any service." Brief: Privacy (no scans, photos, recognized text, or user-entered information are ever sent). Status: Approved.
+V9. Section heading: "When atHand connects to the internet". Brief: Privacy. Status: Approved.
+V10. Paragraph: "atHand makes three kinds of connection. None of them carries your records, scans, photos, or anything you type." Brief: Privacy (v1 network activity is limited to three). Status: Approved.
+V11. Subheading: "Purchases: Apple and RevenueCat". Brief: Privacy. Status: Approved.
+V12. Paragraph: "When you buy or restore the unlock, Apple handles the purchase and RevenueCat, a purchase service, confirms it so atHand can unlock. The privacy policy lists what RevenueCat receives." Brief: Privacy; Business model and entitlement (RevenueCat confirms the entitlement). Status: Approved.
+V13. Subheading: "Scanning diagnostics: Google". Brief: Privacy. Status: Approved.
+V14. Paragraph: "The scanning library, Google ML Kit, sends Google anonymous diagnostics: your iPhone model, iOS version, the app’s version, a random per-installation identifier, and performance data." Brief: Privacy (ML Kit diagnostics list). Status: Approved.
+V15. Subheading: "Place lookup: Apple, only if you allow location". Brief: Privacy. Status: Approved.
+V16. Paragraph: "If you allow location for suggestions, Apple’s geocoding service receives your location coordinates and returns the name of a nearby place. atHand sorts that name into a category on your iPhone, then discards the coordinates." Brief: Privacy; Contextual suggestions (coordinates discarded after categorization). Status: Approved.
+V17. Paragraph: "As with any internet connection, these services can see your device’s IP address." Brief: Privacy names the connections; the IP address statement comes from /privacy.html (decision 16). Status: Approved.
+V18. Section heading: "What atHand leaves out". Not a claim. Status: Approved.
+V19. List: "The developer added no advertising, tracking, analytics, or crash-reporting tools." / "atHand keeps your personal information out of its logs." Brief: Privacy (no analytics, advertising, tracking, or crash-reporting SDKs; no personal data in logs). Status: Approved.
+V20. Section heading: "Optional permissions". Brief: Onboarding (permissions optional). Status: Approved.
+V21. Paragraph: "Camera, photos, calendar, and location access are all optional. atHand works without them, and you can change each one in iPhone Settings." Brief: Onboarding (step 5, optional permissions); /privacy.html (Optional permissions); decision 16. Status: Approved.
+V22. Paragraph: "If you allow calendar access, atHand compares the titles of upcoming events with a keyword list on your iPhone. Event details are never sent." Brief: Contextual suggestions (calendar keywords against a local keyword table); Privacy. Status: Approved.
+V23. Section heading: "The full policy". Not a claim. Status: Approved.
+V24. Paragraph: "Read the full privacy policy for every detail, including what each service receives and how to delete your data. Questions? Email support@athandapp.com." "full privacy policy" links to /privacy.html; the address is a mailto link. Not a claim. Status: Approved.
 
 ### Support and FAQ (/support.html)
 
-S1. Title (existing): "Support | atHand". Not a claim. Status: Draft.
-S2. Meta description (existing): "Get help with atHand: contact details and answers to common questions." Not a claim. Status: Draft.
-S3. H1 (existing): "Support". Status: Draft.
-S4. Lede (existing): "Need help with atHand? Email support@athandapp.com." Status: Draft.
-S5. Section heading (existing): "What to include in your message". Status: Draft.
-S6. List (existing): "What you were trying to do, and what happened instead." / "Your iPhone model and iOS version." / "The atHand version, if you know it." / "Any error message you saw, word for word." Status: Draft.
-S7. Paragraph (existing): "Please do not send passphrases, document images, or other sensitive details. I do not need them to help." Status: Draft.
-S8. Replaced: the single "Common questions" heading (support.astro:18) gives way to the group headings S9, S20, S33, S40, S47, S52, and S57. Status: Draft (removal).
+S1. Title (existing): "Support | atHand". Not a claim. Status: Approved.
+S2. Meta description (existing): "Get help with atHand: contact details and answers to common questions." Not a claim. Status: Approved.
+S3. H1 (existing): "Support". Status: Approved.
+S4. Lede (existing): "Need help with atHand? Email support@athandapp.com." Status: Approved.
+S5. Section heading (existing): "What to include in your message". Status: Approved.
+S6. List (existing): "What you were trying to do, and what happened instead." / "Your iPhone model and iOS version." / "The atHand version, if you know it." / "Any error message you saw, word for word." Status: Approved.
+S7. Paragraph (existing): "Please do not send passphrases, document images, or other sensitive details. I do not need them to help." Status: Approved.
+S8. Replaced: the single "Common questions" heading (support.astro:18) gives way to the group headings S9, S20, S33, S40, S47, S52, and S57. Status: Approved (removal).
 
 Backups
 
-S9. Section heading: "Backups". Status: Draft.
-S10. Question (existing): "How do backups work?" Status: Draft.
-S11. Answer: "You can export an encrypted backup file, protected by a passphrase you choose. You then share the file wherever you want to keep it. A backup is a one-time copy, not sync. The developer never receives the file." Existing answer plus the "one-time copy" sentence. Brief: Backup and restore; Privacy. Status: Draft.
-S12. Question: "How do I move atHand to a new iPhone?" Status: Draft.
-S13. Answer: "On your old iPhone, open Settings in atHand, choose Backup & restore, and export a backup. Save it somewhere your new iPhone can reach, such as the Files app. On the new iPhone, import the backup and enter your passphrase. Then tap Restore purchase to unlock." Brief: Backup and restore; Business model and entitlement (import never unlocks; restore). App label: Data, "Backup & restore" (app/settings.tsx:268). Status: Draft.
-S14. Question: "What happens when I import a backup?" Status: Draft.
-S15. Answer: "Importing replaces all the data on that iPhone with the data in the backup. atHand warns you first and asks you to confirm with Replace all data. If the passphrase is wrong, the import stops before anything changes." Brief: Backup and restore (explicit warning; "Replace all data"; a wrong passphrase fails before any data is touched). Status: Draft.
-S16. Question: "How is my backup protected?" Status: Draft.
-S17. Answer: "atHand encrypts the file with AES-256, using keys made from your passphrase with PBKDF2. An HMAC-SHA256 check means a changed or damaged file is rejected before it is opened." Brief: Backup and restore (Encryption). Status: Draft.
-S18. Question (existing) and answer (existing): "What happens if I lose my backup passphrase?" / "The backup cannot be opened. The developer has no access to your passphrase and cannot recover it or the backup. Store your passphrase somewhere safe." Status: Draft.
-S19. Question and answer: "What does a backup include?" / "Your records and their photos. A backup never includes your purchase, your settings, or your app lock setting." Brief: Backup and restore (export contents; never included). Status: Draft.
+S9. Section heading: "Backups". Status: Approved.
+S10. Question (existing): "How do backups work?" Status: Approved.
+S11. Answer: "You can export an encrypted backup file, protected by a passphrase you choose. You then share the file wherever you want to keep it. A backup is a one-time copy, not sync. The developer never receives the file." Existing answer plus the "one-time copy" sentence. Brief: Backup and restore; Privacy. Status: Approved.
+S12. Question: "How do I move atHand to a new iPhone?" Status: Approved.
+S13. Answer: "On your old iPhone, open Settings in atHand, choose Backup & restore, and export a backup. Save it somewhere your new iPhone can reach, such as the Files app. On the new iPhone, import the backup and enter your passphrase. Then tap Restore purchase to unlock." Brief: Backup and restore; Business model and entitlement (import never unlocks; restore). App label: Data, "Backup & restore" (app/settings.tsx:268). Status: Approved.
+S14. Question: "What happens when I import a backup?" Status: Approved.
+S15. Answer: "Importing replaces all the data on that iPhone with the data in the backup. atHand warns you first and asks you to confirm with Replace all data on this device. If the passphrase is wrong, the import stops before anything changes." Brief: Backup and restore (explicit warning; "Replace all data"; a wrong passphrase fails before any data is touched). App label: app/backup.tsx:249 (decision 19). Status: Approved.
+S16. Question: "How is my backup protected?" Status: Approved.
+S17. Answer: "atHand encrypts the file with AES-256, using keys made from your passphrase with PBKDF2. An HMAC-SHA256 check means a changed or damaged file is rejected before it is opened." Brief: Backup and restore (Encryption). Status: Approved.
+S18. Question (existing) and answer (existing): "What happens if I lose my backup passphrase?" / "The backup cannot be opened. The developer has no access to your passphrase and cannot recover it or the backup. Store your passphrase somewhere safe." Status: Approved.
+S19. Question and answer: "What does a backup include?" / "Your records and their photos. A backup never includes your purchase, your settings, or your app lock setting." Brief: Backup and restore (export contents; never included). Status: Approved.
 
 Purchases
 
-S20. Section heading: "Purchases". Status: Draft.
-S21. Question: "How much does atHand cost?" Status: Draft.
-S22. Answer: "atHand is a free download. The unlock is a one-time purchase, and the App Store shows its price in your local currency before you buy. See Pricing for what is free and what the unlock adds." "See Pricing" links to /pricing.html. Brief: Business model and entitlement. Status: Draft.
-S23. Question (existing): "How do I restore my purchase?" Status: Draft.
-S24. Answer (existing): "Open atHand on an iPhone signed in to the Apple ID you used to buy the unlock, then tap Restore purchase in Settings or on the unlock screen. If it does not work, email me." Brief: Business model and entitlement. Status: Draft.
-S25. Question (existing): "What is free, and what does the unlock add?" Status: Draft.
-S26. Answer (existing): "Your own record is free, including scanning, the app lock, and backups. A one-time purchase unlocks records for your household, vehicles, pets, homes, financial accounts, contacts, and custom records. There is no subscription." Brief: Business model and entitlement. Status: Draft.
-S27. Question (existing): "Can my family use my purchase?" Status: Draft.
-S28. Answer (existing): "A purchase covers every iPhone signed in to your Apple ID. Someone with a different Apple ID buys separately. Family Sharing is not available for the unlock." Brief: Business model and entitlement. Status: Draft.
-S29. Question (existing): "Does importing a backup unlock atHand?" Status: Draft.
-S30. Answer (existing): "No. A backup carries your information only, never the purchase. Use Restore purchase on the new iPhone." Brief: Business model and entitlement. Status: Draft.
-S31. Question: "Why are some records locked after I import a backup?" Status: Draft.
-S32. Answer: "Records other than your own need the unlock. They still appear on your home screen, and tapping one opens the unlock screen. If you already bought the unlock with this Apple ID, tap Restore purchase." Brief: Business model and entitlement (locked entities still appear; tapping opens the paywall). Status: Draft.
+S20. Section heading: "Purchases". Status: Approved.
+S21. Question: "How much does atHand cost?" Status: Approved.
+S22. Answer: "atHand is a free download. The unlock is a one-time purchase, and the App Store shows its price in your local currency before you buy. See Pricing for what is free and what the unlock adds." "See Pricing" links to /pricing.html. Brief: Business model and entitlement. Status: Approved.
+S23. Question (existing): "How do I restore my purchase?" Status: Approved.
+S24. Answer (existing): "Open atHand on an iPhone signed in to the Apple ID you used to buy the unlock, then tap Restore purchase in Settings or on the unlock screen. If it does not work, email me." Brief: Business model and entitlement. Status: Approved.
+S25. Question (existing): "What is free, and what does the unlock add?" Status: Approved.
+S26. Answer (existing): "Your own record is free, including scanning, the app lock, and backups. A one-time purchase unlocks records for your household, vehicles, pets, homes, financial accounts, contacts, and custom records. There is no subscription." Brief: Business model and entitlement. Status: Approved.
+S27. Question (existing): "Can my family use my purchase?" Status: Approved.
+S28. Answer (existing): "A purchase covers every iPhone signed in to your Apple ID. Someone with a different Apple ID buys separately. Family Sharing is not available for the unlock." Brief: Business model and entitlement. Status: Approved.
+S29. Question (existing): "Does importing a backup unlock atHand?" Status: Approved.
+S30. Answer (existing): "No. A backup carries your information only, never the purchase. Use Restore purchase on the new iPhone." Brief: Business model and entitlement. Status: Approved.
+S31. Question: "Why are some records locked after I import a backup?" Status: Approved.
+S32. Answer: "Records other than your own need the unlock. They still appear on your home screen, and tapping one opens the unlock screen. If you already bought the unlock with this Apple ID, tap Restore purchase." Brief: Business model and entitlement (locked entities still appear; tapping opens the paywall). Status: Approved.
 
 App lock
 
-S33. Section heading: "App lock". Status: Draft.
-S34. Question (existing): "How do I turn on the app lock?" Status: Draft.
-S35. Answer (existing): "The app lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. You can turn it off, or change how soon it locks again, in atHand’s Settings." Brief: App lock. Status: Draft.
-S36. Question: "Is there an atHand password?" Status: Draft.
-S37. Answer: "No. atHand uses Face ID, Touch ID, or your device passcode, never a separate password. Turning the lock on or off asks you to confirm with one of them." Brief: App lock (no in-app password; turning the lock on or off requires authentication). Status: Draft.
-S38. Question: "Why can’t I turn on the app lock?" Status: Draft.
-S39. Answer: "The lock needs Face ID, Touch ID, or a device passcode. If none is set up, set a passcode in iPhone Settings, then turn the lock on in atHand." Brief: App lock (if nothing is enrolled, the toggle is disabled and the screen explains how to set a passcode). Status: Draft.
+S33. Section heading: "App lock". Status: Approved.
+S34. Question (existing): "How do I turn on the app lock?" Status: Approved.
+S35. Answer (existing): "The app lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. You can turn it off, or change how soon it locks again, in atHand’s Settings." Brief: App lock. Status: Approved.
+S36. Question: "Is there an atHand password?" Status: Approved.
+S37. Answer: "No. atHand uses Face ID, Touch ID, or your device passcode, never a separate password. Turning the lock on or off asks you to confirm with one of them." Brief: App lock (no in-app password; turning the lock on or off requires authentication). Status: Approved.
+S38. Question: "Why can’t I turn on the app lock?" Status: Approved.
+S39. Answer: "The lock needs Face ID, Touch ID, or a device passcode. If none is set up, set a passcode in iPhone Settings, then turn the lock on in atHand." Brief: App lock (if nothing is enrolled, the toggle is disabled and the screen explains how to set a passcode). Status: Approved.
 
 Scanning
 
-S40. Section heading: "Scanning". Status: Draft.
-S41. Question and answer: "Which documents can I scan?" / "Driver’s licenses, passports, insurance cards, VINs, vaccine records, utility bills, payment cards, and business cards." Brief: Document capture; Scan-first creation. Status: Draft.
-S42. Question: "What if a scan reads something wrong?" Status: Draft.
-S43. Answer: "Every scan opens a check screen before anything is saved. atHand marks any field it is unsure of with “Check this.” Correct any field, or tap the photo to retake it." Brief: Document capture (shared confirmation screen; tap thumbnail to retake). Status: Draft.
-S44. Question and answer: "Can I add a record without scanning?" / "Yes. When you add a record, choose Enter manually." Brief: Scan-first creation. Status: Draft.
-S45. Question: "Are my scans sent anywhere?" Status: Draft.
-S46. Answer: "No. Recognition runs on your iPhone, and atHand never sends your scans, photos, or the text read from them. The scanning library does send Google anonymous diagnostics, described in the privacy policy." "privacy policy" links to /privacy.html. Brief: Privacy. Status: Draft.
+S40. Section heading: "Scanning". Status: Approved.
+S41. Question and answer: "Which documents can I scan?" / "Driver’s licenses, passports, insurance cards, VINs, vaccine records, utility bills, payment cards, and business cards." Brief: Document capture; Scan-first creation. Status: Approved.
+S42. Question: "What if a scan reads something wrong?" Status: Approved.
+S43. Answer: "Every scan opens a check screen before anything is saved. atHand marks any field it is unsure of with “Check this.” Correct any field, or tap the photo to retake it." Brief: Document capture (shared confirmation screen; tap thumbnail to retake). Status: Approved.
+S44. Question and answer: "Can I add a record without scanning?" / "Yes. When you add a record, choose Enter manually." Brief: Scan-first creation. Status: Approved.
+S45. Question: "Are my scans sent anywhere?" Status: Approved.
+S46. Answer: "No. Recognition runs on your iPhone, and atHand never sends your scans, photos, or the text read from them. The scanning library does send Google anonymous diagnostics, described in the privacy policy." "privacy policy" links to /privacy.html. Brief: Privacy. Status: Approved.
 
 Suggestions
 
-S47. Section heading: "Suggestions". Status: Draft.
-S48. Question: "How do suggestions work?" Status: Draft.
-S49. Answer: "atHand compares signals such as the time of day and, if you allow them, your calendar and location with your records, on your iPhone. If you allow location, Apple’s geocoding service returns the name of a nearby place. When nothing matches with confidence, atHand shows nothing." Brief: Contextual suggestions; Privacy. Status: Draft.
-S50. Question: "How do I turn suggestions off?" Status: Draft.
-S51. Answer: "In atHand’s Settings, under Contextual Surfacing, set Context mode to Off." Brief: Contextual suggestions (Off). App labels: app/settings.tsx:198-200, :39. Status: Draft.
+S47. Section heading: "Suggestions". Status: Approved.
+S48. Question: "How do suggestions work?" Status: Approved.
+S49. Answer: "atHand compares signals such as the time of day and, if you allow them, your calendar and location with your records, on your iPhone. If you allow location, Apple’s geocoding service returns the name of a nearby place. When nothing matches with confidence, atHand shows no suggestion banner." Brief: Contextual suggestions; Privacy; decision 18. Status: Approved.
+S50. Question: "How do I turn suggestions off?" Status: Approved.
+S51. Answer: "In atHand’s Settings, under Contextual Surfacing, set Context mode to Off." Brief: Contextual suggestions (Off). App labels: app/settings.tsx:198-200, :39. Status: Approved.
 
 Permissions and your data
 
-S52. Section heading: "Permissions and your data". Status: Draft.
-S53. Question and answer (existing): "Which permissions are optional?" / "Calendar and location access are both optional. atHand works without them, and you can change them at any time in iPhone Settings. Camera access for scanning and the app lock are also your choice. See the privacy policy for what each one does." Status: Draft.
-S54. Question and answer (existing): "How do I delete all my data?" / "Delete the app from your iPhone. This removes all of its data from the device. Backup files you exported are stored separately, so delete those as well if you no longer want them." Status: Draft.
-S55. Question and answer: "Where can I read how atHand handles my information?" / "The privacy overview explains it in plain language, and the privacy policy has every detail." Links to the Privacy overview and /privacy.html. Not a claim. Status: Draft.
+S52. Section heading: "Permissions and your data". Status: Approved.
+S53. Question and answer (existing): "Which permissions are optional?" / "Calendar and location access are both optional. atHand works without them, and you can change them at any time in iPhone Settings. Camera access for scanning and the app lock are also your choice. See the privacy policy for what each one does." Status: Approved.
+S54. Question and answer (existing): "How do I delete all my data?" / "Delete the app from your iPhone. This removes all of its data from the device. Backup files you exported are stored separately, so delete those as well if you no longer want them." Status: Approved.
+S55. Question and answer: "Where can I read how atHand handles my information?" / "The privacy overview explains it in plain language, and the privacy policy has every detail." Links to the Privacy overview and /privacy.html. Not a claim. Status: Approved.
 
 About atHand
 
-S57. Section heading: "About atHand". Status: Draft.
-S58. Question and answer (existing, moved): "Which devices does atHand support?" / "iPhone only." Brief: Current milestone. Status: Draft.
+S57. Section heading: "About atHand". Status: Approved.
+S58. Question and answer (existing, moved): "Which devices does atHand support?" / "iPhone only." Brief: Current milestone. Status: Approved.
 
 ## Open questions for Jake
 
-1. What URL should the Privacy overview page use? Recommended default: /privacy-overview.html, with the header link labeled "Privacy" and the footer link to the full policy renamed "Privacy policy" (entry F1). Reason: the overview needs its own permanent-looking URL, separate from /privacy.html, which must never move; "overview" says what it is, and the two link names stay distinct.
-2. Should the Features page say atHand works with VoiceOver and larger text sizes? Recommended default: leave it out of this phase and revisit in phase 04 once the app's TestFlight VoiceOver and Dynamic Type passes (brief, Release requirements, Quality gates) are recorded as done. Reason: the brief makes these requirements, and the app repo's phase 07 acceptance is still in progress, so saying it today would state a goal as a fact.
-3. May the site repeat statements that come from the approved privacy policy but are not spelled out in the brief? This covers V17 (services can see your device’s IP address) and V21 (camera and photos access is optional; the brief names calendar and location as optional). Recommended default: yes. Reason: both were checked when the policy was written in phase 01, both make the copy more complete rather than more flattering, and leaving out the IP address line would make the overview less accurate than the policy.
-4. Should the support FAQ describe the purchase error, cancellation, and Ask to Buy states? Recommended default: no, not in this phase. Reason: the brief requires clear copy in the app for those states but does not say what the user should do, so any FAQ answer would describe app behavior the brief does not fix; add it later from the shipped app’s wording if support email shows the need.
-
-Copy awaits approval: every entry above is Draft.
+None. All four were answered in ANSWERS (decisions 14 to 17), and every Copy drafts entry is Approved.
 
 ## Out of scope
 

@@ -41,7 +41,7 @@ Exit: every new page is live with Approved copy only, each claim cited in the PR
 
 ## 04 visuals-and-polish: Not started
 
-Requirements: VIS-01..04, SEO-01..04, A11Y-01..06.
+Requirements: VIS-01..04, SEO-01..04, A11Y-01..06, FEAT-01.
 
 - Design Ref screenshots from athand-design-handoff/screenshots as placeholders, replaced by simulator captures from app phase 06 when they exist.
 - A CSS phone frame that swaps between light and dark with the theme.
