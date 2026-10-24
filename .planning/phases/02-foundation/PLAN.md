@@ -116,7 +116,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: `npm ci` succeeds from the lockfile; package.json lists only the five named dependencies with exact versions; `cmp CNAME public/CNAME` succeeds; .nojekyll exists and is empty; root HTML files and styles.css are untouched.
   Verify command: `npm ci && node -e 'const p=require("./package.json");const d={...p.dependencies,...p.devDependencies};const want={"astro":"7.4.2","@astrojs/check":"0.9.12","typescript":"6.0.3","@fontsource/inter":"5.3.0","@fontsource/space-grotesk":"5.3.0"};if(JSON.stringify(Object.keys(d).sort())!==JSON.stringify(Object.keys(want).sort())||Object.entries(want).some(([k,v])=>d[k]!==v))process.exit(1)' && cmp CNAME public/CNAME && test -f .nojekyll && test ! -s .nojekyll && git diff --quiet 52d8d1afc6de84391e401c738905da3f186f9f50 -- index.html privacy.html support.html 404.html styles.css CNAME`
 
-- [ ] 02-02: Copied tokens and tokens:check
+- [x] 02-02: Copied tokens and tokens:check
   Requirements: FND-04, FND-05
   Files: src/styles/tokens/colors.css, src/styles/tokens/effects.css, src/styles/tokens/spacing.css, src/styles/tokens/typography.css, scripts/tokens-check.mjs
   Copy entries: none
