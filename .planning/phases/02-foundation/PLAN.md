@@ -233,7 +233,7 @@ Live site after this wave: the Pages source is already "GitHub Actions" (Steps f
 
 Cleanup and README, after the Actions deployment is confirmed live.
 
-- [ ] 02-09: Remove the root site files
+- [x] 02-09: Remove the root site files
   Requirements: FND-03
   Files: index.html, privacy.html, support.html, 404.html, styles.css, CNAME, .nojekyll
   Copy entries: none
@@ -244,7 +244,7 @@ Cleanup and README, after the Actions deployment is confirmed live.
   Acceptance: the gate passed and its output is in SUMMARY.md; none of the seven files exist at the root; public/CNAME is unchanged; all checks pass.
   Verify command: `for f in index.html privacy.html support.html 404.html styles.css CNAME .nojekyll; do test ! -e "$f" || exit 1; done && test "$(cat public/CNAME)" = athandapp.com && npm run build && npm run check && npm run check:external && npm run check:content`
 
-- [ ] 02-10: README
+- [x] 02-10: README
   Requirements: FND-14
   Files: README.md
   Copy entries: none (repository documentation, not site copy)
