@@ -195,7 +195,7 @@ Completes the Astro site and adds the Deploy workflow. The live site still serve
   Acceptance: dist/privacy.html and dist/support.html exist at those exact paths (not privacy/index.html); main text and links match the pre-port files exactly; titles and descriptions match; the four outbound policy links are present.
   Verify command: `npm run build && test -f dist/privacy.html && test -f dist/support.html && test ! -e dist/privacy && test ! -e dist/support && node scripts/check-main-text.mjs privacy support && node -e 'const {execSync}=require("child_process"),fs=require("fs");const re=[/<title>[^<]*<\/title>/,/<meta name="description" content="[^"]*">/];for(const p of ["privacy","support"]){const o=execSync("git show 52d8d1afc6de84391e401c738905da3f186f9f50:"+p+".html","utf8"),n=fs.readFileSync("dist/"+p+".html","utf8");for(const r of re){const m=o.match(r)[0].replace(/>$/,"");if(!n.includes(m)){console.error(p,m);process.exit(1)}}}' && [ $(grep -o 'href="https://' dist/privacy.html | wc -l) -ge 5 ]`
 
-- [ ] 02-08: Deploy workflow
+- [x] 02-08: Deploy workflow
   Requirements: FND-02, FND-13
   Files: .github/workflows/deploy.yml
   Copy entries: none
