@@ -20,6 +20,12 @@ Wave 2 (EXECUTE, 2026-10-24, branch execute/02-wave-2 from main at 9e1979c):
 
 The live site is unchanged by this wave until Jake switches the Pages source (PLAN.md, Steps for Jake outside the repo, step 2). The Deploy run on this merge is expected to fail at the deploy job.
 
+Wave 2b (EXECUTE, 2026-10-24, branch execute/02-wave-2b from main at 5ee3147):
+
+- 02-11: .github/workflows/deploy.yml. The setup-node step now names `node-version: 22.23.4`, matching package.json `engines.node` (`>=22.23.4`), with a YAML comment saying why a bare major is not enough.
+
+This merge switches athandapp.com to the Astro build: the Pages source is already "GitHub Actions", so the Deploy run on main publishes dist/.
+
 ## Brief citations
 
 None. No product claims were added or changed. New strings are the approved Copy drafts entries 1 to 4 in CONTEXT.md (footer credit, "Appearance", "System", "Light", "Dark", and the removed footer sentence).
@@ -35,6 +41,7 @@ None. No product claims were added or changed. New strings are the approved Copy
 - c6c707f phase 02 task 02-06: port the home page
 - 44e1db8 phase 02 task 02-07: port the privacy and support pages
 - 739fe88 phase 02 task 02-08: Deploy workflow
+- 06f5001 phase 02 task 02-11: pin Node in the Deploy workflow
 
 ## Check results (wave 1)
 
@@ -59,6 +66,14 @@ None. No product claims were added or changed. New strings are the approved Copy
 - Workflow YAML parses (Ruby YAML loader; top-level keys name, on, permissions, concurrency, jobs; jobs build and deploy).
 - Built-in browser against `astro preview` at http://localhost:4321 (the preview server left running by the wave 1 session, serving this checkout's dist/): all four pages return 200 with the right title, h1, three theme buttons, and the footer credit; an unknown path returns 404 with the 404 page. Light chosen on /privacy.html persisted to /support.html with `aria-pressed` on Light; Dark chosen on /support.html persisted across navigation to / with a dark background; System removed `data-theme`, stored `system`, and followed the dark OS. Theme buttons measure 87, 68, and 66 by 44 CSS px. Only localhost:4321 requests (one CSS file and three woff2 faces on the home page). No horizontal scrolling at a 320 CSS px viewport on any page.
 
+## Check results (wave 2b)
+
+- 02-11 verify command: pass.
+- Workflow YAML parses (Ruby YAML loader); setup-node's `node-version` loads as the string "22.23.4".
+- 22.23.4 is the newest v22 release in https://nodejs.org/dist/index.json, so setup-node can resolve it.
+- Local Node 26.11.1: `npm ci`, `npm run build` (4 pages), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match app main 0fa0ec4; `git diff e7537e7 0fa0ec4 -- athand-design-handoff/_ds/` is empty), `npm run check:external`, and `npm run check:content` (index, privacy, support, and 404): all pass.
+- Node 22.23.4 (official darwin-arm64 tarball from nodejs.org, SHA-256 checked, run from the session scratchpad and deleted afterward): the workflow's sequence `npm ci`, `npm run build`, `npm run check`, `npm run check:external`, and `npm run check:content` all pass. This is the check wave 2 lacked.
+
 ## Deviations
 
 - 02-03 bug fixed in its own file: the footer's `.wrap` sat about 10px right of the header and main, because `.wrap` is 68ch and the 16px footer font made its ch narrower (the same offset existed in styles.css at 15px). The 16px size moved from `footer.site` to `footer.site nav` and `footer.site p`. Separate commit 8e1996e.
@@ -78,5 +93,5 @@ None. No product claims were added or changed. New strings are the approved Copy
 ## Follow-ups
 
 - Pages Source switched to "GitHub Actions" on 2026-10-24 (PLAN.md, Steps for Jake outside the repo, step 2.2).
-- Wave 2b (02-11): pin Node 22.23.4 in the Deploy workflow. After it merges, Jake waits for the automatic Deploy run to finish green, then does the live checks in step 2.5.
+- Wave 2b (02-11) done. After it merges, Jake waits for the automatic Deploy run to finish green, then does steps 2.3 and 2.5 (custom domain and HTTPS, then the three live URLs).
 - Wave 3 (02-09, 02-10): root cleanup after the first green Actions deployment and the live checks, and README.
