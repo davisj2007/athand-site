@@ -33,6 +33,12 @@ Wave 3 (EXECUTE, 2026-10-24, branch execute/02-wave-3 from main at 55bd663):
 
 The live site is unchanged by this wave: Pages deploys only the Actions artifact, so the removed root files were no longer served. The Deploy run on this merge republishes the same build. The rollback to "Deploy from a branch" no longer restores the old site; reverting a PR on main is the rollback from here on.
 
+Fix wave (FIX, 2026-10-24, branch fix/02-touch-targets from main at 5e6e06d, VERIFY merged):
+
+- 02-12: src/styles/site.css gives `footer.site a` and `.links a` `display: inline-flex; align-items: center; min-height: var(--touch-min)`. The vertical gaps of `.links` (0.75rem) and `footer.site ul` (0.5rem), and the footer list's 0.75rem bottom margin, are now 0, since the 44px links carry their own spacing; horizontal gaps stay 1.5rem. src/pages/404.astro adds a scoped `<style>` after `</Base>` that does the same for `p > a`; the main markup is unchanged. Inline links inside sentences are unchanged (WCAG 2.5.8 inline exception).
+
+The live site after this wave: the same pages, copy, URLs, and requests, with 44px tap areas on the seven standalone links.
+
 ## Brief citations
 
 None. No product claims were added or changed. New strings are the approved Copy drafts entries 1 to 4 in CONTEXT.md (footer credit, "Appearance", "System", "Light", "Dark", and the removed footer sentence).
@@ -51,6 +57,7 @@ None. No product claims were added or changed. New strings are the approved Copy
 - 06f5001 phase 02 task 02-11: pin Node in the Deploy workflow
 - 4da84ea phase 02 task 02-09: remove the root site files
 - 78b687a phase 02 task 02-10: README
+- 2b6933d phase 02 task 02-12: 44px targets for standalone links
 
 ## Check results (wave 1)
 
@@ -91,6 +98,14 @@ None. No product claims were added or changed. New strings are the approved Copy
 - Local Node 26.11.1, from a clean dist/: `npm ci` (same fsevents install-scripts notice), `npm run build` (4 pages, dist/ holds 404.html, CNAME, index.html, privacy.html, and support.html), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match app main 0fa0ec4; `git diff e7537e7 0fa0ec4 -- athand-design-handoff/_ds/` is empty), `npm run check:external`, and `npm run check:content` (index, privacy, support, and 404): all pass.
 - The app repo checkout at ../athandapp is on branch verify/07-release-acceptance at 0fa0ec4, the same commit wave 2b checked; its _ds tokens equal e7537e7 and origin/main.
 
+## Check results (fix wave)
+
+- 02-12 verify command: pass.
+- Local Node 26.11.1: `npm ci` (same fsevents install-scripts notice), `npm run build` (4 pages), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match app 0fa0ec4), `npm run check:external`, and `npm run check:content` (index, privacy, support, and 404): all pass.
+- Static checks 5 to 22: pass (22: build_type `workflow`; Deploy run 40128490655 on main at 5e6e06d `success`).
+- Built-in browser against `astro preview` at http://localhost:4321 serving this checkout's dist/, every page in light and dark at a 320 CSS px viewport: every standalone link measures 44 CSS px tall and stays underlined (see VERIFY.md); no horizontal scrolling.
+- No deviations.
+
 ## Deviations
 
 - 02-03 bug fixed in its own file: the footer's `.wrap` sat about 10px right of the header and main, because `.wrap` is 68ch and the 16px footer font made its ch narrower (the same offset existed in styles.css at 15px). The 16px size moved from `footer.site` to `footer.site nav` and `footer.site p`. Separate commit 8e1996e.
@@ -112,4 +127,4 @@ None. No product claims were added or changed. New strings are the approved Copy
 - Pages Source switched to "GitHub Actions" on 2026-10-24 (PLAN.md, Steps for Jake outside the repo, step 2.2).
 - Wave 2b (02-11) done and deployed green (run 40127538550).
 - Wave 3 (02-09, 02-10) done. After it merges, Jake waits for the Deploy run to finish green, then reloads https://athandapp.com, /privacy.html, and /support.html (PLAN.md, Steps for Jake outside the repo, step 4).
-- All waves are checked. Next step: VERIFY.
+- All waves are checked. VERIFY found one gap (44px targets); the Fix wave (02-12) closes it. Next: Jake merges the FIX PR, waits for Deploy to finish green, runs the VERIFY.md browser checklist, then SHIP.

@@ -1,11 +1,26 @@
 # Phase 02: foundation - Verify
 
-Result: GAPS
-Date: 2026-10-24
+Result: PASS
+Date: 2026-10-24 (VERIFY found GAPS; FIX re-run the same day passes)
 
 Run on branch verify/02-foundation from main at 42181a7 (wave 3 merged), local Node 26.11.1. App repo checkout at ../athandapp: HEAD 0fa0ec4 (branch verify/07-release-acceptance), working tree clean under athand-design-handoff/_ds/, and `git diff` of that folder against e7537e7 (the commit named in the token headers) and against origin/main (60032bf) is empty.
 
-## Gap
+## Fix wave re-run
+
+Run at FIX on branch fix/02-touch-targets from main at 5e6e06d (VERIFY merged), local Node 26.11.1, after task 02-12 (commit 2b6933d). App repo checkout at ../athandapp unchanged (0fa0ec4).
+
+- `npm ci`, `npm run build` (4 pages), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (exception line printed; 4 files match 0fa0ec4), `npm run check:external` (5 files, no third-party requests), and `npm run check:content` (index, privacy, support, and 404 against 52d8d1a): pass.
+- Static checks 5 to 22: pass. Static checks 17 and 18 return nothing. Check 22: build_type `workflow`; the latest Deploy run on main (40128490655, head 5e6e06d) concluded `success`.
+- 02-12 verify command: pass.
+- Static check 23 and the 02-12 acceptance, built-in browser against `astro preview` at http://localhost:4321 serving this checkout's dist/, each page in light and dark at a 320 CSS px viewport:
+  - Footer, every page: Privacy 53 by 44, Support 58 by 44, support@athandapp.com 184 by 44, Made by Jacob Davis 154 by 44.
+  - Home page "Learn more": Privacy policy 105 by 44, Support and help 131 by 44.
+  - 404 page: Go to the atHand home page 220 by 44.
+  - Every one keeps `text-decoration-line: underline`. Inline links inside sentences stay `display: inline` (for example "full privacy policy" on the home page).
+  - No horizontal scrolling on any page in either theme.
+- The gap below is closed. FND-10 and the locked accessibility floor are now PASS.
+
+## Gap (found at VERIFY, closed at FIX)
 
 One gap, against a rule CONTEXT.md locks for this phase ("Locked by the brief and CLAUDE.md": 44px targets; CLAUDE.md, Hard rules). Standalone links are 20 to 21 CSS px tall:
 
@@ -66,16 +81,16 @@ The lockup (103 by 44) and the theme buttons (87, 68, and 66 by 44) meet the rul
 - FND-07: PASS. Base.astro:42 key `athand-theme`, inline script in head applies before first paint, :76 `aria-pressed`, :111 follows `prefers-color-scheme` on System; ThemeControl.astro:1 group "Appearance", hidden until the script runs; browser: persistence, System both ways, JavaScript off, 44px buttons.
 - FND-08: PASS. Base.astro:27 `lang="en"`, :30 viewport, :31-32 per-page title and description, :33 color-scheme, :124 skip link; landmarks one each per page (browser audit).
 - FND-09: PASS. src/components/Header.astro:7, the inlined logo-lockup-mark.svg (byte for byte, static check 20) plus "Hand", linking `/`, named "atHand, home" (static check 11).
-- FND-10: PASS for content. src/components/Footer.astro has Privacy, Support, support@athandapp.com, and "Made by Jacob Davis" to https://jacobdavis.co (static check 10). The footer links' target size is the gap above (task 02-12).
+- FND-10: PASS. src/components/Footer.astro has Privacy, Support, support@athandapp.com, and "Made by Jacob Davis" to https://jacobdavis.co (static check 10). Footer links measure 44 CSS px tall after 02-12 (src/styles/site.css, `footer.site a`; Fix wave re-run).
 - FND-11: PASS. src/pages/404.astro:8 links `/`; the footer links /support.html; dist/404.html is noindex.
 - FND-12: PASS. `npm run check:content` matches main text and links for all four pages against 52d8d1a.
 - FND-13: PASS. `npm run check:external` passes on dist/; its failure fixtures were exercised at EXECUTE (02-05 verify command) and the script is unchanged since (commit 5b2c4d5).
 - FND-14: PASS. README.md (64 lines) covers the build, the Deploy workflow and Pages settings, tokens:check with ATHAND_APP_DIR, check:external, and check:content; 02-10's verify command passes.
-- Locked accessibility floor (CONTEXT.md, Locked by the brief and CLAUDE.md): FAIL on 44px targets only (see Gap). Contrast, 17px body, 16px minimum, no color-only meaning (links underlined), 320px reflow, and reduced motion pass.
+- Locked accessibility floor (CONTEXT.md, Locked by the brief and CLAUDE.md): PASS. 44px targets pass after 02-12 (Fix wave re-run); VERIFY had failed it on the seven standalone links. Contrast, 17px body, 16px minimum, no color-only meaning (links underlined), 320px reflow, and reduced motion pass.
 
 ## Browser acceptance checklist for Jake
 
-Run after this phase's Fix wave merges and the Deploy workflow on main finishes green, on https://athandapp.com. You can also run it now; step 9 will fail until the Fix wave lands.
+Run after the FIX PR merges and the Deploy workflow on main finishes green, on https://athandapp.com.
 
 1. On a Mac in Safari, open https://athandapp.com. The page shows the "@" mark with "Hand" at the top left, the System, Light, and Dark buttons at the top right, the heading "Your info, ready when you need it", and a footer with Privacy, Support, support@athandapp.com, and "Made by Jacob Davis".
 2. Open https://athandapp.com/privacy.html and https://athandapp.com/support.html by typing those exact addresses. Each loads at that address with no redirect, showing the privacy policy and the support page.
