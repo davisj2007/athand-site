@@ -1,6 +1,6 @@
 # Phase 02: foundation - Plan
 
-Status: Draft
+Status: Approved (2026-10-23)
 
 ## Goal
 
@@ -100,7 +100,7 @@ Loop files every session updates: .planning/phases/02-foundation/PLAN.md (checkb
 
 Builds the Astro project alongside the live root HTML. Nothing it adds is served as a page.
 
-- [ ] 02-01: Astro project scaffold
+- [x] 02-01: Astro project scaffold
   Requirements: FND-01, FND-03
   Files: package.json, package-lock.json, astro.config.mjs, tsconfig.json, .gitignore, .nojekyll, public/CNAME
   Copy entries: none
