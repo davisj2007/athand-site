@@ -127,7 +127,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: `npm run tokens:check` exits 0 and prints the fonts.css line; it exits 1 when the app repo path is missing; it exits 1 and prints the differing line when one byte of a copy changes; the header names the full 40-character hash.
   Verify command: `npm run tokens:check && ! ATHAND_APP_DIR=/nonexistent npm run tokens:check && T=$(mktemp) && cp src/styles/tokens/spacing.css "$T" && printf 'x\n' >> src/styles/tokens/spacing.css && ! npm run tokens:check; cp "$T" src/styles/tokens/spacing.css && npm run tokens:check`
 
-- [ ] 02-03: Self-hosted fonts and site stylesheet
+- [x] 02-03: Self-hosted fonts and site stylesheet
   Requirements: FND-06, FND-07 (color-scheme part), FND-08 (styling of existing structure)
   Files: src/styles/site.css
   Copy entries: none
