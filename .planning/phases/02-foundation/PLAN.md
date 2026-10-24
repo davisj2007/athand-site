@@ -329,7 +329,7 @@ Re-run 2026-10-24 at REVISE (wave 2b, task 02-11, pins Node 22.23.4 in the Deplo
 
 Added by VERIFY 2026-10-24. Standalone text links are 20 to 21 CSS px tall, below the 44px target floor CONTEXT.md locks (Locked by the brief and CLAUDE.md; CLAUDE.md, Hard rules). See VERIFY.md, Gap. CSS only; no markup or copy changes.
 
-- [ ] 02-12: 44px targets for standalone links
+- [x] 02-12: 44px targets for standalone links
   Requirements: FND-10, FND-11 (and the locked accessibility floor)
   Files: src/styles/site.css, src/pages/404.astro
   Copy entries: none
