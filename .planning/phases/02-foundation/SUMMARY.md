@@ -26,6 +26,13 @@ Wave 2b (EXECUTE, 2026-10-24, branch execute/02-wave-2b from main at 5ee3147):
 
 This merge switches athandapp.com to the Astro build: the Pages source is already "GitHub Actions", so the Deploy run on main publishes dist/.
 
+Wave 3 (EXECUTE, 2026-10-24, branch execute/02-wave-3 from main at 55bd663):
+
+- 02-09: removed index.html, privacy.html, support.html, 404.html, styles.css, CNAME, and .nojekyll from the root. public/CNAME (athandapp.com) is unchanged and ships in dist/.
+- 02-10: README.md rewritten: what the repo is, Node and npm requirements, the npm commands, where pages, layout, components, tokens, and scripts live, the Deploy workflow and the Pages settings it needs, tokens:check with `ATHAND_APP_DIR` and the header format, why fonts.css is not copied and why tokens:check does not run in CI, check:external, and check:content with `PRE_PORT_REF`.
+
+The live site is unchanged by this wave: Pages deploys only the Actions artifact, so the removed root files were no longer served. The Deploy run on this merge republishes the same build. The rollback to "Deploy from a branch" no longer restores the old site; reverting a PR on main is the rollback from here on.
+
 ## Brief citations
 
 None. No product claims were added or changed. New strings are the approved Copy drafts entries 1 to 4 in CONTEXT.md (footer credit, "Appearance", "System", "Light", "Dark", and the removed footer sentence).
@@ -42,6 +49,8 @@ None. No product claims were added or changed. New strings are the approved Copy
 - 44e1db8 phase 02 task 02-07: port the privacy and support pages
 - 739fe88 phase 02 task 02-08: Deploy workflow
 - 06f5001 phase 02 task 02-11: pin Node in the Deploy workflow
+- 4da84ea phase 02 task 02-09: remove the root site files
+- 78b687a phase 02 task 02-10: README
 
 ## Check results (wave 1)
 
@@ -74,6 +83,14 @@ None. No product claims were added or changed. New strings are the approved Copy
 - Local Node 26.11.1: `npm ci`, `npm run build` (4 pages), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match app main 0fa0ec4; `git diff e7537e7 0fa0ec4 -- athand-design-handoff/_ds/` is empty), `npm run check:external`, and `npm run check:content` (index, privacy, support, and 404): all pass.
 - Node 22.23.4 (official darwin-arm64 tarball from nodejs.org, SHA-256 checked, run from the session scratchpad and deleted afterward): the workflow's sequence `npm ci`, `npm run build`, `npm run check`, `npm run check:external`, and `npm run check:content` all pass. This is the check wave 2 lacked.
 
+## Check results (wave 3)
+
+- 02-09 gate (before any file was removed): `gh api repos/davisj2007/athand-site/pages --jq .build_type` printed `workflow`; the latest Deploy run on main (40127538550, head 55bd663, 2026-10-24T19:56:13Z) concluded `success`; `curl -sI https://athandapp.com/privacy.html` returned `HTTP/2 200`; the live page contains `aria-label="Appearance"` (the built page).
+- 02-09 verify command: pass.
+- 02-10 verify command: pass.
+- Local Node 26.11.1, from a clean dist/: `npm ci` (same fsevents install-scripts notice), `npm run build` (4 pages, dist/ holds 404.html, CNAME, index.html, privacy.html, and support.html), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match app main 0fa0ec4; `git diff e7537e7 0fa0ec4 -- athand-design-handoff/_ds/` is empty), `npm run check:external`, and `npm run check:content` (index, privacy, support, and 404): all pass.
+- The app repo checkout at ../athandapp is on branch verify/07-release-acceptance at 0fa0ec4, the same commit wave 2b checked; its _ds tokens equal e7537e7 and origin/main.
+
 ## Deviations
 
 - 02-03 bug fixed in its own file: the footer's `.wrap` sat about 10px right of the header and main, because `.wrap` is 68ch and the 16px footer font made its ch narrower (the same offset existed in styles.css at 15px). The 16px size moved from `footer.site` to `footer.site nav` and `footer.site p`. Separate commit 8e1996e.
@@ -93,5 +110,6 @@ None. No product claims were added or changed. New strings are the approved Copy
 ## Follow-ups
 
 - Pages Source switched to "GitHub Actions" on 2026-10-24 (PLAN.md, Steps for Jake outside the repo, step 2.2).
-- Wave 2b (02-11) done. After it merges, Jake waits for the automatic Deploy run to finish green, then does steps 2.3 and 2.5 (custom domain and HTTPS, then the three live URLs).
-- Wave 3 (02-09, 02-10): root cleanup after the first green Actions deployment and the live checks, and README.
+- Wave 2b (02-11) done and deployed green (run 40127538550).
+- Wave 3 (02-09, 02-10) done. After it merges, Jake waits for the Deploy run to finish green, then reloads https://athandapp.com, /privacy.html, and /support.html (PLAN.md, Steps for Jake outside the repo, step 4).
+- All waves are checked. Next step: VERIFY.
