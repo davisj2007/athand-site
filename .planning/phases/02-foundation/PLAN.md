@@ -1,6 +1,6 @@
 # Phase 02: foundation - Plan
 
-Status: Draft (revised 2026-10-24 to add wave 2b; was Approved 2026-10-24, first approved 2026-10-23)
+Status: Approved 2026-10-24 (re-approved after the wave 2b revision; first approved 2026-10-23)
 
 ## Goal
 
@@ -215,7 +215,7 @@ Live site after this wave: unchanged until Jake switches the source. The push to
 
 Pins Node in the Deploy workflow. Added at REVISE 2026-10-24: Deploy run 40104311488 failed at `npm run build` with Astro's "Please upgrade Node.js to a supported version" error, because `node-version: 22` resolved to the runner's preinstalled 22.x, which is older than 22.23.4.
 
-- [ ] 02-11: Pin Node in the Deploy workflow
+- [x] 02-11: Pin Node in the Deploy workflow
   Requirements: FND-02
   Files: .github/workflows/deploy.yml
   Copy entries: none
