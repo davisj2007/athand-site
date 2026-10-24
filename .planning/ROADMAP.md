@@ -10,9 +10,10 @@ Requirements: POL-01..03.
 Delivered by davisj2007/athand-site#2 (branch fix/privacy-accuracy), merged to main.
 Exit: the privacy policy, support page, and home copy match the brief's Privacy section, including RevenueCat purchase verification and ML Kit's anonymous diagnostics.
 
-## 02 foundation: Not started
+## 02 foundation: Done
 
 Requirements: FND-01..14.
+Delivered by davisj2007/athand-site#5 through #15 (DISCUSS, ANSWERS, PLAN, two REVISEs, EXECUTE waves 1, 2, 2b, and 3, VERIFY, and FIX), all merged to main, plus this SHIP PR. Jake's browser checklist passed on 2026-10-24.
 
 - Astro with static output. build.format is set to "file" so /privacy.html and /support.html keep their exact URLs, and the 404 page builds to /404.html.
 - A GitHub Actions workflow builds the site and deploys it to GitHub Pages on every push to main. Jake switches the Pages source to GitHub Actions in the repo settings; the PLAN names exactly when, so the live site never goes blank between the merge and the switch.
@@ -65,4 +66,4 @@ Exit: every page that mentions availability points to the live listing, and no c
 
 ## Order
 
-01 done. Next 02, then 03, 04, and 05 once Apple approves the app.
+01 and 02 done. Next 03, then 04, and 05 once Apple approves the app.

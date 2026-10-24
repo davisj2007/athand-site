@@ -1,5 +1,7 @@
 # Phase 02: foundation - Summary
 
+Status: Shipped 2026-10-24. VERIFY PASS; Jake's browser result PASS.
+
 ## What changed
 
 Wave 1 (EXECUTE, 2026-10-23, branch execute/02-foundation from main at 55faa82):
@@ -127,4 +129,6 @@ None. No product claims were added or changed. New strings are the approved Copy
 - Pages Source switched to "GitHub Actions" on 2026-10-24 (PLAN.md, Steps for Jake outside the repo, step 2.2).
 - Wave 2b (02-11) done and deployed green (run 40127538550).
 - Wave 3 (02-09, 02-10) done. After it merges, Jake waits for the Deploy run to finish green, then reloads https://athandapp.com, /privacy.html, and /support.html (PLAN.md, Steps for Jake outside the repo, step 4).
-- All waves are checked. VERIFY found one gap (44px targets); the Fix wave (02-12) closes it. Next: Jake merges the FIX PR, waits for Deploy to finish green, runs the VERIFY.md browser checklist, then SHIP.
+- All waves are checked. VERIFY found one gap (44px targets); the Fix wave (02-12) closed it, merged as ffcc991 (PR #15) and deployed.
+- SHIP (2026-10-24): VERIFY.md result PASS; Jake's browser checklist on https://athandapp.com: PASS, all steps. FND-01 to FND-14 are Done in REQUIREMENTS.md and phase 02 is Done in ROADMAP.md.
+- Next: phase 03 (pages-and-copy), step DISCUSS.

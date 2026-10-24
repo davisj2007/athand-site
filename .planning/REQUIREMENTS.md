@@ -12,20 +12,20 @@ Brief sections are cited by name: Concept, Brand, Copy rules, Accessibility floo
 
 ## Foundation (phase 02)
 
-- FND-01: Astro builds the site with static output and build.format "file"; the build emits /index.html, /privacy.html, /support.html, and /404.html. Open
-- FND-02: a GitHub Actions workflow builds and deploys dist/ to GitHub Pages on push to main and on manual dispatch, using the official Pages actions. Jake's settings change (Pages source: GitHub Actions) is a named step in the PLAN. Open
-- FND-03: CNAME lives at public/CNAME with the content athandapp.com, and the root CNAME is removed. Open
-- FND-04: colors.css, effects.css, spacing.css, and typography.css are byte-for-byte copies of the app repo's _ds tokens apart from a leading header comment that names the app repo and the source commit hash. Open
-- FND-05: `npm run tokens:check` removes each header, diffs the file against the app repo's _ds tokens (app repo path from ATHAND_APP_DIR, default ../athandapp), prints any difference, exits non-zero on a difference or a missing app repo, and reports fonts.css as the documented exception. Open
-- FND-06: Space Grotesk and Inter are self-hosted from npm packages and bundled into dist/; only the weights named in tokens/typography.css and fonts.css ship; no request goes to fonts.googleapis.com or fonts.gstatic.com. Open
-- FND-07: a theme control offers System, Light, and Dark, adapted from the design system's theme-toggle.js: the choice applies before first paint, persists in localStorage, follows the OS while on System, exposes its state to assistive tech (aria-pressed or an equivalent), has 44px targets, and the site still renders in the OS theme with JavaScript off. Open
-- FND-08: one base layout sets lang="en", a skip link, landmarks, meta color-scheme, viewport, and per-page title and description. Open
-- FND-09: the header shows the logo lockup (the design system's logo-lockup-mark.svg "@" mark with "Hand") linking home, with the accessible name "atHand, home". Open
-- FND-10: the footer shows "Made by Jacob Davis" linking to https://jacobdavis.co, plus links to Privacy, Support, and support@athandapp.com. Open
-- FND-11: a 404 page in the base layout links home and to Support. Open
-- FND-12: the main content of index, privacy, support, and 404 is unchanged by the port: the visible text of each page's main element matches the pre-port HTML on main. Open
-- FND-13: `npm run check:external` scans dist/ and fails on any src, srcset, link href, CSS url(), @import, or script that loads from a host other than athandapp.com. Outbound <a href> links are allowed. Open
-- FND-14: README.md describes the build, the deploy, the token check, and the external request check. Open
+- FND-01: Astro builds the site with static output and build.format "file"; the build emits /index.html, /privacy.html, /support.html, and /404.html. Done
+- FND-02: a GitHub Actions workflow builds and deploys dist/ to GitHub Pages on push to main and on manual dispatch, using the official Pages actions. Jake's settings change (Pages source: GitHub Actions) is a named step in the PLAN. Done
+- FND-03: CNAME lives at public/CNAME with the content athandapp.com, and the root CNAME is removed. Done
+- FND-04: colors.css, effects.css, spacing.css, and typography.css are byte-for-byte copies of the app repo's _ds tokens apart from a leading header comment that names the app repo and the source commit hash. Done
+- FND-05: `npm run tokens:check` removes each header, diffs the file against the app repo's _ds tokens (app repo path from ATHAND_APP_DIR, default ../athandapp), prints any difference, exits non-zero on a difference or a missing app repo, and reports fonts.css as the documented exception. Done
+- FND-06: Space Grotesk and Inter are self-hosted from npm packages and bundled into dist/; only the weights named in tokens/typography.css and fonts.css ship; no request goes to fonts.googleapis.com or fonts.gstatic.com. Done
+- FND-07: a theme control offers System, Light, and Dark, adapted from the design system's theme-toggle.js: the choice applies before first paint, persists in localStorage, follows the OS while on System, exposes its state to assistive tech (aria-pressed or an equivalent), has 44px targets, and the site still renders in the OS theme with JavaScript off. Done
+- FND-08: one base layout sets lang="en", a skip link, landmarks, meta color-scheme, viewport, and per-page title and description. Done
+- FND-09: the header shows the logo lockup (the design system's logo-lockup-mark.svg "@" mark with "Hand") linking home, with the accessible name "atHand, home". Done
+- FND-10: the footer shows "Made by Jacob Davis" linking to https://jacobdavis.co, plus links to Privacy, Support, and support@athandapp.com. Done
+- FND-11: a 404 page in the base layout links home and to Support. Done
+- FND-12: the main content of index, privacy, support, and 404 is unchanged by the port: the visible text of each page's main element matches the pre-port HTML on main. Done
+- FND-13: `npm run check:external` scans dist/ and fails on any src, srcset, link href, CSS url(), @import, or script that loads from a host other than athandapp.com. Outbound <a href> links are allowed. Done
+- FND-14: README.md describes the build, the deploy, the token check, and the external request check. Done
 
 ## Pages and copy (phase 03)
 

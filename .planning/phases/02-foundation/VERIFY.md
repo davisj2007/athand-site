@@ -109,4 +109,4 @@ Run after the FIX PR merges and the Deploy workflow on main finishes green, on h
 
 ## Jake's browser result
 
-(recorded at SHIP)
+PASS (recorded at SHIP, 2026-10-24). Jake ran every checklist step on https://athandapp.com after the 02-12 fix deployed (merge ffcc991, PR #15); all steps pass.
