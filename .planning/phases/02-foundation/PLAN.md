@@ -185,7 +185,7 @@ Completes the Astro site and adds the Deploy workflow. The live site still serve
   Acceptance: dist/index.html exists; its main text and links match the pre-port index.html exactly; title and description match.
   Verify command: `npm run build && node scripts/check-main-text.mjs index && grep -q '<title>atHand: Your Info, Ready</title>' dist/index.html && grep -q 'content="atHand keeps your personal reference information on your iPhone and shows the right record when you need it."' dist/index.html`
 
-- [ ] 02-07: Port the privacy and support pages
+- [x] 02-07: Port the privacy and support pages
   Requirements: FND-01, FND-12
   Files: src/pages/privacy.astro, src/pages/support.astro
   Copy entries: none (main content moves unchanged)
