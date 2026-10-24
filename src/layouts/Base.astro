@@ -1,0 +1,129 @@
+---
+import "../styles/tokens/colors.css";
+import "../styles/tokens/typography.css";
+import "../styles/tokens/spacing.css";
+import "../styles/tokens/effects.css";
+import "@fontsource/space-grotesk/latin-500.css";
+import "@fontsource/space-grotesk/latin-600.css";
+import "@fontsource/space-grotesk/latin-700.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/inter/latin-700.css";
+import "@fontsource/inter/latin-800.css";
+import "../styles/site.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="color-scheme" content="light dark">
+{noindex && <meta name="robots" content="noindex">}
+<script is:inline>
+  // Adapted from davisj2007/athandapp athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/theme-toggle.js
+  // at e7537e77d2257f8e6c10473e047017fd6e335aa0. System removes [data-theme] so
+  // the tokens follow the OS; light or dark sets it on <html>. The control in
+  // the header ships hidden and is shown here, so without JavaScript there is
+  // no dead control.
+  (function () {
+    var KEY = 'athand-theme';
+    var root = document.documentElement;
+
+    function stored() {
+      try {
+        var v = localStorage.getItem(KEY);
+        if (v === 'light' || v === 'dark' || v === 'system') return v;
+      } catch (e) {}
+      return 'system';
+    }
+
+    function systemDark() {
+      return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+
+    function apply(pref) {
+      if (pref === 'light' || pref === 'dark') {
+        root.setAttribute('data-theme', pref);
+      } else {
+        root.removeAttribute('data-theme');
+      }
+    }
+
+    function resolved() {
+      var pref = stored();
+      if (pref === 'light' || pref === 'dark') return pref;
+      return systemDark() ? 'dark' : 'light';
+    }
+
+    function sync() {
+      var pref = stored();
+      var buttons = document.querySelectorAll('[data-theme-set]');
+      for (var i = 0; i < buttons.length; i++) {
+        var b = buttons[i];
+        b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === pref ? 'true' : 'false');
+      }
+    }
+
+    function set(pref) {
+      if (pref !== 'light' && pref !== 'dark') pref = 'system';
+      try {
+        localStorage.setItem(KEY, pref);
+      } catch (e) {}
+      apply(pref);
+      sync();
+      root.dispatchEvent(new CustomEvent('athand:themechange', { detail: { preference: pref, scheme: resolved() } }));
+    }
+
+    // Apply before first paint.
+    apply(stored());
+
+    function ready() {
+      var controls = document.querySelectorAll('[data-theme-control]');
+      for (var i = 0; i < controls.length; i++) controls[i].removeAttribute('hidden');
+      sync();
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest ? e.target.closest('[data-theme-set]') : null;
+        if (el) {
+          e.preventDefault();
+          set(el.getAttribute('data-theme-set'));
+        }
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', ready);
+    } else {
+      ready();
+    }
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+        if (stored() === 'system') {
+          sync();
+          root.dispatchEvent(new CustomEvent('athand:themechange', { detail: { preference: 'system', scheme: resolved() } }));
+        }
+      });
+    }
+
+    window.atHandTheme = { get: stored, set: set, resolved: resolved };
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<Header />
+<main id="main"><slot /></main>
+<Footer />
+</body>
+</html>

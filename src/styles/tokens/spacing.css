@@ -1,0 +1,23 @@
+/* Source: davisj2007/athandapp athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/tokens/spacing.css at e7537e77d2257f8e6c10473e047017fd6e335aa0. Do not edit; run npm run tokens:check. */
+:root{
+--space-1:4px;
+--space-2:8px;
+--space-3:12px;
+--space-4:16px;
+--space-5:20px;
+--space-6:24px;
+--space-8:32px;
+--space-10:40px;
+--space-12:48px;
+/* Radii (locked) */
+--radius-card:14px; /* cards 12–14px */
+--radius-card-sm:12px;
+--radius-chip:100px;
+--radius-control:10px;
+--radius-badge:10px; /* 40px entity badge */
+--radius-phone:28px;
+/* Sizes */
+--badge-size:40px; /* entity row badge */
+--touch-min:44px; /* minimum touch target */
+--logo-floor:60px; /* standalone mark floor */
+}

@@ -1,0 +1,22 @@
+/* Source: davisj2007/athandapp athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/tokens/effects.css at e7537e77d2257f8e6c10473e047017fd6e335aa0. Do not edit; run npm run tokens:check. */
+:root{
+--shadow-soft:0 20px 50px rgba(20,22,28,0.10); /* rare, soft — the only shadow */
+--rule-entity-alpha:35%; /* thin accent rule under group labels: entity color at 35% */
+--ease-standard:cubic-bezier(0.2,0,0,1); /* @kind other */
+--dur-fast:120ms; /* @kind other */
+--dur-base:200ms; /* @kind other */
+}
+/* Dark ground needs a deeper soft shadow to read; rule-entity-alpha,
+ * easing and durations are unchanged across themes. Applied via explicit
+ * opt-in and via system preference (unless [data-theme="light"] opts out). */
+[data-theme="dark"]{
+--shadow-soft:0 20px 50px rgba(0,0,0,0.5); /* rare, soft — the only shadow */
+}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]){
+--shadow-soft:0 20px 50px rgba(0,0,0,0.5);
+}
+}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--accent-hover);text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

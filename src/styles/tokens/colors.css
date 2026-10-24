@@ -1,0 +1,125 @@
+/* Source: davisj2007/athandapp athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/tokens/colors.css at e7537e77d2257f8e6c10473e047017fd6e335aa0. Do not edit; run npm run tokens:check. */
+:root{
+/* Base (locked) */
+--ink:#14161C;
+--paper:#F6F5F1;
+--cobalt:#4C39C6; /* signature accent — the ONLY accent */
+--white:#FFFFFF;
+/* Surfaces & lines */
+--surface-page:var(--paper);
+--surface-card:#FFFFFF;
+--surface-chip:#F1EFE9;
+--surface-ink:var(--ink);
+--border-card:#E3E1D9;
+--divider:#EEEDE7;
+/* Text */
+--text-body:var(--ink);
+--text-muted:#4A4C55;
+--text-faint:#6C6C64;
+--text-on-cobalt:#FFFFFF;
+--text-on-ink:var(--paper);
+--text-link:var(--cobalt);
+/* Accent aliases */
+--accent:var(--cobalt);
+--accent-hover:#3E2DA8;
+--accent-press:#342591;
+/* Entity-differentiation (muted, constant; never color alone) */
+--entity-person:#516EA9;
+--entity-vehicle:#39797F;
+--entity-pet:#3E7952;
+--entity-home:#8D663F;
+--entity-financial:#7957A8;
+--entity-contact:#A5557D;
+--entity-custom:#65707B;
+/* Semantic */
+--error:#C54134;
+--success:#327B57;
+--warning:#92661C;
+}
+
+/* ------------------------------------------------------------------ *
+ * Dark theme — same variable names, dark values. Entity hues keep
+ * their meaning (lifted ~20% for the dark ground); cobalt stays the
+ * only accent. Raw cobalt fails AA as text on dark, so --text-link is
+ * the lighter #A99BF5 while --accent (CTA fills) is #6A57E0 with white
+ * text. Entity-badge initials flip to dark ink (--text-on-ink) on the
+ * lifted entity colors for AA. Applied two ways:
+ *   1. [data-theme="dark"]                    — explicit opt-in
+ *   2. @media (prefers-color-scheme:dark)     — system default, unless
+ *      an explicit [data-theme="light"] opts back out.
+ * ------------------------------------------------------------------ */
+[data-theme="dark"]{
+/* Base */
+--ink:#ECEBE4;
+--paper:#0E0F13;
+/* Surfaces & lines */
+--surface-page:#0E0F13;
+--surface-card:#191B22;
+--surface-chip:#23252E;
+--surface-ink:#F6F5F1;
+--border-card:#2A2C35;
+--divider:#22242C;
+/* Text */
+--text-body:#ECEBE4;
+--text-muted:#A7A9B2;
+--text-faint:#8C8E96;
+--text-on-cobalt:#FFFFFF;
+--text-on-ink:#14161C;
+--text-link:#A99BF5;
+/* Accent */
+--cobalt:#6A57E0;
+--accent:#6A57E0;
+--accent-hover:#7E6DE8;
+--accent-press:#5A47D0;
+/* Entity (lifted ~20% for dark, hue/meaning preserved) */
+--entity-person:#8AA0D4;
+--entity-vehicle:#5FAEB4;
+--entity-pet:#6FB187;
+--entity-home:#C79A6C;
+--entity-financial:#A98FD6;
+--entity-contact:#D488AE;
+--entity-custom:#9AA4AE;
+/* Semantic */
+--error:#E8776B;
+--success:#5FB98C;
+--warning:#D2A24A;
+}
+
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]){
+/* Base */
+--ink:#ECEBE4;
+--paper:#0E0F13;
+/* Surfaces & lines */
+--surface-page:#0E0F13;
+--surface-card:#191B22;
+--surface-chip:#23252E;
+--surface-ink:#F6F5F1;
+--border-card:#2A2C35;
+--divider:#22242C;
+/* Text */
+--text-body:#ECEBE4;
+--text-muted:#A7A9B2;
+--text-faint:#8C8E96;
+--text-on-cobalt:#FFFFFF;
+--text-on-ink:#14161C;
+--text-link:#A99BF5;
+/* Accent */
+--cobalt:#6A57E0;
+--accent:#6A57E0;
+--accent-hover:#7E6DE8;
+--accent-press:#5A47D0;
+/* Entity (lifted ~20% for dark, hue/meaning preserved) */
+--entity-person:#8AA0D4;
+--entity-vehicle:#5FAEB4;
+--entity-pet:#6FB187;
+--entity-home:#C79A6C;
+--entity-financial:#A98FD6;
+--entity-contact:#D488AE;
+--entity-custom:#9AA4AE;
+/* Semantic */
+--error:#E8776B;
+--success:#5FB98C;
+--warning:#D2A24A;
+}
+}

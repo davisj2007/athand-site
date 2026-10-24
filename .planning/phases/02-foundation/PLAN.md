@@ -1,6 +1,6 @@
 # Phase 02: foundation - Plan
 
-Status: Draft
+Status: Approved (2026-10-23)
 
 ## Goal
 
@@ -100,7 +100,7 @@ Loop files every session updates: .planning/phases/02-foundation/PLAN.md (checkb
 
 Builds the Astro project alongside the live root HTML. Nothing it adds is served as a page.
 
-- [ ] 02-01: Astro project scaffold
+- [x] 02-01: Astro project scaffold
   Requirements: FND-01, FND-03
   Files: package.json, package-lock.json, astro.config.mjs, tsconfig.json, .gitignore, .nojekyll, public/CNAME
   Copy entries: none
@@ -116,7 +116,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: `npm ci` succeeds from the lockfile; package.json lists only the five named dependencies with exact versions; `cmp CNAME public/CNAME` succeeds; .nojekyll exists and is empty; root HTML files and styles.css are untouched.
   Verify command: `npm ci && node -e 'const p=require("./package.json");const d={...p.dependencies,...p.devDependencies};const want={"astro":"7.4.2","@astrojs/check":"0.9.12","typescript":"6.0.3","@fontsource/inter":"5.3.0","@fontsource/space-grotesk":"5.3.0"};if(JSON.stringify(Object.keys(d).sort())!==JSON.stringify(Object.keys(want).sort())||Object.entries(want).some(([k,v])=>d[k]!==v))process.exit(1)' && cmp CNAME public/CNAME && test -f .nojekyll && test ! -s .nojekyll && git diff --quiet 52d8d1afc6de84391e401c738905da3f186f9f50 -- index.html privacy.html support.html 404.html styles.css CNAME`
 
-- [ ] 02-02: Copied tokens and tokens:check
+- [x] 02-02: Copied tokens and tokens:check
   Requirements: FND-04, FND-05
   Files: src/styles/tokens/colors.css, src/styles/tokens/effects.css, src/styles/tokens/spacing.css, src/styles/tokens/typography.css, scripts/tokens-check.mjs
   Copy entries: none
@@ -127,7 +127,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: `npm run tokens:check` exits 0 and prints the fonts.css line; it exits 1 when the app repo path is missing; it exits 1 and prints the differing line when one byte of a copy changes; the header names the full 40-character hash.
   Verify command: `npm run tokens:check && ! ATHAND_APP_DIR=/nonexistent npm run tokens:check && T=$(mktemp) && cp src/styles/tokens/spacing.css "$T" && printf 'x\n' >> src/styles/tokens/spacing.css && ! npm run tokens:check; cp "$T" src/styles/tokens/spacing.css && npm run tokens:check`
 
-- [ ] 02-03: Self-hosted fonts and site stylesheet
+- [x] 02-03: Self-hosted fonts and site stylesheet
   Requirements: FND-06, FND-07 (color-scheme part), FND-08 (styling of existing structure)
   Files: src/styles/site.css
   Copy entries: none
@@ -141,7 +141,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: site.css has no hex colors and no font-size below 1rem (16px); no `transition` or `animation`; no `@import` and no `url(` to any host.
   Verify command: `! grep -nE '#[0-9A-Fa-f]{3,8}\b' src/styles/site.css && ! grep -nE 'transition|animation|@import|url\(' src/styles/site.css && ! grep -nE 'font-size:\s*(0?\.[0-9]+rem|1[0-5]px|[0-9]px)' src/styles/site.css`
 
-- [ ] 02-04: Base layout, header, theme control, footer, and 404 page
+- [x] 02-04: Base layout, header, theme control, footer, and 404 page
   Requirements: FND-01, FND-07, FND-08, FND-09, FND-10, FND-11, FND-12
   Files: src/assets/logo-lockup-mark.svg, src/layouts/Base.astro, src/components/Header.astro, src/components/ThemeControl.astro, src/components/Footer.astro, src/pages/404.astro
   Copy entries: 1, 2, 3, 4
@@ -156,7 +156,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: `npm run build` emits dist/404.html; it contains `lang="en"`, the skip link, one `<header>`, `<main id="main">`, one `<footer>`, the noindex meta, the lockup link named "atHand, home", the group named "Appearance" with three buttons and the `hidden` attribute in the HTML, the "Made by Jacob Davis" link to https://jacobdavis.co, a link to `/` in main and to `/support.html` in the footer (FND-11), and not the removed developer sentence; `npm run check` reports 0 errors; `cmp` of the SVG with the app repo succeeds.
   Verify command: `npm run build && npm run check && cmp src/assets/logo-lockup-mark.svg "${ATHAND_APP_DIR:-../athandapp}"/athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/assets/logo-lockup-mark.svg && f=dist/404.html && grep -q '<html lang="en"' $f && grep -q 'href="#main"' $f && grep -q '<main id="main"' $f && grep -q 'name="robots" content="noindex"' $f && grep -q 'aria-label="atHand, home"' $f && grep -q 'aria-label="Appearance"' $f && [ $(grep -o 'data-theme-set=' $f | wc -l) -eq 3 ] && grep -q 'href="https://jacobdavis.co"' $f && grep -q 'Made by Jacob Davis' $f && grep -q 'href="/support.html"' $f && ! grep -q 'individual developer in New York' $f`
 
-- [ ] 02-05: check:external and check:content scripts
+- [x] 02-05: check:external and check:content scripts
   Requirements: FND-12, FND-13
   Files: scripts/check-external.mjs, scripts/check-main-text.mjs
   Copy entries: none
