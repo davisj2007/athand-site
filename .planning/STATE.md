@@ -1,25 +1,26 @@
 # State
 
 Current phase: 02 (foundation)
-Current step: EXECUTE wave 2 done (02-06 to 02-08). Next: Jake merges the wave 2 PR, switches the Pages source, then EXECUTE wave 3 (02-09, 02-10).
+Current step: REVISE done (wave 2b added: 02-11 pins Node 22.23.4 in the Deploy workflow). Next: Jake merges the REVISE PR, then EXECUTE wave 2b, then wave 3 (02-09, 02-10) after the live checks.
 Phase 01 is Done.
 
 ## Next action
 
-1. Jake merges the "Phase 02 EXECUTE: wave 2, ported pages and Deploy workflow" PR (branch execute/02-wave-2).
-2. Right after the merge, Jake follows PLAN.md, Steps for Jake outside the repo, step 2: ignore the expected red Deploy run, set Settings, Pages, Source to "GitHub Actions", confirm the custom domain athandapp.com and Enforce HTTPS, run Deploy by hand on main until green, then open https://athandapp.com, /privacy.html, and /support.html and confirm the new header with the theme buttons. If any page fails, set Source back to "Deploy from a branch", main, / (root), and report it.
-3. Then start a new session with:
+1. Jake merges the "Phase 02 REVISE: pin Node 22.23.4 in Deploy" PR (branch revise/02-pin-node). The merge changes only .planning/ files, but it still triggers a Deploy run on main, which fails at `npm run build` for the same Node reason as run 40104311488. Nothing is uploaded and the live site is unchanged. Ignore that failure.
+2. PLAN.md is back to Draft, so the EXECUTE prompt re-approves it. Start a new session with:
 
 ```
 EXECUTE phase 02. I have reviewed PLAN.md for this phase and approve it. Follow .planning/README.md, step EXECUTE.
 ```
 
-Wave 3 checks the Pages switch itself (task 02-09 gate) and stops if it is not done.
+That session runs wave 2b (02-11) only.
+3. Jake merges the wave 2b PR. The push to main runs Deploy automatically; Jake waits for it to finish green, then does PLAN.md, Steps for Jake outside the repo, steps 2.3 and 2.5 (custom domain and HTTPS, then the three live URLs). This merge is the moment athandapp.com switches to the Astro build.
+4. Only after that, start the wave 3 EXECUTE session with the same prompt. Task 02-09 checks the green run and the live /privacy.html itself and stops if either is missing.
 
 ## Waiting on Jake
 
-- Review and merge the wave 2 PR (branch execute/02-wave-2).
-- Right after it merges: the Pages source switch and manual Deploy run above. Not before.
+- Review and merge the REVISE PR (branch revise/02-pin-node).
+- After wave 2b merges: wait for the Deploy run on main to finish green, then steps 2.3 and 2.5. Not before.
 
 ## Blockers
 
@@ -27,4 +28,4 @@ None.
 
 ## Last session
 
-EXECUTE phase 02 wave 2 (2026-10-24), local session on branch execute/02-wave-2 from main (9e1979c). PLAN.md set to Approved 2026-10-24. Ported index, privacy, and support into src/pages/ with main content unchanged, and added .github/workflows/deploy.yml (checkout v7, setup-node v7, configure-pages v6, upload-pages-artifact v5, deploy-pages v5). All checks pass, including check:content for all four pages, and the built-in browser check against astro preview. Two PLAN.md verify commands (02-07, 02-08) had defects that made them unpassable; corrected equivalents were run and passed, recorded in SUMMARY.md and BACKLOG.md. A preview server from the wave 1 session (pid 46773, port 4321) was still running in this checkout and was reused; it was left running.
+REVISE phase 02 (2026-10-24), local session on branch revise/02-pin-node from main (3208979, wave 2 merged). Deploy run 40104311488 failed at `npm run build` because `node-version: 22` resolved to a runner Node older than Astro's `>=22.23.4`. Added wave 2b with task 02-11 (pin `node-version: 22.23.4`), corrected the PLAN.md Facts entry and the Node version risk, rewrote Steps for Jake step 2 (Pages source already "GitHub Actions" since 2026-10-24; the wave 2b merge deploys automatically), recorded the failed run in SUMMARY.md Deviations, and re-ran the self-check. 02-11's verify command fails on main as expected. PLAN.md status set to Draft.
