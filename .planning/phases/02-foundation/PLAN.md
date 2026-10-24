@@ -233,7 +233,7 @@ Live site after this wave: the Pages source is already "GitHub Actions" (Steps f
 
 Cleanup and README, after the Actions deployment is confirmed live.
 
-- [ ] 02-09: Remove the root site files
+- [x] 02-09: Remove the root site files
   Requirements: FND-03
   Files: index.html, privacy.html, support.html, 404.html, styles.css, CNAME, .nojekyll
   Copy entries: none
