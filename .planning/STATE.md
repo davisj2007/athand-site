@@ -1,18 +1,20 @@
 # State
 
 Current phase: 02 (foundation)
-Current step: DISCUSS done. ANSWERS next.
+Current step: ANSWERS done. PLAN next.
 Phase 01 is Done.
 
 ## Next action
 
-Jake reviews and merges the "Phase 02 DISCUSS" PR, reads .planning/phases/02-foundation/CONTEXT.md, then starts a new session with the ANSWERS prompt from PROMPTS.md, answering open question 1 and approving or editing the four copy drafts.
+Jake reviews and merges the "Phase 02 ANSWERS" PR, then starts a new session with the PLAN prompt from PROMPTS.md:
+
+```
+PLAN phase 02. Follow .planning/README.md, step PLAN.
+```
 
 ## Waiting on Jake
 
-- Merge the "Phase 02 DISCUSS" PR (branch claude/sleepy-ramanujan-uj76cg).
-- Answer open question 1 in CONTEXT.md (footer credit replaces or joins the existing developer sentence).
-- Approve or edit Copy drafts 1 to 4 in CONTEXT.md.
+- Merge the "Phase 02 ANSWERS" PR (branch answers/02-foundation).
 
 ## Blockers
 
@@ -20,4 +22,4 @@ None.
 
 ## Last session
 
-DISCUSS phase 02 (2026-10-23). Fast-forwarded the session branch to main (b1ca4f7). Read the app repo at c928b40f1e721e7200383dc4f5ff2d1f87167283: the brief (v4.10), the _ds tokens, theme-toggle.js, logo-lockup-mark.svg, the design system readme, the handoff README, and components/Wordmark.tsx. Wrote .planning/phases/02-foundation/CONTEXT.md (status Needs answers: one open question, four copy drafts). Key findings: effects.css removes link underlines globally, and links are only 2.0 to 2.3:1 against body text, so the site stylesheet restores underlines; today's footer and .meta text are 15px, below the 16px floor; tokens:check cannot run in CI because the app repo is private; the cutover keeps the root HTML live until Jake switches the Pages source to GitHub Actions. Added one app repo documentation drift item to BACKLOG.md.
+ANSWERS phase 02 (2026-10-23), local session on branch answers/02-foundation from main (7f3665b). Recorded Jake's answers in .planning/phases/02-foundation/CONTEXT.md: decision 22 (the "Made by Jacob Davis" credit linking to https://jacobdavis.co replaces the footer's developer sentence; the privacy policy keeps the full identification) and decision 23 (wave 1 adds an empty root .nojekyll so the branch deployment does not run Jekyll over src/; the cleanup wave removes it with the other root files after the Actions deployment is confirmed live). Removed open question 1. Marked Copy drafts 1 to 4 Approved, as Jake approved them as drafted. Status Ready.
