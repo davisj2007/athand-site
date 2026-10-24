@@ -1,6 +1,6 @@
 # Phase 02: foundation - Context
 
-Status: Needs answers
+Status: Ready
 Date: 2026-10-23
 
 ## Goal
@@ -85,6 +85,8 @@ Tooling found in this session: Node 22.22.0; latest published astro 7.4.2, @font
 19. `scripts/check-external.mjs` (npm `check:external`): walks dist/ HTML and CSS, collects `src`, `srcset`, `<link href>`, `<script src>`, CSS `url()`, and `@import`, allows relative URLs, root-relative URLs, `data:` URLs, and absolute URLs on athandapp.com, ignores `<a href>`, and exits 1 listing each offender. Reason: FND-13.
 20. README.md is rewritten to cover the build, local preview, the Deploy workflow and the one-time Pages source setting, `tokens:check` with `ATHAND_APP_DIR`, and `check:external`. Reason: FND-14.
 21. Root `.gitignore` adds node_modules/, dist/, and .astro/.
+22. Footer credit replaces the developer sentence (Jake, ANSWERS, question 1). The footer's "atHand is made by Jacob Davis, an individual developer in New York, United States." is removed, and "Made by Jacob Davis" linking to https://jacobdavis.co takes its place on every page. The privacy policy's "Who this applies to" section keeps the full identification unchanged. Reason: the two would repeat each other on every page, and the privacy policy is where App Review looks for the identification.
+23. Wave 1 adds an empty .nojekyll file at the repository root (Jake, ANSWERS). Reason: until Jake switches the Pages source to GitHub Actions, the branch deployment runs Jekyll over the root, and Jekyll would try to parse the frontmatter fences in .astro files as YAML and could publish src/ as pages. The later cleanup wave in decision 6 removes .nojekyll with the other root files (root HTML, styles.css, and the root CNAME) only after the Actions deployment is confirmed live.
 
 ## Copy drafts
 
@@ -92,14 +94,14 @@ Existing strings that move unchanged are not drafts: the skip link "Skip to main
 
 New or changed strings in this phase. None is a product claim.
 
-1. Footer / credit: "Made by Jacob Davis", linked to https://jacobdavis.co. Source: ROADMAP phase 02 and FND-10 (not a brief claim). Status: Draft.
-2. Header / theme control group accessible name (not visible): "Appearance". Brief: Business model and entitlement, Free vs paid ("appearance" setting); Brand (System / Light / Dark setting). Status: Draft.
-3. Header / theme control buttons: "System", "Light", "Dark". Brief: Brand ("with a System / Light / Dark setting"). Status: Draft.
-4. Footer / removed: "atHand is made by Jacob Davis, an individual developer in New York, United States." See open question 1. Status: Draft (removal).
+1. Footer / credit: "Made by Jacob Davis", linked to https://jacobdavis.co. Source: ROADMAP phase 02 and FND-10 (not a brief claim). Status: Approved.
+2. Header / theme control group accessible name (not visible): "Appearance". Brief: Business model and entitlement, Free vs paid ("appearance" setting); Brand (System / Light / Dark setting). Status: Approved.
+3. Header / theme control buttons: "System", "Light", "Dark". Brief: Brand ("with a System / Light / Dark setting"). Status: Approved.
+4. Footer / removed: "atHand is made by Jacob Davis, an individual developer in New York, United States." Replaced by entry 1 per implementation decision 22. Status: Approved (removal).
 
 ## Open questions for Jake
 
-1. The footer today ends with "atHand is made by Jacob Davis, an individual developer in New York, United States." The roadmap adds "Made by Jacob Davis" linking to jacobdavis.co. Should the new credit replace that sentence, or should both appear? Recommended default: replace it. Reason: the two would repeat each other on every page, and the privacy policy keeps the full identification (Jacob Davis, individual developer, New York) in its "Who this applies to" section, which is where App Review looks for it.
+None.
 
 ## Out of scope
 
