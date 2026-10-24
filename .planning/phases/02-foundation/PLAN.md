@@ -1,6 +1,6 @@
 # Phase 02: foundation - Plan
 
-Status: Approved (2026-10-23)
+Status: Draft (revised 2026-10-24; was Approved 2026-10-23)
 
 ## Goal
 
@@ -255,7 +255,7 @@ Run after `npm ci && npm run build`. Each must hold as stated.
 10. `grep -L 'Made by Jacob Davis' dist/*.html` returns nothing, and every page has `href="https://jacobdavis.co"`.
 11. `grep -L 'aria-label="atHand, home"' dist/*.html` returns nothing.
 12. `grep -rn '@Hand' src dist` returns nothing (the lockup is an SVG plus "Hand"; the @Hand form never appears as text).
-13. `grep -rn "$(printf '\342\200\224')" src README.md` returns nothing (no em dashes).
+13. `grep -rn "$(printf '\342\200\224')" src README.md --exclude-dir=tokens` returns nothing (no em dashes). src/styles/tokens/ is excluded because it holds the app's token files copied byte for byte (FND-04); their em dashes are in CSS comments the app owns, not site copy. tokens:check and static check 19 already govern those files.
 14. `grep -rnE "[a-z]'[a-z]" src/pages` returns nothing (curly apostrophes only).
 15. `grep -rnE 'nothing leaves your phone|never leaves your (phone|device)' src dist` returns nothing.
 16. `grep -rnE '<(iframe|form|embed|object)\b' dist` returns nothing.
@@ -289,6 +289,14 @@ Run 2026-10-23 at PLAN.
 - Files in scope complete: yes. Every file each task touches is listed; Base.astro imports @fontsource CSS from node_modules, which is not a repo file.
 - Every wave leaves the live site whole: yes. Waves 1 and 2 leave the root deployment untouched; the switch follows wave 2 with a tested rollback; wave 3 gates on a confirmed Actions deployment before removing anything.
 - One deviation from CONTEXT recorded: decision 6's "wave 1" is split into waves 1 and 2 (see Refinement of CONTEXT decision 6).
+
+Re-run 2026-10-24 at REVISE (static check 13 now excludes src/styles/tokens/).
+
+- All phase requirements covered: yes. No task or requirement mapping changed.
+- Every task has acceptance and verify: yes. No task changed.
+- No conflict with the brief or CLAUDE.md: yes. The no em dash rule covers site copy; every file under src/ and README.md that the site authors is still checked. The excluded token files are the app's own, kept byte for byte by FND-04 and governed by tokens:check and static check 19. Run on main at ad6bc8d, the revised check returns nothing; the old form matched only src/styles/tokens/colors.css and effects.css.
+- Files in scope complete: yes. No task files changed.
+- Every wave leaves the live site whole: yes. Waves unchanged; wave 1 is merged.
 
 ## Fix wave
 
