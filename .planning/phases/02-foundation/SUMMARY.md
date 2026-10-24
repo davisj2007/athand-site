@@ -68,6 +68,7 @@ None. No product claims were added or changed. New strings are the approved Copy
   - 02-07: `execSync(cmd, "utf8")` returns a Buffer on Node 26 (a string is no longer accepted as the options argument), so `o.match` threw a TypeError before any comparison. Run with `{encoding: "utf8"}`; titles and descriptions of both pages match.
   - 02-08: `/uses:\s*(?!actions\/)/` matches every `uses: actions/...` line, because `\s*` backtracks to zero characters and the lookahead then sees the space. YAML requires that space, so no valid workflow passes. Run with `/uses:\s*(?!\s|actions\/)/`; it passes on deploy.yml, and on copies with an added `uses: peaceiris/actions-gh-pages@v4` line and an added `run: npm run tokens:check` line it fails on the right condition.
 - Wave 2, the PLAN.md status line now reads "Approved 2026-10-24".
+- Wave 2, Deploy failed on GitHub (recorded at REVISE, 2026-10-24): Deploy run 40104311488, started by the wave 2 merge, failed at `npm run build` with Astro's "Please upgrade Node.js to a supported version: \">=22.23.4\"". setup-node's `node-version: 22` resolved to the runner's preinstalled 22.x, which is older than 22.23.4; the PLAN.md Facts entry saying it satisfies Astro's engines field was wrong. Local checks ran on Node 26 and did not catch it. Nothing was uploaded, so the live site was unchanged. REVISE added wave 2b (02-11) to pin `node-version: 22.23.4`.
 
 ## Backlog items added
 
@@ -76,5 +77,6 @@ None. No product claims were added or changed. New strings are the approved Copy
 
 ## Follow-ups
 
-- Jake, right after wave 2 merges: PLAN.md, Steps for Jake outside the repo, step 2 (switch Pages Source to "GitHub Actions", run Deploy by hand, check three URLs).
-- Wave 3 (02-09, 02-10): root cleanup after the Pages source switch, and README.
+- Pages Source switched to "GitHub Actions" on 2026-10-24 (PLAN.md, Steps for Jake outside the repo, step 2.2).
+- Wave 2b (02-11): pin Node 22.23.4 in the Deploy workflow. After it merges, Jake waits for the automatic Deploy run to finish green, then does the live checks in step 2.5.
+- Wave 3 (02-09, 02-10): root cleanup after the first green Actions deployment and the live checks, and README.

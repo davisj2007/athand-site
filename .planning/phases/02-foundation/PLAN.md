@@ -1,6 +1,6 @@
 # Phase 02: foundation - Plan
 
-Status: Approved 2026-10-24 (revised 2026-10-24; first approved 2026-10-23)
+Status: Draft (revised 2026-10-24 to add wave 2b; was Approved 2026-10-24, first approved 2026-10-23)
 
 ## Goal
 
@@ -13,7 +13,7 @@ Move athandapp.com from hand-written root HTML served from the repository root t
 - Pre-port reference for FND-12: main at 52d8d1afc6de84391e401c738905da3f186f9f50. The root HTML, styles.css, and CNAME there are identical to b1ca4f7 (the commit CONTEXT.md cites).
 - The root HTML uses no character entities and no `{` or `}`; curly apostrophes are literal characters. Main content can be pasted into .astro files without escaping.
 - App repo davisj2007/athandapp main is e7537e77d2257f8e6c10473e047017fd6e335aa0. `git diff c928b40 e7537e7 -- athand-design-handoff/_ds/` is empty, so the tokens CONTEXT.md measured are current. Each token file starts with `:root{` and ends with a newline.
-- Versions: astro 7.4.2 (engines `node >=22.23.4`), @astrojs/check 0.9.12 (peer `typescript ^5.0.0 || ^6.0.0`), typescript 6.0.3 (latest 6.x; 7.x is outside the peer range), @fontsource/inter 5.3.0, @fontsource/space-grotesk 5.3.0. Node 22.23.4 is the latest 22.x release, so the workflow's `node-version: 22` satisfies Astro's engines field.
+- Versions: astro 7.4.2 (engines `node >=22.23.4`), @astrojs/check 0.9.12 (peer `typescript ^5.0.0 || ^6.0.0`), typescript 6.0.3 (latest 6.x; 7.x is outside the peer range), @fontsource/inter 5.3.0, @fontsource/space-grotesk 5.3.0. Node 22.23.4 is the latest 22.x release. Corrected at REVISE 2026-10-24: this fact first said the workflow's `node-version: 22` satisfies Astro's engines field. That was wrong on GitHub's runners: a bare major resolves to the runner's preinstalled 22.x, which is older than 22.23.4, and Deploy run 40104311488 failed at `npm run build` for that reason. Task 02-11 pins `node-version: 22.23.4`.
 
 ## Refinement of CONTEXT decision 6
 
@@ -22,7 +22,7 @@ Decision 6 puts the Astro project and the workflow in "wave 1" and the root clea
 ## Requirement coverage
 
 - FND-01: 02-01, 02-04, 02-06, 02-07
-- FND-02: 02-08
+- FND-02: 02-08, 02-11
 - FND-03: 02-01, 02-09
 - FND-04: 02-02
 - FND-05: 02-02
@@ -87,13 +87,13 @@ Loop files every session updates: .planning/phases/02-foundation/PLAN.md (checkb
 ## Steps for Jake outside the repo
 
 1. Before merging wave 1 and wave 2: nothing.
-2. Right after wave 2 merges (not before):
-   1. The push to main starts a "Deploy" run. Its deploy job is expected to fail, because Pages still deploys from the branch. The site keeps serving the old root HTML. Ignore that failure.
-   2. In GitHub, open the athand-site repository, Settings, Pages. Under Build and deployment, set Source to "GitHub Actions".
+2. The Pages switch and the first Actions deployment:
+   1. Done 2026-10-24. The wave 2 merge started Deploy run 40104311488. It failed at `npm run build`, not at the deploy job as this plan expected, because setup-node installed a Node 22.x older than Astro's minimum (wave 2b fixes this). The site kept serving the old root HTML.
+   2. Done 2026-10-24. Settings, Pages, Source is "GitHub Actions", and the github-pages environment allows all branches.
    3. On the same page, confirm Custom domain still reads athandapp.com and Enforce HTTPS is still checked. If the domain field is empty, type athandapp.com and save.
-   4. Open the Actions tab, select "Deploy", choose Run workflow on main, and wait for it to finish green.
+   4. Right after wave 2b merges (not before): the push to main runs Deploy automatically; no manual run is needed. Open the Actions tab, select "Deploy", and wait for that run to finish green. If it fails, stop and report it; do not start wave 3.
    5. Open https://athandapp.com, https://athandapp.com/privacy.html, and https://athandapp.com/support.html. Each should show the new header with the "@Hand" lockup and the System, Light, and Dark buttons. If any page fails, set Source back to "Deploy from a branch", main, / (root), which restores the old site, and report it.
-3. Before the wave 3 EXECUTE session: steps 2.2 to 2.5 are done. Wave 3 checks this itself (task 02-09) and stops if not.
+3. Before the wave 3 EXECUTE session: steps 2.3 to 2.5 are done. Wave 3 checks this itself (task 02-09) and stops if not.
 4. After wave 3 merges: wait for the Deploy run to finish green, then reload the three URLs above.
 
 ## Wave 1
@@ -211,6 +211,24 @@ Wave 2 checks: `npm ci`, `npm run build`, `npm run check`, `npm run tokens:check
 
 Live site after this wave: unchanged until Jake switches the source. The push to main starts a Deploy run whose deploy job fails while the source is "Deploy from a branch"; the branch deployment keeps serving the root HTML (.nojekyll still in place). After Jake's switch and a manual Deploy run, athandapp.com serves dist/, which holds all four pages at /, /privacy.html, /support.html, and /404.html, and public/CNAME.
 
+## Wave 2b
+
+Pins Node in the Deploy workflow. Added at REVISE 2026-10-24: Deploy run 40104311488 failed at `npm run build` with Astro's "Please upgrade Node.js to a supported version" error, because `node-version: 22` resolved to the runner's preinstalled 22.x, which is older than 22.23.4.
+
+- [ ] 02-11: Pin Node in the Deploy workflow
+  Requirements: FND-02
+  Files: .github/workflows/deploy.yml
+  Copy entries: none
+  Steps:
+  1. In the actions/setup-node step, change `node-version: 22` to `node-version: 22.23.4`, matching package.json `engines.node` (`>=22.23.4`).
+  2. Add a YAML comment on that step saying that Astro 7.4.2 exits on Node older than 22.23.4, and that a bare major resolves to the runner's preinstalled 22.x, which is older.
+  Acceptance: the workflow names exactly 22.23.4; engines and workflow agree.
+  Verify command: `grep -q 'node-version: 22.23.4' .github/workflows/deploy.yml && node -e 'process.exit(require("./package.json").engines.node===">=22.23.4"?0:1)'`
+
+Wave 2b checks: `npm ci`, `npm run build`, `npm run check`, `npm run tokens:check`, `npm run check:external`, `npm run check:content`. Also confirm the workflow YAML still parses.
+
+Live site after this wave: the Pages source is already "GitHub Actions" (Steps for Jake, step 2.2), so the Deploy run on this merge builds on Node 22.23.4 and publishes dist/ to athandapp.com. This merge is the moment the live site switches to the Astro build. dist/ holds all four pages at /, /privacy.html, /support.html, and /404.html, and public/CNAME. The root HTML is still in the repository, so the rollback in Steps for Jake, step 2.5, still works.
+
 ## Wave 3
 
 Cleanup and README, after the Actions deployment is confirmed live.
@@ -269,12 +287,12 @@ Run after `npm ci && npm run build`. Each must hold as stated.
 
 ## Risks and rollback
 
-- Pages source switch. The one window where the site could break is the switch after wave 2. Mitigation: the switch happens only after dist/ holds all four pages and every check passes; Jake runs Deploy by hand and checks three URLs; rollback is to set Source back to "Deploy from a branch", main, / (root), which serves the untouched root HTML. That rollback stops working after wave 3 removes the root files, which is why wave 3 gates on a confirmed Actions deployment.
+- Pages source switch. The one window where the site could break is the switch after wave 2. Mitigation: the first Actions deployment happens only after dist/ holds all four pages and every check passes; it runs automatically on the wave 2b merge, and Jake waits for it to finish green and checks three URLs; rollback is to set Source back to "Deploy from a branch", main, / (root), which serves the untouched root HTML. That rollback stops working after wave 3 removes the root files, which is why wave 3 gates on a confirmed Actions deployment.
 - Custom domain on switch. GitHub usually keeps the custom domain and certificate when the source changes. If the field clears, Jake re-enters athandapp.com; the certificate already covers athandapp.com and www.athandapp.com (expires 2027-01-04).
-- Expected red run. The Deploy run triggered by the wave 2 merge fails at deploy while the source is the branch. It changes nothing on the live site.
+- Red run on the wave 2 merge. Deploy run 40104311488 failed at `npm run build` (Node too old), before any upload. It changed nothing on the live site. Wave 2b fixes the cause.
 - Astro output differences. Astro may reformat whitespace or attribute order inside main. check:content compares visible text and link targets, not raw markup, so it catches wording and link changes without failing on formatting. If Astro changes a character (for example a curly apostrophe), the check fails and the task fixes it within its files.
 - Font weights. If Astro or @fontsource emits a file outside the eight named faces, static check 8 fails.
-- Node version. Astro 7.4.2 needs Node 22.23.4 or later; the workflow uses the latest 22.x. Local sessions run Node 26, which is also in range.
+- Node version. Astro 7.4.2 needs Node 22.23.4 or later; the workflow pins 22.23.4 exactly (02-11), because a bare `22` resolves to an older preinstalled 22.x on GitHub's runners. Local sessions run Node 26, which is also in range.
 - typescript is pinned to 6.0.3 because @astrojs/check 0.9.12 does not accept 7.x. A later upgrade goes through BACKLOG.md.
 - Root files published between wave 1 and the switch (package.json, src/, scripts/, .github/) are public in the repo already and hold no secrets.
 - General rollback for any wave: revert the PR on main. Before the switch, the branch deployment republishes the reverted root. After the switch, the Deploy workflow republishes the previous build.
@@ -297,6 +315,15 @@ Re-run 2026-10-24 at REVISE (static check 13 now excludes src/styles/tokens/).
 - No conflict with the brief or CLAUDE.md: yes. The no em dash rule covers site copy; every file under src/ and README.md that the site authors is still checked. The excluded token files are the app's own, kept byte for byte by FND-04 and governed by tokens:check and static check 19. Run on main at ad6bc8d, the revised check returns nothing; the old form matched only src/styles/tokens/colors.css and effects.css.
 - Files in scope complete: yes. No task files changed.
 - Every wave leaves the live site whole: yes. Waves unchanged; wave 1 is merged.
+
+Re-run 2026-10-24 at REVISE (wave 2b, task 02-11, pins Node 22.23.4 in the Deploy workflow).
+
+- All phase requirements covered: yes. FND-02 now maps to 02-08 and 02-11; no other mapping changed.
+- Every task has acceptance and verify: yes. 02-11 lists Acceptance and a Verify command. On main at 3208979 that command fails as expected, because deploy.yml still reads `node-version: 22`; package.json engines already reads `>=22.23.4`.
+- No conflict with the brief or CLAUDE.md: yes. 02-11 changes only the CI Node version; no copy, no product claim, no runtime request, and no new dependency.
+- Files in scope complete: yes. .github/workflows/deploy.yml is already listed.
+- Every wave leaves the live site whole: yes. Wave 2b is the first merge that deploys dist/ (the Pages source is already "GitHub Actions"); dist/ holds all four pages and every check runs before upload. The root HTML stays until wave 3, so setting Source back to "Deploy from a branch" still restores the old site. Wave 3 still gates on a green Deploy run and the live /privacy.html.
+- Facts section corrected: the `node-version: 22` claim was wrong on GitHub's runners; the Facts entry and the Node version risk now say so.
 
 ## Fix wave
 
