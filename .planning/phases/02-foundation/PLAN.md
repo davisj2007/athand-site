@@ -1,6 +1,6 @@
 # Phase 02: foundation - Plan
 
-Status: Draft (revised 2026-10-24; was Approved 2026-10-23)
+Status: Approved 2026-10-24 (revised 2026-10-24; first approved 2026-10-23)
 
 ## Goal
 
@@ -175,7 +175,7 @@ Live site after this wave: unchanged. Pages still deploys main from the root wit
 
 Completes the Astro site and adds the Deploy workflow. The live site still serves the root HTML until Jake switches the Pages source (Steps for Jake, step 2).
 
-- [ ] 02-06: Port the home page
+- [x] 02-06: Port the home page
   Requirements: FND-01, FND-12
   Files: src/pages/index.astro
   Copy entries: none (main content moves unchanged)
