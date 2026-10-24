@@ -1,0 +1,10 @@
+---
+import mark from "../assets/logo-lockup-mark.svg?raw";
+import ThemeControl from "./ThemeControl.astro";
+---
+<header class="site">
+  <div class="wrap">
+    <a class="lockup" href="/" aria-label="atHand, home"><Fragment set:html={mark} /><span class="lockup-word" aria-hidden="true">Hand</span></a>
+    <ThemeControl />
+  </div>
+</header>

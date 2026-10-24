@@ -141,7 +141,7 @@ Builds the Astro project alongside the live root HTML. Nothing it adds is served
   Acceptance: site.css has no hex colors and no font-size below 1rem (16px); no `transition` or `animation`; no `@import` and no `url(` to any host.
   Verify command: `! grep -nE '#[0-9A-Fa-f]{3,8}\b' src/styles/site.css && ! grep -nE 'transition|animation|@import|url\(' src/styles/site.css && ! grep -nE 'font-size:\s*(0?\.[0-9]+rem|1[0-5]px|[0-9]px)' src/styles/site.css`
 
-- [ ] 02-04: Base layout, header, theme control, footer, and 404 page
+- [x] 02-04: Base layout, header, theme control, footer, and 404 page
   Requirements: FND-01, FND-07, FND-08, FND-09, FND-10, FND-11, FND-12
   Files: src/assets/logo-lockup-mark.svg, src/layouts/Base.astro, src/components/Header.astro, src/components/ThemeControl.astro, src/components/Footer.astro, src/pages/404.astro
   Copy entries: 1, 2, 3, 4
