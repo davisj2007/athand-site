@@ -1,6 +1,6 @@
 # Phase 02: foundation - Plan
 
-Status: Draft (revised 2026-10-24; was Approved 2026-10-23)
+Status: Approved 2026-10-24 (revised 2026-10-24; first approved 2026-10-23)
 
 ## Goal
 
@@ -175,7 +175,7 @@ Live site after this wave: unchanged. Pages still deploys main from the root wit
 
 Completes the Astro site and adds the Deploy workflow. The live site still serves the root HTML until Jake switches the Pages source (Steps for Jake, step 2).
 
-- [ ] 02-06: Port the home page
+- [x] 02-06: Port the home page
   Requirements: FND-01, FND-12
   Files: src/pages/index.astro
   Copy entries: none (main content moves unchanged)
@@ -185,7 +185,7 @@ Completes the Astro site and adds the Deploy workflow. The live site still serve
   Acceptance: dist/index.html exists; its main text and links match the pre-port index.html exactly; title and description match.
   Verify command: `npm run build && node scripts/check-main-text.mjs index && grep -q '<title>atHand: Your Info, Ready</title>' dist/index.html && grep -q 'content="atHand keeps your personal reference information on your iPhone and shows the right record when you need it."' dist/index.html`
 
-- [ ] 02-07: Port the privacy and support pages
+- [x] 02-07: Port the privacy and support pages
   Requirements: FND-01, FND-12
   Files: src/pages/privacy.astro, src/pages/support.astro
   Copy entries: none (main content moves unchanged)
@@ -195,7 +195,7 @@ Completes the Astro site and adds the Deploy workflow. The live site still serve
   Acceptance: dist/privacy.html and dist/support.html exist at those exact paths (not privacy/index.html); main text and links match the pre-port files exactly; titles and descriptions match; the four outbound policy links are present.
   Verify command: `npm run build && test -f dist/privacy.html && test -f dist/support.html && test ! -e dist/privacy && test ! -e dist/support && node scripts/check-main-text.mjs privacy support && node -e 'const {execSync}=require("child_process"),fs=require("fs");const re=[/<title>[^<]*<\/title>/,/<meta name="description" content="[^"]*">/];for(const p of ["privacy","support"]){const o=execSync("git show 52d8d1afc6de84391e401c738905da3f186f9f50:"+p+".html","utf8"),n=fs.readFileSync("dist/"+p+".html","utf8");for(const r of re){const m=o.match(r)[0].replace(/>$/,"");if(!n.includes(m)){console.error(p,m);process.exit(1)}}}' && [ $(grep -o 'href="https://' dist/privacy.html | wc -l) -ge 5 ]`
 
-- [ ] 02-08: Deploy workflow
+- [x] 02-08: Deploy workflow
   Requirements: FND-02, FND-13
   Files: .github/workflows/deploy.yml
   Copy entries: none
