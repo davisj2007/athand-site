@@ -186,7 +186,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: check-text passes against copy/index.txt, including the removed strings; check:links passes; the panel keeps its labelled region.
   Verify command: `npm run build && node scripts/check-text.mjs dist/index.html .planning/phases/03-pages-and-copy/copy/index.txt && grep -q 'aria-labelledby="privacy-summary"' dist/index.html && npm run check:links`
 
-- [ ] 03-10: Support and FAQ expansion
+- [x] 03-10: Support and FAQ expansion
   Requirements: PAGE-05, PAGE-06
   Files: src/pages/support.astro
   Copy entries: S1 to S58 (there is no S56)
