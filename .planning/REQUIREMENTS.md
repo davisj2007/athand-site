@@ -54,6 +54,7 @@ Brief sections are cited by name: Concept, Brand, Copy rules, Accessibility floo
 - A11Y-04: WCAG AA contrast for all text and controls in both themes; body text 17px; no text below 16px; 44px targets; no color-only meaning. Open
 - A11Y-05: with Reduce Motion on, no animation or transition runs beyond an instant change. Open
 - A11Y-06: the audit results and Jake's browser result are recorded in VERIFY.md. Open
+- FEAT-01: the Features page gains a section on VoiceOver, larger text (Dynamic Type), and light and dark, citing the brief's Accessibility floor and Release requirements. It is drafted only after the app repo records its TestFlight VoiceOver and Dynamic Type passes as done; until then it stays out of the site. Open
 
 ## Launch flip (phase 05, gated on App Store approval)
 
