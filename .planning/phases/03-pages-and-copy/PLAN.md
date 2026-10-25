@@ -171,7 +171,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: every built page's footer has a link "Privacy policy" to /privacy.html and no footer link named only "Privacy".
   Verify command: `npm run build && for f in dist/*.html; do grep -q '<a href="/privacy.html">Privacy policy</a>' "$f" || { echo "$f"; exit 1; }; ! grep -q '<a href="/privacy.html">Privacy</a>' "$f" || { echo "$f"; exit 1; }; done`
 
-- [ ] 03-09: Home page rewrite
+- [x] 03-09: Home page rewrite
   Requirements: PAGE-01, PAGE-06, PAGE-08
   Files: src/pages/index.astro
   Copy entries: H1 to H22, C1
