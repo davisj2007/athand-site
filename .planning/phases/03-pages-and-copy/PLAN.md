@@ -1,6 +1,6 @@
 # Phase 03: pages-and-copy - Plan
 
-Status: Draft
+Status: Approved 2026-10-25
 
 ## Goal
 
@@ -67,7 +67,7 @@ None. No GitHub settings change. After each wave merges, the Deploy workflow pub
 
 Adds the two check scripts, the coming-soon component, and the three new pages. The new pages are complete but not yet linked from the header or Home; they are reachable by URL.
 
-- [ ] 03-01: check:text and check:links scripts
+- [x] 03-01: check:text and check:links scripts
   Requirements: PAGE-06, PAGE-07
   Files: scripts/check-text.mjs, scripts/check-links.mjs, package.json, .github/workflows/deploy.yml, README.md
   Copy entries: none
