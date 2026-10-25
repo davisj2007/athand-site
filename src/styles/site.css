@@ -83,6 +83,37 @@ header.site .wrap {
   letter-spacing: var(--tracking-display);
 }
 
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+}
+.site-nav li { margin: 0; }
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  font-weight: 500;
+  color: var(--text-link);
+  text-decoration: none;
+}
+.site-nav a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+/* The current page is marked by weight and a solid underline, not color alone. */
+.site-nav a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+}
+
 .theme-control {
   display: flex;
   flex-wrap: wrap;

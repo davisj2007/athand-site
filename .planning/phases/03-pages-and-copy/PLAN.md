@@ -151,7 +151,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: `npm run check:content` passes and names only privacy and 404; `node scripts/check-main-text.mjs index` still runs (and fails once 03-09 lands, which is expected).
   Verify command: `npm run build && out=$(npm run check:content 2>&1) && echo "$out" && echo "$out" | grep -q 'check:content: privacy main text and links match' && echo "$out" | grep -q 'check:content: 404 main text and links match' && ! echo "$out" | grep -qE 'check:content: (index|support) '`
 
-- [ ] 03-07: Header navigation with the current page
+- [x] 03-07: Header navigation with the current page
   Requirements: PAGE-07
   Files: src/layouts/Base.astro, src/components/Header.astro, src/styles/site.css
   Copy entries: N1, N2
