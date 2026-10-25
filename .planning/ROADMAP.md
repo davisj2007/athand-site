@@ -28,9 +28,10 @@ Delivered by davisj2007/athand-site#5 through #15 (DISCUSS, ANSWERS, PLAN, two R
 
 Exit: the live site is built and deployed by GitHub Actions, looks and reads the same as before apart from the new header, footer, fonts, tokens, and theme control, and every existing URL still loads.
 
-## 03 pages-and-copy: Not started
+## 03 pages-and-copy: Done
 
 Requirements: PAGE-01..08.
+Delivered by davisj2007/athand-site#17 through #22 (DISCUSS, ANSWERS, PLAN, EXECUTE waves 1 and 2, and VERIFY), all merged to main, plus this SHIP PR. Jake's browser checklist passed on 2026-10-25.
 
 - Home, Features, Pricing, a Privacy explainer, and an expanded Support and FAQ (still at /support.html).
 - All copy is drafted in DISCUSS, approved by Jake in ANSWERS, and traceable to a cited section of athand-project-brief.md.
@@ -66,4 +67,4 @@ Exit: every page that mentions availability points to the live listing, and no c
 
 ## Order
 
-01 and 02 done. Next 03, then 04, and 05 once Apple approves the app.
+01, 02, and 03 done. Next 04, and 05 once Apple approves the app.

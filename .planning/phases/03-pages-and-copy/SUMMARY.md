@@ -1,6 +1,6 @@
 # Phase 03: pages-and-copy - Summary
 
-Status: Waves 1 and 2 executed 2026-10-25. Ready for VERIFY.
+Status: Shipped 2026-10-25. VERIFY PASS; Jake's browser result PASS.
 
 ## What changed
 
@@ -76,4 +76,6 @@ Every claim placed in wave 2, with its brief section (Brief v4.12), from CONTEXT
 
 ## Follow-ups
 
-- VERIFY phase 03: all waves are checked.
+- VERIFY (2026-10-25): result PASS, PAGE-01 to PAGE-08 all PASS, no Fix wave. Merged as 1c74305 (PR #22) and deployed.
+- SHIP (2026-10-25): VERIFY.md result PASS; Jake's browser checklist on https://athandapp.com: PASS, all steps. PAGE-01 to PAGE-08 are Done in REQUIREMENTS.md and phase 03 is Done in ROADMAP.md.
+- Next: phase 04 (visuals-and-polish), step DISCUSS.
