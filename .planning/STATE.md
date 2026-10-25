@@ -1,21 +1,21 @@
 # State
 
 Current phase: 03 (pages-and-copy)
-Current step: ANSWERS done; CONTEXT.md status Ready.
+Current step: PLAN done; PLAN.md status Draft.
 Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24).
 
 ## Next action
 
-1. Jake merges the "Phase 03 ANSWERS: decisions and approved copy" PR (branch answers/03-pages-and-copy).
-2. Then start a new session with the PLAN prompt from PROMPTS.md:
+1. Jake reviews and merges the "Phase 03 PLAN: two waves, ten tasks" PR (branch plan/03-pages-and-copy). Review PLAN.md and the expected-copy fixtures in .planning/phases/03-pages-and-copy/copy/. Confirm the check:content change in task 03-06 (Risks).
+2. If changes are needed, use the REVISE prompt. Otherwise start a new session with the EXECUTE prompt from PROMPTS.md (once per wave):
 
 ```
-PLAN phase 03. Follow .planning/README.md, step PLAN.
+EXECUTE phase 03. I have reviewed PLAN.md for this phase and approve it. Follow .planning/README.md, step EXECUTE.
 ```
 
 ## Waiting on Jake
 
-- Review and merge the ANSWERS PR (branch answers/03-pages-and-copy).
+- Review and merge the PLAN PR (branch plan/03-pages-and-copy), then approve the plan in the EXECUTE prompt.
 - App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 
 ## Blockers
@@ -24,4 +24,4 @@ None.
 
 ## Last session
 
-ANSWERS phase 03 (2026-10-24), local session on branch answers/03-pages-and-copy from main (bc0db2c). Recorded Jake's four answers as implementation decisions 14 to 17, plus decisions 18 and 19 for the reasons behind his copy edits. Applied his edits to FE17, FE19, S49, and S15, checked against the app repo at 60032bf (no car signal in lib/signals.ts; "Replace all data on this device" at app/backup.tsx:249), and marked every Copy drafts entry Approved. Added FEAT-01 (Features accessibility section, gated on the app's TestFlight VoiceOver and Dynamic Type passes) to REQUIREMENTS.md and ROADMAP phase 04, and one BACKLOG item (car connectivity in the brief but not the app). Only .planning/ files changed; no checks were required for this step.
+PLAN phase 03 (2026-10-24), local session on branch plan/03-pages-and-copy from main (5973706). Confirmed the app repo is still at 60032bf with no change to the brief or the app files CONTEXT.md cites. Wrote PLAN.md (Draft): wave 1 adds check-text.mjs and check-links.mjs (check:links joins the Deploy workflow), ComingSoon.astro, and the Features, Pricing, and Privacy overview pages, unlinked; wave 2 adds the header nav with aria-current, the "Privacy policy" footer link, the Home rewrite, the Support FAQ, and narrows check:content to privacy and 404. Transcribed the Approved copy into five fixtures under copy/ and checked every line against CONTEXT.md by script. Ran the planned static checks against today's build; all return clean. Only .planning/ files changed.

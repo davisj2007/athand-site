@@ -1,0 +1,58 @@
+# Expected copy for dist/index.html, from CONTEXT.md Copy drafts (Approved 2026-10-24).
+# Read by scripts/check-text.mjs. "title:" and "description:" lines check the head;
+# "href:" lines require a link with that target inside <main>; lines starting
+# with "!" must not appear in <main>; every other line must appear in <main>.
+title: atHand: Your Info, Ready
+description: atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.
+# H3
+Your info, ready when you need it
+# H4
+atHand keeps the details you look up all the time, such as people, vehicles, pets, homes, financial accounts, and contacts, in one place on your iPhone.
+# C1
+Coming soon to the App Store for iPhone.
+# H5
+For the moments you need it
+# H6
+At the doctor’s office, at a traffic stop, or at the airport, you need a member ID, a license number, or a passport number right away. atHand keeps them on your iPhone, for you and the people, vehicles, pets, and homes you look after.
+# H7
+What it does
+# H8
+Keep records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record for anything else.
+# H9
+Scan a driver’s license, passport, insurance card, VIN, vaccine record, or business card instead of typing. You check every field before it is saved.
+# H10
+Get a suggestion for the record that is likely to help right now, based on the time of day and, if you allow them, your calendar and location.
+# H11
+Lock atHand with Face ID, Touch ID, or your device passcode, and export an encrypted backup protected by a passphrase you choose.
+# H12
+See all features
+href: /features.html
+# H13
+Privacy in short
+# H14
+Your information stays on your iPhone. It leaves only inside an encrypted backup file that you choose to export.
+# H15
+There is no account and no sign-in.
+# H16
+atHand connects to Apple and RevenueCat for purchases, to Google for anonymous scanning diagnostics, and, if you allow location, to Apple to look up the name of a nearby place. It never sends your scans, photos, recognized text, or anything you enter.
+# H17
+The developer added no advertising, tracking, analytics, or crash-reporting tools.
+# H18
+How atHand handles your information
+href: /privacy-overview.html
+Read the full privacy policy
+href: /privacy.html
+# H19
+Free to start
+# H20
+Your own record is free. A one-time purchase unlocks everything else. There is no subscription.
+# H21
+See pricing
+href: /pricing.html
+# H22 (removed)
+!How it works
+!The developer runs no server
+!No advertising, tracking, analytics, or crash-reporting tools.
+!Read the full privacy policy.
+!Learn more
+!Support and help
