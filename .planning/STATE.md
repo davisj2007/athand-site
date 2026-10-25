@@ -1,13 +1,13 @@
 # State
 
 Current phase: 03 (pages-and-copy)
-Current step: PLAN done; PLAN.md status Draft.
+Current step: EXECUTE wave 1 done (tasks 03-01 to 03-05); wave 2 (03-06 to 03-10) not started. PLAN.md status Approved 2026-10-25.
 Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24).
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 03 PLAN: two waves, ten tasks" PR (branch plan/03-pages-and-copy). Review PLAN.md and the expected-copy fixtures in .planning/phases/03-pages-and-copy/copy/. Confirm the check:content change in task 03-06 (Risks).
-2. If changes are needed, use the REVISE prompt. Otherwise start a new session with the EXECUTE prompt from PROMPTS.md (once per wave):
+1. Jake reviews and merges the "Phase 03 EXECUTE: wave 1, check scripts and three new pages" PR (branch execute/03-wave-1). After merge, the Deploy workflow on main should finish green; it now runs check:links too. /features.html, /pricing.html, and /privacy-overview.html go live, reachable by URL only.
+2. Start a new session with the EXECUTE prompt from PROMPTS.md for wave 2:
 
 ```
 EXECUTE phase 03. I have reviewed PLAN.md for this phase and approve it. Follow .planning/README.md, step EXECUTE.
@@ -15,7 +15,7 @@ EXECUTE phase 03. I have reviewed PLAN.md for this phase and approve it. Follow 
 
 ## Waiting on Jake
 
-- Review and merge the PLAN PR (branch plan/03-pages-and-copy), then approve the plan in the EXECUTE prompt.
+- Review and merge the wave 1 EXECUTE PR (branch execute/03-wave-1).
 - App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 
 ## Blockers
@@ -24,4 +24,4 @@ None.
 
 ## Last session
 
-PLAN phase 03 (2026-10-24), local session on branch plan/03-pages-and-copy from main (5973706). Confirmed the app repo is still at 60032bf with no change to the brief or the app files CONTEXT.md cites. Wrote PLAN.md (Draft): wave 1 adds check-text.mjs and check-links.mjs (check:links joins the Deploy workflow), ComingSoon.astro, and the Features, Pricing, and Privacy overview pages, unlinked; wave 2 adds the header nav with aria-current, the "Privacy policy" footer link, the Home rewrite, the Support FAQ, and narrows check:content to privacy and 404. Transcribed the Approved copy into five fixtures under copy/ and checked every line against CONTEXT.md by script. Ran the planned static checks against today's build; all return clean. Only .planning/ files changed.
+EXECUTE phase 03 wave 1 (2026-10-25), local session on branch execute/03-wave-1 from main (e9822a4). App repo origin/main still 60032bf. Set PLAN.md Approved. Completed 03-01 (check-text.mjs, check-links.mjs, check:links in package.json and the Deploy workflow, README), 03-02 (ComingSoon.astro, used on Home), 03-03 (Features), 03-04 (Pricing), and 03-05 (Privacy overview). All Checks, check:content on all four existing pages, check:links, the three fixtures, and static checks S1 to S8 pass; the new pages render in light and dark in the built-in browser. One deviation: the 03-01 verify command's passing check-links fixture lacked the privacy.html it links to; EXECUTE created it in the temporary directory (SUMMARY.md, BACKLOG.md).
