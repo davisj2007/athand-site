@@ -15,13 +15,30 @@ import Base from "../layouts/Base.astro";
     </ul>
     <p>Please do not send passphrases, document images, or other sensitive details. I do not need them to help.</p>
 
-    <h2>Common questions</h2>
+    <h2>Backups</h2>
 
     <h3>How do backups work?</h3>
-    <p>You can export an encrypted backup file, protected by a passphrase you choose. You then share the file wherever you want to keep it. The developer never receives the file.</p>
+    <p>You can export an encrypted backup file, protected by a passphrase you choose. You then share the file wherever you want to keep it. A backup is a one-time copy, not sync. The developer never receives the file.</p>
+
+    <h3>How do I move atHand to a new iPhone?</h3>
+    <p>On your old iPhone, open Settings in atHand, choose Backup &amp; restore, and export a backup. Save it somewhere your new iPhone can reach, such as the Files app. On the new iPhone, import the backup and enter your passphrase. Then tap Restore purchase to unlock.</p>
+
+    <h3>What happens when I import a backup?</h3>
+    <p>Importing replaces all the data on that iPhone with the data in the backup. atHand warns you first and asks you to confirm with Replace all data on this device. If the passphrase is wrong, the import stops before anything changes.</p>
+
+    <h3>How is my backup protected?</h3>
+    <p>atHand encrypts the file with AES-256, using keys made from your passphrase with PBKDF2. An HMAC-SHA256 check means a changed or damaged file is rejected before it is opened.</p>
 
     <h3>What happens if I lose my backup passphrase?</h3>
     <p>The backup cannot be opened. The developer has no access to your passphrase and cannot recover it or the backup. Store your passphrase somewhere safe.</p>
+
+    <h3>What does a backup include?</h3>
+    <p>Your records and their photos. A backup never includes your purchase, your settings, or your app lock setting.</p>
+
+    <h2>Purchases</h2>
+
+    <h3>How much does atHand cost?</h3>
+    <p>atHand is a free download. The unlock is a one-time purchase, and the App Store shows its price in your local currency before you buy. <a href="/pricing.html">See Pricing</a> for what is free and what the unlock adds.</p>
 
     <h3>How do I restore my purchase?</h3>
     <p>Open atHand on an iPhone signed in to the Apple ID you used to buy the unlock, then tap Restore purchase in Settings or on the unlock screen. If it does not work, email me.</p>
@@ -35,16 +52,56 @@ import Base from "../layouts/Base.astro";
     <h3>Does importing a backup unlock atHand?</h3>
     <p>No. A backup carries your information only, never the purchase. Use Restore purchase on the new iPhone.</p>
 
-    <h3>Which devices does atHand support?</h3>
-    <p>iPhone only.</p>
+    <h3>Why are some records locked after I import a backup?</h3>
+    <p>Records other than your own need the unlock. They still appear on your home screen, and tapping one opens the unlock screen. If you already bought the unlock with this Apple ID, tap Restore purchase.</p>
+
+    <h2>App lock</h2>
 
     <h3>How do I turn on the app lock?</h3>
     <p>The app lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. You can turn it off, or change how soon it locks again, in atHand’s Settings.</p>
 
-    <h3>How do I delete all my data?</h3>
-    <p>Delete the app from your iPhone. This removes all of its data from the device. Backup files you exported are stored separately, so delete those as well if you no longer want them.</p>
+    <h3>Is there an atHand password?</h3>
+    <p>No. atHand uses Face ID, Touch ID, or your device passcode, never a separate password. Turning the lock on or off asks you to confirm with one of them.</p>
+
+    <h3>Why can’t I turn on the app lock?</h3>
+    <p>The lock needs Face ID, Touch ID, or a device passcode. If none is set up, set a passcode in iPhone Settings, then turn the lock on in atHand.</p>
+
+    <h2>Scanning</h2>
+
+    <h3>Which documents can I scan?</h3>
+    <p>Driver’s licenses, passports, insurance cards, VINs, vaccine records, utility bills, payment cards, and business cards.</p>
+
+    <h3>What if a scan reads something wrong?</h3>
+    <p>Every scan opens a check screen before anything is saved. atHand marks any field it is unsure of with “Check this.” Correct any field, or tap the photo to retake it.</p>
+
+    <h3>Can I add a record without scanning?</h3>
+    <p>Yes. When you add a record, choose Enter manually.</p>
+
+    <h3>Are my scans sent anywhere?</h3>
+    <p>No. Recognition runs on your iPhone, and atHand never sends your scans, photos, or the text read from them. The scanning library does send Google anonymous diagnostics, described in the <a href="/privacy.html">privacy policy</a>.</p>
+
+    <h2>Suggestions</h2>
+
+    <h3>How do suggestions work?</h3>
+    <p>atHand compares signals such as the time of day and, if you allow them, your calendar and location with your records, on your iPhone. If you allow location, Apple’s geocoding service returns the name of a nearby place. When nothing matches with confidence, atHand shows no suggestion banner.</p>
+
+    <h3>How do I turn suggestions off?</h3>
+    <p>In atHand’s Settings, under Contextual Surfacing, set Context mode to Off.</p>
+
+    <h2>Permissions and your data</h2>
 
     <h3>Which permissions are optional?</h3>
     <p>Calendar and location access are both optional. atHand works without them, and you can change them at any time in iPhone Settings. Camera access for scanning and the app lock are also your choice. See the <a href="/privacy.html">privacy policy</a> for what each one does.</p>
+
+    <h3>How do I delete all my data?</h3>
+    <p>Delete the app from your iPhone. This removes all of its data from the device. Backup files you exported are stored separately, so delete those as well if you no longer want them.</p>
+
+    <h3>Where can I read how atHand handles my information?</h3>
+    <p>The <a href="/privacy-overview.html">privacy overview</a> explains it in plain language, and the <a href="/privacy.html">privacy policy</a> has every detail.</p>
+
+    <h2>About atHand</h2>
+
+    <h3>Which devices does atHand support?</h3>
+    <p>iPhone only.</p>
   </div>
 </Base>

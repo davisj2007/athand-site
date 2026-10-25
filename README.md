@@ -19,9 +19,9 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 
 ## Layout
 
-- src/pages/: one file per page. index.astro, privacy.astro, support.astro, and 404.astro build to /index.html, /privacy.html, /support.html, and /404.html. /privacy.html and /support.html are permanent URLs.
+- src/pages/: one file per page. index.astro, features.astro, pricing.astro, privacy-overview.astro, privacy.astro, support.astro, and 404.astro build to /index.html, /features.html, /pricing.html, /privacy-overview.html, /privacy.html, /support.html, and /404.html. /privacy.html and /support.html are permanent URLs.
 - src/layouts/Base.astro: the shared page shell, head metadata, font and token imports, and the inline theme script.
-- src/components/: Header.astro (logo lockup and theme control), ThemeControl.astro (System, Light, and Dark buttons), and Footer.astro.
+- src/components/: Header.astro (logo lockup, main navigation, and theme control), ThemeControl.astro (System, Light, and Dark buttons), ComingSoon.astro (the coming-soon line), and Footer.astro.
 - src/styles/tokens/: design tokens copied from the app repo. Do not edit them by hand.
 - src/styles/site.css: the site stylesheet, written against the token variables.
 - src/assets/: the logo mark SVG, copied from the app repo.
@@ -72,7 +72,7 @@ The Deploy workflow does not run this check; run it locally after any copy chang
 
 ## check:content
 
-`npm run check:content` compares the visible text and link targets inside each built page's `<main>` with the original hand-written HTML from before the Astro port. It reads those files from git history at `PRE_PORT_REF`, which defaults to 52d8d1afc6de84391e401c738905da3f186f9f50. Pass page names to check only some pages:
+`npm run check:content` compares the visible text and link targets inside each built page's `<main>` with the original hand-written HTML from before the Astro port. It reads those files from git history at `PRE_PORT_REF`, which defaults to 52d8d1afc6de84391e401c738905da3f186f9f50. By default it checks privacy and 404, the two pages whose content has not changed since the port. Home and Support were rewritten in phase 03, so check-text.mjs checks them against their approved copy instead. Pass page names to check other pages:
 
 ```bash
 node scripts/check-main-text.mjs privacy support

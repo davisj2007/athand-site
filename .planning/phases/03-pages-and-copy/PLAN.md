@@ -142,7 +142,7 @@ Live site after this wave: Home, Privacy, Support, and 404 read exactly as today
 
 Adds the header navigation, renames the footer policy link, rewrites Home, expands Support, and moves check:content to the two pages that stay unchanged. These land together so the site switches to the new structure in one merge.
 
-- [ ] 03-06: Narrow check:content to unchanged pages
+- [x] 03-06: Narrow check:content to unchanged pages
   Requirements: PAGE-06 (keeps the deploy check meaningful while Home and Support change)
   Files: scripts/check-main-text.mjs, README.md
   Steps:
@@ -151,7 +151,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: `npm run check:content` passes and names only privacy and 404; `node scripts/check-main-text.mjs index` still runs (and fails once 03-09 lands, which is expected).
   Verify command: `npm run build && out=$(npm run check:content 2>&1) && echo "$out" && echo "$out" | grep -q 'check:content: privacy main text and links match' && echo "$out" | grep -q 'check:content: 404 main text and links match' && ! echo "$out" | grep -qE 'check:content: (index|support) '`
 
-- [ ] 03-07: Header navigation with the current page
+- [x] 03-07: Header navigation with the current page
   Requirements: PAGE-07
   Files: src/layouts/Base.astro, src/components/Header.astro, src/styles/site.css
   Copy entries: N1, N2
@@ -162,7 +162,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: every built page has one `<nav aria-label="Main">` with the four links in order; aria-current="page" appears exactly once on index, features, pricing, privacy-overview, and support, on the right link, and zero times on privacy and 404; nav links have 44px targets; the nav works with JavaScript off (no script in Header.astro); check:links passes.
   Verify command: `npm run build && node -e 'const fs=require("fs");const want={"index":"href=\"/\"","features":"/features.html","pricing":"/pricing.html","privacy-overview":"/privacy-overview.html","support":"/support.html","privacy":null,"404":null};for(const [p,h] of Object.entries(want)){const s=fs.readFileSync("dist/"+p+".html","utf8");const navs=s.match(/<nav[^>]*aria-label="Main"[^>]*>[\s\S]*?<\/nav>/g)||[];if(navs.length!==1)throw p+": nav count "+navs.length;const order=[...navs[0].matchAll(/href="([^"]+)"/g)].map(m=>m[1]).join(",");if(order!=="/features.html,/pricing.html,/privacy-overview.html,/support.html")throw p+": order "+order;const cur=[...s.matchAll(/<a\b[^>]*aria-current="page"[^>]*>/g)].map(m=>m[0]);if(h===null?cur.length!==0:(cur.length!==1||!cur[0].includes(h)))throw p+": aria-current "+JSON.stringify(cur)}' && ! grep -q '<script' src/components/Header.astro && npm run check:links && ! grep -nE 'font-size:\s*0?\.[0-9]+rem|font-size:\s*(1[0-5]|[0-9])px' src/styles/site.css`
 
-- [ ] 03-08: Footer policy link name
+- [x] 03-08: Footer policy link name
   Requirements: PAGE-07 (distinct link names beside the header "Privacy" link)
   Files: src/components/Footer.astro
   Copy entries: F1
@@ -171,7 +171,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: every built page's footer has a link "Privacy policy" to /privacy.html and no footer link named only "Privacy".
   Verify command: `npm run build && for f in dist/*.html; do grep -q '<a href="/privacy.html">Privacy policy</a>' "$f" || { echo "$f"; exit 1; }; ! grep -q '<a href="/privacy.html">Privacy</a>' "$f" || { echo "$f"; exit 1; }; done`
 
-- [ ] 03-09: Home page rewrite
+- [x] 03-09: Home page rewrite
   Requirements: PAGE-01, PAGE-06, PAGE-08
   Files: src/pages/index.astro
   Copy entries: H1 to H22, C1
@@ -186,7 +186,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: check-text passes against copy/index.txt, including the removed strings; check:links passes; the panel keeps its labelled region.
   Verify command: `npm run build && node scripts/check-text.mjs dist/index.html .planning/phases/03-pages-and-copy/copy/index.txt && grep -q 'aria-labelledby="privacy-summary"' dist/index.html && npm run check:links`
 
-- [ ] 03-10: Support and FAQ expansion
+- [x] 03-10: Support and FAQ expansion
   Requirements: PAGE-05, PAGE-06
   Files: src/pages/support.astro
   Copy entries: S1 to S58 (there is no S56)

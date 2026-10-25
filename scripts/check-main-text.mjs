@@ -8,7 +8,8 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ref = process.env.PRE_PORT_REF || "52d8d1afc6de84391e401c738905da3f186f9f50";
-const pages = process.argv.length > 2 ? process.argv.slice(2) : ["index", "privacy", "support", "404"];
+// Home and Support were rewritten in phase 03 and are checked against their Approved copy by check-text.mjs instead.
+const pages = process.argv.length > 2 ? process.argv.slice(2) : ["privacy", "404"];
 
 function decode(s) {
   return s
