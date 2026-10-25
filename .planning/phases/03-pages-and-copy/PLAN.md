@@ -142,7 +142,7 @@ Live site after this wave: Home, Privacy, Support, and 404 read exactly as today
 
 Adds the header navigation, renames the footer policy link, rewrites Home, expands Support, and moves check:content to the two pages that stay unchanged. These land together so the site switches to the new structure in one merge.
 
-- [ ] 03-06: Narrow check:content to unchanged pages
+- [x] 03-06: Narrow check:content to unchanged pages
   Requirements: PAGE-06 (keeps the deploy check meaningful while Home and Support change)
   Files: scripts/check-main-text.mjs, README.md
   Steps:
