@@ -162,7 +162,7 @@ Adds the header navigation, renames the footer policy link, rewrites Home, expan
   Acceptance: every built page has one `<nav aria-label="Main">` with the four links in order; aria-current="page" appears exactly once on index, features, pricing, privacy-overview, and support, on the right link, and zero times on privacy and 404; nav links have 44px targets; the nav works with JavaScript off (no script in Header.astro); check:links passes.
   Verify command: `npm run build && node -e 'const fs=require("fs");const want={"index":"href=\"/\"","features":"/features.html","pricing":"/pricing.html","privacy-overview":"/privacy-overview.html","support":"/support.html","privacy":null,"404":null};for(const [p,h] of Object.entries(want)){const s=fs.readFileSync("dist/"+p+".html","utf8");const navs=s.match(/<nav[^>]*aria-label="Main"[^>]*>[\s\S]*?<\/nav>/g)||[];if(navs.length!==1)throw p+": nav count "+navs.length;const order=[...navs[0].matchAll(/href="([^"]+)"/g)].map(m=>m[1]).join(",");if(order!=="/features.html,/pricing.html,/privacy-overview.html,/support.html")throw p+": order "+order;const cur=[...s.matchAll(/<a\b[^>]*aria-current="page"[^>]*>/g)].map(m=>m[0]);if(h===null?cur.length!==0:(cur.length!==1||!cur[0].includes(h)))throw p+": aria-current "+JSON.stringify(cur)}' && ! grep -q '<script' src/components/Header.astro && npm run check:links && ! grep -nE 'font-size:\s*0?\.[0-9]+rem|font-size:\s*(1[0-5]|[0-9])px' src/styles/site.css`
 
-- [ ] 03-08: Footer policy link name
+- [x] 03-08: Footer policy link name
   Requirements: PAGE-07 (distinct link names beside the header "Privacy" link)
   Files: src/components/Footer.astro
   Copy entries: F1
