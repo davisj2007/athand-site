@@ -240,4 +240,4 @@ Run 2026-10-24.
 
 ## Fix wave
 
-(added by VERIFY if needed)
+None. VERIFY (2026-10-25) found every requirement PASS; see VERIFY.md.
