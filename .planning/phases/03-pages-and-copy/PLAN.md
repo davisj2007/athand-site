@@ -90,7 +90,7 @@ Adds the two check scripts, the coming-soon component, and the three new pages. 
   Acceptance: dist/index.html main text and links are unchanged (check:content still passes on all four pages); the string appears once in dist/index.html.
   Verify command: `npm run build && npm run check:content && test "$(grep -o 'Coming soon to the App Store for iPhone.' dist/index.html | wc -l | tr -d ' ')" = 1 && ! grep -q 'Coming soon' src/pages/index.astro`
 
-- [ ] 03-03: Features page
+- [x] 03-03: Features page
   Requirements: PAGE-02, PAGE-06, PAGE-08
   Files: src/pages/features.astro
   Copy entries: FE1 to FE30, C1 (FE31 is not in this phase)
