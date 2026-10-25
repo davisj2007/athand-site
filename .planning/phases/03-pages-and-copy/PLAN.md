@@ -103,7 +103,7 @@ Adds the two check scripts, the coming-soon component, and the three new pages. 
   Acceptance: dist/features.html exists at that path; check-text passes against copy/features.txt; exactly one h1 and six h2. The FE18 link target arrives in 03-05, so check:links runs in 03-05's verify and the wave checks, not here.
   Verify command: `npm run build && node scripts/check-text.mjs dist/features.html .planning/phases/03-pages-and-copy/copy/features.txt && test "$(grep -o '<h1' dist/features.html | wc -l | tr -d ' ')" = 1 && test "$(grep -o '<h2' dist/features.html | wc -l | tr -d ' ')" = 6`
 
-- [ ] 03-04: Pricing page
+- [x] 03-04: Pricing page
   Requirements: PAGE-03, PAGE-06, PAGE-08
   Files: src/pages/pricing.astro
   Copy entries: P1 to P19, C1
