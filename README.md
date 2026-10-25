@@ -14,7 +14,8 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 - `npm run build` writes the static site to dist/.
 - `npm run preview` serves the built dist/ locally.
 - `npm run check` runs `astro check` (types and templates).
-- `npm run tokens:check`, `npm run check:external`, and `npm run check:content` are described below.
+- `npm run tokens:check`, `npm run check:external`, `npm run check:links`, and `npm run check:content` are described below.
+- `node scripts/check-text.mjs` checks a built page against an expected-copy fixture; see check:text below.
 
 ## Layout
 
@@ -29,7 +30,7 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 
 ## Deploy
 
-The Deploy workflow (.github/workflows/deploy.yml) runs on every push to main and can also be run by hand from the Actions tab. Its build job runs `npm ci`, `npm run build`, `npm run check`, `npm run check:external`, and `npm run check:content`, then uploads dist/; its deploy job publishes it to GitHub Pages. Merging to main publishes the site.
+The Deploy workflow (.github/workflows/deploy.yml) runs on every push to main and can also be run by hand from the Actions tab. Its build job runs `npm ci`, `npm run build`, `npm run check`, `npm run check:external`, `npm run check:links`, and `npm run check:content`, then uploads dist/; its deploy job publishes it to GitHub Pages. Merging to main publishes the site.
 
 In the repository settings, Pages Source must be "GitHub Actions" and the custom domain must be athandapp.com with Enforce HTTPS checked.
 
@@ -54,6 +55,20 @@ This check does not run in the Deploy workflow, because the app repo is private 
 ## check:external
 
 `npm run check:external` scans every HTML, CSS, JS, and SVG file in dist/ for runtime requests: `src`, `srcset`, `poster`, `<link href>`, `<object data>`, `<form action>`, CSS `url()` and `@import`, and absolute URLs in scripts. It allows relative and root-relative URLs, fragments, `data:` URLs, and absolute URLs on athandapp.com. Ordinary links (`<a href>`) are not requests and are ignored. Any other host fails the check.
+
+## check:links
+
+`npm run check:links` reads every `<a href>` in every HTML file in dist/ and fails if an internal link points to a file that does not exist. It resolves `/` to index.html, a trailing `/` to the index.html inside that folder, and relative paths against the page's own folder, ignoring any query or fragment. Outbound links (any scheme, such as `https:` or `mailto:`), protocol-relative `//` links, and fragment-only links are skipped.
+
+## check:text
+
+`node scripts/check-text.mjs` confirms that a built page holds the expected copy listed in a fixture file. Each fixture line is one string: `title:` and `description:` lines must equal the page's head values, `href:` lines require a link with that target inside `<main>`, lines starting with `!` must not appear in the main text, and every other line must appear in it. Blank lines and lines starting with `#` are skipped.
+
+```bash
+node scripts/check-text.mjs dist/features.html .planning/phases/03-pages-and-copy/copy/features.txt
+```
+
+The Deploy workflow does not run this check; run it locally after any copy change.
 
 ## check:content
 

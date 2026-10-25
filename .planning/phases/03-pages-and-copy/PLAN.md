@@ -1,6 +1,6 @@
 # Phase 03: pages-and-copy - Plan
 
-Status: Draft
+Status: Approved 2026-10-25
 
 ## Goal
 
@@ -67,7 +67,7 @@ None. No GitHub settings change. After each wave merges, the Deploy workflow pub
 
 Adds the two check scripts, the coming-soon component, and the three new pages. The new pages are complete but not yet linked from the header or Home; they are reachable by URL.
 
-- [ ] 03-01: check:text and check:links scripts
+- [x] 03-01: check:text and check:links scripts
   Requirements: PAGE-06, PAGE-07
   Files: scripts/check-text.mjs, scripts/check-links.mjs, package.json, .github/workflows/deploy.yml, README.md
   Copy entries: none
@@ -80,7 +80,7 @@ Adds the two check scripts, the coming-soon component, and the three new pages. 
   Acceptance: both scripts pass on today's build for the pages they can check; check-links fails on a fixture with a broken root-relative link and passes on one with only outbound, mailto, and fragment links; check-text fails when an expected line is missing and when a `!` line is present; package.json dependencies are unchanged.
   Verify command: `npm run build && npm run check:links && D=$(mktemp -d) && printf '<!doctype html><html><body><main><a href="/missing.html">x</a></main></body></html>' > "$D/a.html" && ! node scripts/check-links.mjs "$D" && printf '<!doctype html><html><head><title>T</title><meta name="description" content="D"></head><body><main><p>Read the <a href="/privacy.html">policy</a>.</p><a href="https://jacobdavis.co">j</a><a href="mailto:support@athandapp.com">m</a><a href="#main">s</a></main></body></html>' > "$D/a.html" && node scripts/check-links.mjs "$D" && printf 'title: T\ndescription: D\nRead the policy.\nhref: /privacy.html\n!Learn more\n' > "$D/ok.txt" && node scripts/check-text.mjs "$D/a.html" "$D/ok.txt" && printf 'Not on the page\n' > "$D/miss.txt" && ! node scripts/check-text.mjs "$D/a.html" "$D/miss.txt" && printf '!Read the policy\n' > "$D/absent.txt" && ! node scripts/check-text.mjs "$D/a.html" "$D/absent.txt" && git diff --quiet 5973706 -- package-lock.json && node -e 'const p=require("./package.json");if(JSON.stringify(p.dependencies)!==JSON.stringify({"@astrojs/check":"0.9.12","@fontsource/inter":"5.3.0","@fontsource/space-grotesk":"5.3.0","astro":"7.4.2","typescript":"6.0.3"})||p.devDependencies)process.exit(1)' && grep -q 'run: npm run check:links' .github/workflows/deploy.yml`
 
-- [ ] 03-02: Coming-soon component
+- [x] 03-02: Coming-soon component
   Requirements: PAGE-08
   Files: src/components/ComingSoon.astro, src/pages/index.astro
   Copy entries: C1
@@ -90,7 +90,7 @@ Adds the two check scripts, the coming-soon component, and the three new pages. 
   Acceptance: dist/index.html main text and links are unchanged (check:content still passes on all four pages); the string appears once in dist/index.html.
   Verify command: `npm run build && npm run check:content && test "$(grep -o 'Coming soon to the App Store for iPhone.' dist/index.html | wc -l | tr -d ' ')" = 1 && ! grep -q 'Coming soon' src/pages/index.astro`
 
-- [ ] 03-03: Features page
+- [x] 03-03: Features page
   Requirements: PAGE-02, PAGE-06, PAGE-08
   Files: src/pages/features.astro
   Copy entries: FE1 to FE30, C1 (FE31 is not in this phase)
@@ -103,7 +103,7 @@ Adds the two check scripts, the coming-soon component, and the three new pages. 
   Acceptance: dist/features.html exists at that path; check-text passes against copy/features.txt; exactly one h1 and six h2. The FE18 link target arrives in 03-05, so check:links runs in 03-05's verify and the wave checks, not here.
   Verify command: `npm run build && node scripts/check-text.mjs dist/features.html .planning/phases/03-pages-and-copy/copy/features.txt && test "$(grep -o '<h1' dist/features.html | wc -l | tr -d ' ')" = 1 && test "$(grep -o '<h2' dist/features.html | wc -l | tr -d ' ')" = 6`
 
-- [ ] 03-04: Pricing page
+- [x] 03-04: Pricing page
   Requirements: PAGE-03, PAGE-06, PAGE-08
   Files: src/pages/pricing.astro
   Copy entries: P1 to P19, C1
@@ -119,7 +119,7 @@ Adds the two check scripts, the coming-soon component, and the three new pages. 
   Acceptance: dist/pricing.html exists; check-text passes against copy/pricing.txt; the page contains "one-time purchase" (case-insensitive) and no price pattern.
   Verify command: `npm run build && node scripts/check-text.mjs dist/pricing.html .planning/phases/03-pages-and-copy/copy/pricing.txt && grep -qi 'one-time purchase' dist/pricing.html && ! grep -qE '\$[0-9]|[0-9]\.[0-9]{2}|USD|€|£' dist/pricing.html`
 
-- [ ] 03-05: Privacy overview page
+- [x] 03-05: Privacy overview page
   Requirements: PAGE-04, PAGE-06
   Files: src/pages/privacy-overview.astro
   Copy entries: V1 to V24

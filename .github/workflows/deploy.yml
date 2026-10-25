@@ -34,6 +34,7 @@ jobs:
       - run: npm run build
       - run: npm run check
       - run: npm run check:external
+      - run: npm run check:links
       - run: npm run check:content
       # npm run tokens:check is deliberately not run here: it compares the
       # copied tokens with the app repo, which is private and not available

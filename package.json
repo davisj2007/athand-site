@@ -12,7 +12,8 @@
     "check": "astro check",
     "tokens:check": "node scripts/tokens-check.mjs",
     "check:external": "node scripts/check-external.mjs dist",
-    "check:content": "node scripts/check-main-text.mjs"
+    "check:content": "node scripts/check-main-text.mjs",
+    "check:links": "node scripts/check-links.mjs dist"
   },
   "dependencies": {
     "@astrojs/check": "0.9.12",
