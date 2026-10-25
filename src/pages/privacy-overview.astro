@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="How atHand handles your information | atHand" description="A plain-language summary of what stays on your iPhone and every connection atHand makes.">
+  <div class="wrap">
+    <h1>How atHand handles your information</h1>
+    <p class="lede">Your information stays on your iPhone. This page explains, in plain language, when atHand connects to an outside service and what each one receives. The full privacy policy has every detail.</p>
+
+    <h2>What stays on your iPhone</h2>
+    <p>Everything you add to atHand, including your records, scans, and photos, is stored on your iPhone. It leaves your iPhone only inside an encrypted backup file that you choose to export and share.</p>
+    <p>There is no account and no sign-in, and the developer cannot see your information.</p>
+    <p>Scanning runs on your iPhone. atHand never sends your scans, photos, recognized text, or anything you enter to any service.</p>
+
+    <h2>When atHand connects to the internet</h2>
+    <p>atHand makes three kinds of connection. None of them carries your records, scans, photos, or anything you type.</p>
+    <h3>Purchases: Apple and RevenueCat</h3>
+    <p>When you buy or restore the unlock, Apple handles the purchase and RevenueCat, a purchase service, confirms it so atHand can unlock. The privacy policy lists what RevenueCat receives.</p>
+    <h3>Scanning diagnostics: Google</h3>
+    <p>The scanning library, Google ML Kit, sends Google anonymous diagnostics: your iPhone model, iOS version, the app’s version, a random per-installation identifier, and performance data.</p>
+    <h3>Place lookup: Apple, only if you allow location</h3>
+    <p>If you allow location for suggestions, Apple’s geocoding service receives your location coordinates and returns the name of a nearby place. atHand sorts that name into a category on your iPhone, then discards the coordinates.</p>
+    <p>As with any internet connection, these services can see your device’s IP address.</p>
+
+    <h2>What atHand leaves out</h2>
+    <ul>
+      <li>The developer added no advertising, tracking, analytics, or crash-reporting tools.</li>
+      <li>atHand keeps your personal information out of its logs.</li>
+    </ul>
+
+    <h2>Optional permissions</h2>
+    <p>Camera, photos, calendar, and location access are all optional. atHand works without them, and you can change each one in iPhone Settings.</p>
+    <p>If you allow calendar access, atHand compares the titles of upcoming events with a keyword list on your iPhone. Event details are never sent.</p>
+
+    <h2>The full policy</h2>
+    <p>Read the <a href="/privacy.html">full privacy policy</a> for every detail, including what each service receives and how to delete your data. Questions? Email <a href="mailto:support@athandapp.com">support@athandapp.com</a>.</p>
+  </div>
+</Base>

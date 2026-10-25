@@ -119,7 +119,7 @@ Adds the two check scripts, the coming-soon component, and the three new pages. 
   Acceptance: dist/pricing.html exists; check-text passes against copy/pricing.txt; the page contains "one-time purchase" (case-insensitive) and no price pattern.
   Verify command: `npm run build && node scripts/check-text.mjs dist/pricing.html .planning/phases/03-pages-and-copy/copy/pricing.txt && grep -qi 'one-time purchase' dist/pricing.html && ! grep -qE '\$[0-9]|[0-9]\.[0-9]{2}|USD|€|£' dist/pricing.html`
 
-- [ ] 03-05: Privacy overview page
+- [x] 03-05: Privacy overview page
   Requirements: PAGE-04, PAGE-06
   Files: src/pages/privacy-overview.astro
   Copy entries: V1 to V24
