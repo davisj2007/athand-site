@@ -82,4 +82,4 @@ Run after this PR merges and the Deploy workflow on main finishes green, on http
 
 ## Jake's browser result
 
-(recorded at SHIP)
+PASS (recorded at SHIP, 2026-10-25). Jake ran every checklist step on https://athandapp.com after the VERIFY PR merged (merge 1c74305, PR #22); all steps pass.

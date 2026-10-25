@@ -29,14 +29,14 @@ Brief sections are cited by name: Concept, Brand, Copy rules, Accessibility floo
 
 ## Pages and copy (phase 03)
 
-- PAGE-01: Home page states what atHand is and who it is for, from the brief's Concept and in-scope list. Open
-- PAGE-02: Features page covers the v1.0 in-scope features only (brief, Current milestone in-scope list, Document capture, Contextual suggestions, Backup and restore, App lock). Nothing out of scope appears, including AI suggestions, Android, iPad, sync, or subscriptions. Open
-- PAGE-03: Pricing page says the app is a free download with a one-time purchase that unlocks full use, what stays free (brief, Business model and entitlement, Free vs paid), that purchases belong to the Apple ID and can be restored, and that a backup never unlocks. It says "one-time purchase" and states no amount. Open
-- PAGE-04: Privacy explainer page summarizes the brief's Privacy section in plain language, names every network connection the policy names, and links to /privacy.html as the full policy. It never says "nothing leaves your phone". Open
-- PAGE-05: Support and FAQ at /support.html expand the existing answers (backup, restore purchase, lock, scanning, permissions, contact), keeping the URL. Open
-- PAGE-06: every string on these pages was drafted in DISCUSS, approved by Jake in ANSWERS, and cites a brief section; the PR lists each claim with its citation. Open
-- PAGE-07: header navigation reaches every page, marks the current page with aria-current, and works at 400% zoom. Open
-- PAGE-08: the coming-soon state stays on every page that mentions availability. Open
+- PAGE-01: Home page states what atHand is and who it is for, from the brief's Concept and in-scope list. Done
+- PAGE-02: Features page covers the v1.0 in-scope features only (brief, Current milestone in-scope list, Document capture, Contextual suggestions, Backup and restore, App lock). Nothing out of scope appears, including AI suggestions, Android, iPad, sync, or subscriptions. Done
+- PAGE-03: Pricing page says the app is a free download with a one-time purchase that unlocks full use, what stays free (brief, Business model and entitlement, Free vs paid), that purchases belong to the Apple ID and can be restored, and that a backup never unlocks. It says "one-time purchase" and states no amount. Done
+- PAGE-04: Privacy explainer page summarizes the brief's Privacy section in plain language, names every network connection the policy names, and links to /privacy.html as the full policy. It never says "nothing leaves your phone". Done
+- PAGE-05: Support and FAQ at /support.html expand the existing answers (backup, restore purchase, lock, scanning, permissions, contact), keeping the URL. Done
+- PAGE-06: every string on these pages was drafted in DISCUSS, approved by Jake in ANSWERS, and cites a brief section; the PR lists each claim with its citation. Done
+- PAGE-07: header navigation reaches every page, marks the current page with aria-current, and works at 400% zoom. Done
+- PAGE-08: the coming-soon state stays on every page that mentions availability. Done
 
 ## Visuals and polish (phase 04)
 
