@@ -137,7 +137,7 @@ The two new crops, the one-frame Features page top, and the live row 4 pair. 04.
   Acceptance: Home rows 2 and 5 render the measured crops in both themes at 390 and 1280 and the images load; the screenshots show the content CONTEXT.md, FX7 lists; check-text passes for Home with A3r and A9r; check:layout and check:a11y pass (including one displayed image per frame).
   Verify command: `npm run build && npm run check && for s in '"full" | "suggest" | "record" | "perks" | "fields" | "lock"'; do grep -qF -- "$s" src/components/PhoneFrame.astro || exit 1; done && for s in '.frame[data-crop="fields"] .screen { aspect-ratio: 1320 / 1424; }' '.frame[data-crop="fields"] img { object-position: 50% 11.911%; }' '.frame[data-crop="lock"] .screen { aspect-ratio: 1320 / 1388; }' '.frame[data-crop="lock"] img { object-position: 50% 87.027%; }'; do grep -qF -- "$s" src/styles/site.css || { echo "missing $s"; exit 1; }; done && grep -qF 'shot="04-check-what-we-read" crop="fields"' src/pages/index.astro && grep -qF 'shot="06-lock" crop="lock"' src/pages/index.astro && node .planning/phases/04.2-design-polish/measure.mjs crops && node scripts/check-text.mjs dist/index.html .planning/phases/04-visuals-and-polish/copy/index.txt && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-07: Features page top, one frame (FX8)
+- [x] 04.2-07: Features page top, one frame (FX8)
   Requirements: DSG-01
   Files: src/pages/features.astro, src/styles/site.css, .planning/phases/04-visuals-and-polish/copy/features.txt
   Copy entries: A3r (Approved, decision 15)

@@ -829,21 +829,6 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   overflow-wrap: anywhere;
 }
 
-/* Features page top: 04-check-what-we-read over 02-person-top from the
-   breakpoint; below it, only the first frame shows. */
-.shot-panel.overlap .frame + .frame { display: none; }
-@media (min-width: 52.5em) {
-  .shot-panel.overlap { flex-wrap: nowrap; }
-  .shot-panel.overlap .frame { flex: none; width: 200px; }
-  .shot-panel.overlap .frame:first-child {
-    position: relative;
-    z-index: 1;
-    margin-top: var(--space-10);
-    margin-left: calc(var(--space-12) * -1);
-  }
-  .shot-panel.overlap .frame + .frame { display: block; order: -1; }
-}
-
 /* Headings balance their lines and paragraphs avoid a one-word last line;
    browsers without support keep the default wrapping. */
 :is(.section-title, .feature h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }
