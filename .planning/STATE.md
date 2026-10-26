@@ -1,29 +1,30 @@
 # State
 
 Current phase: 04 (visuals-and-polish)
-Current step: EXECUTE wave 4 done except 04-23, which is blocked (04-19 to 04-22 complete). PLAN.md status Approved (2026-10-25).
+Current step: REVISE done (2026-10-26): 04-23 unblocked and 04-24 added to wave 4. PLAN.md status Draft (revised 2026-10-26; was Approved 2026-10-25). Wave 4 has 04-23 and 04-24 open (04-19 to 04-22 complete).
 Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24). Phase 03 is Done (shipped 2026-10-25; VERIFY PASS, Jake's browser result PASS).
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04 EXECUTE: wave 4, icons, Open Graph, sitemap, and robots" PR (branch execute/04-wave-4). Merging publishes the favicons, the apple-touch-icon, the Open Graph image and tags, canonical links, /sitemap.xml, and /robots.txt.
-2. Then REVISE phase 04 to unblock 04-23 (see Blockers), with the REVISE prompt from PROMPTS.md listing the change.
-3. Then EXECUTE to finish 04-23, then VERIFY.
+1. Jake reviews and merges the "Phase 04 REVISE: unblock 04-23 and add 04-24" PR (branch revise/04-unblock-04-23).
+2. Then EXECUTE phase 04 with Jake's plan approval, to finish wave 4 (04-23 and 04-24).
+3. Then VERIFY.
 
 ## Waiting on Jake
 
-- Review and merge the wave 4 EXECUTE PR (branch execute/04-wave-4), including the deviations in SUMMARY.md.
-- Decide the 04-23 REVISE (Blockers).
+- Review and merge the REVISE PR (branch revise/04-unblock-04-23), then approve the revised plan in the EXECUTE prompt.
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
 - App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md; the TestFlight VoiceOver and Dynamic Type passes that gate FEAT-01 (decision 21: REVISE adds it if recorded before SHIP, otherwise phase 04.1).
 
 ## Blockers
 
-- 04-23 (SoftwareApplication JSON-LD on Home): the block must carry `"@context": "https://schema.org"` (decision 16), and scripts/check-external.mjs flags every absolute URL in an inline `<script>`, so `npm run check:external` fails, and the Deploy workflow runs that check. check-external.mjs is outside PLAN.md's files. Jake chose to stop on 2026-10-26; 04-23 is not committed. Suggested REVISE: add scripts/check-external.mjs to 04-23's files; skip the body of `<script type="application/ld+json">` blocks, keep checking every other inline script; add verify cases that a JSON-LD block with https://schema.org passes and an inline script with a third-party URL still fails. Details in SUMMARY.md, Blockers.
+None. The 04-23 check:external blocker (2026-10-26) is resolved in PLAN.md by REVISE: 04-23 now owns scripts/check-external.mjs and skips only JSON-LD script bodies.
 
 ## Last session
 
-EXECUTE phase 04 wave 4 (2026-10-26), local session on branch execute/04-wave-4 from main (2410273, wave 3 merged). Completed 04-19 to 04-22: favicons and the flattened apple-touch-icon from the app icon at 60032bf; scripts/make-og-image.mjs and public/og-image.png (Playwright, file: and data: requests only); canonical, Open Graph, and Twitter tags in Base.astro (404 without canonical); /sitemap.xml and /robots.txt. 04-23 blocked by check:external (see Blockers); its edits were reverted. All wave checks pass on the committed tree, including check:layout, check:a11y, and S1 to S7, S9 to S15, S17, and S18; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
+REVISE phase 04 (2026-10-26), local session on branch revise/04-unblock-04-23 from main (6e585bf, wave 4 merged). 04-23: added scripts/check-external.mjs and README.md to its files (check-external moved from "Not changed" to "Changed"), steps to skip only the body of `<script type="application/ld+json">` blocks, and verify cases (JSON-LD with https://schema.org passes; an inline script with https://example.com fails; a JSON-LD script with a third-party `src` fails). Added 04-24 to wave 4 from the 2026-10-25 BACKLOG item (removed from BACKLOG.md): check:a11y fails any `.screen` without exactly one displayed image in light, dark, and System with the OS light and dark, with fixture verify cases. S16 and S19 name the new cases. Ran every fixture against the current scripts first: all three check-external cases fail today, and both check-a11y fixture pages pass today. Self-check re-run: pass. PLAN.md set to Draft.
+
+Before that: EXECUTE phase 04 wave 4 (2026-10-26), local session on branch execute/04-wave-4 from main (2410273, wave 3 merged). Completed 04-19 to 04-22: favicons and the flattened apple-touch-icon from the app icon at 60032bf; scripts/make-og-image.mjs and public/og-image.png (Playwright, file: and data: requests only); canonical, Open Graph, and Twitter tags in Base.astro (404 without canonical); /sitemap.xml and /robots.txt. 04-23 blocked by check:external (see Blockers); its edits were reverted. All wave checks pass on the committed tree, including check:layout, check:a11y, and S1 to S7, S9 to S15, S17, and S18; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
 
 Before that: EXECUTE phase 04 wave 3 (2026-10-26), local session on branch execute/04-wave-3 from main (d4dda1c, wave 2 merged). Completed 04-13 to 04-18: PageTop.astro and JumpList.astro with the page-top, prose, jump list, fact row, contact card, and overlap styles; the Features, Pricing, Privacy overview, and Support page tops with their existing text unchanged below; the privacy policy and 404 in the prose column; `.wrap` removed. All wave 3 checks pass, including check-text for all five pages against the phase 04 fixtures, check:layout, and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
 
