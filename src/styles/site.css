@@ -326,22 +326,28 @@ li { margin-bottom: var(--space-2); }
   min-height: var(--touch-min);
 }
 
-/* Footer */
+/* Footer (HOME-DESIGN.md, Footer) */
 
 footer.site {
   border-top: 1px solid var(--border-card);
-  padding: var(--space-6) 0 var(--space-10);
-  color: var(--text-faint);
+  color: var(--text-muted);
 }
-footer.site .wrap { padding-block: 0; }
-footer.site nav, footer.site p { font-size: 1rem; }
+.footer-row {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-10);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
+}
 footer.site ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0 var(--space-6);
+  column-gap: var(--space-6);
 }
 footer.site li { margin: 0; }
 footer.site p { margin: 0; }
@@ -349,4 +355,12 @@ footer.site a {
   display: inline-flex;
   align-items: center;
   min-height: var(--touch-min);
+  font-size: var(--text-base);
+  text-decoration-thickness: 1px;
+}
+footer.site a:hover { text-decoration-thickness: 2px; }
+/* Footer and CTA links hover to body text in dark, as nav links do. */
+:root[data-theme="dark"] :is(footer.site a, .cta):hover { color: var(--text-body); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(footer.site a, .cta):hover { color: var(--text-body); }
 }

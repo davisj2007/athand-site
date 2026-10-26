@@ -178,7 +178,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: the control still ships hidden and appears only with JavaScript; each button's accessible name is its label at every width; aria-pressed reflects the choice; the choice still applies before first paint and persists (Base.astro script untouched).
   Verify command: `npm run build && git diff --quiet 4821a36 -- src/layouts/Base.astro && node -e 'const fs=require("fs");for(const f of fs.readdirSync("dist").filter(f=>f.endsWith(".html"))){const s=fs.readFileSync("dist/"+f,"utf8");const g=s.match(/<div[^>]*data-theme-control[^>]*>[\s\S]*?<\/div>/);if(!g||!/role="group"/.test(g[0])||!/aria-label="Appearance"/.test(g[0])||!/\bhidden\b/.test(g[0].match(/<div[^>]*>/)[0]))throw f+": group";for(const [k,l] of [["system","System"],["light","Light"],["dark","Dark"]]){const b=g[0].match(new RegExp("<button[^>]*data-theme-set=\""+k+"\"[^>]*>[\\s\\S]*?</button>"));if(!b||!/aria-pressed="false"/.test(b[0])||!/<svg[^>]*aria-hidden="true"/.test(b[0])||!new RegExp("<span class=\"tlabel\">"+l+"</span>").test(b[0]))throw f+": "+k}}'`
 
-- [ ] 04-06: Footer
+- [x] 04-06: Footer
   Requirements: VIS-06
   Files: src/components/Footer.astro, src/styles/site.css
   Copy entries: CH2, HM26 (unchanged links and credit)
