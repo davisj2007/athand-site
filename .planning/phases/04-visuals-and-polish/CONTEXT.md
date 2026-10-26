@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Context
 
-Status: Ready (one string, A9, is Draft by Jake's answer 1 and is approved in the next ANSWERS or in REVISE; see decision 24)
+Status: Ready
 Date: 2026-10-25
 
 ## Goal
@@ -90,11 +90,12 @@ App repo davisj2007/athandapp at 60032bf3848847b642443a59178ee40e385c9850 (origi
 21. FEAT-01 stays out of PLAN's waves. If the app repo records its TestFlight VoiceOver and Dynamic Type passes before SHIP, a REVISE adds a small wave for the Features accessibility section, with its copy drafted and approved then. Otherwise SHIP moves FEAT-01 to a new inserted phase 04.1. Source: Jake's answer 2.
 22. PLAN may add pinned devDependencies `playwright` (with its Chromium) and `axe-core`, used only by check scripts (the layout check in decision 6 and the axe run for A11Y-01). Neither is imported by any page or shipped to dist/; check:external continues to prove dist/ makes no third-party request. Source: Jake's answer 3.
 23. Copy edits from Jake in ANSWERS: HM16 is "Your information stays on your iPhone" with no period; HM21 is "Free to start" with no period; HM24 keeps C1 verbatim, with its period. All other Draft copy is approved as drafted. A7 (the placeholder) is withdrawn because the placeholder no longer ships (decision 19). Source: Jake, ANSWERS.
-24. A9, the 06-lock alt text, was drafted in ANSWERS after the pair arrived. Jake's answer 1 sets its approval for the next ANSWERS or REVISE, so PLAN may proceed with A9 Draft. The task that places the fifth row names A9 and cannot be checked until A9 is Approved; if Jake edits it, that task uses the edited text. Source: Jake's answer 1.
+24. A9, the 06-lock alt text, was drafted in ANSWERS after the pair arrived. Jake's answer 1 sets its approval for the next ANSWERS or REVISE, so PLAN may proceed with A9 Draft. The task that places the fifth row names A9 and cannot be checked until A9 is Approved; if Jake edits it, that task uses the edited text. Jake approved A9 as drafted in REVISE on 2026-10-25. Source: Jake's answer 1; Jake, REVISE.
+25. Task 04-20 uses Playwright (the pinned dev dependency from decision 22) once at authoring time to render public/og-image.png, because `sips` cannot set type. Only the committed static PNG reaches dist/. Source: Jake, REVISE (2026-10-25).
 
 ## Copy drafts
 
-Brief citations are to Brief v4.12 at 60032bf. "Approved (H3)" means the string was approved in phase 03 under that ID and is reused unchanged. Every Draft entry needs Jake's approval in ANSWERS. Jake approved the phase 04 drafts in ANSWERS on 2026-10-25, with the edits in decision 23; A9 remains Draft. All values on the moment cards are fictional samples matching the screenshots' sample household.
+Brief citations are to Brief v4.12 at 60032bf. "Approved (H3)" means the string was approved in phase 03 under that ID and is reused unchanged. Every Draft entry needs Jake's approval in ANSWERS. Jake approved the phase 04 drafts in ANSWERS on 2026-10-25, with the edits in decision 23, and approved A9 as drafted in REVISE on 2026-10-25. All values on the moment cards are fictional samples matching the screenshots' sample household.
 
 ### Shared
 
@@ -142,7 +143,7 @@ A5. 05-masked: "A home record named Maple Street house. The alarm code and Wi-Fi
 A6. 05-revealed: "The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked." Checked. Status: Approved.
 A7. 06-lock placeholder: visible text "06-lock" and "Lock screen, 1320 by 2868"; aria-label "Placeholder for the atHand lock screen screenshot". Not claims. Status: Withdrawn (decision 19; the placeholder does not ship).
 A8. 07-paywall, perks crop: "The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account." Checked; the derived image ends above the price (decision 9). Status: Approved.
-A9. 06-lock, full, light and dark (both share it): "The atHand lock screen. The atHand logo sits in the center, and below it the line “atHand is locked.” appears above an Unlock button." Checked against both files this session; the logo shows the @Hand lockup, but the alt text says atHand (CLAUDE.md). Not a claim beyond what the screen shows; supports HM14 (brief, App lock). Status: Draft (approval in the next ANSWERS or in REVISE; decision 24).
+A9. 06-lock, full, light and dark (both share it): "The atHand lock screen. The atHand logo sits in the center, and below it the line “atHand is locked.” appears above an Unlock button." Checked against both files this session; the logo shows the @Hand lockup, but the alt text says atHand (CLAUDE.md). Not a claim beyond what the screen shows; supports HM14 (brief, App lock). Status: Approved (REVISE, 2026-10-25; decision 24).
 
 ### Features (/features.html)
 
@@ -187,7 +188,7 @@ Not drafted. The app repo has not recorded its TestFlight VoiceOver and Dynamic 
 
 None. Questions 1 to 3 are answered in decisions 19, 21, and 22.
 
-Copy awaiting approval: A9 only (decision 24).
+Copy awaiting approval: none. A9 was approved in REVISE (decision 24).
 
 ## Out of scope
 

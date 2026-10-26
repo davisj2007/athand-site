@@ -24,7 +24,7 @@ PLAN wrote the Approved copy for each page whose main text changes into .plannin
 
 - `alt: X` requires an `<img>` inside main whose alt equals X, and, when a fixture has any `alt:` line, every `<img>` inside main must have an alt that matches one of them.
 
-index.txt holds A9 marked Draft (decision 24). EXECUTE does not edit fixtures; if one is wrong, stop and record a blocker. If Jake edits A9, REVISE updates that line.
+index.txt holds A9, approved as drafted in REVISE (decision 24). EXECUTE does not edit fixtures; if one is wrong, stop and record a blocker.
 
 ## Requirement coverage
 
@@ -104,9 +104,8 @@ Not changed: src/styles/tokens/, src/assets/logo-lockup-mark.svg, the other shot
 
 ## Steps for Jake outside the repo
 
-1. Before EXECUTE wave 2: approve or edit A9, the 06-lock alt text, in a REVISE or ANSWERS prompt (decision 24). Task 04-12 cannot be checked until A9 is Approved, so wave 2 stops before 04-12 without it. If Jake edits A9, that REVISE also updates the A9 line in copy/index.txt.
-2. Before SHIP: tell the session whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
-3. No GitHub settings change. After each wave merges, the Deploy workflow publishes it as usual.
+1. Before SHIP: tell the session whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
+2. No GitHub settings change. After each wave merges, the Deploy workflow publishes it as usual.
 
 ## Wave 1
 
@@ -195,7 +194,7 @@ Live site after this wave: every page has the new header (two rows on a phone, o
 
 ## Wave 2
 
-Phone frame and Home. Wave 2 needs A9 Approved before task 04-12 (Steps for Jake, 1).
+Phone frame and Home.
 
 - [ ] 04-07: Pre-cropped paywall image
   Requirements: VIS-01, VIS-09
@@ -260,11 +259,10 @@ Phone frame and Home. Wave 2 needs A9 Approved before task 04-12 (Steps for Jake
 - [ ] 04-12: Home feature row five (06-lock) and the full Home checks
   Requirements: VIS-01, VIS-02, VIS-07, VIS-10, VIS-11, A11Y-02
   Files: src/pages/index.astro
-  Copy entries: HM14, A9 (must be Approved before this task is checked; decision 24)
+  Copy entries: HM14, A9 (Approved in REVISE; decision 24)
   Steps:
-  1. Confirm A9 is Approved in CONTEXT.md (or in the REVISE that approved it). If not, stop before this task, leave it unchecked, and record it under Waiting on Jake in STATE.md; the wave's PR then says 04-12 is pending.
-  2. Fifth row after HM13: h3 HM14, its line, and a shot panel with `<PhoneFrame shot="06-lock" crop="full" alt={A9} />` (decision 19). No placeholder.
-  3. Run the full Home fixture and the browser checks.
+  1. Fifth row after HM13: h3 HM14, its line, and a shot panel with `<PhoneFrame shot="06-lock" crop="full" alt={A9} />` (decision 19). No placeholder.
+  2. Run the full Home fixture and the browser checks.
   Acceptance: check-text passes against copy/index.txt (every Approved string, every removal, and all eight alt texts, A9 included); the 06-lock pair is lazy with the non-hero sizes; no PNG and no 03-person-documents file in dist/; check:layout and check:a11y pass on every page.
   Verify command: `npm run build && node scripts/check-text.mjs dist/index.html .planning/phases/04-visuals-and-polish/copy/index.txt && test "$(grep -o 'The atHand lock screen. The atHand logo sits in the center' dist/index.html | wc -l | tr -d ' ')" = 2 && test -z "$(find dist -name '*.png')" && test -z "$(find dist -name '*03-person-documents*')" && npm run check:links && npm run check:layout && npm run check:a11y`
 
@@ -365,7 +363,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Files: scripts/make-og-image.mjs, public/og-image.png, package.json, README.md
   Copy entries: M6
   Steps:
-  1. scripts/make-og-image.mjs (decision 18; the tool is Playwright, already a pinned dev dependency from decision 22, used here at authoring time only): builds an HTML string in memory and screenshots it at 1200 by 630 (deviceScaleFactor 1) to public/og-image.png. The page links src/styles/tokens/colors.css and typography.css and the self-hosted @fontsource CSS files from node_modules by file:// URL, so colors and faces come from the tokens and fonts the site ships; it embeds the app icon (read from the app repo at 60032bf as in 04-19) as a data: URL and the lockup mark SVG inline.
+  1. scripts/make-og-image.mjs (decision 18; the tool is Playwright, already a pinned dev dependency from decision 22, used here at authoring time only; decision 25): builds an HTML string in memory and screenshots it at 1200 by 630 (deviceScaleFactor 1) to public/og-image.png. The page links src/styles/tokens/colors.css and typography.css and the self-hosted @fontsource CSS files from node_modules by file:// URL, so colors and faces come from the tokens and fonts the site ships; it embeds the app icon (read from the app repo at 60032bf as in 04-19) as a data: URL and the lockup mark SVG inline.
   2. Layout, light theme, flat, no gradient, no shadow (brief, Brand): `--surface-page` ground; the app icon at left; at right the lockup (mark plus "Hand" in `--font-display` 700, `--text-link`; the @Hand form is allowed here as the logo), then "Your info, ready when you need it" (H3) in `--font-display` 700 `--text-body`, then "A private household organizer for iPhone" in `--font-ui` `--text-muted`. No other words, no price, no religious or devotional imagery.
   3. The script routes every request and aborts any that is not file: or data:, exiting 1 if one was attempted. package.json: `"og:image": "node scripts/make-og-image.mjs"`. README.md: how and when to regenerate it. Run it and commit public/og-image.png.
   4. Open the PNG and confirm the three text items are legible and nothing is clipped; record it in SUMMARY.md.
@@ -438,8 +436,7 @@ VERIFY also reads each page against its Copy drafts entries in order and heading
 
 ## Risks and rollback
 
-- A9 gate. If A9 is not Approved before wave 2 runs, 04-12 waits and Home ships with four feature rows from that wave. The site stays whole, but the wave is not complete until a follow-up EXECUTE checks 04-12. Approving A9 in REVISE before EXECUTE wave 2 avoids this (Steps for Jake, 1).
-- OG image tool. Decision 22 names Playwright for check scripts; 04-20 also uses it once, at authoring time, to render the OG image, because `sips` cannot set type. The output is a committed static PNG and nothing reaches dist/ but that file. Jake should confirm this use in plan review; the alternative is a hand-made PNG supplied by Jake.
+- OG image tool. Decision 22 names Playwright for check scripts; 04-20 also uses it once, at authoring time, to render the OG image, because `sips` cannot set type. The output is a committed static PNG and nothing reaches dist/ but that file. Jake approved this use in REVISE (decision 25).
 - Chromium download. `npx playwright install chromium` downloads Playwright's browser build to this Mac once (04-01). It is a local dev tool, not a runtime request, and never ships. check:layout and check:a11y run locally before every PR and are not added to the Deploy workflow, so CI does not download a browser; the workflow's existing checks are unchanged.
 - check:a11y strictness. axe best-practice rules and the 44px standalone-target rule may flag existing markup outside a wave's files (for example the support lede or a phase 03 element). A failure the wave's files cannot fix is a blocker, not a reason to weaken the check.
 - Interim layout. During wave 1 and 2, page content sits in the 68ch `.wrap` column while the header and footer use the 1200px container, so text pages look narrower than the chrome on wide screens until wave 3. This is cosmetic and accepted.
@@ -450,11 +447,11 @@ VERIFY also reads each page against its Copy drafts entries in order and heading
 
 ## Self-check
 
-Run 2026-10-25.
+Run 2026-10-25 at PLAN; re-run 2026-10-25 at REVISE (A9 approved, decision 24; Playwright for the OG image recorded as decision 25). No task, file, wave, or verify command changed beyond removing the A9 gate from 04-12; results below unchanged.
 
 - All phase requirements covered: yes, with one planned exception. VIS-01 to VIS-11, SEO-01 to SEO-04, and A11Y-01 to A11Y-06 each map to tasks or to VERIFY steps above. FEAT-01 is deliberately outside the waves by decision 21 and is either added by REVISE or moved to phase 04.1 at SHIP.
 - Every task has acceptance and verify: yes. All 23 tasks.
-- No conflict with the brief or CLAUDE.md: yes. Copy comes only from Approved entries via the fixtures (A9 gated by 04-12, decision 24); no price in pages or served images (04-07, S5, S14); no "nothing leaves" wording (S4); no out-of-scope feature (S6); no third-party request at runtime (check:external in every task that adds head links or assets; the two dev dependencies never reach dist/, S13); tokens unchanged and no new tokens (S13); @Hand only in the lockup and the OG image logo (S3, 04-20); 17px body, 16px minimum, 44px targets, contrast, reduced motion, and 400% zoom (check:a11y, check:layout); /privacy.html and /support.html keep their URLs (S7); privacy and 404 main text unchanged (S8); no religious wording (S15).
+- No conflict with the brief or CLAUDE.md: yes. Copy comes only from Approved entries via the fixtures (A9 Approved in REVISE, decision 24); no price in pages or served images (04-07, S5, S14); no "nothing leaves" wording (S4); no out-of-scope feature (S6); no third-party request at runtime (check:external in every task that adds head links or assets; the two dev dependencies never reach dist/, S13); tokens unchanged and no new tokens (S13); @Hand only in the lockup and the OG image logo (S3, 04-20); 17px body, 16px minimum, 44px targets, contrast, reduced motion, and 400% zoom (check:a11y, check:layout); /privacy.html and /support.html keep their URLs (S7); privacy and 404 main text unchanged (S8); no religious wording (S15).
 - Files in scope complete: yes. Every file a task names is listed, including the two deletions; deploy.yml, the token files, the other check scripts, and the fixtures are named as not changed.
 - Every wave leaves the live site whole: yes. Wave 1 changes chrome only and keeps main text; wave 2 rebuilds Home and touches other pages only through the coming-soon icon; wave 3 converts each page and removes `.wrap` in its last task, with all fixtures, check:content, and check:links at the wave's end; wave 4 adds metadata only. Each wave ends with check:links, check:layout, and check:a11y.
 - Waves are at most six tasks: yes (6, 6, 6, and 5).

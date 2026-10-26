@@ -95,5 +95,5 @@ alt: Close view of the atHand home screen. A banner reads “Flight to Denver, y
 alt: A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button.
 alt: The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked.
 alt: The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account.
-# A9: Draft at PLAN (decision 24). Task 04-12 cannot be checked until A9 is Approved; if Jake edits it, REVISE updates this line.
+# A9: Approved in REVISE, 2026-10-25 (decision 24); text unchanged.
 alt: The atHand lock screen. The atHand logo sits in the center, and below it the line “atHand is locked.” appears above an Unlock button.
