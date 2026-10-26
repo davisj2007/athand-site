@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Summary
 
-Status: In progress. Waves 1, 2, and 3 done; wave 4 done except 04-23, which is blocked (see Blockers).
+Status: In progress. All four waves done (04-01 to 04-24); VERIFY next.
 
 ## What changed
 
@@ -57,13 +57,24 @@ Wave 4 (EXECUTE, 2026-10-26, branch execute/04-wave-4 from main at 2410273, wave
 - 04-20: scripts/make-og-image.mjs and `npm run og:image` render public/og-image.png (1200 by 630) in Playwright's Chromium from the token CSS, the @fontsource Space Grotesk 700 and Inter 500 faces (file:// URLs), the app icon at 60032bf (data: URL), and the inline lockup mark. Light theme, flat `--surface-page` ground, no gradient or shadow. Every request that is not file: or data: is aborted and fails the run; the run made none. Viewed the PNG: the icon at left; at right the lockup, "Your info, ready when you need it" on two lines, and "A private household organizer for iPhone", all legible, nothing clipped, no other words. README.md documents how and when to regenerate it.
 - 04-21: Base.astro adds canonical and og:url (the page's permanent URL; none on 404, which keeps noindex), og:type, og:site_name, og:title, og:description, og:image with width, height, and alt (M2), and twitter:card on every page.
 - 04-22: src/pages/sitemap.xml.ts builds /sitemap.xml with the six indexable pages in order (no 404, no lastmod); public/robots.txt allows all and names the sitemap. README.md lists both under Layout.
-- 04-23: not done. Blocked; see Blockers.
+- 04-23: not done in this session. Blocked; see Blockers.
 
 Live site after this wave: every page has a favicon, an apple-touch-icon, and Open Graph and Twitter tags, and every page but 404 has a canonical link; /sitemap.xml and /robots.txt exist. Nothing a visitor reads changes. Home has no JSON-LD yet.
 
 Wave 4 check results (2026-10-26): `npm ci`, `npm run build` (7 pages and sitemap.xml), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match; local app checkout at c8e21f3, origin/main still 60032bf), `npm run check:external` (no third-party requests), `npm run check:links` (61 internal links resolve), `npm run check:content` (privacy and 404 match 52d8d1a), `npm run check:layout` (7 pages, 2 themes, 5 viewports: no overflow, gutters kept), `npm run check:a11y` (7 pages, 2 themes, 2 widths: no violations), check-text for all five pages against the phase 04 fixtures (S10), the verify commands of 04-19 to 04-22, and static checks S1 to S7, S9 to S15, S17, and S18: all pass. S16 covers 04-19 and 04-21; its 04-23 part waits for that task.
 
 Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-26): on Home the head links /favicon.png, /favicon-32.png, and /apple-touch-icon.png, and the canonical is https://athandapp.com/; the four icon and image files, /robots.txt, and /sitemap.xml each return 200 with an image, text, or XML type; the Open Graph and Twitter tags read as M1 and M2. /og-image.png displays as described above. The pane's screenshots do not show the tab strip, so the favicon in the tab itself was not seen; it is on Jake's VERIFY checklist.
+
+Wave 4 finish (EXECUTE, 2026-10-26, branch execute/04-wave-4-finish from main at bfcdacc, REVISE PR #32 merged). PLAN.md set to Approved (2026-10-26) on Jake’s approval of the revised plan in the EXECUTE prompt.
+
+- 04-23: Base.astro ends its head with `<slot name="head" />`; index.astro fills it with one `<script type="application/ld+json">` holding the SoftwareApplication object from decision 16 (M3, M4, M5; no offers, price, rating, or download URL). No other page has JSON-LD; titles and descriptions are unchanged. scripts/check-external.mjs skips the body of a `<script>` whose trimmed, lowercased `type` is `application/ld+json`; every other inline script body is still scanned, and every `src`, a JSON-LD script’s included, is still checked. The header comment and README.md say so. The three fixture cases behave as planned: the JSON-LD block with https://schema.org passes, the inline script with https://example.com fails, and the JSON-LD script with `src="https://example.com/x.json"` fails.
+- 04-24: check-a11y.mjs gains `screens()`, which fails any rendered `.screen` that does not show exactly one `img` (computed display not none and a non-zero box), reporting `screen shows N images` with the frame’s index and `data-crop`. It runs on every page at both widths in four theme states: light and dark (the existing passes, with axe and `measure`) and System with the OS light, then dark (this check only, in contexts made by `stateContext` in check-a11y.mjs with the same routing; `themedContext` in check-layout.mjs is unchanged). Header comment, summary line ("4 theme states"), and README.md updated. Fixture cases: the page with the site’s theme-pair rules passes; the page without them fails with `screen shows 2 images`. As an extra proof, a copy of the built Home with both images forced to display failed 64 times (8 frames, 4 states, 2 widths).
+
+Live site after this wave: Home also carries the SoftwareApplication JSON-LD. Nothing a visitor reads changes, and every request stays on athandapp.com.
+
+Wave 4 finish check results (2026-10-26): `npm ci`, `npm run build` (7 pages and sitemap.xml), `npm run check` (0 errors), `npm run tokens:check` (4 files match; local app checkout at c8e21f3, app repo origin/main still 60032bf), `npm run check:external` (8 files, no third-party requests), `npm run check:links` (61 internal links resolve), `npm run check:content` (privacy and 404 match 52d8d1a), `npm run check:layout`, `npm run check:a11y` (7 pages, 4 theme states, 2 widths: no violations), the verify commands of 04-19 to 04-24, and static checks S1 to S19 (S16 now complete with 04-23; S19 with 04-24): all pass. Re-running `npm run og:image` (04-20’s verify) reproduced public/og-image.png byte for byte.
+
+Browser check (built-in browser, the running `astro preview` at localhost:4321, 2026-10-26, Home): the page renders as before (header, hero, and frames in dark on System); the head holds one JSON-LD block that parses to the decision 16 object; /favicon.png, /favicon-32.png, /apple-touch-icon.png, and /og-image.png each return 200; every one of the eight frames shows one image; the page made no request to another host. Viewed public/og-image.png again: unchanged from 04-20. The favicon in the tab strip is still for Jake’s VERIFY checklist, since the pane’s screenshots do not show the tab strip.
 
 ## Brief citations
 
@@ -100,6 +111,12 @@ Wave 4 metadata strings, each from Approved copy in CONTEXT.md:
 - M2 og:image:alt: describes the image; not a claim.
 - M6 Open Graph image text: the lockup (the @Hand form, allowed as the logo), "Your info, ready when you need it" (brief, Concept; Brand), and "A private household organizer for iPhone" (brief, Concept; Privacy; Current milestone, iPhone only).
 
+Wave 4 finish, JSON-LD on Home (04-23), each from Approved copy in CONTEXT.md:
+
+- M3 name "atHand" and alternateName "atHand: Your Info, Ready": brief, Brand (name; App Store listing name).
+- M4 operatingSystem "iOS" and applicationCategory "UtilitiesApplication": brief, Current milestone (iOS, iPhone only).
+- M5 description: brief, Concept (contextual surfacing); Information architecture; Current milestone (iPhone); Privacy ("private": personal information stays on the device).
+
 Wave 1 changed no claims; header, nav, theme control, and footer strings are unchanged (CH1, CH2, HM26).
 
 ## Commits
@@ -130,6 +147,8 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 - 261d826 phase 04 task 04-20: Open Graph image
 - cabe0bf phase 04 task 04-21: canonical, Open Graph, and Twitter tags
 - 6e515f5 phase 04 task 04-22: sitemap and robots.txt
+- 87ae791 phase 04 task 04-23: SoftwareApplication JSON-LD on Home
+- 240c663 phase 04 task 04-24: one displayed image per phone frame in check:a11y
 
 ## Deviations
 
@@ -150,16 +169,19 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 - 04-19's verify command uses `set -- $x` to split each pair, which zsh (this Mac's shell) does not word-split; it was run under bash as written and passed.
 - 04-20 writes the in-memory HTML to a temporary file in the OS temp directory and loads it by file:// URL, because Chromium blocks file:// stylesheets and fonts from a page set with `setContent` (about:blank). The file is deleted after the screenshot; nothing is added to the repo but the PNG.
 - 04-20 loads only the two faces the image uses (Space Grotesk 700 and Inter 500), not all nine.
+- Hidden frames in the one-image check (04-24, check-a11y.mjs). As first written, the check counted every `.screen`, and it failed on /features.html at 390 in all four states with `screen shows 0 images .screen 2 (data-crop full)`: below the breakpoint the second overlap frame (02-person-top) is `display: none` as a whole, by wave 3’s design (04-14). A frame that is not rendered shows nothing, downloads nothing visible, and is out of the accessibility tree, so the check now skips a `.screen` with no client rects and still fails any rendered one with zero, two, or more displayed images. Both fixture cases still behave as planned.
+- The 04-23 and 04-24 verify commands use bash parameter expansion and were run under bash as written, like 04-19’s.
 
 ## Blockers
 
-- 04-23 (JSON-LD on Home) cannot pass as planned. The block must carry `"@context": "https://schema.org"` (decision 16), and scripts/check-external.mjs reports every absolute URL inside an inline `<script>` as a third-party request, so `npm run check:external` fails ("dist/index.html: inline <script>: https://schema.org"). The Deploy workflow runs check:external, so merging 04-23 as written would stop the site from publishing. The JSON-LD is data the browser never fetches, so this is a false positive, but the fix is in scripts/check-external.mjs, which PLAN.md lists as not changed. Jake chose to stop (2026-10-26). 04-23's edits were reverted; nothing of it is committed. Suggested REVISE: add scripts/check-external.mjs to 04-23's files, skip the body of `<script type="application/ld+json">` blocks while still checking every other inline script and any `src`, and add verify cases proving a JSON-LD block with https://schema.org passes and an inline script with a third-party URL still fails.
+- 04-23 check:external blocker (2026-10-26): resolved. The REVISE merged in PR #32 added scripts/check-external.mjs to 04-23 with the JSON-LD exemption and its fixture cases, and 04-23 is done. No open blockers.
 
 ## Backlog items added
 
-- 2026-10-25: check:layout and check:a11y do not notice when both theme images in a frame are displayed (wave 2 deviation above). Suggested for VERIFY: assert one displayed `img` per `.screen` in every theme state.
+- 2026-10-25: check:layout and check:a11y do not notice when both theme images in a frame are displayed (wave 2 deviation above). Suggested for VERIFY: assert one displayed `img` per `.screen` in every theme state. Moved into the plan as 04-24 at REVISE (2026-10-26) and done.
+- None added in the wave 4 finish.
 
 ## Follow-ups
 
-- 04-23 remains, after a REVISE resolves the check:external blocker.
+- VERIFY phase 04.
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).

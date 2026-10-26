@@ -1,28 +1,29 @@
 # State
 
 Current phase: 04 (visuals-and-polish)
-Current step: REVISE done (2026-10-26): 04-23 unblocked and 04-24 added to wave 4. PLAN.md status Draft (revised 2026-10-26; was Approved 2026-10-25). Wave 4 has 04-23 and 04-24 open (04-19 to 04-22 complete).
+Current step: EXECUTE done (2026-10-26): wave 4 finished (04-23 and 04-24). All four waves checked; PLAN.md Approved 2026-10-26.
 Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24). Phase 03 is Done (shipped 2026-10-25; VERIFY PASS, Jake's browser result PASS).
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04 REVISE: unblock 04-23 and add 04-24" PR (branch revise/04-unblock-04-23).
-2. Then EXECUTE phase 04 with Jake's plan approval, to finish wave 4 (04-23 and 04-24).
-3. Then VERIFY.
+1. Jake reviews and merges the "Phase 04 EXECUTE: finish wave 4 (JSON-LD and one-image check)" PR (branch execute/04-wave-4-finish).
+2. Then VERIFY phase 04.
 
 ## Waiting on Jake
 
-- Review and merge the REVISE PR (branch revise/04-unblock-04-23), then approve the revised plan in the EXECUTE prompt.
+- Review and merge the EXECUTE PR (branch execute/04-wave-4-finish).
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
 - App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md; the TestFlight VoiceOver and Dynamic Type passes that gate FEAT-01 (decision 21: REVISE adds it if recorded before SHIP, otherwise phase 04.1).
 
 ## Blockers
 
-None. The 04-23 check:external blocker (2026-10-26) is resolved in PLAN.md by REVISE: 04-23 now owns scripts/check-external.mjs and skips only JSON-LD script bodies.
+None.
 
 ## Last session
 
-REVISE phase 04 (2026-10-26), local session on branch revise/04-unblock-04-23 from main (6e585bf, wave 4 merged). 04-23: added scripts/check-external.mjs and README.md to its files (check-external moved from "Not changed" to "Changed"), steps to skip only the body of `<script type="application/ld+json">` blocks, and verify cases (JSON-LD with https://schema.org passes; an inline script with https://example.com fails; a JSON-LD script with a third-party `src` fails). Added 04-24 to wave 4 from the 2026-10-25 BACKLOG item (removed from BACKLOG.md): check:a11y fails any `.screen` without exactly one displayed image in light, dark, and System with the OS light and dark, with fixture verify cases. S16 and S19 name the new cases. Ran every fixture against the current scripts first: all three check-external cases fail today, and both check-a11y fixture pages pass today. Self-check re-run: pass. PLAN.md set to Draft.
+EXECUTE phase 04 wave 4 finish (2026-10-26), local session on branch execute/04-wave-4-finish from main (bfcdacc, REVISE PR #32 merged). Set PLAN.md Approved 2026-10-26. Completed 04-23 (SoftwareApplication JSON-LD on Home via a head slot in Base.astro; check:external skips only JSON-LD script bodies, with the three fixture cases behaving as planned) and 04-24 (check:a11y fails any rendered `.screen` without exactly one displayed image, in light, dark, and System with the OS light and dark). Deviation: the one-image check skips frames the layout hides whole (the second Features overlap frame below the breakpoint). All checks pass: npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, the verify commands of 04-19 to 04-24, and S1 to S19; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
+
+Before that: REVISE phase 04 (2026-10-26), local session on branch revise/04-unblock-04-23 from main (6e585bf, wave 4 merged). 04-23: added scripts/check-external.mjs and README.md to its files (check-external moved from "Not changed" to "Changed"), steps to skip only the body of `<script type="application/ld+json">` blocks, and verify cases (JSON-LD with https://schema.org passes; an inline script with https://example.com fails; a JSON-LD script with a third-party `src` fails). Added 04-24 to wave 4 from the 2026-10-25 BACKLOG item (removed from BACKLOG.md): check:a11y fails any `.screen` without exactly one displayed image in light, dark, and System with the OS light and dark, with fixture verify cases. S16 and S19 name the new cases. Ran every fixture against the current scripts first: all three check-external cases fail today, and both check-a11y fixture pages pass today. Self-check re-run: pass. PLAN.md set to Draft.
 
 Before that: EXECUTE phase 04 wave 4 (2026-10-26), local session on branch execute/04-wave-4 from main (2410273, wave 3 merged). Completed 04-19 to 04-22: favicons and the flattened apple-touch-icon from the app icon at 60032bf; scripts/make-og-image.mjs and public/og-image.png (Playwright, file: and data: requests only); canonical, Open Graph, and Twitter tags in Base.astro (404 without canonical); /sitemap.xml and /robots.txt. 04-23 blocked by check:external (see Blockers); its edits were reverted. All wave checks pass on the committed tree, including check:layout, check:a11y, and S1 to S7, S9 to S15, S17, and S18; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
 
