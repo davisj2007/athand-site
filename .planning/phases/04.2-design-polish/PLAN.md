@@ -103,7 +103,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: `main .band` computes to #4C39C6 in light and System with the OS light, and #5A47D0 in dark and System with the OS dark, on Home and the Privacy overview; tokens:check passes and src/styles/tokens/ is unchanged; check:a11y passes in both themes.
   Verify command: `npm run build && npm run check && grep -qF ':root[data-theme="dark"] .band { background: var(--accent-press); }' src/styles/site.css && grep -qF ':root:not([data-theme="light"]) .band { background: var(--accent-press); }' src/styles/site.css && npm run tokens:check && git diff --quiet 63a8b7d -- src/styles/tokens && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && node .planning/phases/04.2-design-polish/measure.mjs band && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-05: Home privacy band h2 (FX5)
+- [x] 04.2-05: Home privacy band h2 (FX5)
   Requirements: DSG-01
   Files: src/pages/index.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: HM16 (revised, Approved)

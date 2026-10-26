@@ -3,6 +3,7 @@
 # "href:" lines require a link with that target inside <main>; lines starting
 # with "!" must not appear in <main>; every other line must appear in <main>.
 # "alt: X" lines (added by task 04-08) require an <img> in <main> with alt X, and every <img> in <main> must match one of them.
+# Phase 04.2 (phase 04.2 CONTEXT.md, decisions 9 to 15): HM16 revised; HM28 to HM30 added; A3 and A9 replaced by A3r and A9r; A5 and A6 removed.
 # HM1 (H1, H2, unchanged)
 title: atHand: Your Info, Ready
 description: atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.
@@ -49,9 +50,10 @@ Face ID, Touch ID, or your passcode. No password to remember.
 # HM15
 See all features
 href: /features.html
-# HM16 (no period, decision 23)
-Your information stays on your iPhone
-!Your information stays on your iPhone.
+# HM16 (revised in phase 04.2, decision 9; no period)
+What you add stays on your iPhone
+!What you add stays on your iPhone.
+!Your information stays on your iPhone
 # HM17
 No account and no sign-in.
 # HM18
