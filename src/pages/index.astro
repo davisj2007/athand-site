@@ -1,16 +1,59 @@
 ---
 import Base from "../layouts/Base.astro";
 import ComingSoon from "../components/ComingSoon.astro";
+import Icon from "../components/Icon.astro";
+import PhoneFrame from "../components/PhoneFrame.astro";
+
+// Moment card values are fictional samples matching the screenshots' sample household.
+const moments = [
+  { icon: "cross", title: "At the doctor’s office", label: "Insurance member ID", value: "XYZ000000000" },
+  { icon: "car", title: "At a traffic stop", label: "Driver’s license", value: "D000-0000-0000" },
+  { icon: "plane", title: "At the airport", label: "Passport", hidden: "Passport number, hidden until you tap Reveal" },
+];
 ---
 <Base title="atHand: Your Info, Ready" description="atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-title">Your info, ready when you need it</h1>
+        <p class="lede">The details you look up all the time, for you and everyone you look after, in one place on your iPhone.</p>
+        <ComingSoon />
+      </div>
+      <div class="hero-shot">
+        <PhoneFrame shot="01-home" crop="full" hero alt="The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic." />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="moments-title">
+    <div class="container">
+      <h2 class="section-title" id="moments-title">For the moments you need it</h2>
+      <ul class="moments">
+        {moments.map((m) => (
+          <li class="moment">
+            <div class="moment-head">
+              <span class="glyph"><Icon name={m.icon} /></span>
+              <h3>{m.title}</h3>
+            </div>
+            <div class="record">
+              <span class="badge" aria-hidden="true">P</span>
+              <div>
+                <p class="record-name">Sam Rivera</p>
+                <p class="record-sub">{m.label}</p>
+              </div>
+            </div>
+            {m.hidden ? (
+              <p class="record-value"><span aria-hidden="true">•••••••••</span><span class="vh">{m.hidden}</span></p>
+            ) : (
+              <p class="record-value">{m.value}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
   <div class="wrap">
-    <h1>Your info, ready when you need it</h1>
-    <p class="lede">atHand keeps the details you look up all the time, such as people, vehicles, pets, homes, financial accounts, and contacts, in one place on your iPhone.</p>
-    <ComingSoon />
-
-    <h2>For the moments you need it</h2>
-    <p>At the doctor’s office, at a traffic stop, or at the airport, you need a member ID, a license number, or a passport number right away. atHand keeps them on your iPhone, for you and the people, vehicles, pets, and homes you look after.</p>
-
     <h2>What it does</h2>
     <ul>
       <li>Keep records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record for anything else.</li>
