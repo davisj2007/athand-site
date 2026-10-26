@@ -1,0 +1,58 @@
+# Expected copy for dist/privacy-overview.html, phase 04. Phase 03 Approved strings (CONTEXT.md of phase 03, Approved 2026-10-24) plus the phase 04 entries at the end (phase 04 CONTEXT.md, Approved 2026-10-25).
+# Format: see index.txt.
+title: How atHand handles your information | atHand
+description: A plain-language summary of what stays on your iPhone and every connection atHand makes.
+# V3
+How atHand handles your information
+# V4
+Your information stays on your iPhone. This page explains, in plain language, when atHand connects to an outside service and what each one receives. The full privacy policy has every detail.
+# V5
+What stays on your iPhone
+# V6
+Everything you add to atHand, including your records, scans, and photos, is stored on your iPhone. It leaves your iPhone only inside an encrypted backup file that you choose to export and share.
+# V7
+There is no account and no sign-in, and the developer cannot see your information.
+# V8
+Scanning runs on your iPhone. atHand never sends your scans, photos, recognized text, or anything you enter to any service.
+# V9
+When atHand connects to the internet
+# V10
+atHand makes three kinds of connection. None of them carries your records, scans, photos, or anything you type.
+# V11
+Purchases: Apple and RevenueCat
+# V12
+When you buy or restore the unlock, Apple handles the purchase and RevenueCat, a purchase service, confirms it so atHand can unlock. The privacy policy lists what RevenueCat receives.
+# V13
+Scanning diagnostics: Google
+# V14
+The scanning library, Google ML Kit, sends Google anonymous diagnostics: your iPhone model, iOS version, the app’s version, a random per-installation identifier, and performance data.
+# V15
+Place lookup: Apple, only if you allow location
+# V16
+If you allow location for suggestions, Apple’s geocoding service receives your location coordinates and returns the name of a nearby place. atHand sorts that name into a category on your iPhone, then discards the coordinates.
+# V17
+As with any internet connection, these services can see your device’s IP address.
+# V18
+What atHand leaves out
+# V19
+The developer added no advertising, tracking, analytics, or crash-reporting tools.
+atHand keeps your personal information out of its logs.
+# V20
+Optional permissions
+# V21
+Camera, photos, calendar, and location access are all optional. atHand works without them, and you can change each one in iPhone Settings.
+# V22
+If you allow calendar access, atHand compares the titles of upcoming events with a keyword list on your iPhone. Event details are never sent.
+# V23
+The full policy
+# V24
+Read the full privacy policy for every detail, including what each service receives and how to delete your data. Questions? Email support@athandapp.com.
+href: /privacy.html
+href: mailto:support@athandapp.com
+# Phase 04: PV1 page top band uses V3 and V4 above, then HM17, HM18, and HM19.
+# HM17
+No account and no sign-in.
+# HM18
+Scanning runs on your iPhone.
+# HM19
+The developer added no advertising or tracking tools.

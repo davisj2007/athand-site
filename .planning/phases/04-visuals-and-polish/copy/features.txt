@@ -1,0 +1,83 @@
+# Expected copy for dist/features.html, phase 04. Phase 03 Approved strings (CONTEXT.md of phase 03, Approved 2026-10-24) plus the phase 04 entries at the end (phase 04 CONTEXT.md, Approved 2026-10-25).
+# Format: see index.txt.
+title: Features | atHand
+description: What atHand does on iPhone: records for your household, document scanning, suggestions, app lock, and encrypted backups.
+# FE3
+Features
+# FE4
+atHand stores the details you look up all the time and brings up the right record when it can help.
+# C1
+Coming soon to the App Store for iPhone.
+# FE5
+Records for everything you look after
+# FE6
+Add records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record with your own labels.
+# FE7
+Each detail is stored once, on the record it belongs to. A person holds identity, medical, insurance, and document details. A vehicle holds its plate, VIN, insurance, and roadside assistance number. A pet holds its microchip number, vet, and vaccine records.
+# FE8
+Contacts, such as a doctor, a mechanic, or a vet, are records of their own, and you can link one to any person, pet, or vehicle.
+# FE9
+Adding a record takes you through one section at a time, and you can save and close at any step. To make a change later, pick the section you want to edit.
+# FE10
+Scan instead of typing
+# FE11
+Scan a driver’s license, passport, insurance card, VIN, vaccine record, utility bill, payment card, or business card.
+# FE12
+atHand reads the barcode on a driver’s license and the machine-readable lines in a passport, and suggests matches from the text on other documents. Recognition runs on your iPhone.
+# FE13
+Nothing is saved until you check it. atHand marks any field it is unsure of with “Check this,” and you can correct any field or retake the photo before saving.
+# FE14
+Start with Scan to add on the home screen and atHand works out what kind of record the document belongs to. It recognizes licenses, passports, VINs, and contact QR codes, and asks you to choose for anything else.
+# FE15
+The right record at the right time
+# FE16
+atHand can suggest a record when it is likely to help, such as before an appointment on your calendar.
+# FE17
+Suggestions use the time of day, whether it is a weekday or the weekend, the records you opened recently, and, if you allow them, your calendar and location. Matching runs on your iPhone.
+# FE18
+If you allow location, Apple’s geocoding service receives your location to return the name of a nearby place. Read how atHand handles your information.
+href: /privacy-overview.html
+# FE19
+The suggestion banner says only that your information is ready. It never names a category, such as medical. When nothing matches with confidence, atHand shows no banner, and you can turn suggestions off at any time.
+# FE20
+Locked to you
+# FE21
+Lock atHand with Face ID or Touch ID, with your device passcode as the fallback. There is no separate password to remember.
+# FE22
+The lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. Choose whether atHand locks again as soon as you leave it, or after 5 minutes, 30 minutes, or 1 hour.
+# FE23
+When you switch away from atHand, a cover hides your information in the app switcher, whether or not the lock is on.
+# FE24
+Sensitive numbers, such as passport numbers, account numbers, alarm codes, and Wi-Fi passwords, stay hidden until you tap Reveal, and hide again when you leave the app.
+# FE25
+Backups you control
+# FE26
+Export an encrypted backup of your records and photos, protected by a passphrase you choose, and save it wherever you like.
+# FE27
+A backup is a one-time copy, not sync. Importing one replaces all the data on that iPhone, and atHand asks you to confirm first.
+# FE28
+A backup never includes your purchase, your settings, or your app lock setting.
+# FE29
+Light and dark
+# FE30
+atHand follows your iPhone’s appearance, or you can choose Light or Dark in Settings.
+# FE31 (not in this phase; decision 15)
+!VoiceOver
+!Dynamic Type
+# Phase 04: FP1 page top uses FE3, FE4, and C1 above.
+# FP3 jump list (FP2, the list name "On this page", is an aria-label, not main text). Each link targets its h2.
+Records
+href: #records
+Scanning
+href: #scanning
+Suggestions
+href: #suggestions
+App lock
+href: #app-lock
+Backups
+href: #backups
+Light and dark
+href: #light-and-dark
+# Alt text: A3 and A2 (FP1)
+alt: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button.
+alt: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
