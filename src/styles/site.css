@@ -392,6 +392,12 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 .frame[data-crop="suggest"] img { object-position: 50% 11.62%; }
 .frame[data-crop="record"] .screen { aspect-ratio: 1320 / 1348; }
 .frame[data-crop="record"] img { object-position: 50% 11.32%; }
+/* fields keeps rows 172 to 1595 of 04-check-what-we-read (Save left out);
+   lock keeps rows 1288 to 2675 of 06-lock. */
+.frame[data-crop="fields"] .screen { aspect-ratio: 1320 / 1424; }
+.frame[data-crop="fields"] img { object-position: 50% 11.911%; }
+.frame[data-crop="lock"] .screen { aspect-ratio: 1320 / 1388; }
+.frame[data-crop="lock"] img { object-position: 50% 87.027%; }
 /* The perks file is already the perks region, so the whole image shows. */
 .frame[data-crop="perks"] .screen { aspect-ratio: 1320 / 1208; }
 .frame[data-crop="perks"] img { object-position: 50% 50%; }

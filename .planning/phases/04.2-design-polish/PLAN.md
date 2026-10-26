@@ -124,7 +124,7 @@ Live site after this wave: every page keeps its content and URLs. Headings and p
 
 The two new crops, the one-frame Features page top, and the live row 4 pair. 04.2-07 uses the `fields` crop that 04.2-06 adds, so run them in order.
 
-- [ ] 04.2-06: `fields` and `lock` crops on Home rows 2 and 5 (FX7)
+- [x] 04.2-06: `fields` and `lock` crops on Home rows 2 and 5 (FX7)
   Requirements: DSG-01
   Files: src/components/PhoneFrame.astro, src/styles/site.css, src/pages/index.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: A3r, A9r (Approved, decision 15)
