@@ -1,10 +1,15 @@
 ---
 import Base from "../layouts/Base.astro";
+import PrivacyBand from "../components/PrivacyBand.astro";
 ---
 <Base title="How atHand handles your information | atHand" description="A plain-language summary of what stays on your iPhone and every connection atHand makes.">
-  <div class="wrap">
-    <h1>How atHand handles your information</h1>
+  <PrivacyBand labelledby="page-title">
+    <h1 id="page-title">How atHand handles your information</h1>
     <p class="lede">Your information stays on your iPhone. This page explains, in plain language, when atHand connects to an outside service and what each one receives. The full privacy policy has every detail.</p>
+  </PrivacyBand>
+
+  <div class="container">
+    <div class="prose">
 
     <h2>What stays on your iPhone</h2>
     <p>Everything you add to atHand, including your records, scans, and photos, is stored on your iPhone. It leaves your iPhone only inside an encrypted backup file that you choose to export and share.</p>
@@ -33,5 +38,6 @@ import Base from "../layouts/Base.astro";
 
     <h2>The full policy</h2>
     <p>Read the <a href="/privacy.html">full privacy policy</a> for every detail, including what each service receives and how to delete your data. Questions? Email <a href="mailto:support@athandapp.com">support@athandapp.com</a>.</p>
+    </div>
   </div>
 </Base>

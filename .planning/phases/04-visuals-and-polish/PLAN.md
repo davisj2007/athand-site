@@ -307,7 +307,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: check-text passes against the phase 04 pricing fixture; the fact row has three items in order; no price pattern in the page's text or alt text.
   Verify command: `npm run build && node scripts/check-text.mjs dist/pricing.html .planning/phases/04-visuals-and-polish/copy/pricing.txt && node -e 'const s=require("fs").readFileSync("dist/pricing.html","utf8");const m=s.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];const r=m.match(/<ul[^>]*class="fact-row"[^>]*>([\s\S]*?)<\/ul>/);if(!r)throw "row";const items=[...r[1].matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)].map(x=>x[1].replace(/<[^>]*>/g,"").trim());if(JSON.stringify(items)!==JSON.stringify(["Free to download","Your own record is free","One purchase unlocks everything else"]))throw JSON.stringify(items);const t=m.replace(/<[^>]*>/g,"")+" "+[...m.matchAll(/\salt="([^"]*)"/g)].map(x=>x[1]).join(" ");if(/\$\s*\d|\d\.\d\d(?!\d)|USD|€|£/.test(t))throw "price"' && npm run check:links`
 
-- [ ] 04-16: Privacy overview band as page top
+- [x] 04-16: Privacy overview band as page top
   Requirements: VIS-08, VIS-11
   Files: src/pages/privacy-overview.astro
   Copy entries: V1 to V24, PV1 (V3, V4, HM17, HM18, HM19)
