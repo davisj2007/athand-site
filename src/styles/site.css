@@ -411,13 +411,14 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   color: var(--text-body);
 }
 
-/* Theme pairs, mirroring colors.css. The swap has no transition. */
-.shot-dark { display: none; }
-:root[data-theme="dark"] .screen .shot-light { display: none; }
-:root[data-theme="dark"] .screen .shot-dark { display: block; }
+/* Theme pairs, mirroring colors.css. The swap has no transition. The img
+   type selector keeps these rules above .screen img. */
+.screen img.shot-dark { display: none; }
+:root[data-theme="dark"] .screen img.shot-light { display: none; }
+:root[data-theme="dark"] .screen img.shot-dark { display: block; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .screen .shot-light { display: none; }
-  :root:not([data-theme="light"]) .screen .shot-dark { display: block; }
+  :root:not([data-theme="light"]) .screen img.shot-light { display: none; }
+  :root:not([data-theme="light"]) .screen img.shot-dark { display: block; }
 }
 
 /* Home sections. Adjacent sections share one --site-section gap; full-bleed
