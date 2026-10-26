@@ -73,8 +73,8 @@ Exit: the Features page carries the accessibility section with Approved copy onl
 Requirements: DSG-01.
 Inserted by Jake on 2026-10-26, independent of the 04.1 and 05 gates.
 
-- Triage every finding of `npx impeccable detect`, run by Jake outside the repo against dist/ built from main, as Fix, Decline, Already covered, or Not applicable, naming the rule, page, and element.
-- Fix only real issues that fit the brief's Brand section, HOME-DESIGN.md, and CLAUDE.md's hard rules. Any new or changed visible string is drafted in DISCUSS and approved in ANSWERS.
+- Triage every finding of `npx impeccable detect` (run by Jake outside the repo against dist/ built from main) and of his impeccable critique of Home and Features as Fix, Decline, Already covered, or Not applicable, naming the rule, page, and element.
+- Fix only real issues that fit the brief's Brand section, HOME-DESIGN.md (as amended by Jake's promotions at ANSWERS, phase 04.2 decisions 7 to 12), and CLAUDE.md's hard rules. Any new or changed visible string is drafted in DISCUSS and approved in ANSWERS.
 - impeccable is never installed in this repo or added as a dependency.
 
 Exit: every finding is triaged in the phase CONTEXT.md, each Fix item is live with every phase 04 check still passing, and no locked rule changed.
