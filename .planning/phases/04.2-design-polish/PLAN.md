@@ -124,7 +124,7 @@ Live site after this wave: every page keeps its content and URLs. Headings and p
 
 The two new crops, the one-frame Features page top, and the live row 4 pair. 04.2-07 uses the `fields` crop that 04.2-06 adds, so run them in order.
 
-- [ ] 04.2-06: `fields` and `lock` crops on Home rows 2 and 5 (FX7)
+- [x] 04.2-06: `fields` and `lock` crops on Home rows 2 and 5 (FX7)
   Requirements: DSG-01
   Files: src/components/PhoneFrame.astro, src/styles/site.css, src/pages/index.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: A3r, A9r (Approved, decision 15)
@@ -137,7 +137,7 @@ The two new crops, the one-frame Features page top, and the live row 4 pair. 04.
   Acceptance: Home rows 2 and 5 render the measured crops in both themes at 390 and 1280 and the images load; the screenshots show the content CONTEXT.md, FX7 lists; check-text passes for Home with A3r and A9r; check:layout and check:a11y pass (including one displayed image per frame).
   Verify command: `npm run build && npm run check && for s in '"full" | "suggest" | "record" | "perks" | "fields" | "lock"'; do grep -qF -- "$s" src/components/PhoneFrame.astro || exit 1; done && for s in '.frame[data-crop="fields"] .screen { aspect-ratio: 1320 / 1424; }' '.frame[data-crop="fields"] img { object-position: 50% 11.911%; }' '.frame[data-crop="lock"] .screen { aspect-ratio: 1320 / 1388; }' '.frame[data-crop="lock"] img { object-position: 50% 87.027%; }'; do grep -qF -- "$s" src/styles/site.css || { echo "missing $s"; exit 1; }; done && grep -qF 'shot="04-check-what-we-read" crop="fields"' src/pages/index.astro && grep -qF 'shot="06-lock" crop="lock"' src/pages/index.astro && node .planning/phases/04.2-design-polish/measure.mjs crops && node scripts/check-text.mjs dist/index.html .planning/phases/04-visuals-and-polish/copy/index.txt && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-07: Features page top, one frame (FX8)
+- [x] 04.2-07: Features page top, one frame (FX8)
   Requirements: DSG-01
   Files: src/pages/features.astro, src/styles/site.css, .planning/phases/04-visuals-and-polish/copy/features.txt
   Copy entries: A3r (Approved, decision 15)
@@ -148,7 +148,7 @@ The two new crops, the one-frame Features page top, and the live row 4 pair. 04.
   Acceptance: the Features page top shows one `fields` frame, 280px at 390 and 300px at 1280; Features requests no 02-person-top file in either theme; `.overlap` is gone from src; check-text passes for Features; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && test "$(grep -c '<PhoneFrame' src/pages/features.astro)" = 1 && grep -qF 'shot="04-check-what-we-read" crop="fields"' src/pages/features.astro && ! grep -rn 'overlap\|02-person-top' src/pages/features.astro src/styles/site.css && ! grep -q '02-person-top' dist/features.html && node .planning/phases/04.2-design-polish/measure.mjs features-top && node scripts/check-text.mjs dist/features.html .planning/phases/04-visuals-and-polish/copy/features.txt && npm run check:links && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-08: Home row 4 as a live pair (FX6)
+- [x] 04.2-08: Home row 4 as a live pair (FX6)
   Requirements: DSG-01
   Files: src/pages/index.astro, src/styles/site.css, src/components/PhoneFrame.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: HM28, HM29, HM30 (Approved); HM13 captions "Masked" and "Revealed" (unchanged); A5 and A6 (Removed)

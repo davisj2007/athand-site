@@ -87,7 +87,7 @@ const ld = {
             <p>Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.</p>
           </div>
           <div class="shot-panel">
-            <PhoneFrame shot="04-check-what-we-read" crop="full" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button." />
+            <PhoneFrame shot="04-check-what-we-read" crop="fields" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone." />
           </div>
         </li>
         <li class="feature">
@@ -105,8 +105,38 @@ const ld = {
             <p>Sensitive numbers stay masked until you tap Reveal.</p>
           </div>
           <div class="shot-panel">
-            <PhoneFrame shot="05-masked" crop="record" caption="Masked" class="pair" alt="A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button." />
-            <PhoneFrame shot="05-revealed" crop="record" caption="Revealed" class="pair" alt="The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked." />
+            <figure class="pair">
+              <div class="secret">
+                <div class="record">
+                  <span class="badge badge-home" aria-hidden="true">H</span>
+                  <div>
+                    <p class="record-name">Maple Street house</p>
+                    <p class="record-sub">Alarm code</p>
+                  </div>
+                </div>
+                <div class="secret-row">
+                  <p class="record-value"><span aria-hidden="true">••••••••</span><span class="vh">Alarm code, hidden until you tap Reveal</span></p>
+                  <span class="secret-action" aria-hidden="true">Reveal</span>
+                </div>
+              </div>
+              <figcaption>Masked</figcaption>
+            </figure>
+            <figure class="pair">
+              <div class="secret">
+                <div class="record">
+                  <span class="badge badge-home" aria-hidden="true">H</span>
+                  <div>
+                    <p class="record-name">Maple Street house</p>
+                    <p class="record-sub">Alarm code</p>
+                  </div>
+                </div>
+                <div class="secret-row">
+                  <p class="record-value">0000</p>
+                  <span class="secret-action" aria-hidden="true">Hide</span>
+                </div>
+              </div>
+              <figcaption>Revealed</figcaption>
+            </figure>
           </div>
         </li>
         <li class="feature">
@@ -115,7 +145,7 @@ const ld = {
             <p>Face ID, Touch ID, or your passcode. No password to remember.</p>
           </div>
           <div class="shot-panel">
-            <PhoneFrame shot="06-lock" crop="full" alt="The atHand lock screen. The atHand logo sits in the center, and below it the line “atHand is locked.” appears above an Unlock button." />
+            <PhoneFrame shot="06-lock" crop="lock" alt="Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button." />
           </div>
         </li>
       </ul>

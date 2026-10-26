@@ -1,18 +1,18 @@
 # State
 
 Current phase: 04.2 (design-polish), inserted by Jake on 2026-10-26 with no gate.
-Current step: phase 04.2 EXECUTE wave 1 done (2026-10-26). PLAN.md Approved 2026-10-26; tasks 04.2-01 to 04.2-05 checked. Next step is EXECUTE wave 2 (04.2-06 to 04.2-08).
+Current step: phase 04.2 EXECUTE done (2026-10-26). Both waves checked (04.2-01 to 04.2-08). Next step is VERIFY.
 Phases 01, 02, 03, and 04 are Done. Phase 04.1 is gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
 
 ## Next action
 
-1. Jake reviews the wave 1 PR (branch execute/04.2-wave-1) and merges it.
-2. Then: "EXECUTE phase 04.2. I have reviewed PLAN.md for this phase and approve it. Follow .planning/README.md, step EXECUTE." That runs wave 2 (04.2-06 to 04.2-08) in one session.
+1. Jake reviews the wave 2 PR (branch execute/04.2-wave-2) and merges it.
+2. Then: "VERIFY phase 04.2. Follow .planning/README.md, step VERIFY."
 3. Gates unchanged: DISCUSS phase 04.1 once the app repo records its TestFlight passes; DISCUSS phase 05 once Apple approves atHand. Run phases one at a time.
 
 ## Waiting on Jake
 
-- Review and merge the wave 1 PR (branch execute/04.2-wave-1).
+- Review and merge the wave 2 PR (branch execute/04.2-wave-2).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -22,7 +22,9 @@ None.
 
 ## Last session
 
-EXECUTE phase 04.2 wave 1 (2026-10-26), local session on branch execute/04.2-wave-1 from main (3e8cbae, REVISE PR #41 merged). Set PLAN.md Approved 2026-10-26. Completed 04.2-01 to 04.2-05: `text-wrap: balance` on the listed headings and `text-wrap: pretty` on the listed paragraphs (FX1, FX2), `.prose` 56ch (FX3; column 601px at 1280, highest paragraph average 72.0, longest line 77), the `--accent-press` band fill in dark (FX4), and Home's band h2 "What you add stays on your iPhone" with its index.txt lines (FX5). All checks pass after every task: npm ci, build, check, tokens:check, check:external, check:links, check:content, check-text on all five fixtures, check:layout, check:a11y, and measure.mjs headings, stragglers, measure, and band; browser check recorded in SUMMARY.md. No deviations and no new BACKLOG items. App repo origin/main moved to 487b454; the brief and _ds tokens are unchanged since f4f2450.
+EXECUTE phase 04.2 wave 2 (2026-10-26), local session on branch execute/04.2-wave-2 from main (955dabf, wave 1 PR #42 merged). Completed 04.2-06 to 04.2-08: the `fields` and `lock` crops on Home rows 2 and 5 with alts A3r and A9r (FX7), the one-frame `fields` Features page top with `.overlap` removed (FX8), and Home row 4 as the live Masked and Revealed pair with the 05 shots left out of the build (FX6); fixtures updated in the same commits. All checks pass after every task: npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, and each verify command; at the end all seven measure.mjs checks, check-text on all five fixtures, S22, and S23 pass. Frame and row 4 screenshots recorded in SUMMARY.md. No deviations and no new BACKLOG items. App repo origin/main still 487b454; the brief and _ds tokens are unchanged since f4f2450.
+
+Before that: EXECUTE phase 04.2 wave 1 (2026-10-26), local session on branch execute/04.2-wave-1 from main (3e8cbae, REVISE PR #41 merged). Set PLAN.md Approved 2026-10-26. Completed 04.2-01 to 04.2-05: `text-wrap: balance` on the listed headings and `text-wrap: pretty` on the listed paragraphs (FX1, FX2), `.prose` 56ch (FX3; column 601px at 1280, highest paragraph average 72.0, longest line 77), the `--accent-press` band fill in dark (FX4), and Home's band h2 "What you add stays on your iPhone" with its index.txt lines (FX5). All checks pass after every task: npm ci, build, check, tokens:check, check:external, check:links, check:content, check-text on all five fixtures, check:layout, check:a11y, and measure.mjs headings, stragglers, measure, and band; browser check recorded in SUMMARY.md. No deviations and no new BACKLOG items. App repo origin/main moved to 487b454; the brief and _ds tokens are unchanged since f4f2450.
 
 Before that: REVISE phase 04.2 (2026-10-26), local session on branch revise/04.2-prose-56ch from main (a33f5d9, PLAN PR #40 merged). FX3 (04.2-03): `.prose` max-width 56ch instead of 58ch; updated the task's title, step, verify grep, and acceptance (longest printed line under 80), the Goal, the Facts line, and the FX3 risk. Re-measured with 56ch injected: column 601px at 1280, highest paragraph average 72.0, longest line 77 (Support and the privacy policy). Recorded the change in CONTEXT.md decision 7 and the FX3 item. Then, with Jake's authorization, amended HOME-DESIGN.md, Other pages to 56ch citing decision 7 (commit 1d3efe5) and rebased S22 to 1d3efe5; merge the PR with a merge commit so that hash stays on main. Self-check re-run: pass. PLAN.md stays Draft. No site code changed.
 
