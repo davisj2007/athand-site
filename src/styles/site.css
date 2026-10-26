@@ -613,11 +613,16 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 
 /* Privacy band (HOME-DESIGN.md, Privacy band). Full bleed; the text keeps the
    site gutter at every width. Links, icons, and the focus ring use
-   --text-on-cobalt, including on hover in dark. */
+   --text-on-cobalt, including on hover in dark. The fill is --accent-press
+   in dark (phase 04.2, decision 8). */
 
 .band {
   background: var(--accent);
   color: var(--text-on-cobalt);
+}
+:root[data-theme="dark"] .band { background: var(--accent-press); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .band { background: var(--accent-press); }
 }
 .band-inner {
   display: flex;

@@ -92,7 +92,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: at 1280, no wrapping paragraph or list item in `.prose` on Features, Pricing, Privacy overview, Support, the privacy policy, or 404 averages 80 or more characters per line, and the longest line measure.mjs prints for each page is under 80; the policy and 404 main text are unchanged; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && grep -qF 'max-width: 56ch;' src/styles/site.css && ! grep -qF '68ch' src/styles/site.css && node .planning/phases/04.2-design-polish/measure.mjs measure && npm run check:content && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-04: Dark privacy band fill (FX4)
+- [x] 04.2-04: Dark privacy band fill (FX4)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
