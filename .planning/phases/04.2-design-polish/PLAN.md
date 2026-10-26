@@ -74,7 +74,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: at 320, 390, and 1280 on Home and Features, no heading of three or more words that wraps ends on a one-word line; the six measured cases (C6, C7, C43, and the three at 320) are gone; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && grep -qF ':is(.section-title, .feature h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }' src/styles/site.css && test "$(grep -c 'text-wrap: balance' src/styles/site.css)" = 2 && node .planning/phases/04.2-design-polish/measure.mjs headings && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-02: Fewer stragglers (FX2)
+- [x] 04.2-02: Fewer stragglers (FX2)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
