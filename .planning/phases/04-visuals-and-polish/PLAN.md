@@ -370,7 +370,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: public/og-image.png is 1200 by 630; the script made no network request; the image shows only M6's content.
   Verify command: `npm run og:image && test "$(sips -g pixelWidth -g pixelHeight public/og-image.png | awk '/pixel/{print $2}' | tr '\n' ' ')" = "1200 630 " && grep -q '"og:image": "node scripts/make-og-image.mjs"' package.json && grep -q "route(" scripts/make-og-image.mjs && npm run build && test -f dist/og-image.png`
 
-- [ ] 04-21: Canonical, Open Graph, and Twitter tags
+- [x] 04-21: Canonical, Open Graph, and Twitter tags
   Requirements: VIS-03
   Files: src/layouts/Base.astro
   Copy entries: M1, M2

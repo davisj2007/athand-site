@@ -23,6 +23,7 @@ interface Props {
 
 const { title, description, noindex = false } = Astro.props;
 const current = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/").replace(/(.)\/$/, "$1") || "/";
+const url = current === "/" ? "https://athandapp.com/" : "https://athandapp.com" + current + ".html";
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +37,17 @@ const current = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+{!noindex && <link rel="canonical" href={url}>}
+{!noindex && <meta property="og:url" content={url}>}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="atHand">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content="https://athandapp.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The atHand logo and the words “Your info, ready when you need it.”">
+<meta name="twitter:card" content="summary_large_image">
 <script is:inline>
   // Adapted from davisj2007/athandapp athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/theme-toggle.js
   // at e7537e77d2257f8e6c10473e047017fd6e335aa0. System removes [data-theme] so
