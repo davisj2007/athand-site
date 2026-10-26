@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Summary
 
-Status: In progress. Waves 1 and 2 of 4 done.
+Status: In progress. Waves 1, 2, and 3 of 4 done.
 
 ## What changed
 
@@ -36,6 +36,21 @@ Wave 2 check results (2026-10-25): `npm ci`, `npm run build` (7 pages), `npm run
 
 Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-25, Home): at 1280 in light, the hero shows the h1, line, coming-soon line, and the shadowed hero frame on the right; the moments sit three across; feature rows alternate sides; the band, pricing (paywall perks image, ending above the price card), and closing follow. On System, flipping the emulated OS appearance swaps all eight frames to their dark images (one visible image per frame) with no `data-theme`; pressing Light while the OS is dark shows the light images, and pressing Dark while the OS is light shows the dark images. At 768 the Masked and Revealed frames sit side by side at 240px; at 320 they stack. At 320 the band fills the width while its heading and facts start 16px from each edge, and the page does not scroll sideways. At 390 in dark the header, hero, and moment cards read as designed.
 
+Wave 3 (EXECUTE, 2026-10-26, branch execute/04-wave-3 from main at d4dda1c, wave 2 merged):
+
+- 04-13: src/components/PageTop.astro (a labelled section with the h1 `#page-title`, a default slot for the lede and anything after it, and a "visual" slot beside the copy from the breakpoint, below it otherwise) and src/components/JumpList.astro (a labelled nav of 44px, wrapping, underlined in-page links). site.css gains the page-top grid (h1 `--text-2xl` at every width), the band h1, `.prose` (68ch, line height 1.6, h2 `--text-xl` with `--space-12` above, h3 `--text-lg`), `.page-text`, `.jump`, `.fact-row`, `.contact-card`, and `.shot-panel.overlap`.
+- 04-14: Features page top (h1, lede, coming-soon line) with 04-check-what-we-read in front of 02-person-top from the breakpoint (02 is `display: none` below it), then the "On this page" jump list and the six sections unchanged, each h2 with its id.
+- 04-15: Pricing page top with the 07-paywall-perks frame, the three-item fact row, then the existing sections unchanged. No amount anywhere.
+- 04-16: Privacy overview uses PrivacyBand as its page top, with the h1 and lede in the band and the three facts below them, no CTA; every disclosure follows in full, ending with the link to /privacy.html.
+- 04-17: Support page top with the S4 lede and the contact card ("Email support" and the mailto link at `--text-lg`, 44px), then the jump list to the seven FAQ groups and the existing text unchanged, each group h2 with its id. The page still builds to /support.html.
+- 04-18: /privacy.html and /404.html sit in `.container` > `.prose.page-text`; their main text is unchanged. `.wrap` is gone from src/.
+
+Live site after this wave: Features, Pricing, Privacy overview, and Support have their page tops with their existing text below in the prose column; /privacy.html and /404.html read as before under the new chrome. /support.html and /privacy.html keep their URLs.
+
+Wave 3 check results (2026-10-26): `npm ci`, `npm run build` (7 pages), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match; local app checkout at c8e21f3, origin/main still 60032bf), `npm run check:external` (no third-party requests), `npm run check:links` (61 internal links resolve), `npm run check:content` (privacy and 404 match 52d8d1a), `npm run check:layout` (7 pages, 2 themes, 5 viewports: no overflow, gutters kept), `npm run check:a11y` (7 pages, 2 themes, 2 widths: no violations), check-text for all five pages against the phase 04 fixtures (S10: index 67, features 48, pricing 30, privacy-overview 30, and support 81 lines match), each task's verify command, static checks S1 to S14 and S19, and a script check that every `href="#..."` in dist/ has a matching id: all pass.
+
+Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-26): at 1280 in light, the Features panel shows 02-person-top at left with 04-check-what-we-read 40px lower, in front, overlapping it by 32px, beside the copy; the Pricing paywall frame sits beside its copy and the three fact cards run one row below; the Support contact card sits beside its lede. At 390 in dark, Features shows only the 04 frame below the copy (one visible image), Support shows the card below the lede and the jump list wrapping to three lines, and Pricing stacks the fact cards. At 320 in light, the privacy overview band fills the width with the h1 and lede 16px from each edge. On Support, following the Purchases jump link puts the h2 at the top of the view and the next Tab focuses "See Pricing", the first link in that section, so keyboard focus continues from the section.
+
 ## Brief citations
 
 Wave 2 claims on Home, each from Approved copy in CONTEXT.md (Brief v4.12 at 60032bf):
@@ -60,6 +75,11 @@ Wave 2 claims on Home, each from Approved copy in CONTEXT.md (Brief v4.12 at 600
 - HM25 "Free to download. Your own record is free.": brief, Business model and entitlement.
 - A1 to A6, A8, and A9 describe what each screenshot shows; A8 quotes the paywall perks (brief, Business model and entitlement) and A9 supports HM14 (brief, App lock).
 
+Wave 3 places no new claims. The page tops reuse Approved strings already on each page (FE3, FE4, P3, P4, V3, V4, S3, S4, and C1) and on Home (HM17 to HM19 in the privacy overview band; A2, A3, and A8 alt text, cited above). New strings and their sources:
+
+- PP2 "Free to download" / "Your own record is free" / "One purchase unlocks everything else": brief, Business model and entitlement (free download; Free vs paid; one-time purchase unlocks full use).
+- FP2, FP3, SU1, SU3, and SU4 (jump list names and links, "Email support"): navigation labels, not claims. SU2 repeats the S4 address.
+
 Wave 1 changed no claims; header, nav, theme control, and footer strings are unchanged (CH1, CH2, HM26).
 
 ## Commits
@@ -79,6 +99,13 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 - 49c00cf phase 04 task 04-11: privacy band, pricing, and closing on Home
 - f3cac5d phase 04 task 04-12: Home feature row five and the full Home checks
 - eaf7187 phase 04 task 04-08: theme pair rule outranks the screen image rule
+- aa91ee7 phase 04 task 04-13: PageTop and JumpList components, prose column, and page-top styles
+- bd70fe0 phase 04 task 04-14: Features page top and jump list
+- 21077f3 phase 04 task 04-15: Pricing page top and fact row
+- 69724b7 phase 04 task 04-16: Privacy overview band as page top
+- 73638db phase 04 task 04-17: Support contact card and jump list
+- e6351a0 phase 04 task 04-18: privacy policy and 404 in the prose column, .wrap removed
+- a5427cd phase 04 task 04-13: reword JumpList comment for the apostrophe check
 
 ## Deviations
 
@@ -91,6 +118,10 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 - Both theme images rendered (04-08, site.css). `.screen img { display: block }` outranked `.shot-dark { display: none }`, so in light both images were displayed; the dark one was clipped out of view, but it was downloaded and in the accessibility tree, so each alt would be read twice. Found in the browser check; the swap rules now use `.screen img.shot-dark` and `.screen img.shot-light`, and the browser check confirms one visible image per frame in every theme state. No check caught it (see Backlog items added).
 - Captions sit below the phone (04-08). PLAN puts the bezel styles on `figure.frame`, which would draw a figcaption inside the phone. PhoneFrame keeps `<figure class="frame" data-crop>` (it sets the width) and draws the bezel on an inner `.phone` div, so "Masked" and "Revealed" sit below each phone as in the reference build. The hero shadow is on `.frame[data-hero] .phone`.
 - Moment record rows show "Sam Rivera" as the name at 700 and the label (for example "Insurance member ID") as the 16px subtitle, as PLAN 04-09 and HM6 to HM8 specify; the reference build has the two reversed.
+- S2 caught a straight apostrophe in a JumpList.astro comment from 04-13; reworded in a follow-up 04-13 commit.
+- Features overlap frames are 200px wide from the breakpoint (not the 300px `--site-phone`), so two overlapping frames and the copy column both fit at 840px. Below the breakpoint the one visible frame keeps `--site-phone`.
+- Privacy policy and 404 wrapper: PLAN gives `.page-text` the vertical padding `.wrap` had; `.prose` carries the bottom padding for every page and `.page-text` adds the top, so the result matches `.wrap`.
+- The fact row items are text only, without the moment cards' icon circle, since PP2 names no icons.
 - The perks frame uses `object-position: 50% 50%`, not HOME-DESIGN.md's 10.36%, as PLAN 04-08 specifies, because the derived file is already the perks region.
 
 ## Backlog items added
@@ -99,5 +130,5 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 
 ## Follow-ups
 
-- Waves 3 and 4 remain (04-13 to 04-23).
+- Wave 4 remains (04-19 to 04-23).
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).

@@ -1,17 +1,17 @@
 # State
 
 Current phase: 04 (visuals-and-polish)
-Current step: EXECUTE wave 2 done (04-07 to 04-12). PLAN.md status Approved (2026-10-25). Waves 3 and 4 remain.
+Current step: EXECUTE wave 3 done (04-13 to 04-18). PLAN.md status Approved (2026-10-25). Wave 4 remains.
 Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24). Phase 03 is Done (shipped 2026-10-25; VERIFY PASS, Jake's browser result PASS).
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04 EXECUTE: wave 2, phone frame and Home" PR (branch execute/04-wave-2). Merging publishes the new Home with the screenshots; Features and Pricing gain the coming-soon icon only.
-2. Then start EXECUTE wave 3 (04-13 to 04-18) with the EXECUTE prompt from PROMPTS.md.
+1. Jake reviews and merges the "Phase 04 EXECUTE: wave 3, page tops and the prose column" PR (branch execute/04-wave-3). Merging publishes the page tops on Features, Pricing, Privacy overview, and Support, and moves the privacy policy and 404 into the prose column.
+2. Then start EXECUTE wave 4 (04-19 to 04-23) with the EXECUTE prompt from PROMPTS.md.
 
 ## Waiting on Jake
 
-- Review and merge the wave 2 EXECUTE PR (branch execute/04-wave-2), including the deviations in SUMMARY.md: 03-person-documents is left out of PhoneFrame's glob so it never ships as a PNG; the theme-pair CSS fix found in the browser check; captions sit below the phone through an inner .phone box.
+- Review and merge the wave 3 EXECUTE PR (branch execute/04-wave-3), including the deviations in SUMMARY.md: the Features overlap frames are 200px wide from the breakpoint; the fact row items have no icons.
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
 - App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md; the TestFlight VoiceOver and Dynamic Type passes that gate FEAT-01 (decision 21: REVISE adds it if recorded before SHIP, otherwise phase 04.1).
 
@@ -21,7 +21,9 @@ None.
 
 ## Last session
 
-EXECUTE phase 04 wave 2 (2026-10-25), local session on branch execute/04-wave-2 from main (97f202f, wave 1 merged). Completed 04-07 to 04-12: the pre-cropped paywall perks images (originals deleted), PhoneFrame.astro and the `alt:` fixture lines in check-text, and the new Home (hero, moments, five feature rows, PrivacyBand.astro, pricing, closing). Two bugs found and fixed inside 04-08's files: unused shots shipping as PNGs, and both theme images displaying in light. All wave 2 checks pass, including check-text for Home against copy/index.txt, check:layout, and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. One BACKLOG item (a check for one displayed image per frame). App repo origin/main still 60032bf.
+EXECUTE phase 04 wave 3 (2026-10-26), local session on branch execute/04-wave-3 from main (d4dda1c, wave 2 merged). Completed 04-13 to 04-18: PageTop.astro and JumpList.astro with the page-top, prose, jump list, fact row, contact card, and overlap styles; the Features, Pricing, Privacy overview, and Support page tops with their existing text unchanged below; the privacy policy and 404 in the prose column; `.wrap` removed. All wave 3 checks pass, including check-text for all five pages against the phase 04 fixtures, check:layout, and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
+
+Before that: EXECUTE phase 04 wave 2 (2026-10-25), local session on branch execute/04-wave-2 from main (97f202f, wave 1 merged). Completed 04-07 to 04-12: the pre-cropped paywall perks images (originals deleted), PhoneFrame.astro and the `alt:` fixture lines in check-text, and the new Home (hero, moments, five feature rows, PrivacyBand.astro, pricing, closing). Two bugs found and fixed inside 04-08's files: unused shots shipping as PNGs, and both theme images displaying in light. All wave 2 checks pass, including check-text for Home against copy/index.txt, check:layout, and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. One BACKLOG item (a check for one displayed image per frame). App repo origin/main still 60032bf.
 
 Before that: EXECUTE phase 04 wave 1 (2026-10-25), local session on branch execute/04-wave-1 from main (a55dcd4, REVISE merged). Set PLAN.md Approved. Completed 04-01 to 04-06: check:layout and check:a11y (playwright 1.64.1 and axe-core 4.14.0 pinned; Chromium downloaded to ~/Library/Caches/ms-playwright), site variables and the 52.5em breakpoint, the two-row then one-row header, the segmented theme control with icons, and the footer. All wave 1 checks pass, including check:layout and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. Deviations in SUMMARY.md. App repo origin/main still 60032bf.
 
