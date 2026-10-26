@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Summary
 
-Status: In progress. All four waves done (04-01 to 04-24); VERIFY next.
+Status: Shipped 2026-10-26. VERIFY PASS; Jake's browser result PASS. FEAT-01 moved to phase 04.1 (decision 21).
 
 ## What changed
 
@@ -183,5 +183,7 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 
 ## Follow-ups
 
-- VERIFY phase 04.
-- Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
+- VERIFY (2026-10-26): result PASS, every phase 04 requirement in scope PASS, no Fix wave. Merged as be8769b (PR #34) and deployed.
+- SHIP (2026-10-26): VERIFY.md result PASS; Jake's browser checklist on https://athandapp.com: PASS, all steps. VIS-01 to VIS-11, SEO-01 to SEO-04, and A11Y-01 to A11Y-06 are Done in REQUIREMENTS.md and phase 04 is Done in ROADMAP.md.
+- FEAT-01: the app repo has not recorded its TestFlight VoiceOver and Dynamic Type passes (athandapp phase 07 VERIFY not yet run; origin/main 60032bf). Per decision 21 it moved to the new phase 04.1 (features-accessibility), gated on those passes.
+- Next: phase 04.1 DISCUSS once the app repo records those passes; phase 05 DISCUSS once Apple approves atHand.
