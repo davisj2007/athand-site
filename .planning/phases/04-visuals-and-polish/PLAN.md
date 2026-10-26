@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Plan
 
-Status: Draft (revised 2026-10-26 to unblock 04-23 and add 04-24; was Approved 2026-10-25)
+Status: Approved 2026-10-26 (revised 2026-10-26 to unblock 04-23 and add 04-24; first Approved 2026-10-25)
 
 ## Goal
 
@@ -393,7 +393,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: dist/sitemap.xml and dist/robots.txt exist with exactly that content; check:links and check:external still pass.
   Verify command: `npm run build && node -e 'const s=require("fs").readFileSync("dist/sitemap.xml","utf8");const locs=[...s.matchAll(/<loc>([^<]*)<\/loc>/g)].map(m=>m[1]);if(JSON.stringify(locs)!==JSON.stringify(["https://athandapp.com/","https://athandapp.com/features.html","https://athandapp.com/pricing.html","https://athandapp.com/privacy-overview.html","https://athandapp.com/privacy.html","https://athandapp.com/support.html"])||!s.includes("http://www.sitemaps.org/schemas/sitemap/0.9"))throw JSON.stringify(locs)' && test "$(cat dist/robots.txt)" = "$(printf 'User-agent: *\nAllow: /\n\nSitemap: https://athandapp.com/sitemap.xml')" && npm run check:links && npm run check:external`
 
-- [ ] 04-23: SoftwareApplication JSON-LD on Home
+- [x] 04-23: SoftwareApplication JSON-LD on Home
   Requirements: SEO-03, SEO-04
   Files: src/layouts/Base.astro, src/pages/index.astro, scripts/check-external.mjs, README.md
   Copy entries: M3, M4, M5
@@ -407,7 +407,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: Home has exactly one JSON-LD block that parses to exactly those keys and values; no other page has one; static check S15 passes; check:external passes a JSON-LD block containing https://schema.org and still fails an inline script containing https://example.com and a JSON-LD script with `src="https://example.com/x.json"`.
   Verify command: `D=$(mktemp -d) && mkdir "$D/a" "$D/b" "$D/c" && printf '<!doctype html><script type="application/ld+json">{"@context":"https://schema.org"}</script>\n' > "$D/a/index.html" && printf '<!doctype html><script>fetch("https://example.com/")</script>\n' > "$D/b/index.html" && printf '<!doctype html><script type="application/ld+json" src="https://example.com/x.json"></script>\n' > "$D/c/index.html" && node scripts/check-external.mjs "$D/a" && ! node scripts/check-external.mjs "$D/b" > "$D/b.out" 2>&1 && grep -q 'inline <script>: https://example.com/' "$D/b.out" && ! node scripts/check-external.mjs "$D/c" > "$D/c.out" 2>&1 && grep -q '<script src>: https://example.com/x.json' "$D/c.out" && rm -rf "$D" && npm run build && node -e 'const fs=require("fs");for(const f of fs.readdirSync("dist").filter(f=>f.endsWith(".html"))){const s=fs.readFileSync("dist/"+f,"utf8");const b=[...s.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];if(f!=="index.html"){if(b.length)throw f+": JSON-LD";continue}if(b.length!==1)throw "count";const j=JSON.parse(b[0][1]);const want={"@context":"https://schema.org","@type":"SoftwareApplication","name":"atHand","alternateName":"atHand: Your Info, Ready","operatingSystem":"iOS","applicationCategory":"UtilitiesApplication","description":"A private household organizer for iPhone. atHand keeps the details you look up all the time, for you and everyone you look after, and suggests the right record when it can help.","url":"https://athandapp.com/"};if(JSON.stringify(j)!==JSON.stringify(want))throw JSON.stringify(j)}' && ! grep -rniwE 'athan|adhan|azan|prayers?|salah|salat|islam|islamic|muslim|mosque|quran|ramadan' dist --include='*.html' --include='*.xml' && npm run check:external`
 
-- [ ] 04-24: One displayed image per phone frame in check:a11y
+- [x] 04-24: One displayed image per phone frame in check:a11y
   Requirements: VIS-02, A11Y-02
   Files: scripts/check-a11y.mjs, README.md
   Copy entries: none

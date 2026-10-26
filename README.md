@@ -58,7 +58,7 @@ This check does not run in the Deploy workflow, because the app repo is private 
 
 ## check:external
 
-`npm run check:external` scans every HTML, CSS, JS, and SVG file in dist/ for runtime requests: `src`, `srcset`, `poster`, `<link href>`, `<object data>`, `<form action>`, CSS `url()` and `@import`, and absolute URLs in scripts. It allows relative and root-relative URLs, fragments, `data:` URLs, and absolute URLs on athandapp.com. Ordinary links (`<a href>`) are not requests and are ignored. Any other host fails the check.
+`npm run check:external` scans every HTML, CSS, JS, and SVG file in dist/ for runtime requests: `src`, `srcset`, `poster`, `<link href>`, `<object data>`, `<form action>`, CSS `url()` and `@import`, and absolute URLs in scripts. It allows relative and root-relative URLs, fragments, `data:` URLs, and absolute URLs on athandapp.com. Ordinary links (`<a href>`) are not requests and are ignored. The body of a `<script type="application/ld+json">` block is not scanned, because it is structured data the browser never fetches (Home's JSON-LD names https://schema.org); a JSON-LD script's `src` and every other script are still checked. Any other host fails the check.
 
 ## check:links
 
@@ -95,6 +95,8 @@ npx playwright install chromium
 ## check:a11y
 
 `npm run check:a11y` serves dist/ the same way and loads every page with reduced motion on, in light and dark, at 390 by 844 and 1280 by 800. It runs axe-core with its default rules and fails on any violation. It also fails on text below 16px, a body size other than 17px, a standalone link or button smaller than 44 by 44 CSS px (links inside sentences are exempt), any transition or animation that survives reduced motion, and any request to a host other than the local server.
+
+It also fails if any rendered phone frame’s `.screen` does not show exactly one image (an `img` that is displayed and has a non-zero size), so a frame never shows, downloads into view, or reads out both its light and dark screenshots. That check runs in four theme states: light (stored Light, OS light), dark (stored Dark, OS dark), and System with the OS appearance light, then dark. axe and the other checks run in the light and dark states.
 
 Like tokens:check, check:layout and check:a11y run locally before every PR and do not run in the Deploy workflow.
 

@@ -12,8 +12,21 @@ const moments = [
   { icon: "car", title: "At a traffic stop", label: "Driver’s license", value: "D000-0000-0000" },
   { icon: "plane", title: "At the airport", label: "Passport", hidden: "Passport number, hidden until you tap Reveal" },
 ];
+
+// SoftwareApplication structured data (decision 16): no offers, price, rating, or download URL.
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "atHand",
+  alternateName: "atHand: Your Info, Ready",
+  operatingSystem: "iOS",
+  applicationCategory: "UtilitiesApplication",
+  description: "A private household organizer for iPhone. atHand keeps the details you look up all the time, for you and everyone you look after, and suggests the right record when it can help.",
+  url: "https://athandapp.com/",
+};
 ---
 <Base title="atHand: Your Info, Ready" description="atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(ld)} />
   <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">

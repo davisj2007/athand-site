@@ -1,5 +1,7 @@
 // Fails if a built site makes any runtime request to a host other than
 // athandapp.com. Outbound <a href> links are allowed and not checked.
+// The body of a <script type="application/ld+json"> block is data the browser
+// never fetches, so it is not scanned; its src, and every other script, is.
 // Usage: node scripts/check-external.mjs [dir]   (default: dist)
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { extname, join, relative, resolve } from "node:path";
@@ -101,7 +103,9 @@ function markupUrls(html) {
     for (const [ctx, url] of cssUrls(m[1])) found.push([`<style> ${ctx}`, url]);
   }
   for (const m of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
-    if (attr(`<script${m[1]}>`, "src") !== null) continue;
+    const open = `<script${m[1]}>`;
+    if (attr(open, "src") !== null) continue;
+    if ((attr(open, "type") ?? "").trim().toLowerCase() === "application/ld+json") continue;
     for (const url of absoluteStrings(m[2])) found.push(["inline <script>", url]);
   }
   return found;
