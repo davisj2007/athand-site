@@ -1,6 +1,6 @@
 # Phase 04.2: design-polish - Plan
 
-Status: Draft
+Status: Approved 2026-10-26
 
 ## Goal
 
@@ -64,7 +64,7 @@ None. No GitHub settings change, no new dependency, and nothing to download (Pla
 
 Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. CSS in src/styles/site.css plus one string in index.astro.
 
-- [ ] 04.2-01: Balanced headings (FX1)
+- [x] 04.2-01: Balanced headings (FX1)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none

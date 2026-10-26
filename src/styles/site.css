@@ -832,3 +832,7 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   }
   .shot-panel.overlap .frame + .frame { display: block; order: -1; }
 }
+
+/* Headings balance their lines and paragraphs avoid a one-word last line;
+   browsers without support keep the default wrapping. */
+:is(.section-title, .feature h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }
