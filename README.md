@@ -96,6 +96,8 @@ npx playwright install chromium
 
 `npm run check:a11y` serves dist/ the same way and loads every page with reduced motion on, in light and dark, at 390 by 844 and 1280 by 800. It runs axe-core with its default rules and fails on any violation. It also fails on text below 16px, a body size other than 17px, a standalone link or button smaller than 44 by 44 CSS px (links inside sentences are exempt), any transition or animation that survives reduced motion, and any request to a host other than the local server.
 
+It also fails if any rendered phone frame’s `.screen` does not show exactly one image (an `img` that is displayed and has a non-zero size), so a frame never shows, downloads into view, or reads out both its light and dark screenshots. That check runs in four theme states: light (stored Light, OS light), dark (stored Dark, OS dark), and System with the OS appearance light, then dark. axe and the other checks run in the light and dark states.
+
 Like tokens:check, check:layout and check:a11y run locally before every PR and do not run in the Deploy workflow.
 
 ## og:image
