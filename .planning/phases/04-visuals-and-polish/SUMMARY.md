@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Summary
 
-Status: In progress. Waves 1, 2, and 3 of 4 done.
+Status: In progress. Waves 1, 2, and 3 done; wave 4 done except 04-23, which is blocked (see Blockers).
 
 ## What changed
 
@@ -51,6 +51,20 @@ Wave 3 check results (2026-10-26): `npm ci`, `npm run build` (7 pages), `npm run
 
 Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-26): at 1280 in light, the Features panel shows 02-person-top at left with 04-check-what-we-read 40px lower, in front, overlapping it by 32px, beside the copy; the Pricing paywall frame sits beside its copy and the three fact cards run one row below; the Support contact card sits beside its lede. At 390 in dark, Features shows only the 04 frame below the copy (one visible image), Support shows the card below the lede and the jump list wrapping to three lines, and Pricing stacks the fact cards. At 320 in light, the privacy overview band fills the width with the h1 and lede 16px from each edge. On Support, following the Purchases jump link puts the h2 at the top of the view and the next Tab focuses "See Pricing", the first link in that section, so keyboard focus continues from the section.
 
+Wave 4 (EXECUTE, 2026-10-26, branch execute/04-wave-4 from main at 2410273, wave 3 merged):
+
+- 04-19: public/favicon.png (48 by 48), public/favicon-32.png (32 by 32), and public/apple-touch-icon.png (180 by 180, no alpha), all from the app repo's assets/icon.png at 60032bf3848847b642443a59178ee40e385c9850 (`git -C ~/dev/athandapp show 60032bf:assets/icon.png`; origin/main confirmed at that commit). Commands: `sips -z 48 48` and `sips -z 32 32` for the favicons; `sips -z 180 180`, then `sips -s format jpeg -s formatOptions best`, then `sips -s format png` for the apple-touch-icon. Intermediates were made in the session scratchpad and deleted. Base.astro links all three on every page.
+- 04-20: scripts/make-og-image.mjs and `npm run og:image` render public/og-image.png (1200 by 630) in Playwright's Chromium from the token CSS, the @fontsource Space Grotesk 700 and Inter 500 faces (file:// URLs), the app icon at 60032bf (data: URL), and the inline lockup mark. Light theme, flat `--surface-page` ground, no gradient or shadow. Every request that is not file: or data: is aborted and fails the run; the run made none. Viewed the PNG: the icon at left; at right the lockup, "Your info, ready when you need it" on two lines, and "A private household organizer for iPhone", all legible, nothing clipped, no other words. README.md documents how and when to regenerate it.
+- 04-21: Base.astro adds canonical and og:url (the page's permanent URL; none on 404, which keeps noindex), og:type, og:site_name, og:title, og:description, og:image with width, height, and alt (M2), and twitter:card on every page.
+- 04-22: src/pages/sitemap.xml.ts builds /sitemap.xml with the six indexable pages in order (no 404, no lastmod); public/robots.txt allows all and names the sitemap. README.md lists both under Layout.
+- 04-23: not done. Blocked; see Blockers.
+
+Live site after this wave: every page has a favicon, an apple-touch-icon, and Open Graph and Twitter tags, and every page but 404 has a canonical link; /sitemap.xml and /robots.txt exist. Nothing a visitor reads changes. Home has no JSON-LD yet.
+
+Wave 4 check results (2026-10-26): `npm ci`, `npm run build` (7 pages and sitemap.xml), `npm run check` (0 errors, 0 warnings, 0 hints), `npm run tokens:check` (4 files match; local app checkout at c8e21f3, origin/main still 60032bf), `npm run check:external` (no third-party requests), `npm run check:links` (61 internal links resolve), `npm run check:content` (privacy and 404 match 52d8d1a), `npm run check:layout` (7 pages, 2 themes, 5 viewports: no overflow, gutters kept), `npm run check:a11y` (7 pages, 2 themes, 2 widths: no violations), check-text for all five pages against the phase 04 fixtures (S10), the verify commands of 04-19 to 04-22, and static checks S1 to S7, S9 to S15, S17, and S18: all pass. S16 covers 04-19 and 04-21; its 04-23 part waits for that task.
+
+Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-26): on Home the head links /favicon.png, /favicon-32.png, and /apple-touch-icon.png, and the canonical is https://athandapp.com/; the four icon and image files, /robots.txt, and /sitemap.xml each return 200 with an image, text, or XML type; the Open Graph and Twitter tags read as M1 and M2. /og-image.png displays as described above. The pane's screenshots do not show the tab strip, so the favicon in the tab itself was not seen; it is on Jake's VERIFY checklist.
+
 ## Brief citations
 
 Wave 2 claims on Home, each from Approved copy in CONTEXT.md (Brief v4.12 at 60032bf):
@@ -80,6 +94,12 @@ Wave 3 places no new claims. The page tops reuse Approved strings already on eac
 - PP2 "Free to download" / "Your own record is free" / "One purchase unlocks everything else": brief, Business model and entitlement (free download; Free vs paid; one-time purchase unlocks full use).
 - FP2, FP3, SU1, SU3, and SU4 (jump list names and links, "Email support"): navigation labels, not claims. SU2 repeats the S4 address.
 
+Wave 4 metadata strings, each from Approved copy in CONTEXT.md:
+
+- M1 og:title and og:description: each page’s approved title and description, unchanged (phase 03 citations stand).
+- M2 og:image:alt: describes the image; not a claim.
+- M6 Open Graph image text: the lockup (the @Hand form, allowed as the logo), "Your info, ready when you need it" (brief, Concept; Brand), and "A private household organizer for iPhone" (brief, Concept; Privacy; Current milestone, iPhone only).
+
 Wave 1 changed no claims; header, nav, theme control, and footer strings are unchanged (CH1, CH2, HM26).
 
 ## Commits
@@ -106,6 +126,10 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 - 73638db phase 04 task 04-17: Support contact card and jump list
 - e6351a0 phase 04 task 04-18: privacy policy and 404 in the prose column, .wrap removed
 - a5427cd phase 04 task 04-13: reword JumpList comment for the apostrophe check
+- c443ea2 phase 04 task 04-19: favicon and apple-touch-icon
+- 261d826 phase 04 task 04-20: Open Graph image
+- cabe0bf phase 04 task 04-21: canonical, Open Graph, and Twitter tags
+- 6e515f5 phase 04 task 04-22: sitemap and robots.txt
 
 ## Deviations
 
@@ -123,6 +147,13 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 - Privacy policy and 404 wrapper: PLAN gives `.page-text` the vertical padding `.wrap` had; `.prose` carries the bottom padding for every page and `.page-text` adds the top, so the result matches `.wrap`.
 - The fact row items are text only, without the moment cards' icon circle, since PP2 names no icons.
 - The perks frame uses `object-position: 50% 50%`, not HOME-DESIGN.md's 10.36%, as PLAN 04-08 specifies, because the derived file is already the perks region.
+- 04-19's verify command uses `set -- $x` to split each pair, which zsh (this Mac's shell) does not word-split; it was run under bash as written and passed.
+- 04-20 writes the in-memory HTML to a temporary file in the OS temp directory and loads it by file:// URL, because Chromium blocks file:// stylesheets and fonts from a page set with `setContent` (about:blank). The file is deleted after the screenshot; nothing is added to the repo but the PNG.
+- 04-20 loads only the two faces the image uses (Space Grotesk 700 and Inter 500), not all nine.
+
+## Blockers
+
+- 04-23 (JSON-LD on Home) cannot pass as planned. The block must carry `"@context": "https://schema.org"` (decision 16), and scripts/check-external.mjs reports every absolute URL inside an inline `<script>` as a third-party request, so `npm run check:external` fails ("dist/index.html: inline <script>: https://schema.org"). The Deploy workflow runs check:external, so merging 04-23 as written would stop the site from publishing. The JSON-LD is data the browser never fetches, so this is a false positive, but the fix is in scripts/check-external.mjs, which PLAN.md lists as not changed. Jake chose to stop (2026-10-26). 04-23's edits were reverted; nothing of it is committed. Suggested REVISE: add scripts/check-external.mjs to 04-23's files, skip the body of `<script type="application/ld+json">` blocks while still checking every other inline script and any `src`, and add verify cases proving a JSON-LD block with https://schema.org passes and an inline script with a third-party URL still fails.
 
 ## Backlog items added
 
@@ -130,5 +161,5 @@ Wave 1 changed no claims; header, nav, theme control, and footer strings are unc
 
 ## Follow-ups
 
-- Wave 4 remains (04-19 to 04-23).
+- 04-23 remains, after a REVISE resolves the check:external blocker.
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).

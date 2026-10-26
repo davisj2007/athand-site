@@ -348,7 +348,7 @@ Live site after this wave: Features, Pricing, Privacy overview, and Support have
 
 Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD. Nothing a visitor reads changes.
 
-- [ ] 04-19: Favicon and apple-touch-icon
+- [x] 04-19: Favicon and apple-touch-icon
   Requirements: VIS-04
   Files: public/favicon.png, public/favicon-32.png, public/apple-touch-icon.png, src/layouts/Base.astro
   Copy entries: none
@@ -358,7 +358,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: sizes 48, 32, and 180; the apple-touch-icon has no alpha; every built page links all three; the files are in dist/.
   Verify command: `for x in 'favicon.png 48' 'favicon-32.png 32' 'apple-touch-icon.png 180'; do set -- $x; test "$(sips -g pixelWidth -g pixelHeight public/$1 | awk '/pixel/{print $2}' | tr '\n' ' ')" = "$2 $2 " || exit 1; done && sips -g hasAlpha public/apple-touch-icon.png | grep -q 'hasAlpha: no' && npm run build && for f in dist/*.html; do grep -q 'rel="icon" type="image/png" sizes="48x48" href="/favicon.png"' "$f" && grep -q 'href="/favicon-32.png"' "$f" && grep -q 'rel="apple-touch-icon" href="/apple-touch-icon.png"' "$f" || { echo "$f"; exit 1; }; done && test -f dist/favicon.png && test -f dist/apple-touch-icon.png && npm run check:external`
 
-- [ ] 04-20: Open Graph image
+- [x] 04-20: Open Graph image
   Requirements: VIS-03
   Files: scripts/make-og-image.mjs, public/og-image.png, package.json, README.md
   Copy entries: M6
@@ -370,7 +370,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: public/og-image.png is 1200 by 630; the script made no network request; the image shows only M6's content.
   Verify command: `npm run og:image && test "$(sips -g pixelWidth -g pixelHeight public/og-image.png | awk '/pixel/{print $2}' | tr '\n' ' ')" = "1200 630 " && grep -q '"og:image": "node scripts/make-og-image.mjs"' package.json && grep -q "route(" scripts/make-og-image.mjs && npm run build && test -f dist/og-image.png`
 
-- [ ] 04-21: Canonical, Open Graph, and Twitter tags
+- [x] 04-21: Canonical, Open Graph, and Twitter tags
   Requirements: VIS-03
   Files: src/layouts/Base.astro
   Copy entries: M1, M2
@@ -382,7 +382,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: the tags below on every page; canonical equals the page's own permanent URL; 404 has noindex and neither canonical nor og:url.
   Verify command: `npm run build && node -e 'const fs=require("fs");const dec=s=>s.replace(/&#39;/g,"\x27").replace(/&quot;/g,"\"").replace(/&amp;/g,"&");const urls={"index":"https://athandapp.com/","features":"https://athandapp.com/features.html","pricing":"https://athandapp.com/pricing.html","privacy-overview":"https://athandapp.com/privacy-overview.html","privacy":"https://athandapp.com/privacy.html","support":"https://athandapp.com/support.html","404":null};for(const [p,u] of Object.entries(urls)){const s=fs.readFileSync("dist/"+p+".html","utf8");const meta=k=>{const m=s.match(new RegExp("<meta[^>]*(?:property|name)=\""+k+"\"[^>]*content=\"([^\"]*)\""));return m?dec(m[1]):null};const title=dec(s.match(/<title>([^<]*)<\/title>/)[1]);const desc=meta("description");const want={"og:type":"website","og:site_name":"atHand","og:title":title,"og:description":desc,"og:image":"https://athandapp.com/og-image.png","og:image:width":"1200","og:image:height":"630","og:image:alt":"The atHand logo and the words “Your info, ready when you need it.”","twitter:card":"summary_large_image"};for(const [k,v] of Object.entries(want))if(meta(k)!==v)throw p+": "+k+" = "+meta(k);const canon=(s.match(/<link rel="canonical" href="([^"]*)"/)||[])[1]||null;if(canon!==u||meta("og:url")!==u)throw p+": canonical "+canon;if(u===null&&!/<meta name="robots" content="noindex"/.test(s))throw "404 noindex"}' && npm run check:external`
 
-- [ ] 04-22: Sitemap and robots.txt
+- [x] 04-22: Sitemap and robots.txt
   Requirements: SEO-01, SEO-02
   Files: src/pages/sitemap.xml.ts, public/robots.txt, README.md
   Copy entries: none
