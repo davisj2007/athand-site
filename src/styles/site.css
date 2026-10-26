@@ -401,7 +401,7 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 /* The perks file is already the perks region, so the whole image shows. */
 .frame[data-crop="perks"] .screen { aspect-ratio: 1320 / 1208; }
 .frame[data-crop="perks"] img { object-position: 50% 50%; }
-.frame figcaption {
+:is(.frame, .pair) figcaption {
   margin-top: var(--space-3);
   text-align: center;
   font-size: var(--text-base);
@@ -558,6 +558,35 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   font-variant-numeric: tabular-nums;
 }
 
+/* Home feature row 4: the Masked and Revealed pair as live cards in the
+   moments style. Reveal and Hide are static labels, not controls. */
+.badge-home { background: var(--entity-home); }
+.secret {
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.secret p { margin: 0; }
+.secret .record { border-top: 0; padding-top: 0; }
+.secret-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--divider);
+}
+.secret-action {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-link);
+}
+
 /* Features (HOME-DESIGN.md, Features). Even rows show the shot first on wide
    screens through CSS order only; source order stays text, then image. */
 
@@ -604,9 +633,11 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   min-width: 0;
   max-width: 100%;
 }
-.frame.pair {
+.pair {
   flex: 1 1 140px;
   max-width: 240px;
+  margin: 0;
+  min-width: 0;
 }
 @media (min-width: 52.5em) {
   .feature {

@@ -148,7 +148,7 @@ The two new crops, the one-frame Features page top, and the live row 4 pair. 04.
   Acceptance: the Features page top shows one `fields` frame, 280px at 390 and 300px at 1280; Features requests no 02-person-top file in either theme; `.overlap` is gone from src; check-text passes for Features; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && test "$(grep -c '<PhoneFrame' src/pages/features.astro)" = 1 && grep -qF 'shot="04-check-what-we-read" crop="fields"' src/pages/features.astro && ! grep -rn 'overlap\|02-person-top' src/pages/features.astro src/styles/site.css && ! grep -q '02-person-top' dist/features.html && node .planning/phases/04.2-design-polish/measure.mjs features-top && node scripts/check-text.mjs dist/features.html .planning/phases/04-visuals-and-polish/copy/features.txt && npm run check:links && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-08: Home row 4 as a live pair (FX6)
+- [x] 04.2-08: Home row 4 as a live pair (FX6)
   Requirements: DSG-01
   Files: src/pages/index.astro, src/styles/site.css, src/components/PhoneFrame.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: HM28, HM29, HM30 (Approved); HM13 captions "Masked" and "Revealed" (unchanged); A5 and A6 (Removed)

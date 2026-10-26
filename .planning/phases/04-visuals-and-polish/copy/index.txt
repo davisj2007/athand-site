@@ -44,6 +44,12 @@ Hidden until you need it
 Sensitive numbers stay masked until you tap Reveal.
 Masked
 Revealed
+# HM28 to HM30 (phase 04.2, row 4 live pair). Reveal and Hide are aria-hidden visual labels.
+Maple Street house
+Alarm code
+Alarm code, hidden until you tap Reveal
+0000
+Hide
 # HM14
 Locked to you
 Face ID, Touch ID, or your passcode. No password to remember.
@@ -89,13 +95,11 @@ Free to download. Your own record is free.
 !The developer added no advertising, tracking, analytics, or crash-reporting tools.
 !Read the full privacy policy
 !A one-time purchase unlocks everything else. There is no subscription.
-# Alt text. A1 hero; A2, A3r, A4, A5, A6 feature rows; A8 pricing
+# Alt text. A1 hero; A2, A3r, A4 feature rows; A8 pricing
 alt: The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic.
 alt: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
 alt: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone.
 alt: Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact.
-alt: A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button.
-alt: The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked.
 alt: The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account.
 # A9r: phase 04.2, decision 15.
 alt: Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button.
