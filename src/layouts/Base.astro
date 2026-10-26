@@ -33,6 +33,9 @@ const current = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/
 <meta name="description" content={description}>
 <meta name="color-scheme" content="light dark">
 {noindex && <meta name="robots" content="noindex">}
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script is:inline>
   // Adapted from davisj2007/athandapp athand-design-handoff/_ds/athand-design-system-23fcf9a9-cdd0-4b1b-a220-dcc704e0a8da/theme-toggle.js
   // at e7537e77d2257f8e6c10473e047017fd6e335aa0. System removes [data-theme] so

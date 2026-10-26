@@ -348,7 +348,7 @@ Live site after this wave: Features, Pricing, Privacy overview, and Support have
 
 Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD. Nothing a visitor reads changes.
 
-- [ ] 04-19: Favicon and apple-touch-icon
+- [x] 04-19: Favicon and apple-touch-icon
   Requirements: VIS-04
   Files: public/favicon.png, public/favicon-32.png, public/apple-touch-icon.png, src/layouts/Base.astro
   Copy entries: none
