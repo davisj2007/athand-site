@@ -18,8 +18,14 @@ interface Props {
 
 const { shot, alt, crop, hero = false, caption, class: className } = Astro.props;
 
-// Not eager, so a page imports only the shots it uses.
-const shots = import.meta.glob<{ default: ImageMetadata }>("../assets/shots/*.png");
+// Not eager, so a page imports only the shots it uses. Vite still emits every
+// PNG the pattern matches, and Astro deletes an original only once it has been
+// converted, so a shot no page shows would ship as a full PNG. 03-person-documents
+// is not shown on any page, so it is left out until one uses it.
+const shots = import.meta.glob<{ default: ImageMetadata }>([
+  "../assets/shots/*.png",
+  "!../assets/shots/03-person-documents-*.png",
+]);
 
 async function load(theme: "light" | "dark") {
   const key = `../assets/shots/${shot}-${theme}.png`;
