@@ -155,7 +155,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: the variables and breakpoint match HOME-DESIGN.md; the only media queries are the breakpoint and `prefers-color-scheme: dark` (added in 04-08); no font size below 16px; no new custom property outside `--site-*`; every page still builds and reads as today.
   Verify command: `npm run build && npm run check && for s in '--site-max: 1200px' '--site-gutter: var(--space-4)' '--site-section: var(--space-12)' '--site-display: var(--text-2xl)' '--site-phone-hero: 280px' '--site-gutter: var(--space-10)' '--site-section: calc(var(--space-12) * 2)' '--site-display: calc(var(--text-xl) * 2)' '--site-phone-hero: 340px' '@media (min-width: 52.5em)'; do grep -qF -- "$s" src/styles/site.css || { echo "missing $s"; exit 1; }; done && ! grep -n '@media' src/styles/site.css | grep -vE '\(min-width: 52\.5em\)|prefers-color-scheme: dark' && ! grep -nE '#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(|\bInter\b|Space Grotesk|sans-serif|system-ui' src/styles/site.css && ! grep -nE 'font-size:\s*(0?\.[0-9]+rem|(1[0-5]|[0-9])px)' src/styles/site.css && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && npm run check:content && npm run check:links`
 
-- [ ] 04-04: Header in two rows, then one
+- [x] 04-04: Header in two rows, then one
   Requirements: VIS-06
   Files: src/components/Header.astro, src/styles/site.css
   Copy entries: CH2 (N1, N2 unchanged)

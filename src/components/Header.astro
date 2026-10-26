@@ -1,5 +1,5 @@
 ---
-import mark from "../assets/logo-lockup-mark.svg?raw";
+import markSvg from "../assets/logo-lockup-mark.svg?raw";
 import ThemeControl from "./ThemeControl.astro";
 
 interface Props {
@@ -7,6 +7,11 @@ interface Props {
 }
 
 const { current } = Astro.props;
+// The link's own name, "atHand, home", covers the lockup, so the inline mark
+// is hidden from assistive tech instead of announcing its "at" label. "Hand"
+// is drawn by CSS (.lockup-word::after) so the link has no visible text that
+// differs from its name.
+const mark = markSvg.replace('role="img" aria-label="at"', 'aria-hidden="true" focusable="false"');
 const nav = [
   { key: "/features", href: "/features.html", label: "Features" },
   { key: "/pricing", href: "/pricing.html", label: "Pricing" },
@@ -15,8 +20,8 @@ const nav = [
 ];
 ---
 <header class="site">
-  <div class="wrap">
-    <a class="lockup" href="/" aria-label="atHand, home" aria-current={current === "/" ? "page" : undefined}><Fragment set:html={mark} /><span class="lockup-word" aria-hidden="true">Hand</span></a>
+  <div class="container header-grid">
+    <a class="lockup" href="/" aria-label="atHand, home" aria-current={current === "/" ? "page" : undefined}><Fragment set:html={mark} /><span class="lockup-word" aria-hidden="true"></span></a>
     <nav class="site-nav" aria-label="Main">
       <ul>
         {nav.map((item) => (
