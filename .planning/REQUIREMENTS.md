@@ -42,7 +42,7 @@ Brief sections are cited by name: Concept, Brand, Copy rules, Accessibility floo
 
 Design contract: .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md. Where a requirement says "as HOME-DESIGN.md specifies", that file's section is the acceptance detail.
 
-- VIS-01: product images are the App Store screenshots in src/assets/shots/ (1320 by 2868, light and dark pairs, fictional sample data), emitted through astro:assets as WebP at 360w and 720w with explicit width and height, eager on the hero and lazy elsewhere, each with Approved alt text. The lock screen shows the placeholder until a 1320 by 2868 pair with a 9:41 status bar is copied in, and the PLAN names the task that swaps it. Open
+- VIS-01: product images are the App Store screenshots in src/assets/shots/ (1320 by 2868, light and dark pairs, fictional sample data), emitted through astro:assets as WebP at 360w and 720w with explicit width and height, eager on the hero and lazy elsewhere, each with Approved alt text. The lock screen uses the 1320 by 2868 06-lock pair (9:41 status bar) added in ANSWERS; the live site never shows a placeholder (phase 04 CONTEXT.md, decision 19). Open
 - VIS-02: PhoneFrame.astro wraps every screenshot with the props, crops, sizes, and theme pairs HOME-DESIGN.md specifies; the visible image follows both the explicit theme choice and the OS setting while on System, and the hidden image is out of the accessibility tree. Open
 - VIS-03: an Open Graph image (1200 by 630) and Open Graph and Twitter card tags on every page. Open
 - VIS-04: favicon and apple-touch-icon generated from the app repo's assets/icon.png. Open

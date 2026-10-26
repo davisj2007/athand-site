@@ -47,7 +47,7 @@ Design contract: .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md (a
 
 - The site becomes a visual showcase of the app, built to HOME-DESIGN.md: one 52.5em breakpoint, site variables in site.css (the 56px hero and 96px section gap as calc() values, no new tokens), a shared container and gutter.
 - A new header (two rows, then one) with a segmented System, Light, and Dark control, and a new footer.
-- App Store screenshots from src/assets/shots/ (1320 by 2868, light and dark, fictional sample data) in a PhoneFrame component that crops with CSS and swaps light and dark with the theme. The lock screen shows a placeholder until a 1320 by 2868 capture exists. No served image contains a price.
+- App Store screenshots from src/assets/shots/ (1320 by 2868, light and dark, fictional sample data) in a PhoneFrame component that crops with CSS and swaps light and dark with the theme. The lock screen uses the 1320 by 2868 06-lock pair; no placeholder ships. No served image contains a price.
 - Home rebuilt in HOME-DESIGN.md order: hero, moments, five feature rows, a full-bleed privacy band, pricing, and closing. The network disclosures leave Home and stay in full on /privacy-overview.html.
 - Every other page gets a page top built from Home parts, with today's text below in a prose column: Features and Support gain jump lists, Pricing a fact row, Privacy overview the privacy band, and Support a contact card. /privacy.html and 404 stay text only.
 - Carried over: an Open Graph image, a favicon, and an apple-touch-icon made from the app icon; a sitemap, robots.txt, SoftwareApplication JSON-LD, and metadata that separates atHand from "Athan".
