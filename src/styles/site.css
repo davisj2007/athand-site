@@ -738,7 +738,7 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 
 /* Prose column for the detail text below a page top. */
 .prose {
-  max-width: 68ch;
+  max-width: 56ch;
   line-height: 1.6;
   padding-bottom: var(--space-12);
 }

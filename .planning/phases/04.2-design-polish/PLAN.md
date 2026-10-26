@@ -83,7 +83,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: on Home and Features at 390 and 1280, no listed paragraph ends on a one-word line (the ten measured at PLAN, including C1 to C5, are gone); every phase 04 fixture still passes; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && grep -qF ':is(.lede, .section-line, .feature-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }' src/styles/site.css && test "$(grep -c 'text-wrap: pretty' src/styles/site.css)" = 1 && node .planning/phases/04.2-design-polish/measure.mjs stragglers && for p in index features pricing privacy-overview support; do node scripts/check-text.mjs dist/$p.html .planning/phases/04-visuals-and-polish/copy/$p.txt || exit 1; done && npm run check:content && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-03: Prose measure 56ch (FX3)
+- [x] 04.2-03: Prose measure 56ch (FX3)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
