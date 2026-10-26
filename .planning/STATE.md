@@ -1,17 +1,18 @@
 # State
 
 Current phase: 04 (visuals-and-polish)
-Current step: EXECUTE done (2026-10-26): wave 4 finished (04-23 and 04-24). All four waves checked; PLAN.md Approved 2026-10-26.
+Current step: VERIFY done (2026-10-26): result PASS, no Fix wave. Browser checklist for Jake in VERIFY.md.
 Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24). Phase 03 is Done (shipped 2026-10-25; VERIFY PASS, Jake's browser result PASS).
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04 EXECUTE: finish wave 4 (JSON-LD and one-image check)" PR (branch execute/04-wave-4-finish).
-2. Then VERIFY phase 04.
+1. Jake reviews and merges the "Phase 04 VERIFY: PASS" PR (branch verify/04-visuals-and-polish).
+2. Jake waits for the Deploy workflow on main to finish green, then runs the browser checklist in .planning/phases/04-visuals-and-polish/VERIFY.md on https://athandapp.com.
+3. Then SHIP phase 04 with Jake's browser result and his answer on the TestFlight passes (decision 21).
 
 ## Waiting on Jake
 
-- Review and merge the EXECUTE PR (branch execute/04-wave-4-finish).
+- Review and merge the VERIFY PR (branch verify/04-visuals-and-polish), then run the browser checklist in VERIFY.md.
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
 - App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md; the TestFlight VoiceOver and Dynamic Type passes that gate FEAT-01 (decision 21: REVISE adds it if recorded before SHIP, otherwise phase 04.1).
 
@@ -21,7 +22,9 @@ None.
 
 ## Last session
 
-EXECUTE phase 04 wave 4 finish (2026-10-26), local session on branch execute/04-wave-4-finish from main (bfcdacc, REVISE PR #32 merged). Set PLAN.md Approved 2026-10-26. Completed 04-23 (SoftwareApplication JSON-LD on Home via a head slot in Base.astro; check:external skips only JSON-LD script bodies, with the three fixture cases behaving as planned) and 04-24 (check:a11y fails any rendered `.screen` without exactly one displayed image, in light, dark, and System with the OS light and dark). Deviation: the one-image check skips frames the layout hides whole (the second Features overlap frame below the breakpoint). All checks pass: npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, the verify commands of 04-19 to 04-24, and S1 to S19; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
+VERIFY phase 04 (2026-10-26), local session on branch verify/04-visuals-and-polish from main (7555835, PR #33 merged). Result PASS, no Fix wave. All Checks pass (npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y with axe on all seven pages in light and dark), S1 to S19 pass, and every task verify passes except three clauses later planned tasks superseded (04-05's Base.astro diff, 04-09's svg check on the aria-hidden closing mark, and 04-12's no-PNG check, replaced by S14); recorded in VERIFY.md. Page outlines read from Playwright ARIA snapshots; screenshots at 390 and 1280 in both themes compared with HOME-DESIGN.md; OS flip on System swaps every frame. Live site at 7555835 serves every page, sitemap, robots, OG image, and icons. FEAT-01 stays outside the waves (decision 21). No new BACKLOG items. App repo origin/main still 60032bf.
+
+Before that: EXECUTE phase 04 wave 4 finish (2026-10-26), local session on branch execute/04-wave-4-finish from main (bfcdacc, REVISE PR #32 merged). Set PLAN.md Approved 2026-10-26. Completed 04-23 (SoftwareApplication JSON-LD on Home via a head slot in Base.astro; check:external skips only JSON-LD script bodies, with the three fixture cases behaving as planned) and 04-24 (check:a11y fails any rendered `.screen` without exactly one displayed image, in light, dark, and System with the OS light and dark). Deviation: the one-image check skips frames the layout hides whole (the second Features overlap frame below the breakpoint). All checks pass: npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, the verify commands of 04-19 to 04-24, and S1 to S19; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
 
 Before that: REVISE phase 04 (2026-10-26), local session on branch revise/04-unblock-04-23 from main (6e585bf, wave 4 merged). 04-23: added scripts/check-external.mjs and README.md to its files (check-external moved from "Not changed" to "Changed"), steps to skip only the body of `<script type="application/ld+json">` blocks, and verify cases (JSON-LD with https://schema.org passes; an inline script with https://example.com fails; a JSON-LD script with a third-party `src` fails). Added 04-24 to wave 4 from the 2026-10-25 BACKLOG item (removed from BACKLOG.md): check:a11y fails any `.screen` without exactly one displayed image in light, dark, and System with the OS light and dark, with fixture verify cases. S16 and S19 name the new cases. Ran every fixture against the current scripts first: all three check-external cases fail today, and both check-a11y fixture pages pass today. Self-check re-run: pass. PLAN.md set to Draft.
 
