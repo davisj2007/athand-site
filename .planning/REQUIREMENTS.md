@@ -42,27 +42,32 @@ Brief sections are cited by name: Concept, Brand, Copy rules, Accessibility floo
 
 Design contract: .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md. Where a requirement says "as HOME-DESIGN.md specifies", that file's section is the acceptance detail.
 
-- VIS-01: product images are the App Store screenshots in src/assets/shots/ (1320 by 2868, light and dark pairs, fictional sample data), emitted through astro:assets as WebP at 360w and 720w with explicit width and height, eager on the hero and lazy elsewhere, each with Approved alt text. The lock screen uses the 1320 by 2868 06-lock pair (9:41 status bar) added in ANSWERS; the live site never shows a placeholder (phase 04 CONTEXT.md, decision 19). Open
-- VIS-02: PhoneFrame.astro wraps every screenshot with the props, crops, sizes, and theme pairs HOME-DESIGN.md specifies; the visible image follows both the explicit theme choice and the OS setting while on System, and the hidden image is out of the accessibility tree. Open
-- VIS-03: an Open Graph image (1200 by 630) and Open Graph and Twitter card tags on every page. Open
-- VIS-04: favicon and apple-touch-icon generated from the app repo's assets/icon.png. Open
-- VIS-05: site.css defines the site variables, the single `@media (min-width: 52.5em)` breakpoint, the shared container, the type scale, and the motion rules HOME-DESIGN.md specifies, using token variables only; the 56px hero and 96px section gap are calc() values, and no token is added. Open
-- VIS-06: the header and footer follow HOME-DESIGN.md on every page: two header rows below the breakpoint and one from it, no menu button or hidden navigation, and a segmented System, Light, and Dark control with icons, labels read by screen readers at every width, aria-pressed state, and 44px targets, still hidden until JavaScript runs. Open
-- VIS-07: Home follows HOME-DESIGN.md's page order and sections: hero, moments, five feature rows in the stated order, the full-bleed privacy band, pricing, and closing, with Approved copy only. The network disclosures are not on Home and remain in full on /privacy-overview.html. Open
-- VIS-08: Features, Pricing, Privacy overview, and Support get the page tops HOME-DESIGN.md's Other pages section specifies (Features and Support jump lists, the Pricing fact row, the privacy band, the Support contact card), with their existing text below in a prose column. /privacy.html and /404.html keep their main text unchanged. Open
-- VIS-09: no price or currency appears in the built HTML or in any image file the site serves; the paywall image is served pre-cropped above its price card. Open
-- VIS-10: the reference builds' known defects are absent: below the breakpoint every section after the hero keeps the side gutter, and at 320px no feature row or shot panel overflows. A layout check at 320, 390, and 768 CSS px and at 400% zoom of a 1280px window, in light and dark, fails on any horizontal scroll, any element past the viewport, or any main section starting less than 16px from a viewport edge. Open
-- VIS-11: every new string in this phase was drafted in DISCUSS, approved by Jake in ANSWERS, and cites a brief section; each PR that places copy lists every claim with its citation. Open
-- SEO-01: sitemap.xml lists every page and is referenced from robots.txt. Open
-- SEO-02: robots.txt allows crawling. Open
-- SEO-03: SoftwareApplication JSON-LD names atHand, operatingSystem iOS, applicationCategory, and no price. Open
-- SEO-04: titles, descriptions, and JSON-LD separate atHand from "Athan" (brief, Brand) without religious or devotional imagery or wording beyond the disambiguation. Open
-- A11Y-01: axe reports no violations on any page in light and dark. Open
-- A11Y-02: VoiceOver in Safari reads every page in a logical order with named landmarks, headings, links, images, and theme control state; each screenshot's alt text is read once per frame. Open
-- A11Y-03: at 400% zoom every page reflows with no horizontal scrolling and no clipped or overlapping text. Open
-- A11Y-04: WCAG AA contrast for all text and controls in both themes, including the privacy band; body text 17px; no text below 16px; 44px targets; no color-only meaning. Open
-- A11Y-05: with Reduce Motion on, no animation or transition runs beyond an instant change. Open
-- A11Y-06: the audit results and Jake's browser result are recorded in VERIFY.md. Open
+- VIS-01: product images are the App Store screenshots in src/assets/shots/ (1320 by 2868, light and dark pairs, fictional sample data), emitted through astro:assets as WebP at 360w and 720w with explicit width and height, eager on the hero and lazy elsewhere, each with Approved alt text. The lock screen uses the 1320 by 2868 06-lock pair (9:41 status bar) added in ANSWERS; the live site never shows a placeholder (phase 04 CONTEXT.md, decision 19). Done
+- VIS-02: PhoneFrame.astro wraps every screenshot with the props, crops, sizes, and theme pairs HOME-DESIGN.md specifies; the visible image follows both the explicit theme choice and the OS setting while on System, and the hidden image is out of the accessibility tree. Done
+- VIS-03: an Open Graph image (1200 by 630) and Open Graph and Twitter card tags on every page. Done
+- VIS-04: favicon and apple-touch-icon generated from the app repo's assets/icon.png. Done
+- VIS-05: site.css defines the site variables, the single `@media (min-width: 52.5em)` breakpoint, the shared container, the type scale, and the motion rules HOME-DESIGN.md specifies, using token variables only; the 56px hero and 96px section gap are calc() values, and no token is added. Done
+- VIS-06: the header and footer follow HOME-DESIGN.md on every page: two header rows below the breakpoint and one from it, no menu button or hidden navigation, and a segmented System, Light, and Dark control with icons, labels read by screen readers at every width, aria-pressed state, and 44px targets, still hidden until JavaScript runs. Done
+- VIS-07: Home follows HOME-DESIGN.md's page order and sections: hero, moments, five feature rows in the stated order, the full-bleed privacy band, pricing, and closing, with Approved copy only. The network disclosures are not on Home and remain in full on /privacy-overview.html. Done
+- VIS-08: Features, Pricing, Privacy overview, and Support get the page tops HOME-DESIGN.md's Other pages section specifies (Features and Support jump lists, the Pricing fact row, the privacy band, the Support contact card), with their existing text below in a prose column. /privacy.html and /404.html keep their main text unchanged. Done
+- VIS-09: no price or currency appears in the built HTML or in any image file the site serves; the paywall image is served pre-cropped above its price card. Done
+- VIS-10: the reference builds' known defects are absent: below the breakpoint every section after the hero keeps the side gutter, and at 320px no feature row or shot panel overflows. A layout check at 320, 390, and 768 CSS px and at 400% zoom of a 1280px window, in light and dark, fails on any horizontal scroll, any element past the viewport, or any main section starting less than 16px from a viewport edge. Done
+- VIS-11: every new string in this phase was drafted in DISCUSS, approved by Jake in ANSWERS, and cites a brief section; each PR that places copy lists every claim with its citation. Done
+- SEO-01: sitemap.xml lists every page and is referenced from robots.txt. Done
+- SEO-02: robots.txt allows crawling. Done
+- SEO-03: SoftwareApplication JSON-LD names atHand, operatingSystem iOS, applicationCategory, and no price. Done
+- SEO-04: titles, descriptions, and JSON-LD separate atHand from "Athan" (brief, Brand) without religious or devotional imagery or wording beyond the disambiguation. Done
+- A11Y-01: axe reports no violations on any page in light and dark. Done
+- A11Y-02: VoiceOver in Safari reads every page in a logical order with named landmarks, headings, links, images, and theme control state; each screenshot's alt text is read once per frame. Done
+- A11Y-03: at 400% zoom every page reflows with no horizontal scrolling and no clipped or overlapping text. Done
+- A11Y-04: WCAG AA contrast for all text and controls in both themes, including the privacy band; body text 17px; no text below 16px; 44px targets; no color-only meaning. Done
+- A11Y-05: with Reduce Motion on, no animation or transition runs beyond an instant change. Done
+- A11Y-06: the audit results and Jake's browser result are recorded in VERIFY.md. Done
+
+## Features accessibility section (phase 04.1, gated on the app repo's TestFlight passes)
+
+Moved from phase 04 at SHIP (2026-10-26) under phase 04 CONTEXT.md decision 21.
+
 - FEAT-01: the Features page gains a section on VoiceOver, larger text (Dynamic Type), and light and dark, citing the brief's Accessibility floor and Release requirements. It is drafted only after the app repo records its TestFlight VoiceOver and Dynamic Type passes as done; until then it stays out of the site. Open
 
 ## Launch flip (phase 05, gated on App Store approval)

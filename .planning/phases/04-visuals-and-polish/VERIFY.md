@@ -100,4 +100,6 @@ Run after this PR merges and the Deploy workflow on main finishes green, on http
 
 ## Jake's browser result
 
-(recorded at SHIP)
+PASS (recorded at SHIP, 2026-10-26). Jake ran every checklist step on https://athandapp.com after the VERIFY PR merged (merge be8769b, PR #34) and the Deploy workflow finished; all steps pass. A11Y-06 is complete.
+
+FEAT-01 at SHIP: the app repo has not recorded its TestFlight VoiceOver and Dynamic Type passes (davisj2007/athandapp phase 07 VERIFY not yet run; origin/main still 60032bf), so per decision 21 FEAT-01 moved to the new phase 04.1 in ROADMAP.md and REQUIREMENTS.md, gated on those passes.

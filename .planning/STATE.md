@@ -1,20 +1,20 @@
 # State
 
-Current phase: 04 (visuals-and-polish)
-Current step: VERIFY done (2026-10-26): result PASS, no Fix wave. Browser checklist for Jake in VERIFY.md.
-Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24). Phase 03 is Done (shipped 2026-10-25; VERIFY PASS, Jake's browser result PASS).
+Current phase: 04.1 (features-accessibility), gated on the app repo's TestFlight VoiceOver and Dynamic Type passes.
+Current step: phase 04 SHIP done (2026-10-26). Next step for 04.1 is DISCUSS, once its gate opens.
+Phases 01, 02, 03, and 04 are Done (04 shipped 2026-10-26; VERIFY PASS, Jake's browser result PASS). Phase 05 is gated on App Store approval.
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04 VERIFY: PASS" PR (branch verify/04-visuals-and-polish).
-2. Jake waits for the Deploy workflow on main to finish green, then runs the browser checklist in .planning/phases/04-visuals-and-polish/VERIFY.md on https://athandapp.com.
-3. Then SHIP phase 04 with Jake's browser result and his answer on the TestFlight passes (decision 21).
+1. Jake reviews and merges the "Phase 04 SHIP" PR (branch ship/04-visuals-and-polish). Main gains only planning files; the live site does not change.
+2. When the app repo (davisj2007/athandapp) records its TestFlight VoiceOver and Dynamic Type passes as done (its phase 07 VERIFY): "DISCUSS phase 04.1. Follow .planning/README.md, step DISCUSS."
+3. When Apple approves atHand and the listing is live: DISCUSS phase 05. If both gates open, run 04.1 and 05 one at a time.
 
 ## Waiting on Jake
 
-- Review and merge the VERIFY PR (branch verify/04-visuals-and-polish), then run the browser checklist in VERIFY.md.
-- Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
-- App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md; the TestFlight VoiceOver and Dynamic Type passes that gate FEAT-01 (decision 21: REVISE adds it if recorded before SHIP, otherwise phase 04.1).
+- Review and merge the SHIP PR (branch ship/04-visuals-and-polish).
+- App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
+- App Store approval, which gates phase 05.
 
 ## Blockers
 
@@ -22,7 +22,9 @@ None.
 
 ## Last session
 
-VERIFY phase 04 (2026-10-26), local session on branch verify/04-visuals-and-polish from main (7555835, PR #33 merged). Result PASS, no Fix wave. All Checks pass (npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y with axe on all seven pages in light and dark), S1 to S19 pass, and every task verify passes except three clauses later planned tasks superseded (04-05's Base.astro diff, 04-09's svg check on the aria-hidden closing mark, and 04-12's no-PNG check, replaced by S14); recorded in VERIFY.md. Page outlines read from Playwright ARIA snapshots; screenshots at 390 and 1280 in both themes compared with HOME-DESIGN.md; OS flip on System swaps every frame. Live site at 7555835 serves every page, sitemap, robots, OG image, and icons. FEAT-01 stays outside the waves (decision 21). No new BACKLOG items. App repo origin/main still 60032bf.
+SHIP phase 04 (2026-10-26), local session on branch ship/04-visuals-and-polish from main (be8769b, VERIFY PR #34 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, all steps. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked VIS-01 to VIS-11, SEO-01 to SEO-04, and A11Y-01 to A11Y-06 Done in REQUIREMENTS.md, and phase 04 Done in ROADMAP.md. The app repo has not recorded its TestFlight VoiceOver and Dynamic Type passes (origin/main 60032bf, phase 07 at EXECUTE done, VERIFY not run), so per decision 21 FEAT-01 moved to a new inserted phase 04.1 (features-accessibility) in ROADMAP.md and REQUIREMENTS.md, gated on those passes. Planning files only; no site code changed.
+
+Before that: VERIFY phase 04 (2026-10-26), local session on branch verify/04-visuals-and-polish from main (7555835, PR #33 merged). Result PASS, no Fix wave. All Checks pass (npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y with axe on all seven pages in light and dark), S1 to S19 pass, and every task verify passes except three clauses later planned tasks superseded (04-05's Base.astro diff, 04-09's svg check on the aria-hidden closing mark, and 04-12's no-PNG check, replaced by S14); recorded in VERIFY.md. Page outlines read from Playwright ARIA snapshots; screenshots at 390 and 1280 in both themes compared with HOME-DESIGN.md; OS flip on System swaps every frame. Live site at 7555835 serves every page, sitemap, robots, OG image, and icons. FEAT-01 stays outside the waves (decision 21). No new BACKLOG items. App repo origin/main still 60032bf.
 
 Before that: EXECUTE phase 04 wave 4 finish (2026-10-26), local session on branch execute/04-wave-4-finish from main (bfcdacc, REVISE PR #32 merged). Set PLAN.md Approved 2026-10-26. Completed 04-23 (SoftwareApplication JSON-LD on Home via a head slot in Base.astro; check:external skips only JSON-LD script bodies, with the three fixture cases behaving as planned) and 04-24 (check:a11y fails any rendered `.screen` without exactly one displayed image, in light, dark, and System with the OS light and dark). Deviation: the one-image check skips frames the layout hides whole (the second Features overlap frame below the breakpoint). All checks pass: npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, the verify commands of 04-19 to 04-24, and S1 to S19; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
 
