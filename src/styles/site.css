@@ -51,14 +51,6 @@ body {
   padding-inline: var(--site-gutter);
 }
 
-/* Interim text column until each page gets its page top (wave 3). */
-.wrap {
-  max-width: calc(68ch + 2 * var(--site-gutter));
-  margin-inline: auto;
-  padding-inline: var(--site-gutter);
-  padding-block: var(--space-10) var(--space-12);
-}
-
 main { padding: 0; }
 
 /* Links, buttons, and focus */

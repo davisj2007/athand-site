@@ -329,7 +329,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: dist/support.html exists; check-text passes against the phase 04 support fixture; the seven group ids exist; check:links passes.
   Verify command: `npm run build && test -f dist/support.html && test ! -e dist/support && node scripts/check-text.mjs dist/support.html .planning/phases/04-visuals-and-polish/copy/support.txt && for i in backups purchases app-lock scanning suggestions permissions about; do grep -q "<h2[^>]*id=\"$i\"" dist/support.html || exit 1; done && grep -q '<nav[^>]*aria-label="On this page"' dist/support.html && npm run check:links`
 
-- [ ] 04-18: Privacy policy and 404 in the new layout, and `.wrap` removed
+- [x] 04-18: Privacy policy and 404 in the new layout, and `.wrap` removed
   Requirements: VIS-08, VIS-10
   Files: src/pages/privacy.astro, src/pages/404.astro, src/styles/site.css
   Copy entries: none (main text unchanged)
