@@ -68,9 +68,10 @@ Gate: do not start DISCUSS until the app repo records its TestFlight VoiceOver a
 
 Exit: the Features page carries the accessibility section with Approved copy only, each claim cited in the PR, and every phase 04 check still passes.
 
-## 04.2 design-polish: In progress
+## 04.2 design-polish: Done
 
 Requirements: DSG-01.
+Delivered by davisj2007/athand-site#36 through #44 (DISCUSS, three ANSWERS rounds, PLAN, REVISE, EXECUTE waves 1 and 2, and VERIFY), all merged to main, plus this SHIP PR. Jake's browser checklist passed on 2026-10-26.
 Inserted by Jake on 2026-10-26, independent of the 04.1 and 05 gates.
 
 - Triage every finding of `npx impeccable detect` (run by Jake outside the repo against dist/ built from main) and of his impeccable critique of Home and Features as Fix, Decline, Already covered, or Not applicable, naming the rule, page, and element.
@@ -94,4 +95,4 @@ Exit: every page that mentions availability points to the live listing, and no c
 
 ## Order
 
-01, 02, 03, and 04 done. 04.2 runs now; it has no gate. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.
+01, 02, 03, 04, and 04.2 done. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.
