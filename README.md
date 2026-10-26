@@ -28,7 +28,8 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 - src/styles/tokens/: design tokens copied from the app repo. Do not edit them by hand.
 - src/styles/site.css: the site stylesheet, written against the token variables.
 - src/assets/: the logo mark SVG, copied from the app repo, and shots/, the App Store screenshots in light and dark pairs.
-- public/: files copied into dist/ as is, including CNAME.
+- src/pages/sitemap.xml.ts: builds /sitemap.xml, listing the six indexable pages (not 404) by their absolute URLs.
+- public/: files copied into dist/ as is, including CNAME, robots.txt (allows all and names the sitemap), the favicons, the apple-touch-icon, and og-image.png.
 - scripts/: the check scripts, plain Node. check-layout.mjs and check-a11y.mjs use Playwright (and axe-core); the others use built-in modules only.
 
 ## Deploy
