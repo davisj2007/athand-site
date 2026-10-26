@@ -1,7 +1,7 @@
 # Home page redesign: design contract
 
 Status: approved direction from Jake (2026-10-25). Copy marked "New" below still needs approval in ANSWERS.
-Amended 2026-10-26 by phase 04.2 decisions 7 to 12 (Jake authorized, ANSWERS): prose measure, dark privacy band fill, Home privacy h2, row 4 live pair, the `fields` and `lock` crops, and the one-frame Features page top. Approved copy and alt text live in the phase CONTEXT.md files, which win over the copy table here.
+Amended 2026-10-26 by phase 04.2 decisions 7 to 12 (Jake authorized, ANSWERS): prose measure, dark privacy band fill, Home privacy h2, row 4 live pair, the `fields` and `lock` crops, and the one-frame Features page top. Amended again 2026-10-26 by phase 04.2 decision 7 (Jake authorized, REVISE): the prose measure is 56ch instead of 58ch. Approved copy and alt text live in the phase CONTEXT.md files, which win over the copy table here.
 Source: Design artifact "athandapp.com home page" (canvas dc6e54d7). This file and the two reference builds beside it are the repo copy of that canvas; when they disagree with the canvas, this file wins.
 
 Files in this folder:
@@ -261,7 +261,7 @@ Nothing animates on load or on scroll, and content is never hidden waiting for a
 
 ## Other pages
 
-Every page gets the new header and footer and a "page top" built from home parts, with today's detail text unchanged below it in a `.prose` column (max 58ch, so lines run under 80 characters; line height 1.6, h2 `--text-xl`, h3 `--text-lg`, sections separated by `--space-12`, in-sentence links underlined).
+Every page gets the new header and footer and a "page top" built from home parts, with today's detail text unchanged below it in a `.prose` column (max 56ch, so every line runs under 80 characters, phase 04.2 decision 7; line height 1.6, h2 `--text-xl`, h3 `--text-lg`, sections separated by `--space-12`, in-sentence links underlined).
 
 - **Page top**: the hero grid one size down. The h1 is `--text-2xl` at every width, followed by the existing lede at `--text-lg` and one visual on the right from 840px.
 - **Features**: one frame on a shot panel, 04-check-what-we-read with `crop="fields"`, at `--site-phone` (280px, 300px from 840px). 02-person-top is not in the page top. A jump list of in-page links to its six h2s, 44px tall and wrapping. Optional later: a small crop beside each h2.
