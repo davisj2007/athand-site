@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Plan
 
-Status: Draft
+Status: Approved (2026-10-25)
 
 ## Goal
 
@@ -111,7 +111,7 @@ Not changed: src/styles/tokens/, src/assets/logo-lockup-mark.svg, the other shot
 
 Foundation and chrome: the two browser checks, site variables and the breakpoint, the new header, theme control, and footer on every page. Page content stays in today's 68ch `.wrap` column until wave 3.
 
-- [ ] 04-01: Layout check (check:layout) and the pinned dev dependencies
+- [x] 04-01: Layout check (check:layout) and the pinned dev dependencies
   Requirements: VIS-10, A11Y-03
   Files: package.json, package-lock.json, scripts/check-layout.mjs, README.md
   Copy entries: none
@@ -126,7 +126,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: the script passes on a page whose content keeps 16px gutters and fails on a page with a 400px-wide box and on a page with text at the left edge; dependencies are unchanged; devDependencies are exactly the two pinned packages; nothing new appears in dist/.
   Verify command: `npx playwright install chromium && D=$(mktemp -d) && H='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>T</title></head><body style="margin:0"><main>' && printf '%s<p style="margin:0 16px">ok</p></main></body></html>' "$H" > "$D/index.html" && node scripts/check-layout.mjs "$D" && printf '%s<div style="width:400px;margin:0 16px">wide</div></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-layout.mjs "$D" && printf '%s<p style="margin:0">edge</p></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-layout.mjs "$D" && node -e 'const p=require("./package.json");if(JSON.stringify(p.dependencies)!==JSON.stringify({"@astrojs/check":"0.9.12","@fontsource/inter":"5.3.0","@fontsource/space-grotesk":"5.3.0","astro":"7.4.2","typescript":"6.0.3"})||JSON.stringify(p.devDependencies)!==JSON.stringify({"axe-core":"4.14.0","playwright":"1.64.1"})||p.scripts["check:layout"]!=="node scripts/check-layout.mjs dist")process.exit(1)' && npm run build && ! grep -rl 'axe-core\|playwright' dist`
 
-- [ ] 04-02: Accessibility check (check:a11y)
+- [x] 04-02: Accessibility check (check:a11y)
   Requirements: A11Y-01, A11Y-04, A11Y-05
   Files: scripts/check-a11y.mjs, package.json, README.md
   Copy entries: none
@@ -139,7 +139,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: passes on a minimal valid page; fails on a page with an img without alt, on 12px text, on a 20px-tall standalone link, and on a transition that survives reduced motion.
   Verify command: `D=$(mktemp -d) && H='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>T</title><style>body{margin:0 16px;font-size:17px}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></head><body><main><h1>T</h1>' && printf '%s<p>ok</p></main></body></html>' "$H" > "$D/index.html" && node scripts/check-a11y.mjs "$D" && printf '%s<img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="10" height="10"></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && printf '%s<p style="font-size:12px">small</p></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && printf '%s<p><a href="/" style="display:inline-block;height:20px;width:120px">Home</a></p></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && printf '%s<p style="animation:x 1s">moves</p><style>@keyframes x{to{opacity:.5}}</style></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && grep -q '"check:a11y": "node scripts/check-a11y.mjs dist"' package.json`
 
-- [ ] 04-03: Site variables, breakpoint, container, type scale, and motion
+- [x] 04-03: Site variables, breakpoint, container, type scale, and motion
   Requirements: VIS-05
   Files: src/styles/site.css
   Copy entries: none
@@ -155,7 +155,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: the variables and breakpoint match HOME-DESIGN.md; the only media queries are the breakpoint and `prefers-color-scheme: dark` (added in 04-08); no font size below 16px; no new custom property outside `--site-*`; every page still builds and reads as today.
   Verify command: `npm run build && npm run check && for s in '--site-max: 1200px' '--site-gutter: var(--space-4)' '--site-section: var(--space-12)' '--site-display: var(--text-2xl)' '--site-phone-hero: 280px' '--site-gutter: var(--space-10)' '--site-section: calc(var(--space-12) * 2)' '--site-display: calc(var(--text-xl) * 2)' '--site-phone-hero: 340px' '@media (min-width: 52.5em)'; do grep -qF -- "$s" src/styles/site.css || { echo "missing $s"; exit 1; }; done && ! grep -n '@media' src/styles/site.css | grep -vE '\(min-width: 52\.5em\)|prefers-color-scheme: dark' && ! grep -nE '#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(|\bInter\b|Space Grotesk|sans-serif|system-ui' src/styles/site.css && ! grep -nE 'font-size:\s*(0?\.[0-9]+rem|(1[0-5]|[0-9])px)' src/styles/site.css && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && npm run check:content && npm run check:links`
 
-- [ ] 04-04: Header in two rows, then one
+- [x] 04-04: Header in two rows, then one
   Requirements: VIS-06
   Files: src/components/Header.astro, src/styles/site.css
   Copy entries: CH2 (N1, N2 unchanged)
@@ -167,7 +167,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: every page has one nav "Main" with the four links in order and aria-current exactly as phase 03 (index, features, pricing, privacy-overview, and support once each; privacy and 404 none); no button in the header except the three theme buttons; no script in Header.astro.
   Verify command: `npm run build && node -e 'const fs=require("fs");const want={"index":"href=\"/\"","features":"/features.html","pricing":"/pricing.html","privacy-overview":"/privacy-overview.html","support":"/support.html","privacy":null,"404":null};for(const [p,h] of Object.entries(want)){const s=fs.readFileSync("dist/"+p+".html","utf8");const hd=s.match(/<header[\s\S]*?<\/header>/)[0];const navs=hd.match(/<nav[^>]*aria-label="Main"[^>]*>[\s\S]*?<\/nav>/g)||[];if(navs.length!==1)throw p+": nav count";const order=[...navs[0].matchAll(/href="([^"]+)"/g)].map(m=>m[1]).join(",");if(order!=="/features.html,/pricing.html,/privacy-overview.html,/support.html")throw p+": order "+order;const cur=[...s.matchAll(/<a\b[^>]*aria-current="page"[^>]*>/g)].map(m=>m[0]);if(h===null?cur.length!==0:(cur.length!==1||!cur[0].includes(h)))throw p+": aria-current";const btn=(hd.match(/<button\b[^>]*>/g)||[]);if(btn.length!==3||btn.some(b=>!b.includes("data-theme-set")))throw p+": header buttons"}' && ! grep -q '<script' src/components/Header.astro && grep -qF '"logo theme" "nav nav"' src/styles/site.css && grep -qF '"logo nav theme"' src/styles/site.css && npm run check:links`
 
-- [ ] 04-05: Segmented theme control with icons
+- [x] 04-05: Segmented theme control with icons
   Requirements: VIS-06
   Files: src/components/ThemeControl.astro, src/components/Icon.astro, src/styles/site.css
   Copy entries: CH1
@@ -178,7 +178,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: the control still ships hidden and appears only with JavaScript; each button's accessible name is its label at every width; aria-pressed reflects the choice; the choice still applies before first paint and persists (Base.astro script untouched).
   Verify command: `npm run build && git diff --quiet 4821a36 -- src/layouts/Base.astro && node -e 'const fs=require("fs");for(const f of fs.readdirSync("dist").filter(f=>f.endsWith(".html"))){const s=fs.readFileSync("dist/"+f,"utf8");const g=s.match(/<div[^>]*data-theme-control[^>]*>[\s\S]*?<\/div>/);if(!g||!/role="group"/.test(g[0])||!/aria-label="Appearance"/.test(g[0])||!/\bhidden\b/.test(g[0].match(/<div[^>]*>/)[0]))throw f+": group";for(const [k,l] of [["system","System"],["light","Light"],["dark","Dark"]]){const b=g[0].match(new RegExp("<button[^>]*data-theme-set=\""+k+"\"[^>]*>[\\s\\S]*?</button>"));if(!b||!/aria-pressed="false"/.test(b[0])||!/<svg[^>]*aria-hidden="true"/.test(b[0])||!new RegExp("<span class=\"tlabel\">"+l+"</span>").test(b[0]))throw f+": "+k}}'`
 
-- [ ] 04-06: Footer
+- [x] 04-06: Footer
   Requirements: VIS-06
   Files: src/components/Footer.astro, src/styles/site.css
   Copy entries: CH2, HM26 (unchanged links and credit)
