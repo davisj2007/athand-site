@@ -1,18 +1,17 @@
 # State
 
-Current phase: 04.2 (design-polish), inserted by Jake on 2026-10-26 with no gate.
-Current step: phase 04.2 VERIFY done (2026-10-26), result PASS. Next step is SHIP, after Jake's browser checklist on athandapp.com.
-Phases 01, 02, 03, and 04 are Done. Phase 04.1 is gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
+Current phase: 04.1 (features-accessibility), gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
+Current step: phase 04.2 SHIP done (2026-10-26). Next step is DISCUSS for whichever gated phase opens first: 04.1 or 05.
+Phases 01, 02, 03, 04, and 04.2 are Done.
 
 ## Next action
 
-1. Jake merges the VERIFY PR (branch verify/04.2-design-polish), waits for the Deploy workflow on main to finish green, then runs the browser checklist in .planning/phases/04.2-design-polish/VERIFY.md on https://athandapp.com.
-2. Then: "SHIP phase 04.2. Browser result: PASS" (or FAIL with notes). Follow .planning/README.md, step SHIP.
-3. Gates unchanged: DISCUSS phase 04.1 once the app repo records its TestFlight passes; DISCUSS phase 05 once Apple approves atHand. Run phases one at a time.
+1. Jake merges the SHIP PR (branch ship/04.2-design-polish).
+2. Then: DISCUSS phase 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes, or DISCUSS phase 05 once Apple approves atHand and the listing is live. Run phases one at a time.
 
 ## Waiting on Jake
 
-- Merge the VERIFY PR (branch verify/04.2-design-polish) and run the browser checklist in VERIFY.md.
+- Merge the SHIP PR (branch ship/04.2-design-polish).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -22,7 +21,9 @@ None.
 
 ## Last session
 
-VERIFY phase 04.2 (2026-10-26), local session on branch verify/04.2-design-polish from main (b2fe01e, wave 2 PR #43 merged). Result PASS. All waves checked. npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, S1 to S25 (S1 to S19 as phase 04), and all seven measure.mjs checks pass; 04-19 run under bash because its `set -- $x` needs word splitting. DSG-01: PASS with file:line evidence for FX1 to FX8 and the triage in CONTEXT.md. ARIA snapshots of Home and Features match the copy order; screenshots at 390 and 1280 in both themes match HOME-DESIGN.md as amended. One BACKLOG item (row 4 card names wrap to three lines at 390, not clipped). Wrote VERIFY.md with an 18-step browser checklist. App repo origin/main still 487b454; the brief and _ds tokens are unchanged since f4f2450.
+SHIP phase 04.2 (2026-10-26), local session on branch ship/04.2-design-polish from main (22030ce, VERIFY PR #44 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, no notes. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked DSG-01 Done in REQUIREMENTS.md and phase 04.2 Done in ROADMAP.md. Planning files only; no site code changed. The app repo has not recorded its TestFlight passes (origin/main 487b454, phase 07 at EXECUTE); the brief and _ds tokens are unchanged since f4f2450.
+
+Before that: VERIFY phase 04.2 (2026-10-26), local session on branch verify/04.2-design-polish from main (b2fe01e, wave 2 PR #43 merged). Result PASS. All waves checked. npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, S1 to S25 (S1 to S19 as phase 04), and all seven measure.mjs checks pass; 04-19 run under bash because its `set -- $x` needs word splitting. DSG-01: PASS with file:line evidence for FX1 to FX8 and the triage in CONTEXT.md. ARIA snapshots of Home and Features match the copy order; screenshots at 390 and 1280 in both themes match HOME-DESIGN.md as amended. One BACKLOG item (row 4 card names wrap to three lines at 390, not clipped). Wrote VERIFY.md with an 18-step browser checklist. App repo origin/main still 487b454; the brief and _ds tokens are unchanged since f4f2450.
 
 Before that: EXECUTE phase 04.2 wave 2 (2026-10-26), local session on branch execute/04.2-wave-2 from main (955dabf, wave 1 PR #42 merged). Completed 04.2-06 to 04.2-08: the `fields` and `lock` crops on Home rows 2 and 5 with alts A3r and A9r (FX7), the one-frame `fields` Features page top with `.overlap` removed (FX8), and Home row 4 as the live Masked and Revealed pair with the 05 shots left out of the build (FX6); fixtures updated in the same commits. All checks pass after every task: npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, and each verify command; at the end all seven measure.mjs checks, check-text on all five fixtures, S22, and S23 pass. Frame and row 4 screenshots recorded in SUMMARY.md. No deviations and no new BACKLOG items. App repo origin/main still 487b454; the brief and _ds tokens are unchanged since f4f2450.
 

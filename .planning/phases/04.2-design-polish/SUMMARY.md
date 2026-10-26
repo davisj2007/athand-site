@@ -1,5 +1,7 @@
 # Phase 04.2: design-polish - Summary
 
+Status: Shipped 2026-10-26. VERIFY PASS; Jake's browser result PASS.
+
 ## What changed
 
 PLAN.md set to Approved (2026-10-26) at the start of EXECUTE wave 1; Jake approved it in the EXECUTE prompt.
@@ -57,4 +59,6 @@ None in either wave.
 
 ## Follow-ups
 
-- All waves are checked. Next step: VERIFY phase 04.2.
+- VERIFY (2026-10-26): result PASS, DSG-01 PASS, no Fix wave. One BACKLOG item (Home row 4 card names wrap to three lines at 390, not clipped). Merged as 22030ce (PR #44) and deployed.
+- SHIP (2026-10-26): VERIFY.md result PASS; Jake's browser checklist on https://athandapp.com: PASS, no notes. DSG-01 is Done in REQUIREMENTS.md and phase 04.2 is Done in ROADMAP.md.
+- Next: phase 04.1 DISCUSS once the app repo records its TestFlight VoiceOver and Dynamic Type passes (not yet recorded; athandapp origin/main 487b454, phase 07 EXECUTE); phase 05 DISCUSS once Apple approves atHand.
