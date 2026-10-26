@@ -1,0 +1,99 @@
+# Expected copy for dist/index.html, phase 04, from phase 04 CONTEXT.md Copy drafts (Approved 2026-10-25, with Jake's edits in decision 23).
+# Read by scripts/check-text.mjs. "title:" and "description:" lines check the head;
+# "href:" lines require a link with that target inside <main>; lines starting
+# with "!" must not appear in <main>; every other line must appear in <main>.
+# "alt: X" lines (added by task 04-08) require an <img> in <main> with alt X, and every <img> in <main> must match one of them.
+# HM1 (H1, H2, unchanged)
+title: atHand: Your Info, Ready
+description: atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.
+# HM2
+Your info, ready when you need it
+# HM3
+The details you look up all the time, for you and everyone you look after, in one place on your iPhone.
+# HM4 (C1; also HM24)
+Coming soon to the App Store for iPhone.
+# HM5
+For the moments you need it
+# HM6
+At the doctor’s office
+Insurance member ID
+Sam Rivera
+XYZ000000000
+# HM7
+At a traffic stop
+Driver’s license
+D000-0000-0000
+# HM8
+At the airport
+Passport
+Passport number, hidden until you tap Reveal
+# HM9
+What it does
+# HM10
+Everything you look after
+People, vehicles, pets, homes, and more, in one place.
+# HM11
+Scan instead of typing
+Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.
+# HM12
+The right record at the right time
+Suggestions from the time of day and, if you allow them, your calendar and location.
+# HM13
+Hidden until you need it
+Sensitive numbers stay masked until you tap Reveal.
+Masked
+Revealed
+# HM14
+Locked to you
+Face ID, Touch ID, or your passcode. No password to remember.
+# HM15
+See all features
+href: /features.html
+# HM16 (no period, decision 23)
+Your information stays on your iPhone
+!Your information stays on your iPhone.
+# HM17
+No account and no sign-in.
+# HM18
+Scanning runs on your iPhone.
+# HM19
+The developer added no advertising or tracking tools.
+# HM20
+How atHand handles your information
+href: /privacy-overview.html
+# HM21 (no period, decision 23)
+Free to start
+!Free to start.
+# HM22
+Your own record is free. One purchase unlocks everything else. No subscription, no ads, no account.
+# HM23
+See pricing
+href: /pricing.html
+# HM25
+Free to download. Your own record is free.
+# HM27 (removed from Home)
+!atHand keeps the details you look up all the time, such as
+!you need a member ID, a license number, or a passport number right away
+!Keep records for people, vehicles, pets, homes, financial accounts, and contacts
+!Scan a driver’s license, passport, insurance card, VIN, vaccine record, or business card instead of typing.
+!Get a suggestion for the record that is likely to help right now
+!Lock atHand with Face ID, Touch ID, or your device passcode, and export an encrypted backup
+!Privacy in short
+!It leaves only inside an encrypted backup file that you choose to export.
+!There is no account and no sign-in.
+!RevenueCat
+!Google
+!geocoding
+!The developer added no advertising, tracking, analytics, or crash-reporting tools.
+!Read the full privacy policy
+!A one-time purchase unlocks everything else. There is no subscription.
+# Alt text. A1 hero; A2, A3, A4, A5, A6 feature rows; A8 pricing
+alt: The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic.
+alt: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
+alt: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button.
+alt: Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact.
+alt: A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button.
+alt: The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked.
+alt: The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account.
+# A9: Draft at PLAN (decision 24). Task 04-12 cannot be checked until A9 is Approved; if Jake edits it, REVISE updates this line.
+alt: The atHand lock screen. The atHand logo sits in the center, and below it the line “atHand is locked.” appears above an Unlock button.
