@@ -1,6 +1,6 @@
 # Phase 04.2: design-polish - Context
 
-Status: Needs answers
+Status: Ready
 Date: 2026-10-26
 
 ## Goal
@@ -193,7 +193,7 @@ FX1 and FX2: Approved (decision 6). FX3 to FX8: promoted by Jake (decisions 7 to
 - FX7. Two PhoneFrame crops (C12, C14, C15). Add `fields` and `lock` to PhoneFrame's `crop` prop and site.css, measured this session on all four PNGs (light and dark rows match exactly; 1320 by 2868; status bar ends at row 171):
   - `fields`, 04-check-what-we-read: content runs from Cancel (row 233) to the bottom of the What we read card (row 1535); the Save button sits at rows 2567 to 2729 after about 1,030 blank rows. The crop keeps Save out, because including it keeps about 72% of the full height with the blank area inside. Rows 172 to 1595 (61px below the card, matching the 61px above Cancel): `aspect-ratio: 1320 / 1424`, `object-position: 50% 11.911%` (172 / (2868 - 1424)).
   - `lock`, 06-lock: content runs from the logo top (row 1384) to the Unlock button bottom (row 2579), with "atHand is locked." at rows 2288 to 2327. Rows 1288 to 2675 (96px margin above and below): `aspect-ratio: 1320 / 1388`, `object-position: 50% 87.027%` (1288 / (2868 - 1388)). The blank above the logo is gone; the app's own gap between the logo and the line (about 800 rows) stays, since a crop cannot remove it.
-  - Home row 2 uses `crop="fields"`; row 5 uses `crop="lock"`. Rows 1 and 3 and the hero are unchanged. Alt text: A3 and A9 change (see Copy drafts, A3r and A9r, awaiting approval). Acceptance: rendered crops at 280px and 300px show the listed content with no status bar and no Save button; check:layout and check:a11y pass.
+  - Home row 2 uses `crop="fields"`; row 5 uses `crop="lock"`. Rows 1 and 3 and the hero are unchanged. Alt text: A3 and A9 change (see Copy drafts, A3r and A9r, approved by decision 15). Acceptance: rendered crops at 280px and 300px show the listed content with no status bar and no Save button; check:layout and check:a11y pass.
 - FX8. Features page top, one frame (O3 alternative; C13, C50). src/pages/features.astro shows one PhoneFrame, 04-check-what-we-read with `crop="fields"`, at `--site-phone` (280px, 300px from 840px) on a plain shot panel; 02-person-top is removed from the page top; the `.shot-panel.overlap` rules (site.css:824-833) are removed if nothing else uses them. Alt text A3r as FX7. Acceptance: Features requests no 02-person-top image; the frame renders 280px below 840px and 300px from it; check-text (features.txt with the 02 alt line removed and A3r in place), check:layout, and check:a11y pass.
 
 ## Implementation decisions
@@ -208,10 +208,11 @@ FX1 and FX2: Approved (decision 6). FX3 to FX8: promoted by Jake (decisions 7 to
 8. O2 promoted: in dark theme only, the privacy band fill is `--accent-press` (white text 6.47:1). Light is unchanged, and no token is added or changed. HOME-DESIGN.md, Privacy band and Colors amended. Fix item FX4. Source: Jake's answer 3.
 9. C10 promoted: the Home privacy band h2 becomes "What you add stays on your iPhone" (no period). Reason (Jake): literally true without relying on the brief's definition of personal information, and it matches the privacy overview's V6. Band facts and CTA unchanged. HM16 revised and approved; HOME-DESIGN.md, Copy amended. Fix item FX5. Source: Jake's answer 4a.
 10. C11 promoted: Home feature row 4 replaces the 05-masked and 05-revealed screenshots with a live HTML pair in the moments-card style, captioned "Masked" and "Revealed", with the strings in Copy drafts (HM28 to HM30, approved). The Reveal and Hide labels are static text, not buttons; there is no interaction on the site. A5 and A6 leave Home; the 05 shots stay in the repo. HOME-DESIGN.md, Features amended. Fix item FX6. Source: Jake's answer 4b. Set by this session, where the answer is silent: the badge is the home entity badge (`--entity-home`, "H"), because the record is a home; the Reveal and Hide labels are aria-hidden, because the masked card's screen-reader text already says "hidden until you tap Reveal", the captions give each card's state, and a static "Hide" read aloud would announce a control that does not exist.
-11. C12, C14, and C15 promoted in part: PhoneFrame gains a `fields` crop for 04-check-what-we-read and a `lock` crop for 06-lock, with the measured values in FX7; Home rows 2 and 5 use them. The Save button is left out of `fields` because it measures cleaner (FX7). A3 and A9 change because the crops change what they show, so revised drafts await approval. HOME-DESIGN.md, Phone frame and Features amended; this supersedes phase 04 decision 19's `crop="full"` for 06-lock on Home. Source: Jake's answer 4c.
+11. C12, C14, and C15 promoted in part: PhoneFrame gains a `fields` crop for 04-check-what-we-read and a `lock` crop for 06-lock, with the measured values in FX7; Home rows 2 and 5 use them. The Save button is left out of `fields` because it measures cleaner (FX7). A3 and A9 change because the crops change what they show, so revised drafts A3r and A9r replace them (approved, decision 15). HOME-DESIGN.md, Phone frame and Features amended; this supersedes phase 04 decision 19's `crop="full"` for 06-lock on Home. Source: Jake's answer 4c.
 12. O3 alternative promoted: the Features page top shows one frame, 04-check-what-we-read with `crop="fields"`, at `--site-phone` (280px, 300px from 840px); 02-person-top leaves the page top. No new page-top layout. HOME-DESIGN.md, Other pages amended. Fix item FX8. Source: Jake's answer 4d.
 13. Every other Decline, Already covered, and Not applicable entry stays as triaged. Source: Jake's answer 5.
 14. DSG-01 is amended to allow exactly the HOME-DESIGN.md changes in decisions 7 to 12; the bar on token and typeface changes stays. Jake authorized the contract changes in this session (answer 4). With FX1 to FX8, PLAN writes the phase's waves; the phase 04 copy fixtures (copy/index.txt and copy/features.txt) change in the plan's tasks, not here, so check-text keeps passing on main until EXECUTE.
+15. A3r and A9r are approved as drafted. A3r replaces A3 on Home row 2 and the Features page top; A9r replaces A9 on Home row 5. Source: Jake's answer 1, ANSWERS 2026-10-26 (third round).
 
 ## Copy drafts
 
@@ -229,15 +230,15 @@ HM13's captions "Masked" and "Revealed" are unchanged and stay Approved.
 
 A5 and A6: removed from Home (decision 10). The 05 shots stay in the repo. Status: Removed.
 
-A3r. 04-check-what-we-read, `crop="fields"`, on Home row 2 and the Features page top (replaces A3 in both places, because the crop no longer shows the Save button): "The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone." Checked against the measured crop rows (172 to 1595) in both themes. Not a claim beyond what the screen shows; supports HM11 (brief, Document capture). Status: Draft, awaiting approval.
+A3r. 04-check-what-we-read, `crop="fields"`, on Home row 2 and the Features page top (replaces A3 in both places, because the crop no longer shows the Save button): "The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone." Checked against the measured crop rows (172 to 1595) in both themes. Not a claim beyond what the screen shows; supports HM11 (brief, Document capture). Status: Approved (decision 15).
 
-A9r. 06-lock, `crop="lock"`, Home row 5 (replaces A9, because the crop drops the blank screen and the logo is no longer in the center): "Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button." Checked against the measured crop rows (1288 to 2675) in both themes; the logo shows the @Hand lockup, but the alt text says atHand (CLAUDE.md). Opens with "Close view of", as A4 does for a crop. Supports HM14 (brief, App lock). Status: Draft, awaiting approval.
+A9r. 06-lock, `crop="lock"`, Home row 5 (replaces A9, because the crop drops the blank screen and the logo is no longer in the center): "Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button." Checked against the measured crop rows (1288 to 2675) in both themes; the logo shows the @Hand lockup, but the alt text says atHand (CLAUDE.md). Opens with "Close view of", as A4 does for a crop. Supports HM14 (brief, App lock). Status: Approved (decision 15).
 
-Copy: A3r and A9r await approval. Everything else is Approved.
+Copy: all Approved. Nothing awaits approval.
 
 ## Open questions for Jake
 
-1. Approve the revised alt text A3r and A9r (Copy drafts)? Both crops change what the image shows: `fields` drops the Save to Person, Medical button, and `lock` drops the blank screen so the logo is no longer centered. Recommended default: approve both as drafted. Reason: each describes only what the crop shows, keeps the approved wording where the content is unchanged, and A9r follows A4's "Close view of" pattern for crops.
+None.
 
 ## Out of scope
 
