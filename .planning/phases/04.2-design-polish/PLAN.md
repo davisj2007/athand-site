@@ -1,6 +1,6 @@
 # Phase 04.2: design-polish - Plan
 
-Status: Draft
+Status: Approved 2026-10-26
 
 ## Goal
 
@@ -64,7 +64,7 @@ None. No GitHub settings change, no new dependency, and nothing to download (Pla
 
 Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. CSS in src/styles/site.css plus one string in index.astro.
 
-- [ ] 04.2-01: Balanced headings (FX1)
+- [x] 04.2-01: Balanced headings (FX1)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
@@ -74,7 +74,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: at 320, 390, and 1280 on Home and Features, no heading of three or more words that wraps ends on a one-word line; the six measured cases (C6, C7, C43, and the three at 320) are gone; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && grep -qF ':is(.section-title, .feature h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }' src/styles/site.css && test "$(grep -c 'text-wrap: balance' src/styles/site.css)" = 2 && node .planning/phases/04.2-design-polish/measure.mjs headings && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-02: Fewer stragglers (FX2)
+- [x] 04.2-02: Fewer stragglers (FX2)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
@@ -83,7 +83,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: on Home and Features at 390 and 1280, no listed paragraph ends on a one-word line (the ten measured at PLAN, including C1 to C5, are gone); every phase 04 fixture still passes; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && grep -qF ':is(.lede, .section-line, .feature-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }' src/styles/site.css && test "$(grep -c 'text-wrap: pretty' src/styles/site.css)" = 1 && node .planning/phases/04.2-design-polish/measure.mjs stragglers && for p in index features pricing privacy-overview support; do node scripts/check-text.mjs dist/$p.html .planning/phases/04-visuals-and-polish/copy/$p.txt || exit 1; done && npm run check:content && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-03: Prose measure 56ch (FX3)
+- [x] 04.2-03: Prose measure 56ch (FX3)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
@@ -92,7 +92,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: at 1280, no wrapping paragraph or list item in `.prose` on Features, Pricing, Privacy overview, Support, the privacy policy, or 404 averages 80 or more characters per line, and the longest line measure.mjs prints for each page is under 80; the policy and 404 main text are unchanged; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && grep -qF 'max-width: 56ch;' src/styles/site.css && ! grep -qF '68ch' src/styles/site.css && node .planning/phases/04.2-design-polish/measure.mjs measure && npm run check:content && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-04: Dark privacy band fill (FX4)
+- [x] 04.2-04: Dark privacy band fill (FX4)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
@@ -103,7 +103,7 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: `main .band` computes to #4C39C6 in light and System with the OS light, and #5A47D0 in dark and System with the OS dark, on Home and the Privacy overview; tokens:check passes and src/styles/tokens/ is unchanged; check:a11y passes in both themes.
   Verify command: `npm run build && npm run check && grep -qF ':root[data-theme="dark"] .band { background: var(--accent-press); }' src/styles/site.css && grep -qF ':root:not([data-theme="light"]) .band { background: var(--accent-press); }' src/styles/site.css && npm run tokens:check && git diff --quiet 63a8b7d -- src/styles/tokens && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && node .planning/phases/04.2-design-polish/measure.mjs band && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-05: Home privacy band h2 (FX5)
+- [x] 04.2-05: Home privacy band h2 (FX5)
   Requirements: DSG-01
   Files: src/pages/index.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: HM16 (revised, Approved)

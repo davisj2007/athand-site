@@ -613,11 +613,16 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 
 /* Privacy band (HOME-DESIGN.md, Privacy band). Full bleed; the text keeps the
    site gutter at every width. Links, icons, and the focus ring use
-   --text-on-cobalt, including on hover in dark. */
+   --text-on-cobalt, including on hover in dark. The fill is --accent-press
+   in dark (phase 04.2, decision 8). */
 
 .band {
   background: var(--accent);
   color: var(--text-on-cobalt);
+}
+:root[data-theme="dark"] .band { background: var(--accent-press); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .band { background: var(--accent-press); }
 }
 .band-inner {
   display: flex;
@@ -738,7 +743,7 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 
 /* Prose column for the detail text below a page top. */
 .prose {
-  max-width: 68ch;
+  max-width: 56ch;
   line-height: 1.6;
   padding-bottom: var(--space-12);
 }
@@ -832,3 +837,8 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   }
   .shot-panel.overlap .frame + .frame { display: block; order: -1; }
 }
+
+/* Headings balance their lines and paragraphs avoid a one-word last line;
+   browsers without support keep the default wrapping. */
+:is(.section-title, .feature h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }
+:is(.lede, .section-line, .feature-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }
