@@ -74,7 +74,7 @@ Moved from phase 04 at SHIP (2026-10-26) under phase 04 CONTEXT.md decision 21.
 
 Inserted by Jake on 2026-10-26.
 
-- DSG-01: every finding of Jake's `npx impeccable detect` run against dist/ built from main is triaged in phase 04.2 CONTEXT.md as Fix, Decline (naming the locked rule), Already covered (citing the check or decision), or Not applicable (saying why); each Fix item ships with every phase 04 check passing; no token, typeface, or HOME-DESIGN.md specification changes; impeccable is not added to the repo. Open
+- DSG-01: every finding of Jake's `npx impeccable detect` run against dist/ built from main, and of his impeccable critique of Home and Features (handoff/impeccable-critique.md), is triaged in phase 04.2 CONTEXT.md as Fix, Decline (naming the locked rule), Already covered (citing the check or decision), or Not applicable (saying why); each Fix item ships with every phase 04 check passing; no token, typeface, or HOME-DESIGN.md specification changes; impeccable is not added to the repo. Open
 
 ## Launch flip (phase 05, gated on App Store approval)
 

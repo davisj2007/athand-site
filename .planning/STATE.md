@@ -1,19 +1,19 @@
 # State
 
 Current phase: 04.2 (design-polish), inserted by Jake on 2026-10-26 with no gate.
-Current step: phase 04.2 DISCUSS done (2026-10-26). CONTEXT.md status Needs answers (one open question, no copy). Next step is ANSWERS.
+Current step: phase 04.2 ANSWERS done (2026-10-26). CONTEXT.md status Needs answers (one open question: approve the critique Fix list; no copy). Next step is ANSWERS.
 Phases 01, 02, 03, and 04 are Done. Phase 04.1 is gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04.2 DISCUSS" PR (branch discuss/04.2-design-polish).
-2. Jake answers the open question in .planning/phases/04.2-design-polish/CONTEXT.md, then: "ANSWERS phase 04.2. Follow .planning/README.md, step ANSWERS." with the answer.
+1. Jake reviews and merges the "Phase 04.2 ANSWERS" PR (branch answers/04.2-design-polish).
+2. Jake answers open question 1 in .planning/phases/04.2-design-polish/CONTEXT.md (approve FX1 and FX2; promote any of O1 to O3), then: "ANSWERS phase 04.2. Follow .planning/README.md, step ANSWERS." with the answer.
 3. Gates unchanged: DISCUSS phase 04.1 once the app repo records its TestFlight passes; DISCUSS phase 05 once Apple approves atHand. Run phases one at a time.
 
 ## Waiting on Jake
 
-- Review and merge the DISCUSS PR (branch discuss/04.2-design-polish).
-- Phase 04.2 open question 1: close with no site change, or run impeccable critique or audit outside the repo first.
+- Review and merge the ANSWERS PR (branch answers/04.2-design-polish).
+- Phase 04.2 open question 1: approve the Fix list (FX1 balanced headings, FX2 `text-wrap: pretty`), and whether to promote O1 (prose measure), O2 (dark band fill), or O3 (Features page-top frames).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -23,7 +23,9 @@ None.
 
 ## Last session
 
-DISCUSS phase 04.2 (2026-10-26), local session on branch discuss/04.2-design-polish from main (84b67ce, phase 04 SHIP PR #35 merged). Jake authorized inserting phase 04.2 design-polish; added it to ROADMAP.md and DSG-01 to REQUIREMENTS.md. Triaged all 24 findings in handoff/impeccable-detect.txt (Jake's `npx impeccable detect` against dist/ from main; untracked) after measuring text insets in Chromium at 320, 390, and 1280 in light and dark: Fix 0; Decline 14 (overused-font Inter and Space Grotesk, brief Brand and the tokens rule); Already covered 2 (privacy band, check:layout and VIS-10); Not applicable 8 (theme control and closing, 15px and 49px or more text insets; padding sits on inner containers). No site code or copy changed; impeccable not installed. One open question: close now or run critique or audit first. App repo origin/main still 60032bf.
+ANSWERS phase 04.2 (2026-10-26), local session on branch answers/04.2-design-polish from main (ec4d78a, DISCUSS PR #36 merged). Jake's answer 1: not closing; he ran impeccable critique outside the repo on Home and Features (handoff/impeccable-critique.md, untracked, sha256 592caaf6e7115ec477753b385e3ef8906a57ceea5304d696dc3983e9d27128e7). Recorded as decisions 4 and 5; DSG-01 now names the critique. Measured the checkable claims against dist/ in Chromium at 320, 390, and 1280 in light and dark. Triaged all 57 entries (C1 to C57): Fix 9 as FX1 and FX2 (CSS-only text-wrap, drafted for approval); Decline 24; Already covered 12; Not applicable 11; the four questions Decline 3, Already covered 1. Three override candidates (O1 prose measure, O2 dark band fill, O3 page-top frames) are declined under DSG-01 unless Jake promotes them. The report's double image download on Features did not reproduce. No site code or copy changed. App repo origin/main moved to f4f2450 (Brief v4.13: Contextual suggestions only; Brand, Privacy, and tokens unchanged); two BACKLOG items added.
+
+Before that: DISCUSS phase 04.2 (2026-10-26), local session on branch discuss/04.2-design-polish from main (84b67ce, phase 04 SHIP PR #35 merged). Jake authorized inserting phase 04.2 design-polish; added it to ROADMAP.md and DSG-01 to REQUIREMENTS.md. Triaged all 24 findings in handoff/impeccable-detect.txt (Jake's `npx impeccable detect` against dist/ from main; untracked) after measuring text insets in Chromium at 320, 390, and 1280 in light and dark: Fix 0; Decline 14 (overused-font Inter and Space Grotesk, brief Brand and the tokens rule); Already covered 2 (privacy band, check:layout and VIS-10); Not applicable 8 (theme control and closing, 15px and 49px or more text insets; padding sits on inner containers). No site code or copy changed; impeccable not installed. One open question: close now or run critique or audit first. App repo origin/main still 60032bf.
 
 Before that: SHIP phase 04 (2026-10-26), local session on branch ship/04-visuals-and-polish from main (be8769b, VERIFY PR #34 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, all steps. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked VIS-01 to VIS-11, SEO-01 to SEO-04, and A11Y-01 to A11Y-06 Done in REQUIREMENTS.md, and phase 04 Done in ROADMAP.md. The app repo has not recorded its TestFlight VoiceOver and Dynamic Type passes (origin/main 60032bf, phase 07 at EXECUTE done, VERIFY not run), so per decision 21 FEAT-01 moved to a new inserted phase 04.1 (features-accessibility) in ROADMAP.md and REQUIREMENTS.md, gated on those passes. Planning files only; no site code changed.
 
