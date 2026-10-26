@@ -296,7 +296,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: check-text passes against the phase 04 features fixture (copy, jump hrefs, and alt text); one h1; six h2 with the six ids; check:links passes.
   Verify command: `npm run build && node scripts/check-text.mjs dist/features.html .planning/phases/04-visuals-and-polish/copy/features.txt && test "$(grep -o '<h1' dist/features.html | wc -l | tr -d ' ')" = 1 && for i in records scanning suggestions app-lock backups light-and-dark; do grep -q "<h2[^>]*id=\"$i\"" dist/features.html || exit 1; done && grep -q '<nav[^>]*aria-label="On this page"' dist/features.html && npm run check:links`
 
-- [ ] 04-15: Pricing page top and fact row
+- [x] 04-15: Pricing page top and fact row
   Requirements: VIS-01, VIS-08, VIS-09, VIS-11
   Files: src/pages/pricing.astro
   Copy entries: P1 to P19, C1, PP1, PP2, A8
