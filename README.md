@@ -16,6 +16,7 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 - `npm run check` runs `astro check` (types and templates).
 - `npm run tokens:check`, `npm run check:external`, `npm run check:links`, and `npm run check:content` are described below.
 - `npm run check:layout` loads every built page in Chromium and checks for sideways scrolling and the 16px gutter; see check:layout below.
+- `npm run check:a11y` runs axe-core and the site's own accessibility floor on every built page; see check:a11y below.
 - `node scripts/check-text.mjs` checks a built page against an expected-copy fixture; see check:text below.
 
 ## Layout
@@ -27,7 +28,7 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 - src/styles/site.css: the site stylesheet, written against the token variables.
 - src/assets/: the logo mark SVG, copied from the app repo.
 - public/: files copied into dist/ as is, including CNAME.
-- scripts/: the check scripts, plain Node. check-layout.mjs uses Playwright; the others use built-in modules only.
+- scripts/: the check scripts, plain Node. check-layout.mjs and check-a11y.mjs use Playwright (and axe-core); the others use built-in modules only.
 
 ## Deploy
 
@@ -89,4 +90,8 @@ Playwright and axe-core are pinned devDependencies used only by the checks; no p
 npx playwright install chromium
 ```
 
-Like tokens:check, this check runs locally before every PR and does not run in the Deploy workflow.
+## check:a11y
+
+`npm run check:a11y` serves dist/ the same way and loads every page with reduced motion on, in light and dark, at 390 by 844 and 1280 by 800. It runs axe-core with its default rules and fails on any violation. It also fails on text below 16px, a body size other than 17px, a standalone link or button smaller than 44 by 44 CSS px (links inside sentences are exempt), any transition or animation that survives reduced motion, and any request to a host other than the local server.
+
+Like tokens:check, check:layout and check:a11y run locally before every PR and do not run in the Deploy workflow.

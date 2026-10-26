@@ -126,7 +126,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: the script passes on a page whose content keeps 16px gutters and fails on a page with a 400px-wide box and on a page with text at the left edge; dependencies are unchanged; devDependencies are exactly the two pinned packages; nothing new appears in dist/.
   Verify command: `npx playwright install chromium && D=$(mktemp -d) && H='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>T</title></head><body style="margin:0"><main>' && printf '%s<p style="margin:0 16px">ok</p></main></body></html>' "$H" > "$D/index.html" && node scripts/check-layout.mjs "$D" && printf '%s<div style="width:400px;margin:0 16px">wide</div></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-layout.mjs "$D" && printf '%s<p style="margin:0">edge</p></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-layout.mjs "$D" && node -e 'const p=require("./package.json");if(JSON.stringify(p.dependencies)!==JSON.stringify({"@astrojs/check":"0.9.12","@fontsource/inter":"5.3.0","@fontsource/space-grotesk":"5.3.0","astro":"7.4.2","typescript":"6.0.3"})||JSON.stringify(p.devDependencies)!==JSON.stringify({"axe-core":"4.14.0","playwright":"1.64.1"})||p.scripts["check:layout"]!=="node scripts/check-layout.mjs dist")process.exit(1)' && npm run build && ! grep -rl 'axe-core\|playwright' dist`
 
-- [ ] 04-02: Accessibility check (check:a11y)
+- [x] 04-02: Accessibility check (check:a11y)
   Requirements: A11Y-01, A11Y-04, A11Y-05
   Files: scripts/check-a11y.mjs, package.json, README.md
   Copy entries: none
