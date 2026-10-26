@@ -167,7 +167,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: every page has one nav "Main" with the four links in order and aria-current exactly as phase 03 (index, features, pricing, privacy-overview, and support once each; privacy and 404 none); no button in the header except the three theme buttons; no script in Header.astro.
   Verify command: `npm run build && node -e 'const fs=require("fs");const want={"index":"href=\"/\"","features":"/features.html","pricing":"/pricing.html","privacy-overview":"/privacy-overview.html","support":"/support.html","privacy":null,"404":null};for(const [p,h] of Object.entries(want)){const s=fs.readFileSync("dist/"+p+".html","utf8");const hd=s.match(/<header[\s\S]*?<\/header>/)[0];const navs=hd.match(/<nav[^>]*aria-label="Main"[^>]*>[\s\S]*?<\/nav>/g)||[];if(navs.length!==1)throw p+": nav count";const order=[...navs[0].matchAll(/href="([^"]+)"/g)].map(m=>m[1]).join(",");if(order!=="/features.html,/pricing.html,/privacy-overview.html,/support.html")throw p+": order "+order;const cur=[...s.matchAll(/<a\b[^>]*aria-current="page"[^>]*>/g)].map(m=>m[0]);if(h===null?cur.length!==0:(cur.length!==1||!cur[0].includes(h)))throw p+": aria-current";const btn=(hd.match(/<button\b[^>]*>/g)||[]);if(btn.length!==3||btn.some(b=>!b.includes("data-theme-set")))throw p+": header buttons"}' && ! grep -q '<script' src/components/Header.astro && grep -qF '"logo theme" "nav nav"' src/styles/site.css && grep -qF '"logo nav theme"' src/styles/site.css && npm run check:links`
 
-- [ ] 04-05: Segmented theme control with icons
+- [x] 04-05: Segmented theme control with icons
   Requirements: VIS-06
   Files: src/components/ThemeControl.astro, src/components/Icon.astro, src/styles/site.css
   Copy entries: CH1

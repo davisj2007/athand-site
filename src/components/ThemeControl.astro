@@ -1,5 +1,14 @@
+---
+import Icon from "./Icon.astro";
+
+const choices = [
+  { key: "system", icon: "system", label: "System" },
+  { key: "light", icon: "sun", label: "Light" },
+  { key: "dark", icon: "moon", label: "Dark" },
+];
+---
 <div class="theme-control" role="group" aria-label="Appearance" data-theme-control hidden>
-  <button type="button" data-theme-set="system" aria-pressed="false">System</button>
-  <button type="button" data-theme-set="light" aria-pressed="false">Light</button>
-  <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+  {choices.map((c) => (
+    <button type="button" data-theme-set={c.key} aria-pressed="false"><Icon name={c.icon} size={20} /><span class="tlabel">{c.label}</span></button>
+  ))}
 </div>

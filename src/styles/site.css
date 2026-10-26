@@ -215,27 +215,61 @@ header.site { border-bottom: 1px solid var(--border-card); }
   .site-nav ul { justify-content: flex-end; column-gap: var(--space-8); }
 }
 
+/* Theme control: one segmented group. Each button keeps a 44px target, so
+   the group is 50px tall with its 2px inner padding and border. */
 .theme-control {
   grid-area: theme;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-control);
+  background: var(--surface-card);
 }
 .theme-control button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
   min-width: var(--touch-min);
   min-height: var(--touch-min);
-  padding: 0 var(--space-3);
+  padding: 0 var(--space-2);
   font: 500 1rem var(--font-ui);
   color: var(--text-body);
-  background: var(--surface-page);
-  border: 1px solid var(--text-faint);
-  border-radius: var(--radius-control);
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--radius-control) - 2px);
   cursor: pointer;
 }
+.theme-control button:hover { background: var(--surface-chip); }
 .theme-control button[aria-pressed="true"] {
   background: var(--text-body);
   color: var(--surface-page);
-  border-color: var(--text-body);
+  font-weight: 700;
+}
+.theme-control svg { flex: none; }
+/* Below the breakpoint the label is read but not shown. */
+.tlabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (min-width: 52.5em) {
+  .theme-control button { padding: 0 var(--space-3); }
+  .tlabel {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+  }
 }
 
 /* Type: prose sizes by default; sections set their own (HOME-DESIGN.md, Type scale). */
