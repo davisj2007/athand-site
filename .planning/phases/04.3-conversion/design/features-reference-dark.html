@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>atHand Features page reference build (dark)</title>
+<!-- Design reference only, not production code. Built from the design canvas
+     (Design artifact c990cb96, "Features.dc.html"). Uses a container query at 840px on
+     .site; production uses @media (min-width: 52.5em). Fonts fall back to
+     system faces here; production self-hosts Space Grotesk and Inter. -->
+<style>
+body{margin:0}
+/* atHand site, conversion redesign: shared styles for the Home and Features
+   artboards and the static reference builds. Design reference only, not
+   production code. Tokens are the app _ds values copied from athand-site
+   src/styles/tokens (app _ds at e7537e7); nothing below them adds a token.
+   The breakpoint is a container query at 840px on .site so one file renders
+   both widths; production uses @media (min-width: 52.5em). */
+
+/* ---------- Tokens (copied, unchanged) ---------- */
+.site{
+--font-display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+--font-ui:"Inter",ui-sans-serif,system-ui,sans-serif;
+--tracking-display:-0.03em;--tracking-label:0.01em;
+--text-xs:13px;--text-sm:15px;--text-base:17px;--text-md:17px;--text-lg:22px;--text-xl:28px;--text-2xl:36px;
+--leading-tight:1.15;--leading-normal:1.45;
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;
+--radius-card:14px;--radius-card-sm:12px;--radius-chip:100px;--radius-control:10px;--radius-badge:10px;--radius-phone:28px;
+--badge-size:40px;--touch-min:44px;--logo-floor:60px;
+--ease-standard:cubic-bezier(0.2,0,0,1);--dur-fast:120ms;--dur-base:200ms;
+container:site / inline-size;
+}
+.th-light{
+--ink:#14161C;--paper:#F6F5F1;--cobalt:#4C39C6;--white:#FFFFFF;
+--surface-page:var(--paper);--surface-card:#FFFFFF;--surface-chip:#F1EFE9;--surface-ink:var(--ink);
+--border-card:#E3E1D9;--divider:#EEEDE7;
+--text-body:var(--ink);--text-muted:#4A4C55;--text-faint:#6C6C64;--text-on-cobalt:#FFFFFF;--text-on-ink:var(--paper);--text-link:var(--cobalt);
+--accent:var(--cobalt);--accent-hover:#3E2DA8;--accent-press:#342591;
+--entity-person:#516EA9;--entity-vehicle:#39797F;--entity-pet:#3E7952;--entity-home:#8D663F;
+--entity-financial:#7957A8;--entity-contact:#A5557D;--entity-custom:#65707B;
+--shadow-soft:0 20px 50px rgba(20,22,28,0.10);
+color-scheme:light;
+}
+.th-dark{
+--ink:#ECEBE4;--paper:#0E0F13;--cobalt:#6A57E0;--white:#FFFFFF;
+--surface-page:#0E0F13;--surface-card:#191B22;--surface-chip:#23252E;--surface-ink:#F6F5F1;
+--border-card:#2A2C35;--divider:#22242C;
+--text-body:#ECEBE4;--text-muted:#A7A9B2;--text-faint:#8C8E96;--text-on-cobalt:#FFFFFF;--text-on-ink:#14161C;--text-link:#A99BF5;
+--accent:#6A57E0;--accent-hover:#7E6DE8;--accent-press:#5A47D0;
+--entity-person:#8AA0D4;--entity-vehicle:#5FAEB4;--entity-pet:#6FB187;--entity-home:#C79A6C;
+--entity-financial:#A98FD6;--entity-contact:#D488AE;--entity-custom:#9AA4AE;
+--shadow-soft:0 20px 50px rgba(0,0,0,0.5);
+color-scheme:dark;
+}
+
+/* ---------- Site variables (HOME-DESIGN.md, unchanged) ---------- */
+.page{
+--site-max:1200px;
+--site-gutter:var(--space-4);
+--site-section:var(--space-12);
+--site-display:var(--text-2xl);
+--site-h2:var(--text-xl);
+--site-h3:var(--text-lg);
+--site-phone:280px;
+--site-phone-hero:280px;
+background:var(--surface-page);
+color:var(--text-body);
+font:400 var(--text-base)/1.6 var(--font-ui);
+overflow-wrap:break-word;
+}
+@container site (min-width: 840px){
+.page{
+--site-gutter:var(--space-10);
+--site-section:calc(var(--space-12) * 2);
+--site-display:calc(var(--text-xl) * 2);
+--site-h2:var(--text-2xl);
+--site-h3:var(--text-xl);
+--site-phone:300px;
+--site-phone-hero:340px;
+}
+}
+.page *,.page *::before,.page *::after{box-sizing:border-box}
+.page p,.page ul,.page ol,.page dl,.page dd,.page figure{margin:0}
+.page ul{padding:0;list-style:none}
+.page li{margin:0}
+.page svg{flex:none;display:block}
+
+.container{max-width:var(--site-max);margin-inline:auto;padding-inline:var(--site-gutter)}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+.page a{color:var(--text-link);text-decoration:underline;text-underline-offset:0.15em}
+.page a:hover{text-decoration-thickness:2px;color:var(--accent-hover)}
+.th-dark .page a:hover{color:var(--text-body)}
+.page a:focus-visible,.page button:focus-visible{outline:3px solid var(--text-link);outline-offset:3px}
+
+.page h1,.page h2,.page h3{font-family:var(--font-display);font-weight:700;letter-spacing:var(--tracking-display);line-height:var(--leading-tight);margin:0;text-wrap:balance}
+.page p{text-wrap:pretty}
+
+/* ---------- Header and footer (unchanged) ---------- */
+.site-header{border-bottom:1px solid var(--border-card)}
+.header-grid{display:grid;grid-template-columns:1fr auto;grid-template-areas:"logo theme" "nav nav";align-items:center;column-gap:var(--space-4);padding-top:var(--space-3)}
+.page a.lockup{grid-area:logo;justify-self:start;display:inline-flex;align-items:center;gap:0.06em;min-height:var(--touch-min);font-size:var(--text-xl);line-height:1;color:var(--text-link);text-decoration:none}
+.lockup svg{height:1em;width:auto}
+.lockup-word{font-family:var(--font-display);font-weight:700;letter-spacing:var(--tracking-display)}
+.site-nav{grid-area:nav;margin-top:var(--space-2);border-top:1px solid var(--divider)}
+.site-nav ul{display:flex;flex-wrap:wrap;justify-content:space-between;column-gap:var(--space-4)}
+.page .site-nav a{display:inline-flex;align-items:center;min-height:var(--touch-min);min-width:var(--touch-min);font-weight:600;text-decoration:none}
+.page .site-nav a[aria-current="page"]{font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:0.3em}
+.theme-control{grid-area:theme;display:flex;gap:2px;padding:2px;border:1px solid var(--border-card);border-radius:var(--radius-control);background:var(--surface-card)}
+.theme-control button{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-width:var(--touch-min);min-height:var(--touch-min);padding:0 var(--space-2);font:500 16px var(--font-ui);color:var(--text-body);background:transparent;border:0;border-radius:calc(var(--radius-control) - 2px);cursor:pointer}
+.theme-control button[aria-pressed="true"]{background:var(--text-body);color:var(--surface-page);font-weight:700}
+.tlabel{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+@container site (min-width: 840px){
+.header-grid{grid-template-columns:auto 1fr auto;grid-template-areas:"logo nav theme";column-gap:var(--space-8);padding-block:var(--space-4)}
+.site-nav{margin:0;border:0;justify-self:end}
+.site-nav ul{justify-content:flex-end;column-gap:var(--space-8)}
+.theme-control button{padding:0 var(--space-3)}
+.tlabel{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;clip-path:none}
+}
+.site-footer{border-top:1px solid var(--border-card);color:var(--text-muted)}
+.footer-row{padding-top:var(--space-8);padding-bottom:var(--space-10);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--space-4) var(--space-8)}
+.footer-row ul{display:flex;flex-wrap:wrap;column-gap:var(--space-6)}
+.footer-row a{display:inline-flex;align-items:center;min-height:var(--touch-min);text-decoration-thickness:1px}
+
+/* ---------- Shared parts ---------- */
+.cta{display:inline-flex;align-items:center;gap:var(--space-2);min-height:var(--touch-min);font-weight:600;text-decoration-thickness:1px;text-underline-offset:0.2em}
+.section{padding-block:var(--site-section)}
+.section + .section{padding-top:0}
+.section-title{font-size:var(--site-h2)}
+.section-head{display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8);max-width:40rem}
+.section-line{font-size:var(--text-lg);line-height:var(--leading-normal);color:var(--text-muted)}
+.coming-soon{display:flex;align-items:center;gap:var(--space-3);font-weight:600;color:var(--text-body)}
+.coming-soon svg{color:var(--text-muted)}
+
+/* Phone frame (unchanged) */
+.frame{width:var(--site-phone);max-width:100%;min-width:0}
+.frame[data-hero]{width:var(--site-phone-hero)}
+.phone{background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-phone);padding:var(--space-2)}
+.frame[data-hero] .phone{box-shadow:var(--shadow-soft)}
+.screen{overflow:hidden;border-radius:calc(var(--radius-phone) - var(--space-2));border:1px solid var(--divider);background:var(--surface-page);aspect-ratio:1320 / 2696}
+.screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.frame[data-crop="suggest"] .screen{aspect-ratio:1320 / 1388}
+.frame[data-crop="suggest"] img{object-position:50% 11.62%}
+.frame[data-crop="fields"] .screen{aspect-ratio:1320 / 1424}
+.frame[data-crop="fields"] img{object-position:50% 11.911%}
+.frame[data-crop="perks"] .screen{aspect-ratio:1320 / 1208}
+.frame[data-crop="perks"] img{object-position:50% 50%}
+.frame figcaption,.pair figcaption{margin-top:var(--space-3);text-align:center;font-weight:600;color:var(--text-body)}
+
+/* Chip: a non-interactive label with an icon. Not a link or a button:
+   no hover, no cursor change. */
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.chip{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4) var(--space-2) var(--space-3);background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-chip);font-weight:600;line-height:1.3;color:var(--text-body)}
+.chip svg{color:var(--text-link)}
+
+/* Stage: the --surface-chip panel that holds a live card or a crop. */
+.stage{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:var(--space-6);padding:var(--space-8) var(--space-4);background:var(--surface-chip);border-radius:var(--radius-card);min-width:0}
+
+/* Mock card: live HTML in the moments-card style. */
+.mock{display:flex;flex-direction:column;gap:var(--space-4);flex:1 1 17rem;max-width:26rem;min-width:0;padding:var(--space-6);background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-card);text-align:left}
+.mock-title{font:700 var(--text-lg)/var(--leading-tight) var(--font-display);letter-spacing:var(--tracking-display)}
+.mock-sub{font-size:16px;line-height:1.35;color:var(--text-muted)}
+.mock-label{display:flex;justify-content:space-between;gap:var(--space-3);font-size:16px;font-weight:600;color:var(--text-muted)}
+
+/* Records and badges (moments, unchanged) */
+.record{display:flex;align-items:center;gap:var(--space-3);padding-top:var(--space-5);border-top:1px solid var(--divider)}
+.badge{flex:none;display:inline-flex;align-items:center;justify-content:center;width:var(--badge-size);height:var(--badge-size);border-radius:var(--radius-chip);background:var(--entity-person);color:var(--white);font:700 var(--text-base)/1 var(--font-display)}
+.th-dark .badge{color:var(--text-on-ink)}
+.badge-home{background:var(--entity-home)}
+.badge-vehicle{background:var(--entity-vehicle)}
+.badge-pet{background:var(--entity-pet)}
+.badge-financial{background:var(--entity-financial)}
+.badge-contact{background:var(--entity-contact)}
+.badge-custom{background:var(--entity-custom)}
+.record-name{font-weight:700;line-height:1.3}
+.record-sub{font-size:16px;line-height:1.35;color:var(--text-muted)}
+.record-value{font-size:var(--text-lg);font-weight:500;line-height:1.2;letter-spacing:var(--tracking-label);font-variant-numeric:tabular-nums}
+
+/* ---------- Hero ---------- */
+.hero-grid{display:grid;gap:var(--space-10);align-items:center;padding-block:var(--site-section)}
+.hero-copy{display:flex;flex-direction:column;gap:var(--space-6);min-width:0}
+.hero h1{font-size:var(--site-display);line-height:1.08;max-width:16ch}
+.hero .lede{font-size:var(--text-lg);line-height:var(--leading-normal);color:var(--text-muted);max-width:34rem}
+.store-slot{display:flex;align-items:center;min-height:calc(var(--space-12) + var(--space-2))}
+.hero-shot{display:flex;justify-content:center;min-width:0}
+.hero + .section{padding-top:0}
+@container site (min-width: 840px){
+.hero-grid{grid-template-columns:minmax(0,1fr) auto;gap:var(--space-12)}
+.hero-copy{gap:var(--space-8)}
+}
+
+/* ---------- Moments (unchanged) ---------- */
+.moments{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:var(--space-4)}
+.moment{background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-card);padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-5);min-width:0}
+.moment-head{display:flex;align-items:center;gap:var(--space-3)}
+.moment h3{font-size:var(--text-lg)}
+.glyph{flex:none;display:inline-flex;align-items:center;justify-content:center;width:var(--touch-min);height:var(--touch-min);border-radius:var(--radius-chip);background:var(--surface-chip);color:var(--text-body)}
+
+/* ---------- Feature rows ---------- */
+.f-list{display:flex;flex-direction:column;gap:var(--space-12)}
+.f-copy{display:flex;flex-direction:column;gap:var(--space-3);max-width:28rem;min-width:0}
+.f-copy h3{font-size:var(--site-h3)}
+.f-copy p{font-size:var(--text-lg);line-height:var(--leading-normal);color:var(--text-muted)}
+
+/* Row 1, span card: copy beside the entity grid inside one card. */
+.f-span{display:grid;gap:var(--space-8);padding:var(--space-6);background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-card)}
+.entities{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(7rem,100%),1fr));gap:var(--space-3)}
+.entities li{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-3);padding:var(--space-4);background:var(--surface-page);border:1px solid var(--divider);border-radius:var(--radius-card-sm);font-weight:600;line-height:1.25;min-width:0}
+.stage .entities{flex:1 1 100%}
+.stage .entities li{background:var(--surface-card);border-color:var(--border-card)}
+
+/* Rows 2 and 4, split: copy and a stage side by side; .flip puts the stage first. */
+.f-split{display:grid;gap:var(--space-6);align-items:center}
+.field-list{border:1px solid var(--border-card);border-radius:var(--radius-card-sm)}
+.field-list > div{display:flex;flex-direction:column;gap:2px;padding:var(--space-3) var(--space-4)}
+.field-list > div + div{border-top:1px solid var(--divider)}
+.field-list dt{font-size:16px;line-height:1.35;color:var(--text-muted)}
+.field-list dd{font-size:var(--text-lg);font-weight:500;line-height:1.25;letter-spacing:var(--tracking-label);font-variant-numeric:tabular-nums}
+.frame-sm{display:none;width:200px}
+
+/* Row 3, center: copy centered above a full-width stage. */
+.f-center{display:flex;flex-direction:column;align-items:center;gap:var(--space-8);text-align:center}
+.f-center .f-copy{align-items:center}
+.f-center .stage{width:100%;flex-direction:column;gap:var(--space-6)}
+.banner{display:flex;align-items:center;gap:var(--space-4);width:100%;max-width:34rem;padding:var(--space-5) var(--space-5) var(--space-5) var(--space-6);background:var(--accent);color:var(--text-on-cobalt);border-radius:var(--radius-card);font-size:var(--text-lg);line-height:1.35;text-align:left}
+.banner p{flex:1 1 auto;min-width:0}
+.signals{justify-content:center}
+
+/* Row 4, the Masked and Revealed pair (unchanged). */
+.pair{flex:1 1 140px;max-width:240px;min-width:0}
+.secret{background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-card);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);text-align:left}
+.secret .record{border-top:0;padding-top:0}
+.secret-row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--space-2) var(--space-3);padding-top:var(--space-4);border-top:1px solid var(--divider)}
+.secret-action{font-weight:600;color:var(--text-link)}
+
+/* Row 5, lock card: glyph, copy, and the three ways in. */
+.f-lock{display:grid;gap:var(--space-6);padding:var(--space-6);background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-card)}
+.lock-glyph{display:inline-flex;align-items:center;justify-content:center;width:calc(var(--space-12) + var(--space-8));height:calc(var(--space-12) + var(--space-8));border-radius:var(--radius-chip);background:var(--surface-chip);color:var(--text-link)}
+.f-lock .chip{background:var(--surface-chip);border-color:var(--surface-chip)}
+.page .more{margin-top:var(--space-10)}
+
+@container site (min-width: 840px){
+.f-list{gap:var(--site-section)}
+.f-span{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;gap:var(--space-12);padding:var(--space-12)}
+.f-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12)}
+.f-split.flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.f-split.flip .stage{order:-1}
+.stage{padding:var(--space-10)}
+.f-center .stage{padding:var(--space-12) var(--space-10)}
+.frame-sm{display:block}
+.f-lock{grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--space-10);padding:var(--space-10) var(--space-12)}
+.f-lock .chips{flex-direction:column;align-items:stretch}
+}
+
+/* ---------- Comparison: "Why not just…" ----------
+   A list, not a table: each criterion is an h3 with a dl of three answers.
+   From 840px the rows line up under a visual header (aria-hidden) and the dt
+   labels are visually hidden; below 840px each criterion is a card and the dt
+   labels show. Every answer is a word plus a sentence, so nothing relies on
+   color or the icon. */
+.cmp-head{display:none}
+.cmp-rows{display:flex;flex-direction:column;gap:var(--space-4)}
+.cmp-row{padding:var(--space-5);background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-card);min-width:0}
+.cmp-q{font-size:var(--text-lg);margin-bottom:var(--space-3)}
+.cmp-cell{display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-3) 0;border-top:1px solid var(--divider);min-width:0}
+.cmp-cell dt{font-weight:700;line-height:1.3}
+.cmp-cell dd{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cmp-cell.us{margin-top:var(--space-2);padding:var(--space-3) var(--space-4);background:var(--surface-chip);border-top:0;border-radius:var(--radius-card-sm)}
+.verdict{display:inline-flex;align-items:center;gap:var(--space-2);font-weight:700;line-height:1.3}
+.verdict svg{color:var(--text-muted)}
+.us .verdict svg{color:var(--text-link)}
+.note{font-size:16px;line-height:1.45;color:var(--text-muted)}
+@container site (min-width: 840px){
+.cmp{--cmp-cols:minmax(0,1.15fr) minmax(0,3fr)}
+.cmp-head,.cmp-row{display:grid;grid-template-columns:var(--cmp-cols);column-gap:var(--space-4)}
+.cmp-head-cols,.cmp-cells{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--space-4)}
+.cmp-head span{padding:var(--space-4) var(--space-5);font:700 var(--text-lg)/var(--leading-tight) var(--font-display);letter-spacing:var(--tracking-display)}
+.cmp-head .us{background:var(--surface-card);border:1px solid var(--border-card);border-bottom:0;border-radius:var(--radius-card) var(--radius-card) 0 0;color:var(--text-link)}
+.cmp-rows{gap:0}
+.cmp-row{padding:0;background:none;border:0;border-radius:0;border-top:1px solid var(--border-card)}
+.cmp-q{font-size:var(--text-base);font-family:var(--font-ui);letter-spacing:0;line-height:1.4;margin:0;padding:var(--space-5) var(--space-5) var(--space-5) 0}
+.cmp-cell{padding:var(--space-5);border-top:0}
+.cmp-cell dt{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.cmp-cell.us{margin:0;padding:var(--space-5);background:var(--surface-card);border-inline:1px solid var(--border-card);border-radius:0}
+.cmp-row:last-child .cmp-cell.us{border-bottom:1px solid var(--border-card);border-radius:0 0 var(--radius-card) var(--radius-card)}
+}
+
+/* ---------- Privacy band (unchanged) ---------- */
+.band{background:var(--accent);color:var(--text-on-cobalt)}
+.th-dark .band{background:var(--accent-press)}
+.band-inner{display:flex;flex-direction:column;gap:var(--space-8);padding-block:var(--site-section)}
+.band h2{font-size:var(--site-h2);max-width:20ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:var(--space-6)}
+.facts li{display:flex;align-items:flex-start;gap:var(--space-4);padding-top:var(--space-5);border-top:1px solid currentColor;font-size:var(--text-lg);font-weight:500;line-height:1.35}
+.facts svg{margin-top:2px}
+.page .band a,.th-dark .page .band a:hover{color:var(--text-on-cobalt)}
+
+/* ---------- Pricing and closing (unchanged) ---------- */
+.pricing-grid{display:grid;gap:var(--space-10);align-items:center}
+.pricing-copy{display:flex;flex-direction:column;gap:var(--space-5);min-width:0}
+.pricing-copy .section-line{max-width:30rem}
+.closing{border-top:1px solid var(--border-card)}
+.closing-inner{display:flex;flex-direction:column;align-items:center;gap:var(--space-5);padding-block:var(--site-section);text-align:center}
+.closing-mark{display:block;width:var(--logo-floor);color:var(--text-link)}
+.closing-mark svg{width:100%;height:auto}
+@container site (min-width: 840px){
+.pricing-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-12)}
+}
+
+/* ---------- Features page ---------- */
+.page-top-grid{display:grid;gap:var(--space-10);align-items:center;padding-block:var(--space-10)}
+.page-top-copy{display:flex;flex-direction:column;gap:var(--space-5);min-width:0}
+.page-top h1{font-size:var(--text-2xl)}
+.page-top .lede{font-size:var(--text-lg);line-height:var(--leading-normal);max-width:34rem}
+.page-top-visual{display:flex;justify-content:center;min-width:0}
+.jump ul{display:flex;flex-wrap:wrap;gap:0 var(--space-6)}
+.jump a{display:inline-flex;align-items:center;min-height:var(--touch-min);font-weight:600}
+.fsec{border-top:1px solid var(--border-card);padding-block:var(--space-12)}
+.fsec-top{display:grid;gap:var(--space-6);align-items:center;margin-bottom:var(--space-8)}
+.fsec-copy{display:flex;flex-direction:column;gap:var(--space-3);max-width:28rem;min-width:0}
+.fsec h2{font-size:var(--site-h2)}
+.fsec-intro{font-size:var(--text-lg);line-height:var(--leading-normal);color:var(--text-muted)}
+.prose{max-width:56ch;line-height:1.6}
+.prose p + p{margin-top:var(--space-4)}
+.fact-list{display:flex;flex-direction:column;gap:var(--space-3)}
+.fact-list li{display:flex;align-items:flex-start;gap:var(--space-3);line-height:1.4}
+.fact-list svg{color:var(--text-link);margin-top:1px}
+.theme-pair{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-6)}
+.theme-pair .frame{width:220px}
+@container site (min-width: 840px){
+.page-top-grid{grid-template-columns:minmax(0,1fr) auto;gap:var(--space-12);padding-block:var(--space-12)}
+.fsec{padding-block:var(--site-section)}
+.fsec-top{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-12)}
+}
+.page .band a:focus-visible{outline-color:var(--text-on-cobalt)}
+
+</style>
+</head>
+<body>
+<div class="site th-dark" style="width: 100%">
+<div class="page">
+<header class="site-header">
+<div class="container header-grid">
+<a class="lockup" href="home-reference-dark.html" aria-label="atHand, home"><svg viewBox="215 30 350 280" fill="none" stroke="currentColor" aria-hidden="true"><path d="M 415 160 A 62 62 0 1 0 291 160 A 62 62 0 1 0 415 160 M 415 100 L 415 188 Q 415 210 437 210 L 545 210" stroke-width="16" stroke-linecap="round"></path><path d="M 505 158 L 505 260 Q 505 288 531 288" stroke-width="16" stroke-linecap="round"></path><path d="M 470 180 L 470 98 Q 470 45 417 45 L 283 45 Q 230 45 230 98 L 230 232 Q 230 285 283 285 L 417 285 Q 470 285 470 240" stroke-width="9" stroke-linecap="round"></path></svg><span class="lockup-word" aria-hidden="true">Hand</span></a>
+<nav class="site-nav" aria-label="Main">
+<ul>
+<li><a href="#main" aria-current="page">Features</a></li>
+<li><a href="home-reference-dark.html">Pricing</a></li>
+<li><a href="home-reference-dark.html">Privacy</a></li>
+<li><a href="home-reference-dark.html">Support</a></li>
+</ul>
+</nav>
+<div class="theme-control" role="group" aria-label="Appearance">
+<button type="button" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"></path></svg><span class="tlabel">System</span></button>
+<button type="button" aria-pressed="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"></path></svg><span class="tlabel">Light</span></button>
+<button type="button" aria-pressed="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg><span class="tlabel">Dark</span></button>
+</div>
+</div>
+</header>
+
+<main id="main">
+
+<section class="page-top" aria-labelledby="page-title">
+<div class="container page-top-grid">
+<div class="page-top-copy">
+<h1 id="page-title">Features</h1>
+<p class="lede">atHand stores the details you look up all the time and brings up the right record when it can help.</p>
+<p class="coming-soon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M10.5 18.5h3"></path></svg>Coming soon to the App Store for iPhone.</p>
+<nav class="jump" aria-label="On this page">
+<ul>
+<li><a href="#records">Records</a></li>
+<li><a href="#scanning">Scanning</a></li>
+<li><a href="#suggestions">Suggestions</a></li>
+<li><a href="#hidden">Hidden fields</a></li>
+<li><a href="#app-lock">App lock</a></li>
+<li><a href="#backups">Backups</a></li>
+<li><a href="#light-and-dark">Light and dark</a></li>
+</ul>
+</nav>
+</div>
+<div class="page-top-visual">
+<div class="stage">
+<figure class="frame" data-crop="full">
+<div class="phone"><div class="screen"><img src="../../../../src/assets/shots/02-person-top-dark.png" width="720" height="1564" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons."></div></div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+
+<section class="fsec" aria-labelledby="records">
+<div class="container">
+<div class="fsec-top">
+<div class="fsec-copy">
+<h2 id="records">Records for everything you look after</h2>
+<p class="fsec-intro">Everything you look after, each in its own record.</p>
+</div>
+<div class="stage">
+<ul class="entities" aria-label="Record types">
+<li><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"></path></svg></span>People</li>
+<li><span class="badge badge-vehicle" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16.5v-3.5l2-5a2 2 0 0 1 1.9-1.3h8.2A2 2 0 0 1 18 8l2 5v3.5z"></path><path d="M6 16.5v2M18 16.5v2M4.5 12.5h15"></path></svg></span>Vehicles</li>
+<li><span class="badge badge-pet" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10.5" r="1.8"></circle><circle cx="10" cy="6.5" r="1.8"></circle><circle cx="14" cy="6.5" r="1.8"></circle><circle cx="17.5" cy="10.5" r="1.8"></circle><path d="M12 12c-3 0-5.5 3.2-5.5 5.5 0 1.6 1.3 2.5 2.8 2.5 1 0 1.7-.5 2.7-.5s1.7.5 2.7.5c1.5 0 2.8-.9 2.8-2.5C17.5 15.2 15 12 12 12z"></path></svg></span>Pets</li>
+<li><span class="badge badge-home" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"></path><path d="M6 9.5V20h12V9.5"></path><path d="M10 20v-5h4v5"></path></svg></span>Homes</li>
+<li><span class="badge badge-financial" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5"></path><path d="M5.5 9.5v7M10 9.5v7M14 9.5v7M18.5 9.5v7M3.5 20h17"></path></svg></span>Financial accounts</li>
+<li><span class="badge badge-contact" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><circle cx="9" cy="11" r="2.2"></circle><path d="M5.8 16.5c.7-1.6 1.9-2.3 3.2-2.3s2.5.7 3.2 2.3M14.5 10h4M14.5 13.5h3"></path></svg></span>Contacts</li>
+<li><span class="badge badge-custom" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0z"></path><circle cx="8" cy="8" r="1.5"></circle></svg></span>Custom records</li>
+</ul>
+</div>
+</div>
+<div class="prose">
+<p>Add records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record with your own labels.</p>
+<p>Each detail is stored once, on the record it belongs to. A person holds identity, medical, insurance, and document details. A vehicle holds its plate, VIN, insurance, and roadside assistance number. A pet holds its microchip number, vet, and vaccine records.</p>
+<p>Contacts, such as a doctor, a mechanic, or a vet, are records of their own, and you can link one to any person, pet, or vehicle.</p>
+<p>Adding a record takes you through one section at a time, and you can save and close at any step. To make a change later, pick the section you want to edit.</p>
+</div>
+</div>
+</section>
+
+<section class="fsec" aria-labelledby="scanning">
+<div class="container">
+<div class="fsec-top">
+<div class="fsec-copy">
+<h2 id="scanning">Scan instead of typing</h2>
+<p class="fsec-intro">Point your camera at a document, then check what atHand read.</p>
+</div>
+<div class="stage">
+<div class="mock">
+<div>
+<p class="mock-title">Check what we read</p>
+<p class="mock-sub">Change anything that’s wrong before you save.</p>
+</div>
+<p class="mock-label"><span>What we read</span></p>
+<dl class="field-list">
+<div><dt>Member ID</dt><dd>XYZ000000000</dd></div>
+<div><dt>Group number</dt><dd>00000</dd></div>
+</dl>
+</div>
+</div>
+</div>
+<div class="prose">
+<p>Scan a driver’s license, passport, insurance card, VIN, vaccine record, utility bill, payment card, or business card.</p>
+<p>atHand reads the barcode on a driver’s license and the machine-readable lines in a passport, and suggests matches from the text on other documents. Recognition runs on your iPhone.</p>
+<p>Nothing is saved until you check it. atHand marks any field it is unsure of with “Check this,” and you can correct any field or retake the photo before saving.</p>
+<p>Start with Scan to add on the home screen and atHand works out what kind of record the document belongs to. It recognizes licenses, passports, VINs, and contact QR codes, and asks you to choose for anything else.</p>
+</div>
+</div>
+</section>
+
+<section class="fsec" aria-labelledby="suggestions">
+<div class="container">
+<div class="fsec-top">
+<div class="fsec-copy">
+<h2 id="suggestions">The right record at the right time</h2>
+<p class="fsec-intro">atHand can suggest a record before you go looking for it.</p>
+</div>
+<div class="stage" style="flex-direction: column">
+<div class="banner">
+<p><span class="vh">Example suggestion banner: </span>Flight to Denver, your <strong>recommended</strong> info is ready</p>
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+</div>
+<ul class="chips signals" aria-label="What suggestions use">
+<li class="chip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Time of day</li>
+<li class="chip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 10h16M8.5 3v4M15.5 3v4"></path></svg>Your calendar, if you allow it</li>
+<li class="chip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0c0 5.2-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.3"></circle></svg>Your location, if you allow it</li>
+</ul>
+</div>
+</div>
+<div class="prose">
+<p>atHand can suggest a record when it is likely to help, such as before an appointment on your calendar.</p>
+<p>Suggestions use the time of day, whether it is a weekday or the weekend, the records you opened recently, and, if you allow them, your calendar and location. Matching runs on your iPhone.</p>
+<p>If you allow location, Apple’s geocoding service receives your location to return the name of a nearby place. <a href="home-reference-dark.html">Read how atHand handles your information</a>.</p>
+<p>The suggestion banner says only that your information is ready. It never names a category, such as medical. When nothing matches with confidence, atHand shows no banner, and you can turn suggestions off at any time.</p>
+</div>
+</div>
+</section>
+
+<section class="fsec" aria-labelledby="hidden">
+<div class="container">
+<div class="fsec-top">
+<div class="fsec-copy">
+<h2 id="hidden">Hidden until you need it</h2>
+<p class="fsec-intro">Sensitive numbers stay masked until you tap Reveal.</p>
+</div>
+<div class="stage">
+<figure class="pair">
+<div class="secret">
+<div class="record"><span class="badge badge-home" aria-hidden="true">H</span><div><p class="record-name">Maple Street house</p><p class="record-sub">Alarm code</p></div></div>
+<div class="secret-row"><p class="record-value"><span aria-hidden="true">••••••••</span><span class="vh">Alarm code, hidden until you tap Reveal</span></p><span class="secret-action" aria-hidden="true">Reveal</span></div>
+</div>
+<figcaption>Masked</figcaption>
+</figure>
+<figure class="pair">
+<div class="secret">
+<div class="record"><span class="badge badge-home" aria-hidden="true">H</span><div><p class="record-name">Maple Street house</p><p class="record-sub">Alarm code</p></div></div>
+<div class="secret-row"><p class="record-value">0000</p><span class="secret-action" aria-hidden="true">Hide</span></div>
+</div>
+<figcaption>Revealed</figcaption>
+</figure>
+</div>
+</div>
+<div class="prose">
+<p>Sensitive numbers, such as passport numbers, account numbers, alarm codes, and Wi-Fi passwords, stay hidden until you tap Reveal, and hide again when you leave the app.</p>
+</div>
+</div>
+</section>
+
+<section class="fsec" aria-labelledby="app-lock">
+<div class="container">
+<div class="fsec-top">
+<div class="fsec-copy">
+<h2 id="app-lock">Locked to you</h2>
+<p class="fsec-intro">Face ID, Touch ID, or your passcode. No password to remember.</p>
+</div>
+<div class="stage">
+<span class="lock-glyph" aria-hidden="true" style="background: var(--surface-card)"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path><path d="M12 14.5v2"></path></svg></span>
+<ul class="chips" aria-label="Ways to unlock">
+<li class="chip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"></path><path d="M9 9.5v1M15 9.5v1M12 9.5V13h-1M9.5 16c1.5 1.2 3.5 1.2 5 0"></path></svg>Face ID</li>
+<li class="chip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 19.5c1.2-2.2 1.5-4.5 1.5-7a2 2 0 0 1 4 0c0 1.5-.1 3-.4 4.4M12 12.5c0 3.3-.7 6-2 8M16.3 18.5c.4-1.3.7-2.8.7-4.5v-1.5a5 5 0 0 0-9.5-2.2M5.5 16c.6-1.2 1-2.3 1-3.5 0-1 .2-2 .6-2.8M19 11.5c.1.6.1 1.2.1 1.8"></path></svg>Touch ID</li>
+<li class="chip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6.5" cy="6" r="1.3"></circle><circle cx="12" cy="6" r="1.3"></circle><circle cx="17.5" cy="6" r="1.3"></circle><circle cx="6.5" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="17.5" cy="12" r="1.3"></circle><circle cx="12" cy="18" r="1.3"></circle></svg>Your passcode</li>
+</ul>
+</div>
+</div>
+<div class="prose">
+<p>Lock atHand with Face ID or Touch ID, with your device passcode as the fallback. There is no separate password to remember.</p>
+<p>The lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. Choose whether atHand locks again as soon as you leave it, or after 5 minutes, 30 minutes, or 1 hour.</p>
+<p>When you switch away from atHand, a cover hides your information in the app switcher, whether or not the lock is on.</p>
+</div>
+</div>
+</section>
+
+<section class="fsec" aria-labelledby="backups">
+<div class="container">
+<div class="fsec-top">
+<div class="fsec-copy">
+<h2 id="backups">Backups you control</h2>
+<p class="fsec-intro">An encrypted copy of your records, saved where you choose.</p>
+</div>
+<div class="stage">
+<div class="mock">
+<div class="record" style="border-top: 0; padding-top: 0">
+<span class="glyph" aria-hidden="true" style="color: var(--text-link)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="5" rx="1.5"></rect><path d="M5 9v9.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V9M10 13h4"></path></svg></span>
+<div><p class="record-name">Encrypted backup</p><p class="record-sub">Protected by a passphrase you choose</p></div>
+</div>
+<ul class="fact-list">
+<li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Your records and photos</li>
+<li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Saved wherever you like</li>
+<li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>A one-time copy, not sync</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="prose">
+<p>Export an encrypted backup of your records and photos, protected by a passphrase you choose, and save it wherever you like.</p>
+<p>A backup is a one-time copy, not sync. Importing one replaces all the data on that iPhone, and atHand asks you to confirm first.</p>
+<p>A backup never includes your purchase, your settings, or your app lock setting.</p>
+</div>
+</div>
+</section>
+
+<section class="fsec" aria-labelledby="light-and-dark">
+<div class="container">
+<div class="fsec-top">
+<div class="fsec-copy">
+<h2 id="light-and-dark">Light and dark</h2>
+<p class="fsec-intro">Light or dark, your choice.</p>
+</div>
+<div class="stage theme-pair">
+<figure class="frame" data-crop="suggest">
+<div class="phone"><div class="screen"><img src="../../../../src/assets/shots/01-home-light.png" width="720" height="1564" alt="Close view of the atHand home screen in Light appearance, with the Flight to Denver banner and the Suggested for you list."></div></div>
+<figcaption>Light</figcaption>
+</figure>
+<figure class="frame" data-crop="suggest">
+<div class="phone"><div class="screen"><img src="../../../../src/assets/shots/01-home-dark.png" width="720" height="1564" alt="The same view in Dark appearance."></div></div>
+<figcaption>Dark</figcaption>
+</figure>
+</div>
+</div>
+<div class="prose">
+<p>atHand follows your iPhone’s appearance, or you can choose Light or Dark in Settings.</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<div class="container footer-row">
+<nav aria-label="Footer">
+<ul>
+<li><a href="#main">Privacy policy</a></li>
+<li><a href="#main">Support</a></li>
+<li><a href="mailto:support@athandapp.com">support@athandapp.com</a></li>
+</ul>
+</nav>
+<p><a href="https://jacobdavis.co">Made by Jacob Davis</a></p>
+</div>
+</footer>
+</div>
+</div>
+</body>
+</html>

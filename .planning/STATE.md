@@ -1,17 +1,18 @@
 # State
 
-Current phase: 04.1 (features-accessibility), gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
-Current step: phase 04.2 SHIP done (2026-10-26). Next step is DISCUSS for whichever gated phase opens first: 04.1 or 05.
+Current phase: 04.3 (conversion), inserted by Jake on 2026-10-26 before phase 05, with no gate. Phase 04.1 stays gated on the app repo's TestFlight VoiceOver and Dynamic Type passes; phase 05 on App Store approval.
+Current step: phase 04.3 DISCUSS done (2026-10-26). CONTEXT.md status: Needs answers (four open questions; all new copy awaits approval). Next step is ANSWERS phase 04.3.
 Phases 01, 02, 03, 04, and 04.2 are Done.
 
 ## Next action
 
-1. Jake merges the SHIP PR (branch ship/04.2-design-polish).
-2. Then: DISCUSS phase 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes, or DISCUSS phase 05 once Apple approves atHand and the listing is live. Run phases one at a time.
+1. Jake merges the DISCUSS PR (branch discuss/04.3-conversion).
+2. Then: ANSWERS phase 04.3, with answers to the four questions in .planning/phases/04.3-conversion/CONTEXT.md and the copy approval.
 
 ## Waiting on Jake
 
-- Merge the SHIP PR (branch ship/04.2-design-polish).
+- Merge the DISCUSS PR (branch discuss/04.3-conversion).
+- Answers to phase 04.3 questions 1 to 4 and approval of the Copy drafts.
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -21,7 +22,9 @@ None.
 
 ## Last session
 
-SHIP phase 04.2 (2026-10-26), local session on branch ship/04.2-design-polish from main (22030ce, VERIFY PR #44 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, no notes. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked DSG-01 Done in REQUIREMENTS.md and phase 04.2 Done in ROADMAP.md. Planning files only; no site code changed. The app repo has not recorded its TestFlight passes (origin/main 487b454, phase 07 at EXECUTE); the brief and _ds tokens are unchanged since f4f2450.
+DISCUSS phase 04.3 (2026-10-26), local session on branch discuss/04.3-conversion from main (a5596bd, phase 04.2 SHIP PR #45 merged). With Jake's authorization: inserted phase 04.3 "conversion" in ROADMAP.md and REQUIREMENTS.md (CNV-01 to CNV-07) before phase 05 with no gate; imported handoff/athand-04.3-conversion.zip (sha256 deebd763…, not committed) into .planning/phases/04.3-conversion/design/ byte for byte. Wrote CONTEXT.md: the twelve parts of phase 04's HOME-DESIGN.md the amendments supersede, Copy drafts re-cited to the brief or approved site strings with Jake's corrections a to d applied (H-6 is "Face ID or passcode lock": measured on one line at 320, 390, 840, and 1280 with the production fonts), and four open questions (comparison cells W-7p and row 5, unused screenshots, price at launch). Measured the reference builds in Chromium: no horizontal scroll at 320, 390, or 1280, no text below 16px, comparison inside the gutters at 320. Added the price-at-launch item to BACKLOG.md for phase 05. No site code changed. App repo origin/main 487b454; the brief and _ds tokens are unchanged since f4f2450.
+
+Before that: SHIP phase 04.2 (2026-10-26), local session on branch ship/04.2-design-polish from main (22030ce, VERIFY PR #44 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, no notes. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked DSG-01 Done in REQUIREMENTS.md and phase 04.2 Done in ROADMAP.md. Planning files only; no site code changed. The app repo has not recorded its TestFlight passes (origin/main 487b454, phase 07 at EXECUTE); the brief and _ds tokens are unchanged since f4f2450.
 
 Before that: VERIFY phase 04.2 (2026-10-26), local session on branch verify/04.2-design-polish from main (b2fe01e, wave 2 PR #43 merged). Result PASS. All waves checked. npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y, S1 to S25 (S1 to S19 as phase 04), and all seven measure.mjs checks pass; 04-19 run under bash because its `set -- $x` needs word splitting. DSG-01: PASS with file:line evidence for FX1 to FX8 and the triage in CONTEXT.md. ARIA snapshots of Home and Features match the copy order; screenshots at 390 and 1280 in both themes match HOME-DESIGN.md as amended. One BACKLOG item (row 4 card names wrap to three lines at 390, not clipped). Wrote VERIFY.md with an 18-step browser checklist. App repo origin/main still 487b454; the brief and _ds tokens are unchanged since f4f2450.
 
