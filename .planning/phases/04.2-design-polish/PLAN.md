@@ -4,7 +4,7 @@ Status: Draft
 
 ## Goal
 
-Ship the eight Fix items in CONTEXT.md (FX1 to FX8) that close DSG-01: balanced headings, fewer one-word last lines, a 56ch prose measure, the `--accent-press` privacy band fill in dark, the revised Home privacy h2 (HM16), the `fields` and `lock` crops on Home rows 2 and 5, one frame on the Features page top, and the live Masked and Revealed pair on Home row 4. Every other triaged entry stays as triaged (decision 13). No token, typeface, or dependency changes; HOME-DESIGN.md already holds the amendments Jake authorized at ANSWERS (decisions 7 to 12) and does not change here. Every phase 04 check keeps passing.
+Ship the eight Fix items in CONTEXT.md (FX1 to FX8) that close DSG-01: balanced headings, fewer one-word last lines, a 56ch prose measure, the `--accent-press` privacy band fill in dark, the revised Home privacy h2 (HM16), the `fields` and `lock` crops on Home rows 2 and 5, one frame on the Features page top, and the live Masked and Revealed pair on Home row 4. Every other triaged entry stays as triaged (decision 13). No token, typeface, or dependency changes; HOME-DESIGN.md already holds the amendments Jake authorized at ANSWERS (decisions 7 to 12) and at REVISE (decision 7, 56ch) and does not change in EXECUTE. Every phase 04 check keeps passing.
 
 ## Facts confirmed at PLAN time (2026-10-26)
 
@@ -54,7 +54,7 @@ Changed by EXECUTE:
 - .planning/phases/04-visuals-and-polish/copy/features.txt (04.2-07)
 - .planning/phases/04.2-design-polish/PLAN.md (task boxes and status), SUMMARY.md (new), and .planning/STATE.md, as every EXECUTE session
 
-Not changed: src/styles/tokens/ and every other token file; src/assets/shots/ (the 05 PNGs stay in the repo, decision 10); src/components/PrivacyBand.astro (the facts and CTA are unchanged); src/pages/privacy-overview.astro (its h1 and lede are unchanged, FX5); every other page, component, and layout; scripts/ (no check changes); .planning/phases/04.2-design-polish/measure.mjs; .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md (amended at ANSWERS); package.json and package-lock.json; .github/workflows/deploy.yml; pricing.txt, privacy-overview.txt, and support.txt.
+Not changed: src/styles/tokens/ and every other token file; src/assets/shots/ (the 05 PNGs stay in the repo, decision 10); src/components/PrivacyBand.astro (the facts and CTA are unchanged); src/pages/privacy-overview.astro (its h1 and lede are unchanged, FX5); every other page, component, and layout; scripts/ (no check changes); .planning/phases/04.2-design-polish/measure.mjs; .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md (amended at ANSWERS and at REVISE in 1d3efe5); package.json and package-lock.json; .github/workflows/deploy.yml; pricing.txt, privacy-overview.txt, and support.txt.
 
 ## Steps for Jake outside the repo
 
@@ -171,16 +171,16 @@ Run from the repo root after `npm ci` and `npm run build`. S1 to S19 are phase 0
 - S1 to S19: as phase 04.
 - S20. Every phase 04.2 measurement passes: `for c in headings stragglers measure band row4 crops features-top; do node .planning/phases/04.2-design-polish/measure.mjs $c || exit 1; done`
 - S21. Tokens and typefaces unchanged since ANSWERS (the self-hosted faces load from Base.astro through @fontsource): `npm run tokens:check && git diff --quiet 63a8b7d -- src/styles/tokens src/layouts/Base.astro package.json package-lock.json`
-- S22. HOME-DESIGN.md and the reference builds unchanged since ANSWERS: `git diff --quiet 63a8b7d -- .planning/phases/04-visuals-and-polish/design`
+- S22. HOME-DESIGN.md and the reference builds unchanged since the REVISE amendment (1d3efe5, the 56ch measure, decision 7): `git diff --quiet 1d3efe5 -- .planning/phases/04-visuals-and-polish/design`
 - S23. Only the planned files changed in src/: `test -z "$(git diff --name-only 63a8b7d -- src | grep -vxE 'src/styles/site.css|src/pages/index.astro|src/pages/features.astro|src/components/PhoneFrame.astro')"`
 - S24. The old HM16 h2 and the removed alts are gone, and the shots stay in the repo: `! grep -qF 'Your information stays on your iPhone</h2>' dist/index.html && ! grep -rqF 'and a Save to Person, Medical button' dist && ! grep -rqF 'The atHand logo sits in the center' dist && ! grep -rqF 'each with a Reveal button' dist && test -f src/assets/shots/05-masked-dark.png && test -f src/assets/shots/05-revealed-light.png`
 - S25. impeccable is not in the repo: `! grep -rqi impeccable package.json package-lock.json && test ! -e .impeccable`
 
-VERIFY also compares Home and the Features page top with HOME-DESIGN.md (as amended at ANSWERS) at 390 and 1280 px in both themes, records the axe and layout results per page and theme, and writes Jake's browser checklist (README, VERIFY step 5), including Safari before and after `text-wrap` support (the fallback is today's wrapping) and VoiceOver on the row 4 pair.
+VERIFY also compares Home and the Features page top with HOME-DESIGN.md (as amended at ANSWERS and REVISE) at 390 and 1280 px in both themes, records the axe and layout results per page and theme, and writes Jake's browser checklist (README, VERIFY step 5), including Safari before and after `text-wrap` support (the fallback is today's wrapping) and VoiceOver on the row 4 pair.
 
 ## Risks and rollback
 
-- FX3 margin. REVISE moved the measure from 58ch to 56ch (decision 7). At 58ch the Features peak paragraph average was 79.0 characters per line and the longest single line 80, passing the CONTEXT.md acceptance by one character in Chromium at 1280. At 56ch the peak average is 72.0 and the longest line 77, so every line runs under 80 with three characters of margin for Safari's slightly different text metrics. measure.mjs fails only on averages; it prints the longest line, which EXECUTE reads against the acceptance. HOME-DESIGN.md, Other pages still says "max 58ch"; this plan does not change it (S22), so VERIFY's HOME-DESIGN.md comparison reads 56ch as decision 7 sets it. Changing the value again is a REVISE, not an EXECUTE choice.
+- FX3 margin. REVISE moved the measure from 58ch to 56ch (decision 7). At 58ch the Features peak paragraph average was 79.0 characters per line and the longest single line 80, passing the CONTEXT.md acceptance by one character in Chromium at 1280. At 56ch the peak average is 72.0 and the longest line 77, so every line runs under 80 with three characters of margin for Safari's slightly different text metrics. measure.mjs fails only on averages; it prints the longest line, which EXECUTE reads against the acceptance. HOME-DESIGN.md, Other pages was amended to "max 56ch" at REVISE (Jake authorized, commit 1d3efe5), so the contract matches the build; S22 now diffs from 1d3efe5. That commit reaches main through a merge commit, as every PR here has; a squash merge would drop the hash and S22 would need a new base. Changing the value again is a REVISE, not an EXECUTE choice.
 - `text-wrap` support. `balance` needs Safari 17.5 or later and `pretty` a recent Safari; older browsers keep today's wrapping, which passed phase 04. Acceptance is measured in Chromium.
 - Fixture edits in EXECUTE. Decision 14 moves the index.txt and features.txt changes into the tasks, unlike phase 04, so each page change and its fixture land in one commit and main stays green. The lines are given verbatim above.
 - Measurement helper. measure.mjs was run at PLAN against today's build (every check fails, as expected) and with FX1 to FX4 injected (those four pass), and the row4 check was run against the planned markup. The crops and features-top checks have only been run against today's build. If a check proves wrong, EXECUTE stops and records a blocker rather than editing it.
@@ -190,7 +190,7 @@ VERIFY also compares Home and the Features page top with HOME-DESIGN.md (as amen
 
 ## Self-check
 
-Re-run 2026-10-26 at REVISE (FX3 measure 58ch to 56ch in 04.2-03's step, verify grep, and acceptance, the Goal, Facts, and Risks): pass, unchanged below. The change touches only src/styles/site.css, already in 04.2-03's files; no requirement, wave, or file list changes. Baseline re-run for this REVISE: `npm run build` on main a33f5d9, then `measure.mjs measure --inject` with `main .prose { max-width: 56ch; }` passes on all six pages (column 601px, longest line 77).
+Re-run 2026-10-26 at REVISE (FX3 measure 58ch to 56ch in 04.2-03's step, verify grep, and acceptance, the Goal, Facts, and Risks; HOME-DESIGN.md, Other pages amended to 56ch with Jake's authorization, S22 rebased to 1d3efe5): pass, unchanged below. `git diff --quiet 1d3efe5 -- .planning/phases/04-visuals-and-polish/design` passes on this branch. The change touches only src/styles/site.css, already in 04.2-03's files; no requirement, wave, or file list changes. Baseline re-run for this REVISE: `npm run build` on main a33f5d9, then `measure.mjs measure --inject` with `main .prose { max-width: 56ch; }` passes on all six pages (column 601px, longest line 77).
 
 Run 2026-10-26 at PLAN.
 

@@ -13,7 +13,6 @@ Phases 01, 02, 03, and 04 are Done. Phase 04.1 is gated on the app repo's TestFl
 ## Waiting on Jake
 
 - Review and merge the REVISE PR (branch revise/04.2-prose-56ch), and approve the plan or ask for another REVISE.
-- HOME-DESIGN.md, Other pages still says "max 58ch". This plan leaves it unchanged (S22); amending it to 56ch needs Jake's authorization and a REVISE that moves S22's base commit.
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -23,7 +22,7 @@ None.
 
 ## Last session
 
-REVISE phase 04.2 (2026-10-26), local session on branch revise/04.2-prose-56ch from main (a33f5d9, PLAN PR #40 merged). FX3 (04.2-03): `.prose` max-width 56ch instead of 58ch; updated the task's title, step, verify grep, and acceptance (longest printed line under 80), the Goal, the Facts line, and the FX3 risk. Re-measured with 56ch injected: column 601px at 1280, highest paragraph average 72.0, longest line 77 (Support and the privacy policy). Recorded the change in CONTEXT.md decision 7 and the FX3 item. HOME-DESIGN.md still says 58ch and is not changed (S22). Self-check re-run: pass. PLAN.md stays Draft. No site code changed.
+REVISE phase 04.2 (2026-10-26), local session on branch revise/04.2-prose-56ch from main (a33f5d9, PLAN PR #40 merged). FX3 (04.2-03): `.prose` max-width 56ch instead of 58ch; updated the task's title, step, verify grep, and acceptance (longest printed line under 80), the Goal, the Facts line, and the FX3 risk. Re-measured with 56ch injected: column 601px at 1280, highest paragraph average 72.0, longest line 77 (Support and the privacy policy). Recorded the change in CONTEXT.md decision 7 and the FX3 item. Then, with Jake's authorization, amended HOME-DESIGN.md, Other pages to 56ch citing decision 7 (commit 1d3efe5) and rebased S22 to 1d3efe5; merge the PR with a merge commit so that hash stays on main. Self-check re-run: pass. PLAN.md stays Draft. No site code changed.
 
 Before that: PLAN phase 04.2 (2026-10-26), local session on branch plan/04.2-design-polish from main (63a8b7d, ANSWERS PR #39 merged). Wrote PLAN.md (Draft): wave 1 (04.2-01 to 04.2-05: FX1 balance, FX2 pretty, FX3 58ch, FX4 dark band fill, FX5 HM16 with its index.txt lines) and wave 2 (04.2-06 to 04.2-08: FX7 crops with A3r and A9r, FX8 one-frame Features page top, FX6 row 4 live pair with HM28 to HM30). Wrote .planning/phases/04.2-design-polish/measure.mjs, a planning-only Playwright helper with seven acceptance checks; all seven fail on today's build, FX1 to FX4 pass with their CSS injected, and the row4 check accepts the planned markup. At 58ch the Features peak paragraph average is 79.0 characters per line (longest line 80), recorded under Risks. Today's build passes every existing check. Fixture edits are written into the tasks (decision 14). One BACKLOG item (balance not applied to `.band h1` or `.contact-card h2`). No site code changed. App repo origin/main moved to 5cfa50a; the brief and _ds tokens are unchanged since f4f2450.
 
