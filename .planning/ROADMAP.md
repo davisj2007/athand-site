@@ -80,6 +80,23 @@ Inserted by Jake on 2026-10-26, independent of the 04.1 and 05 gates.
 
 Exit: every finding is triaged in the phase CONTEXT.md, each Fix item is live with every phase 04 check still passing, and no locked rule changed.
 
+## 04.3 conversion: In progress
+
+Requirements: CNV-01..07.
+Inserted by Jake on 2026-10-26, before phase 05, with no gate.
+Design contract: .planning/phases/04.3-conversion/design/HOME-DESIGN-AMENDMENTS.md (Claude Design canvas c990cb96, imported at DISCUSS), which amends the named sections of phase 04's HOME-DESIGN.md; phase 04.3 CONTEXT.md lists exactly which.
+
+Goal: Home and Features drive downloads.
+
+- A hero that names the category and the edge, with trust chips and an action slot that takes the App Store badge in phase 05 without a layout change.
+- Live Moments-style feature cards in place of most feature screenshots.
+- A fair "Why not just use photos or notes?" comparison on Home.
+- A visual Features page: one live card or small crop per section, and a new "Hidden until you need it" section.
+- The Open Graph image updated to the new headline; the page title and structured data unchanged.
+- No price anywhere, and no new tokens or dependencies.
+
+Exit: Home and Features match the amended design with Approved copy only, each claim cited in the PR, the comparison passes at 320px, at 400% zoom, without color, and under VoiceOver, and every phase 04 and 04.2 check still passes with fixtures updated.
+
 ## 05 launch-flip: Blocked (gated on App Store approval)
 
 Requirements: LCH-01..04.
@@ -95,4 +112,4 @@ Exit: every page that mentions availability points to the live listing, and no c
 
 ## Order
 
-01, 02, 03, 04, and 04.2 done. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.
+01, 02, 03, 04, and 04.2 done. 04.3 runs now, before 05, with no gate. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.
