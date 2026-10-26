@@ -1,43 +1,64 @@
 ---
 import Base from "../layouts/Base.astro";
 import ComingSoon from "../components/ComingSoon.astro";
+import JumpList from "../components/JumpList.astro";
+import PageTop from "../components/PageTop.astro";
+import PhoneFrame from "../components/PhoneFrame.astro";
+
+const jump = [
+  { href: "#records", text: "Records" },
+  { href: "#scanning", text: "Scanning" },
+  { href: "#suggestions", text: "Suggestions" },
+  { href: "#app-lock", text: "App lock" },
+  { href: "#backups", text: "Backups" },
+  { href: "#light-and-dark", text: "Light and dark" },
+];
 ---
 <Base title="Features | atHand" description="What atHand does on iPhone: records for your household, document scanning, suggestions, app lock, and encrypted backups.">
-  <div class="wrap">
-    <h1>Features</h1>
+  <PageTop title="Features">
     <p class="lede">atHand stores the details you look up all the time and brings up the right record when it can help.</p>
     <ComingSoon />
+    <div class="shot-panel overlap" slot="visual">
+      <PhoneFrame shot="04-check-what-we-read" crop="full" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button." />
+      <PhoneFrame shot="02-person-top" crop="full" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons." />
+    </div>
+  </PageTop>
 
-    <h2>Records for everything you look after</h2>
+  <div class="container">
+    <div class="prose">
+    <JumpList label="On this page" links={jump} />
+
+    <h2 id="records">Records for everything you look after</h2>
     <p>Add records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record with your own labels.</p>
     <p>Each detail is stored once, on the record it belongs to. A person holds identity, medical, insurance, and document details. A vehicle holds its plate, VIN, insurance, and roadside assistance number. A pet holds its microchip number, vet, and vaccine records.</p>
     <p>Contacts, such as a doctor, a mechanic, or a vet, are records of their own, and you can link one to any person, pet, or vehicle.</p>
     <p>Adding a record takes you through one section at a time, and you can save and close at any step. To make a change later, pick the section you want to edit.</p>
 
-    <h2>Scan instead of typing</h2>
+    <h2 id="scanning">Scan instead of typing</h2>
     <p>Scan a driver’s license, passport, insurance card, VIN, vaccine record, utility bill, payment card, or business card.</p>
     <p>atHand reads the barcode on a driver’s license and the machine-readable lines in a passport, and suggests matches from the text on other documents. Recognition runs on your iPhone.</p>
     <p>Nothing is saved until you check it. atHand marks any field it is unsure of with “Check this,” and you can correct any field or retake the photo before saving.</p>
     <p>Start with Scan to add on the home screen and atHand works out what kind of record the document belongs to. It recognizes licenses, passports, VINs, and contact QR codes, and asks you to choose for anything else.</p>
 
-    <h2>The right record at the right time</h2>
+    <h2 id="suggestions">The right record at the right time</h2>
     <p>atHand can suggest a record when it is likely to help, such as before an appointment on your calendar.</p>
     <p>Suggestions use the time of day, whether it is a weekday or the weekend, the records you opened recently, and, if you allow them, your calendar and location. Matching runs on your iPhone.</p>
     <p>If you allow location, Apple’s geocoding service receives your location to return the name of a nearby place. <a href="/privacy-overview.html">Read how atHand handles your information</a>.</p>
     <p>The suggestion banner says only that your information is ready. It never names a category, such as medical. When nothing matches with confidence, atHand shows no banner, and you can turn suggestions off at any time.</p>
 
-    <h2>Locked to you</h2>
+    <h2 id="app-lock">Locked to you</h2>
     <p>Lock atHand with Face ID or Touch ID, with your device passcode as the fallback. There is no separate password to remember.</p>
     <p>The lock is on by default when your iPhone has Face ID, Touch ID, or a passcode set up. Choose whether atHand locks again as soon as you leave it, or after 5 minutes, 30 minutes, or 1 hour.</p>
     <p>When you switch away from atHand, a cover hides your information in the app switcher, whether or not the lock is on.</p>
     <p>Sensitive numbers, such as passport numbers, account numbers, alarm codes, and Wi-Fi passwords, stay hidden until you tap Reveal, and hide again when you leave the app.</p>
 
-    <h2>Backups you control</h2>
+    <h2 id="backups">Backups you control</h2>
     <p>Export an encrypted backup of your records and photos, protected by a passphrase you choose, and save it wherever you like.</p>
     <p>A backup is a one-time copy, not sync. Importing one replaces all the data on that iPhone, and atHand asks you to confirm first.</p>
     <p>A backup never includes your purchase, your settings, or your app lock setting.</p>
 
-    <h2>Light and dark</h2>
+    <h2 id="light-and-dark">Light and dark</h2>
     <p>atHand follows your iPhone’s appearance, or you can choose Light or Dark in Settings.</p>
+    </div>
   </div>
 </Base>

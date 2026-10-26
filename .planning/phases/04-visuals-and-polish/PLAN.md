@@ -285,7 +285,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: both components type-check; site.css holds the classes; no page changes yet.
   Verify command: `npm run check && npm run build && for c in '.prose' '.fact-row' '.contact-card' '.jump' '.page-top'; do grep -qF -- "$c" src/styles/site.css || exit 1; done && grep -q 'id="page-title"' src/components/PageTop.astro && grep -q 'aria-label={label}' src/components/JumpList.astro`
 
-- [ ] 04-14: Features page top and jump list
+- [x] 04-14: Features page top and jump list
   Requirements: VIS-01, VIS-02, VIS-08, VIS-11
   Files: src/pages/features.astro
   Copy entries: FE1 to FE30, C1, FP1, FP2, FP3, A2, A3
