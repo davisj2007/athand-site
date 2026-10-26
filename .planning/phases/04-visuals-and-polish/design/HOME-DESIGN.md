@@ -244,11 +244,11 @@ Nothing animates on load or on scroll, and content is never hidden waiting for a
 
 1. 01-home, hero: The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic.
 2. 02-person-top: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
-3. 04-check-what-we-read: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button.
+3. 04-check-what-we-read, `crop="fields"` (phase 04.2 A3r, approved): The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone.
 4. 01-home, suggest crop: Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact.
 5. 05-masked: removed from Home (row 4 is live HTML; phase 04.2 decision 10).
 6. 05-revealed: removed from Home (as 5).
-7. 06-lock: the placeholder is gone (phase 04 decision 19). With `crop="lock"` the alt text is phase 04.2 A9r, pending approval; 3 becomes A3r with `crop="fields"`, also pending.
+7. 06-lock: the placeholder is gone (phase 04 decision 19). With `crop="lock"` the alt text is phase 04.2 A9r (approved): Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button.
 8. 07-paywall, perks crop: The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account.
 
 03-person-documents is not used on home. It is available for Features (see Other pages).

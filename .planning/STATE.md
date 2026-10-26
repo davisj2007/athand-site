@@ -1,19 +1,18 @@
 # State
 
 Current phase: 04.2 (design-polish), inserted by Jake on 2026-10-26 with no gate.
-Current step: phase 04.2 ANSWERS (second round) done (2026-10-26). CONTEXT.md status Needs answers (one open question: approve the revised alt text A3r and A9r). Next step is ANSWERS.
+Current step: phase 04.2 ANSWERS (third round) done (2026-10-26). CONTEXT.md status Ready. Next step is PLAN.
 Phases 01, 02, 03, and 04 are Done. Phase 04.1 is gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04.2 ANSWERS" PR (branch answers/04.2-promotions).
-2. Jake answers open question 1 in .planning/phases/04.2-design-polish/CONTEXT.md (approve A3r and A9r, or edit them), then: "ANSWERS phase 04.2. Follow .planning/README.md, step ANSWERS." with the answer. With both approved, CONTEXT.md becomes Ready and PLAN follows.
+1. Jake reviews and merges the "Phase 04.2 ANSWERS" PR (branch answers/04.2-alt-text).
+2. Then: "PLAN phase 04.2. Follow .planning/README.md, step PLAN." The plan covers FX1 to FX8 and updates the phase 04 copy fixtures (copy/index.txt and copy/features.txt) for HM16, the row 4 cards, A3r, A9r, and the removed A5, A6, and Features 02 alt lines.
 3. Gates unchanged: DISCUSS phase 04.1 once the app repo records its TestFlight passes; DISCUSS phase 05 once Apple approves atHand. Run phases one at a time.
 
 ## Waiting on Jake
 
-- Review and merge the ANSWERS PR (branch answers/04.2-promotions).
-- Phase 04.2 open question 1: approve the revised alt text A3r (04-check-what-we-read, `fields` crop, no Save button) and A9r (06-lock, `lock` crop).
+- Review and merge the ANSWERS PR (branch answers/04.2-alt-text).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -23,7 +22,9 @@ None.
 
 ## Last session
 
-ANSWERS phase 04.2, second round (2026-10-26), local session on branch answers/04.2-promotions from main (ab08f98, ANSWERS PR #37 merged). Recorded Jake's answers as decisions 6 to 14: FX1 and FX2 approved; O1 (`.prose` 58ch), O2 (dark band fill `--accent-press`, no new token), C10 (HM16 revised to "What you add stays on your iPhone", approved), C11 (row 4 as a live HTML pair; HM28 to HM30 approved; A5 and A6 leave Home), C12 with C14 and C15 (new `fields` and `lock` crops for Home rows 2 and 5), and the one-frame Features page top promoted, as Fix items FX3 to FX8. Measured the crops on all four PNGs with sharp (light and dark rows identical): `fields` rows 172 to 1595, 1320 / 1424 at 50% 11.911%, Save button left out; `lock` rows 1288 to 2675, 1320 / 1388 at 50% 87.027%. Both crops change what A3 and A9 show, so A3r and A9r are drafted for approval. Session-set details where the answer was silent: the row 4 badge is `--entity-home` "H", and the static Reveal and Hide labels are aria-hidden (decision 10). Amended HOME-DESIGN.md (Jake authorized), DSG-01 in REQUIREMENTS.md, and the 04.2 entry in ROADMAP.md. The phase 04 copy fixtures change in PLAN's tasks, not here. No site code changed. App repo origin/main moved to ce97c5a (phase 07 app work); the brief and _ds tokens are unchanged since f4f2450.
+ANSWERS phase 04.2, third round (2026-10-26), local session on branch answers/04.2-alt-text from main (07e7267, ANSWERS PR #38 merged). Jake approved A3r and A9r as drafted: recorded as decision 15, both marked Approved in CONTEXT.md, and HOME-DESIGN.md's alt text list updated to match. No open questions remain and all copy is Approved, so CONTEXT.md status is Ready. No site code changed.
+
+Before that: ANSWERS phase 04.2, second round (2026-10-26), local session on branch answers/04.2-promotions from main (ab08f98, ANSWERS PR #37 merged). Recorded Jake's answers as decisions 6 to 14: FX1 and FX2 approved; O1 (`.prose` 58ch), O2 (dark band fill `--accent-press`, no new token), C10 (HM16 revised to "What you add stays on your iPhone", approved), C11 (row 4 as a live HTML pair; HM28 to HM30 approved; A5 and A6 leave Home), C12 with C14 and C15 (new `fields` and `lock` crops for Home rows 2 and 5), and the one-frame Features page top promoted, as Fix items FX3 to FX8. Measured the crops on all four PNGs with sharp (light and dark rows identical): `fields` rows 172 to 1595, 1320 / 1424 at 50% 11.911%, Save button left out; `lock` rows 1288 to 2675, 1320 / 1388 at 50% 87.027%. Both crops change what A3 and A9 show, so A3r and A9r are drafted for approval. Session-set details where the answer was silent: the row 4 badge is `--entity-home` "H", and the static Reveal and Hide labels are aria-hidden (decision 10). Amended HOME-DESIGN.md (Jake authorized), DSG-01 in REQUIREMENTS.md, and the 04.2 entry in ROADMAP.md. The phase 04 copy fixtures change in PLAN's tasks, not here. No site code changed. App repo origin/main moved to ce97c5a (phase 07 app work); the brief and _ds tokens are unchanged since f4f2450.
 
 Before that: ANSWERS phase 04.2 (2026-10-26), local session on branch answers/04.2-design-polish from main (ec4d78a, DISCUSS PR #36 merged). Jake's answer 1: not closing; he ran impeccable critique outside the repo on Home and Features (handoff/impeccable-critique.md, untracked, sha256 592caaf6e7115ec477753b385e3ef8906a57ceea5304d696dc3983e9d27128e7). Recorded as decisions 4 and 5; DSG-01 now names the critique. Measured the checkable claims against dist/ in Chromium at 320, 390, and 1280 in light and dark. Triaged all 57 entries (C1 to C57): Fix 9 as FX1 and FX2 (CSS-only text-wrap, drafted for approval); Decline 24; Already covered 12; Not applicable 11; the four questions Decline 3, Already covered 1. Three override candidates (O1 prose measure, O2 dark band fill, O3 page-top frames) are declined under DSG-01 unless Jake promotes them. The report's double image download on Features did not reproduce. No site code or copy changed. App repo origin/main moved to f4f2450 (Brief v4.13: Contextual suggestions only; Brand, Privacy, and tokens unchanged); two BACKLOG items added.
 
