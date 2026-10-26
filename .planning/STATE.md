@@ -1,27 +1,31 @@
 # State
 
 Current phase: 04 (visuals-and-polish)
-Current step: EXECUTE wave 3 done (04-13 to 04-18). PLAN.md status Approved (2026-10-25). Wave 4 remains.
+Current step: EXECUTE wave 4 done except 04-23, which is blocked (04-19 to 04-22 complete). PLAN.md status Approved (2026-10-25).
 Phase 01 is Done. Phase 02 is Done (shipped 2026-10-24). Phase 03 is Done (shipped 2026-10-25; VERIFY PASS, Jake's browser result PASS).
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04 EXECUTE: wave 3, page tops and the prose column" PR (branch execute/04-wave-3). Merging publishes the page tops on Features, Pricing, Privacy overview, and Support, and moves the privacy policy and 404 into the prose column.
-2. Then start EXECUTE wave 4 (04-19 to 04-23) with the EXECUTE prompt from PROMPTS.md.
+1. Jake reviews and merges the "Phase 04 EXECUTE: wave 4, icons, Open Graph, sitemap, and robots" PR (branch execute/04-wave-4). Merging publishes the favicons, the apple-touch-icon, the Open Graph image and tags, canonical links, /sitemap.xml, and /robots.txt.
+2. Then REVISE phase 04 to unblock 04-23 (see Blockers), with the REVISE prompt from PROMPTS.md listing the change.
+3. Then EXECUTE to finish 04-23, then VERIFY.
 
 ## Waiting on Jake
 
-- Review and merge the wave 3 EXECUTE PR (branch execute/04-wave-3), including the deviations in SUMMARY.md: the Features overlap frames are 200px wide from the breakpoint; the fact row items have no icons.
+- Review and merge the wave 4 EXECUTE PR (branch execute/04-wave-4), including the deviations in SUMMARY.md.
+- Decide the 04-23 REVISE (Blockers).
 - Before SHIP: whether the app repo has recorded its TestFlight VoiceOver and Dynamic Type passes (decision 21).
 - App repo, outside this site: the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md; the TestFlight VoiceOver and Dynamic Type passes that gate FEAT-01 (decision 21: REVISE adds it if recorded before SHIP, otherwise phase 04.1).
 
 ## Blockers
 
-None.
+- 04-23 (SoftwareApplication JSON-LD on Home): the block must carry `"@context": "https://schema.org"` (decision 16), and scripts/check-external.mjs flags every absolute URL in an inline `<script>`, so `npm run check:external` fails, and the Deploy workflow runs that check. check-external.mjs is outside PLAN.md's files. Jake chose to stop on 2026-10-26; 04-23 is not committed. Suggested REVISE: add scripts/check-external.mjs to 04-23's files; skip the body of `<script type="application/ld+json">` blocks, keep checking every other inline script; add verify cases that a JSON-LD block with https://schema.org passes and an inline script with a third-party URL still fails. Details in SUMMARY.md, Blockers.
 
 ## Last session
 
-EXECUTE phase 04 wave 3 (2026-10-26), local session on branch execute/04-wave-3 from main (d4dda1c, wave 2 merged). Completed 04-13 to 04-18: PageTop.astro and JumpList.astro with the page-top, prose, jump list, fact row, contact card, and overlap styles; the Features, Pricing, Privacy overview, and Support page tops with their existing text unchanged below; the privacy policy and 404 in the prose column; `.wrap` removed. All wave 3 checks pass, including check-text for all five pages against the phase 04 fixtures, check:layout, and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
+EXECUTE phase 04 wave 4 (2026-10-26), local session on branch execute/04-wave-4 from main (2410273, wave 3 merged). Completed 04-19 to 04-22: favicons and the flattened apple-touch-icon from the app icon at 60032bf; scripts/make-og-image.mjs and public/og-image.png (Playwright, file: and data: requests only); canonical, Open Graph, and Twitter tags in Base.astro (404 without canonical); /sitemap.xml and /robots.txt. 04-23 blocked by check:external (see Blockers); its edits were reverted. All wave checks pass on the committed tree, including check:layout, check:a11y, and S1 to S7, S9 to S15, S17, and S18; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
+
+Before that: EXECUTE phase 04 wave 3 (2026-10-26), local session on branch execute/04-wave-3 from main (d4dda1c, wave 2 merged). Completed 04-13 to 04-18: PageTop.astro and JumpList.astro with the page-top, prose, jump list, fact row, contact card, and overlap styles; the Features, Pricing, Privacy overview, and Support page tops with their existing text unchanged below; the privacy policy and 404 in the prose column; `.wrap` removed. All wave 3 checks pass, including check-text for all five pages against the phase 04 fixtures, check:layout, and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main still 60032bf.
 
 Before that: EXECUTE phase 04 wave 2 (2026-10-25), local session on branch execute/04-wave-2 from main (97f202f, wave 1 merged). Completed 04-07 to 04-12: the pre-cropped paywall perks images (originals deleted), PhoneFrame.astro and the `alt:` fixture lines in check-text, and the new Home (hero, moments, five feature rows, PrivacyBand.astro, pricing, closing). Two bugs found and fixed inside 04-08's files: unused shots shipping as PNGs, and both theme images displaying in light. All wave 2 checks pass, including check-text for Home against copy/index.txt, check:layout, and check:a11y on all seven pages in both themes; browser check recorded in SUMMARY.md. One BACKLOG item (a check for one displayed image per frame). App repo origin/main still 60032bf.
 
