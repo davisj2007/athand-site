@@ -1,6 +1,7 @@
 # Home page redesign: design contract
 
 Status: approved direction from Jake (2026-10-25). Copy marked "New" below still needs approval in ANSWERS.
+Amended 2026-10-26 by phase 04.2 decisions 7 to 12 (Jake authorized, ANSWERS): prose measure, dark privacy band fill, Home privacy h2, row 4 live pair, the `fields` and `lock` crops, and the one-frame Features page top. Approved copy and alt text live in the phase CONTEXT.md files, which win over the copy table here.
 Source: Design artifact "athandapp.com home page" (canvas dc6e54d7). This file and the two reference builds beside it are the repo copy of that canvas; when they disagree with the canvas, this file wins.
 
 Files in this folder:
@@ -85,10 +86,10 @@ Curly apostrophes and quotes, sentence case, Oxford comma, no em dashes.
 | Feature 1 | Everything you look after / People, vehicles, pets, homes, and more, in one place. | New |
 | Feature 2 | Scan instead of typing / Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved. | New |
 | Feature 3 | The right record at the right time / Suggestions from the time of day and, if you allow them, your calendar and location. | New |
-| Feature 4 | Hidden until you need it / Sensitive numbers stay masked until you tap Reveal. Captions: Masked, Revealed | New |
+| Feature 4 | Hidden until you need it / Sensitive numbers stay masked until you tap Reveal. Captions: Masked, Revealed. Cards: Maple Street house / Alarm code / masked value, hidden text "Alarm code, hidden until you tap Reveal", label Reveal; Maple Street house / Alarm code / 0000, label Hide | Approved (phase 04.2 HM28 to HM30) |
 | Feature 5 | Locked to you / Face ID, Touch ID, or your passcode. No password to remember. | New |
 | Link | See all features (/features.html) | Approved (H12) |
-| Privacy h2 | Your information stays on your iPhone. | New |
+| Privacy h2 | What you add stays on your iPhone | Approved (phase 04.2 HM16 revised) |
 | Privacy facts | No account and no sign-in. / Scanning runs on your iPhone. / The developer added no advertising or tracking tools. | New |
 | Link | How atHand handles your information (/privacy-overview.html) | Approved (H18) |
 | Pricing h2 | Free to start. | New |
@@ -112,7 +113,7 @@ Page title and meta description: unchanged.
 
 ## Phone frame (PhoneFrame.astro)
 
-Props: `shot` (base name), `alt`, `crop` (`full`, `suggest`, `record`, `perks`, or `placeholder`), `hero` (boolean), and `caption` (optional, renders a figcaption).
+Props: `shot` (base name), `alt`, `crop` (`full`, `suggest`, `record`, `perks`, `fields`, `lock`, or `placeholder`), `hero` (boolean), and `caption` (optional, renders a figcaption).
 
 - Frame: `figure`, `--surface-card` fill, 1px `--border-card`, radius `--radius-phone`, padding `--space-2`, width `--site-phone` (hero: `--site-phone-hero`), `max-width: 100%`. Only the hero frame gets `box-shadow: var(--shadow-soft)`.
 - Screen: `overflow: hidden`, radius `calc(var(--radius-phone) - var(--space-2))`, 1px `--divider` border.
@@ -124,6 +125,8 @@ Props: `shot` (base name), `alt`, `crop` (`full`, `suggest`, `record`, `perks`, 
 | suggest | 1320 / 1388 | 50% 11.62% | Home top: greeting, banner, search, Suggested for you |
 | record | 1320 / 1348 | 50% 11.32% | Home record top: name, alarm code, Wi-Fi rows |
 | perks | 1320 / 1208 | 50% 10.36% | Paywall logo, headline, and perks; ends above the price card |
+| fields | 1320 / 1424 | 50% 11.911% | 04-check-what-we-read rows 172 to 1595: Cancel, header, document photo, and the What we read card; ends above the blank area, Save button out |
+| lock | 1320 / 1388 | 50% 87.027% | 06-lock rows 1288 to 2675: logo, "atHand is locked.", and Unlock, without the blank screen above |
 | placeholder | 1320 / 2696 | n/a | `--surface-chip` fill, 2px dashed `--text-faint` border, "06-lock" in `--font-display` 700 `--text-lg`, note "Lock screen, 1320 by 2868" in 16px `--text-muted`; `role="img"` with aria-label "Placeholder for the atHand lock screen screenshot" |
 
 07-paywall is only ever used with `crop="perks"`.
@@ -158,12 +161,13 @@ Images: `astro:assets` WebP at 360w and 720w. `sizes`: hero `(min-width: 52.5em)
 - Row `li`: one column with gap `--space-6`; from 840px, two equal columns with gap `--space-12`. Even rows put the shot first with CSS `order: -1` only, so source order stays text then image.
 - Copy: h3 `--site-h3`; line `--text-lg` `--text-muted`; gap `--space-3`; max 28rem.
 - Shot panel: `--surface-chip`, radius `--radius-card`, padding `--space-10` by `--space-6`, flex centered, wrap, gap `--space-4`.
-- Shots: 1 is 02-person-top (full). 2 is 04-check-what-we-read (full). 3 is 01-home with `crop="suggest"`. 4 is two figures, 05-masked and 05-revealed, both `crop="record"`, captioned "Masked" and "Revealed" at `--text-base` 600, each `flex: 1 1 140px`, max 240px; they stack when the panel is too narrow. 5 is the 06-lock placeholder.
+- Shots: 1 is 02-person-top (full). 2 is 04-check-what-we-read with `crop="fields"`. 3 is 01-home with `crop="suggest"`. 4 is two live HTML cards, not screenshots (below). 5 is 06-lock with `crop="lock"`.
+- Row 4 pair: two `figure`s, captioned "Masked" and "Revealed" at `--text-base` 600, each `flex: 1 1 140px`, max 240px; they stack when the panel is too narrow. Each holds a card in the moments-card style (`--surface-card`, 1px `--border-card`, radius `--radius-card`, padding `--space-6`): a record row with a `--badge-size` badge in `--entity-home` with "H" (aria-hidden; `--white` text in light, `--text-on-ink` in dark), "Maple Street house" at `--text-base` 700, and "Alarm code" at 16px `--text-muted`; then the value at `--text-lg` 500, `--tracking-label`, tabular figures, with a label in `--text-link`. Masked: aria-hidden dots, visually hidden "Alarm code, hidden until you tap Reveal", label "Reveal". Revealed: "0000", label "Hide". The labels are static, aria-hidden text: no button, link, hover style, or cursor change.
 - After the list: the "See all features" link CTA, margin-top `--space-10`.
 
 ### Privacy band
 
-- Full-bleed `section` with `--accent` fill and `--text-on-cobalt` text. Links, icons, and the focus ring also use `--text-on-cobalt`.
+- Full-bleed `section` with `--accent` fill in light and `--accent-press` fill in dark (explicit dark and System with the OS dark), and `--text-on-cobalt` text. Links, icons, and the focus ring also use `--text-on-cobalt`.
 - Inner container padding `--site-section`, flex column with gap `--space-8`. h2 `--site-h2`, max 20ch.
 - Facts `ul` grid: `repeat(auto-fit, minmax(min(260px, 100%), 1fr))`, gap `--space-6`. Each fact has a 1px `currentColor` top rule, padding-top `--space-5`, a 28px icon (person with slash, scan corners, eye with slash), and `--text-lg` 500 text at line height 1.35.
 - Link CTA to /privacy-overview.html.
@@ -206,10 +210,10 @@ Images: `astro:assets` WebP at 360w and 720w. `sizes`: hero `(min-width: 52.5em)
 | Moment card | --surface-card | --text-body, subtitle --text-muted | 1px --border-card, rule --divider |
 | Moment icon circle | --surface-chip | --text-body | |
 | Entity badge | --entity-person | --white (light), --text-on-ink (dark) | |
-| Privacy band | --accent | --text-on-cobalt | fact rules currentColor |
+| Privacy band | --accent (light), --accent-press (dark) | --text-on-cobalt | fact rules currentColor |
 | Focus ring | | 3px solid --text-link, offset 3px (--text-on-cobalt in the band) | |
 
-Measured contrast: white on `--accent` is 7.75:1 in light and 5.18:1 in dark. `--text-link` is 7.11:1 on paper and 7.93:1 on the dark page. `--text-muted` is 7.84:1 on paper and 7.34:1 on dark cards. `--text-faint` is 4.85:1 on paper and 5.86:1 on the dark page. Badge initials are 5.06:1 in light and 6.94:1 in dark.
+Measured contrast: white on `--accent` is 7.75:1 in light; white on `--accent-press` is 6.47:1 in dark (the band's dark fill; `--accent` would be 5.18:1). `--text-link` is 7.11:1 on paper and 7.93:1 on the dark page. `--text-muted` is 7.84:1 on paper and 7.34:1 on dark cards. `--text-faint` is 4.85:1 on paper and 5.86:1 on the dark page. Badge initials are 5.06:1 in light and 6.94:1 in dark.
 
 ## Type scale
 
@@ -242,9 +246,9 @@ Nothing animates on load or on scroll, and content is never hidden waiting for a
 2. 02-person-top: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
 3. 04-check-what-we-read: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button.
 4. 01-home, suggest crop: Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact.
-5. 05-masked: A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button.
-6. 05-revealed: The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked.
-7. 06-lock placeholder: aria-label "Placeholder for the atHand lock screen screenshot"; replace it with real alt text when the shot arrives.
+5. 05-masked: removed from Home (row 4 is live HTML; phase 04.2 decision 10).
+6. 05-revealed: removed from Home (as 5).
+7. 06-lock: the placeholder is gone (phase 04 decision 19). With `crop="lock"` the alt text is phase 04.2 A9r, pending approval; 3 becomes A3r with `crop="fields"`, also pending.
 8. 07-paywall, perks crop: The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account.
 
 03-person-documents is not used on home. It is available for Features (see Other pages).
@@ -257,10 +261,10 @@ Nothing animates on load or on scroll, and content is never hidden waiting for a
 
 ## Other pages
 
-Every page gets the new header and footer and a "page top" built from home parts, with today's detail text unchanged below it in a `.prose` column (max 68ch, line height 1.6, h2 `--text-xl`, h3 `--text-lg`, sections separated by `--space-12`, in-sentence links underlined).
+Every page gets the new header and footer and a "page top" built from home parts, with today's detail text unchanged below it in a `.prose` column (max 58ch, so lines run under 80 characters; line height 1.6, h2 `--text-xl`, h3 `--text-lg`, sections separated by `--space-12`, in-sentence links underlined).
 
 - **Page top**: the hero grid one size down. The h1 is `--text-2xl` at every width, followed by the existing lede at `--text-lg` and one visual on the right from 840px.
-- **Features**: 04-check-what-we-read overlapping 02-person-top on a shot panel (only 04 below 840px). A jump list of in-page links to its six h2s, 44px tall and wrapping. Optional later: a small crop beside each h2.
+- **Features**: one frame on a shot panel, 04-check-what-we-read with `crop="fields"`, at `--site-phone` (280px, 300px from 840px). 02-person-top is not in the page top. A jump list of in-page links to its six h2s, 44px tall and wrapping. Optional later: a small crop beside each h2.
 - **Pricing**: the 07-paywall perks crop, then a three-item fact row in moment-card style (Free to download; Your own record is free; One purchase unlocks everything else), then the existing text. No amount anywhere.
 - **Privacy overview**: the home privacy band as the page top (with the h1 in place of the h2), then every existing disclosure in full, ending with a link to /privacy.html.
 - **Support** (/support.html, permanent): a contact card as the visual: h2 "Email support" and support@athandapp.com as a 44px underlined mailto link at `--text-lg`. Then a jump list to the topics and the existing text.
