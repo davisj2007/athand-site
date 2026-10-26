@@ -705,3 +705,138 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   color: var(--text-link);
 }
 .closing-mark svg { display: block; width: 100%; height: auto; }
+
+/* Page tops for the other pages (HOME-DESIGN.md, Other pages): the hero grid
+   one size down, with the visual beside the copy from the breakpoint. */
+
+.page-top-grid {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+  padding-block: var(--space-10);
+}
+.page-top-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+.page-top-copy > * { margin: 0; }
+.page-top h1 { font-size: var(--text-2xl); }
+.page-top .lede { max-width: 34rem; }
+.page-top-visual {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+@media (min-width: 52.5em) {
+  .page-top-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-12);
+    padding-block: var(--space-12);
+  }
+}
+
+/* The privacy band as a page top: the h1 takes the h2's place. */
+.band h1 {
+  font-size: var(--text-2xl);
+  max-width: 20ch;
+}
+.band .lede { max-width: 40rem; }
+
+/* Prose column for the detail text below a page top. */
+.prose {
+  max-width: 68ch;
+  line-height: 1.6;
+  padding-bottom: var(--space-12);
+}
+.prose > :first-child { margin-top: 0; }
+.prose h2 {
+  font-size: var(--text-xl);
+  margin: var(--space-12) 0 var(--space-3);
+}
+.prose h3 { font-size: var(--text-lg); }
+.band + .container .prose { padding-top: var(--space-10); }
+/* Privacy policy and 404: text only, with the padding the interim column had. */
+.page-text { padding-top: var(--space-10); }
+
+/* Jump list: in-page links, 44px tall, wrapping. */
+.jump ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-6);
+}
+.jump li { margin: 0; }
+.jump a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  font-weight: 600;
+}
+
+/* Fact row: three items in the moment-card style. */
+.fact-row {
+  list-style: none;
+  margin: 0 0 var(--space-10);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.fact-row li {
+  margin: 0;
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
+  min-width: 0;
+}
+
+/* Contact card: the Support page-top visual. */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 24rem;
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  min-width: 0;
+}
+.contact-card h2 {
+  font-size: var(--text-xl);
+  margin: 0;
+}
+.contact-card a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Features page top: 04-check-what-we-read over 02-person-top from the
+   breakpoint; below it, only the first frame shows. */
+.shot-panel.overlap .frame + .frame { display: none; }
+@media (min-width: 52.5em) {
+  .shot-panel.overlap { flex-wrap: nowrap; }
+  .shot-panel.overlap .frame { flex: none; width: 200px; }
+  .shot-panel.overlap .frame:first-child {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--space-10);
+    margin-left: calc(var(--space-12) * -1);
+  }
+  .shot-panel.overlap .frame + .frame { display: block; order: -1; }
+}

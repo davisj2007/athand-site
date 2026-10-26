@@ -1,0 +1,17 @@
+---
+// In-page links to a page's h2 sections. The label names the nav for screen
+// readers and is not shown.
+interface Props {
+  label: string;
+  links: { href: string; text: string }[];
+}
+
+const { label, links } = Astro.props;
+---
+<nav class="jump" aria-label={label}>
+  <ul>
+    {links.map((l) => (
+      <li><a href={l.href}>{l.text}</a></li>
+    ))}
+  </ul>
+</nav>

@@ -274,7 +274,7 @@ Live site after this wave: Home is the new showcase (hero, moments, five feature
 
 Page tops for the other pages, the prose column, and the final chrome for privacy and 404.
 
-- [ ] 04-13: PageTop and JumpList components, prose column, and page-top styles
+- [x] 04-13: PageTop and JumpList components, prose column, and page-top styles
   Requirements: VIS-08
   Files: src/components/PageTop.astro, src/components/JumpList.astro, src/styles/site.css
   Copy entries: FP2, SU3 (the jump list name "On this page", passed by each page)
