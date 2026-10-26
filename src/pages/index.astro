@@ -53,18 +53,53 @@ const moments = [
     </div>
   </section>
 
-  <div class="wrap">
-    <h2>What it does</h2>
-    <ul>
-      <li>Keep records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record for anything else.</li>
-      <li>Scan a driver’s license, passport, insurance card, VIN, vaccine record, or business card instead of typing. You check every field before it is saved.</li>
-      <li>Get a suggestion for the record that is likely to help right now, based on the time of day and, if you allow them, your calendar and location.</li>
-      <li>Lock atHand with Face ID, Touch ID, or your device passcode, and export an encrypted backup protected by a passphrase you choose.</li>
-    </ul>
-    <ul class="links">
-      <li><a href="/features.html">See all features</a></li>
-    </ul>
+  <section class="section" aria-labelledby="features-title">
+    <div class="container">
+      <h2 class="section-title features-title" id="features-title">What it does</h2>
+      <ul class="features">
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>Everything you look after</h3>
+            <p>People, vehicles, pets, homes, and more, in one place.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="02-person-top" crop="full" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons." />
+          </div>
+        </li>
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>Scan instead of typing</h3>
+            <p>Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="04-check-what-we-read" crop="full" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button." />
+          </div>
+        </li>
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>The right record at the right time</h3>
+            <p>Suggestions from the time of day and, if you allow them, your calendar and location.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="01-home" crop="suggest" alt="Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact." />
+          </div>
+        </li>
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>Hidden until you need it</h3>
+            <p>Sensitive numbers stay masked until you tap Reveal.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="05-masked" crop="record" caption="Masked" class="pair" alt="A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button." />
+            <PhoneFrame shot="05-revealed" crop="record" caption="Revealed" class="pair" alt="The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked." />
+          </div>
+        </li>
+      </ul>
+      <p class="more"><a class="cta" href="/features.html">See all features<Icon name="arrow" size={20} /></a></p>
+    </div>
+  </section>
 
+  <div class="wrap">
     <section class="panel" aria-labelledby="privacy-summary">
       <h2 id="privacy-summary">Privacy in short</h2>
       <ul>
