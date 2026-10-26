@@ -4,7 +4,7 @@ Status: Draft
 
 ## Goal
 
-Ship the eight Fix items in CONTEXT.md (FX1 to FX8) that close DSG-01: balanced headings, fewer one-word last lines, a 58ch prose measure, the `--accent-press` privacy band fill in dark, the revised Home privacy h2 (HM16), the `fields` and `lock` crops on Home rows 2 and 5, one frame on the Features page top, and the live Masked and Revealed pair on Home row 4. Every other triaged entry stays as triaged (decision 13). No token, typeface, or dependency changes; HOME-DESIGN.md already holds the amendments Jake authorized at ANSWERS (decisions 7 to 12) and does not change here. Every phase 04 check keeps passing.
+Ship the eight Fix items in CONTEXT.md (FX1 to FX8) that close DSG-01: balanced headings, fewer one-word last lines, a 56ch prose measure, the `--accent-press` privacy band fill in dark, the revised Home privacy h2 (HM16), the `fields` and `lock` crops on Home rows 2 and 5, one frame on the Features page top, and the live Masked and Revealed pair on Home row 4. Every other triaged entry stays as triaged (decision 13). No token, typeface, or dependency changes; HOME-DESIGN.md already holds the amendments Jake authorized at ANSWERS (decisions 7 to 12) and at REVISE (decision 7, 56ch) and does not change in EXECUTE. Every phase 04 check keeps passing.
 
 ## Facts confirmed at PLAN time (2026-10-26)
 
@@ -16,7 +16,7 @@ Ship the eight Fix items in CONTEXT.md (FX1 to FX8) that close DSG-01: balanced 
 - Crops viewed at PLAN with `sips` on the committed PNGs: `fields` (rows 172 to 1595 of 04-check-what-we-read) shows Cancel, the title, the document photo with Retake photo, and the three fields, with no status bar and no Save button; `lock` (rows 1288 to 2675 of 06-lock) shows the lockup, "atHand is locked.", and Unlock. The 05-masked screenshot shows the alarm code as eight dots with a Reveal label at the right of the value row, which 04.2-08 follows.
 - Object positions: 172 / (2868 - 1424) = 11.911% and 1288 / (2868 - 1388) = 87.027%, as CONTEXT.md, FX7.
 - Measurement helper: PLAN wrote .planning/phases/04.2-design-polish/measure.mjs (below). Against today's build every one of its seven checks fails, reproducing the CONTEXT.md measurements: headings (six one-word last lines at 320 and 390), stragglers (ten at 390 and 1280), measure (729px column, paragraphs averaging up to 89 characters per line), band (dark #6A57E0), row4, crops, and features-top (two frames, 200px from the breakpoint, 02-person-top requested).
-- FX1 to FX4 previewed: with the four rules of 04.2-01 to 04.2-04 injected into today's build, the headings, stragglers, measure, and band checks all pass. At 58ch the `.prose` column is 622px at 1280; the highest paragraph average is 79.0 characters per line (Features), and the longest single line is 80 (Features and Support). See Risks.
+- FX1 to FX4 previewed: with the four rules of 04.2-01 to 04.2-04 injected into today's build, the headings, stragglers, measure, and band checks all pass. At 58ch the `.prose` column is 622px at 1280; the highest paragraph average is 79.0 characters per line (Features), and the longest single line is 80 (Features and Support). Re-measured at REVISE (2026-10-26, main a33f5d9) with 56ch injected: the column is 601px at 1280; the highest paragraph average is 72.0 (privacy policy) and the longest single line is 77 (Support and the privacy policy). See Risks.
 - Row 4 previewed: the 04.2-08 markup injected into today's Home gives this accessibility tree, which the row4 check accepts: figure "Masked" (Maple Street house, Alarm code, "Alarm code, hidden until you tap Reveal", caption) and figure "Revealed" (Maple Street house, Alarm code, "0000", caption); no Reveal or Hide label is read.
 - Baseline on today's build: every existing check passes (Self-check, Baseline).
 - FX1's selector list is CONTEXT.md's. It leaves out the Privacy overview's band h1 (`.band h1`) and Support's `.contact-card h2`; neither was in a finding, so they keep today's wrapping (BACKLOG.md).
@@ -54,7 +54,7 @@ Changed by EXECUTE:
 - .planning/phases/04-visuals-and-polish/copy/features.txt (04.2-07)
 - .planning/phases/04.2-design-polish/PLAN.md (task boxes and status), SUMMARY.md (new), and .planning/STATE.md, as every EXECUTE session
 
-Not changed: src/styles/tokens/ and every other token file; src/assets/shots/ (the 05 PNGs stay in the repo, decision 10); src/components/PrivacyBand.astro (the facts and CTA are unchanged); src/pages/privacy-overview.astro (its h1 and lede are unchanged, FX5); every other page, component, and layout; scripts/ (no check changes); .planning/phases/04.2-design-polish/measure.mjs; .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md (amended at ANSWERS); package.json and package-lock.json; .github/workflows/deploy.yml; pricing.txt, privacy-overview.txt, and support.txt.
+Not changed: src/styles/tokens/ and every other token file; src/assets/shots/ (the 05 PNGs stay in the repo, decision 10); src/components/PrivacyBand.astro (the facts and CTA are unchanged); src/pages/privacy-overview.astro (its h1 and lede are unchanged, FX5); every other page, component, and layout; scripts/ (no check changes); .planning/phases/04.2-design-polish/measure.mjs; .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md (amended at ANSWERS and at REVISE in 1d3efe5); package.json and package-lock.json; .github/workflows/deploy.yml; pricing.txt, privacy-overview.txt, and support.txt.
 
 ## Steps for Jake outside the repo
 
@@ -83,14 +83,14 @@ Line wrapping, the prose measure, the dark band fill, and the Home privacy h2. C
   Acceptance: on Home and Features at 390 and 1280, no listed paragraph ends on a one-word line (the ten measured at PLAN, including C1 to C5, are gone); every phase 04 fixture still passes; check:layout and check:a11y pass.
   Verify command: `npm run build && npm run check && grep -qF ':is(.lede, .section-line, .feature-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }' src/styles/site.css && test "$(grep -c 'text-wrap: pretty' src/styles/site.css)" = 1 && node .planning/phases/04.2-design-polish/measure.mjs stragglers && for p in index features pricing privacy-overview support; do node scripts/check-text.mjs dist/$p.html .planning/phases/04-visuals-and-polish/copy/$p.txt || exit 1; done && npm run check:content && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.2-03: Prose measure 58ch (FX3)
+- [ ] 04.2-03: Prose measure 56ch (FX3)
   Requirements: DSG-01
   Files: src/styles/site.css
   Copy entries: none
   Steps:
-  1. In the `.prose` rule (site.css:740-744), change `max-width: 68ch;` to `max-width: 58ch;` (decision 7). Nothing else in the rule changes.
-  Acceptance: at 1280, no wrapping paragraph or list item in `.prose` on Features, Pricing, Privacy overview, Support, the privacy policy, or 404 averages 80 or more characters per line; the policy and 404 main text are unchanged; check:layout and check:a11y pass.
-  Verify command: `npm run build && npm run check && grep -qF 'max-width: 58ch;' src/styles/site.css && ! grep -qF '68ch' src/styles/site.css && node .planning/phases/04.2-design-polish/measure.mjs measure && npm run check:content && npm run check:layout && npm run check:a11y`
+  1. In the `.prose` rule (site.css:740-744), change `max-width: 68ch;` to `max-width: 56ch;` (decision 7). Nothing else in the rule changes.
+  Acceptance: at 1280, no wrapping paragraph or list item in `.prose` on Features, Pricing, Privacy overview, Support, the privacy policy, or 404 averages 80 or more characters per line, and the longest line measure.mjs prints for each page is under 80; the policy and 404 main text are unchanged; check:layout and check:a11y pass.
+  Verify command: `npm run build && npm run check && grep -qF 'max-width: 56ch;' src/styles/site.css && ! grep -qF '68ch' src/styles/site.css && node .planning/phases/04.2-design-polish/measure.mjs measure && npm run check:content && npm run check:layout && npm run check:a11y`
 
 - [ ] 04.2-04: Dark privacy band fill (FX4)
   Requirements: DSG-01
@@ -171,16 +171,16 @@ Run from the repo root after `npm ci` and `npm run build`. S1 to S19 are phase 0
 - S1 to S19: as phase 04.
 - S20. Every phase 04.2 measurement passes: `for c in headings stragglers measure band row4 crops features-top; do node .planning/phases/04.2-design-polish/measure.mjs $c || exit 1; done`
 - S21. Tokens and typefaces unchanged since ANSWERS (the self-hosted faces load from Base.astro through @fontsource): `npm run tokens:check && git diff --quiet 63a8b7d -- src/styles/tokens src/layouts/Base.astro package.json package-lock.json`
-- S22. HOME-DESIGN.md and the reference builds unchanged since ANSWERS: `git diff --quiet 63a8b7d -- .planning/phases/04-visuals-and-polish/design`
+- S22. HOME-DESIGN.md and the reference builds unchanged since the REVISE amendment (1d3efe5, the 56ch measure, decision 7): `git diff --quiet 1d3efe5 -- .planning/phases/04-visuals-and-polish/design`
 - S23. Only the planned files changed in src/: `test -z "$(git diff --name-only 63a8b7d -- src | grep -vxE 'src/styles/site.css|src/pages/index.astro|src/pages/features.astro|src/components/PhoneFrame.astro')"`
 - S24. The old HM16 h2 and the removed alts are gone, and the shots stay in the repo: `! grep -qF 'Your information stays on your iPhone</h2>' dist/index.html && ! grep -rqF 'and a Save to Person, Medical button' dist && ! grep -rqF 'The atHand logo sits in the center' dist && ! grep -rqF 'each with a Reveal button' dist && test -f src/assets/shots/05-masked-dark.png && test -f src/assets/shots/05-revealed-light.png`
 - S25. impeccable is not in the repo: `! grep -rqi impeccable package.json package-lock.json && test ! -e .impeccable`
 
-VERIFY also compares Home and the Features page top with HOME-DESIGN.md (as amended at ANSWERS) at 390 and 1280 px in both themes, records the axe and layout results per page and theme, and writes Jake's browser checklist (README, VERIFY step 5), including Safari before and after `text-wrap` support (the fallback is today's wrapping) and VoiceOver on the row 4 pair.
+VERIFY also compares Home and the Features page top with HOME-DESIGN.md (as amended at ANSWERS and REVISE) at 390 and 1280 px in both themes, records the axe and layout results per page and theme, and writes Jake's browser checklist (README, VERIFY step 5), including Safari before and after `text-wrap` support (the fallback is today's wrapping) and VoiceOver on the row 4 pair.
 
 ## Risks and rollback
 
-- FX3 margin. At 58ch the Features peak paragraph average is 79.0 characters per line and the longest single line is 80, so the CONTEXT.md acceptance (no paragraph averaging 80 or more) passes by one character in Chromium at 1280. Safari's text metrics can differ slightly. Decision 7 sets "about 58ch, so lines run under 80 characters"; if Jake wants every single line under 80, 56ch gives a longest line of 77 (measured at PLAN). Changing the value is a REVISE, not an EXECUTE choice.
+- FX3 margin. REVISE moved the measure from 58ch to 56ch (decision 7). At 58ch the Features peak paragraph average was 79.0 characters per line and the longest single line 80, passing the CONTEXT.md acceptance by one character in Chromium at 1280. At 56ch the peak average is 72.0 and the longest line 77, so every line runs under 80 with three characters of margin for Safari's slightly different text metrics. measure.mjs fails only on averages; it prints the longest line, which EXECUTE reads against the acceptance. HOME-DESIGN.md, Other pages was amended to "max 56ch" at REVISE (Jake authorized, commit 1d3efe5), so the contract matches the build; S22 now diffs from 1d3efe5. That commit reaches main through a merge commit, as every PR here has; a squash merge would drop the hash and S22 would need a new base. Changing the value again is a REVISE, not an EXECUTE choice.
 - `text-wrap` support. `balance` needs Safari 17.5 or later and `pretty` a recent Safari; older browsers keep today's wrapping, which passed phase 04. Acceptance is measured in Chromium.
 - Fixture edits in EXECUTE. Decision 14 moves the index.txt and features.txt changes into the tasks, unlike phase 04, so each page change and its fixture land in one commit and main stays green. The lines are given verbatim above.
 - Measurement helper. measure.mjs was run at PLAN against today's build (every check fails, as expected) and with FX1 to FX4 injected (those four pass), and the row4 check was run against the planned markup. The crops and features-top checks have only been run against today's build. If a check proves wrong, EXECUTE stops and records a blocker rather than editing it.
@@ -189,6 +189,8 @@ VERIFY also compares Home and the Features page top with HOME-DESIGN.md (as amen
 - Rollback: revert the wave's PR on main; the Deploy workflow republishes the previous build. Wave 1 reverts to today's wrapping, the 68ch column, the `--accent` dark band, and the old HM16 with its fixture lines. Wave 2 reverts Home rows 2, 4, and 5, the Features page top, and their fixture lines together.
 
 ## Self-check
+
+Re-run 2026-10-26 at REVISE (FX3 measure 58ch to 56ch in 04.2-03's step, verify grep, and acceptance, the Goal, Facts, and Risks; HOME-DESIGN.md, Other pages amended to 56ch with Jake's authorization, S22 rebased to 1d3efe5): pass, unchanged below. `git diff --quiet 1d3efe5 -- .planning/phases/04-visuals-and-polish/design` passes on this branch. The change touches only src/styles/site.css, already in 04.2-03's files; no requirement, wave, or file list changes. Baseline re-run for this REVISE: `npm run build` on main a33f5d9, then `measure.mjs measure --inject` with `main .prose { max-width: 56ch; }` passes on all six pages (column 601px, longest line 77).
 
 Run 2026-10-26 at PLAN.
 
