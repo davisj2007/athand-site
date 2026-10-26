@@ -196,7 +196,7 @@ Live site after this wave: every page has the new header (two rows on a phone, o
 
 Phone frame and Home.
 
-- [ ] 04-07: Pre-cropped paywall image
+- [x] 04-07: Pre-cropped paywall image
   Requirements: VIS-01, VIS-09
   Files: src/assets/shots/07-paywall-perks-light.png, src/assets/shots/07-paywall-perks-dark.png, src/assets/shots/07-paywall-light.png (deleted), src/assets/shots/07-paywall-dark.png (deleted)
   Copy entries: none
