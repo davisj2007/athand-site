@@ -3,6 +3,8 @@ import Base from "../layouts/Base.astro";
 import ComingSoon from "../components/ComingSoon.astro";
 import Icon from "../components/Icon.astro";
 import PhoneFrame from "../components/PhoneFrame.astro";
+import PrivacyBand from "../components/PrivacyBand.astro";
+import markSvg from "../assets/logo-lockup-mark.svg?raw";
 
 // Moment card values are fictional samples matching the screenshots' sample household.
 const moments = [
@@ -99,25 +101,29 @@ const moments = [
     </div>
   </section>
 
-  <div class="wrap">
-    <section class="panel" aria-labelledby="privacy-summary">
-      <h2 id="privacy-summary">Privacy in short</h2>
-      <ul>
-        <li>Your information stays on your iPhone. It leaves only inside an encrypted backup file that you choose to export.</li>
-        <li>There is no account and no sign-in.</li>
-        <li>atHand connects to Apple and RevenueCat for purchases, to Google for anonymous scanning diagnostics, and, if you allow location, to Apple to look up the name of a nearby place. It never sends your scans, photos, recognized text, or anything you enter.</li>
-        <li>The developer added no advertising, tracking, analytics, or crash-reporting tools.</li>
-      </ul>
-      <ul class="links">
-        <li><a href="/privacy-overview.html">How atHand handles your information</a></li>
-        <li><a href="/privacy.html">Read the full privacy policy</a></li>
-      </ul>
-    </section>
+  <PrivacyBand labelledby="privacy-heading">
+    <h2 id="privacy-heading">Your information stays on your iPhone</h2>
+    <p slot="after"><a class="cta" href="/privacy-overview.html">How atHand handles your information<Icon name="arrow" size={20} /></a></p>
+  </PrivacyBand>
 
-    <h2>Free to start</h2>
-    <p>Your own record is free. A one-time purchase unlocks everything else. There is no subscription.</p>
-    <ul class="links">
-      <li><a href="/pricing.html">See pricing</a></li>
-    </ul>
-  </div>
+  <section class="section" aria-labelledby="pricing-title">
+    <div class="container pricing-grid">
+      <div class="pricing-copy">
+        <h2 class="section-title" id="pricing-title">Free to start</h2>
+        <p class="section-line">Your own record is free. One purchase unlocks everything else. No subscription, no ads, no account.</p>
+        <p><a class="cta" href="/pricing.html">See pricing<Icon name="arrow" size={20} /></a></p>
+      </div>
+      <div class="shot-panel">
+        <PhoneFrame shot="07-paywall-perks" crop="perks" alt="The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account." />
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="closing-title">
+    <div class="container closing-inner">
+      <span class="closing-mark" aria-hidden="true"><Fragment set:html={markSvg} /></span>
+      <h2 class="section-title" id="closing-title">Coming soon to the App Store for iPhone.</h2>
+      <p class="section-line">Free to download. Your own record is free.</p>
+    </div>
+  </section>
 </Base>

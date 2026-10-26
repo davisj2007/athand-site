@@ -1,0 +1,28 @@
+---
+// Full-bleed privacy band (HOME-DESIGN.md, Privacy band). The default slot
+// holds the heading and anything before the facts; the "after" slot holds
+// anything after them, such as a link CTA.
+import Icon from "./Icon.astro";
+
+interface Props {
+  labelledby: string;
+}
+
+const { labelledby } = Astro.props;
+const facts = [
+  { icon: "person-slash", text: "No account and no sign-in." },
+  { icon: "scan", text: "Scanning runs on your iPhone." },
+  { icon: "eye-slash", text: "The developer added no advertising or tracking tools." },
+];
+---
+<section class="band" aria-labelledby={labelledby}>
+  <div class="container band-inner">
+    <slot />
+    <ul class="facts">
+      {facts.map((f) => (
+        <li><Icon name={f.icon} size={28} /><span>{f.text}</span></li>
+      ))}
+    </ul>
+    <slot name="after" />
+  </div>
+</section>
