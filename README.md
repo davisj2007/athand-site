@@ -58,7 +58,7 @@ This check does not run in the Deploy workflow, because the app repo is private 
 
 ## check:external
 
-`npm run check:external` scans every HTML, CSS, JS, and SVG file in dist/ for runtime requests: `src`, `srcset`, `poster`, `<link href>`, `<object data>`, `<form action>`, CSS `url()` and `@import`, and absolute URLs in scripts. It allows relative and root-relative URLs, fragments, `data:` URLs, and absolute URLs on athandapp.com. Ordinary links (`<a href>`) are not requests and are ignored. Any other host fails the check.
+`npm run check:external` scans every HTML, CSS, JS, and SVG file in dist/ for runtime requests: `src`, `srcset`, `poster`, `<link href>`, `<object data>`, `<form action>`, CSS `url()` and `@import`, and absolute URLs in scripts. It allows relative and root-relative URLs, fragments, `data:` URLs, and absolute URLs on athandapp.com. Ordinary links (`<a href>`) are not requests and are ignored. The body of a `<script type="application/ld+json">` block is not scanned, because it is structured data the browser never fetches (Home's JSON-LD names https://schema.org); a JSON-LD script's `src` and every other script are still checked. Any other host fails the check.
 
 ## check:links
 

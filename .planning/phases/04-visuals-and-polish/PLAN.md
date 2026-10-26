@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Plan
 
-Status: Draft (revised 2026-10-26 to unblock 04-23 and add 04-24; was Approved 2026-10-25)
+Status: Approved 2026-10-26 (revised 2026-10-26 to unblock 04-23 and add 04-24; first Approved 2026-10-25)
 
 ## Goal
 
@@ -393,7 +393,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: dist/sitemap.xml and dist/robots.txt exist with exactly that content; check:links and check:external still pass.
   Verify command: `npm run build && node -e 'const s=require("fs").readFileSync("dist/sitemap.xml","utf8");const locs=[...s.matchAll(/<loc>([^<]*)<\/loc>/g)].map(m=>m[1]);if(JSON.stringify(locs)!==JSON.stringify(["https://athandapp.com/","https://athandapp.com/features.html","https://athandapp.com/pricing.html","https://athandapp.com/privacy-overview.html","https://athandapp.com/privacy.html","https://athandapp.com/support.html"])||!s.includes("http://www.sitemaps.org/schemas/sitemap/0.9"))throw JSON.stringify(locs)' && test "$(cat dist/robots.txt)" = "$(printf 'User-agent: *\nAllow: /\n\nSitemap: https://athandapp.com/sitemap.xml')" && npm run check:links && npm run check:external`
 
-- [ ] 04-23: SoftwareApplication JSON-LD on Home
+- [x] 04-23: SoftwareApplication JSON-LD on Home
   Requirements: SEO-03, SEO-04
   Files: src/layouts/Base.astro, src/pages/index.astro, scripts/check-external.mjs, README.md
   Copy entries: M3, M4, M5
