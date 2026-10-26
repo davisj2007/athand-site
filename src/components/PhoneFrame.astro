@@ -1,0 +1,52 @@
+---
+// One App Store screenshot in a phone frame (HOME-DESIGN.md, Phone frame).
+// Each shot has a light and a dark PNG in src/assets/shots/; both render as
+// WebP and CSS shows the one that matches the theme, so the hidden one leaves
+// the accessibility tree and, when lazy, is not downloaded. The crop is CSS
+// (aspect-ratio and object-position by data-crop), so one file serves every view.
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  shot: string;
+  alt: string;
+  crop: "full" | "suggest" | "record" | "perks";
+  hero?: boolean;
+  caption?: string;
+  class?: string;
+}
+
+const { shot, alt, crop, hero = false, caption, class: className } = Astro.props;
+
+// Not eager, so a page imports only the shots it uses. Vite still emits every
+// PNG the pattern matches, and Astro deletes an original only once it has been
+// converted, so a shot no page shows would ship as a full PNG. 03-person-documents
+// is not shown on any page, so it is left out until one uses it.
+const shots = import.meta.glob<{ default: ImageMetadata }>([
+  "../assets/shots/*.png",
+  "!../assets/shots/03-person-documents-*.png",
+]);
+
+async function load(theme: "light" | "dark") {
+  const key = `../assets/shots/${shot}-${theme}.png`;
+  const loader = shots[key];
+  if (!loader) throw new Error(`PhoneFrame: missing src/assets/shots/${shot}-${theme}.png`);
+  return (await loader()).default;
+}
+
+const light = await load("light");
+const dark = await load("dark");
+const sizes = hero ? "(min-width: 52.5em) 340px, 280px" : "(min-width: 52.5em) 300px, 280px";
+const loading = hero ? "eager" : "lazy";
+const width = 720;
+const height = (src: ImageMetadata) => Math.round((width * src.height) / src.width);
+---
+<figure class:list={["frame", className]} data-crop={crop} data-hero={hero || undefined}>
+  <div class="phone">
+    <div class="screen">
+      <Image src={light} alt={alt} widths={[360, 720]} format="webp" width={width} height={height(light)} sizes={sizes} loading={loading} class="shot-light" />
+      <Image src={dark} alt={alt} widths={[360, 720]} format="webp" width={width} height={height(dark)} sizes={sizes} loading={loading} class="shot-dark" />
+    </div>
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

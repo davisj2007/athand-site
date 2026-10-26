@@ -1,45 +1,138 @@
 ---
 import Base from "../layouts/Base.astro";
 import ComingSoon from "../components/ComingSoon.astro";
+import Icon from "../components/Icon.astro";
+import PhoneFrame from "../components/PhoneFrame.astro";
+import PrivacyBand from "../components/PrivacyBand.astro";
+import markSvg from "../assets/logo-lockup-mark.svg?raw";
+
+// Moment card values are fictional samples matching the screenshots' sample household.
+const moments = [
+  { icon: "cross", title: "At the doctor’s office", label: "Insurance member ID", value: "XYZ000000000" },
+  { icon: "car", title: "At a traffic stop", label: "Driver’s license", value: "D000-0000-0000" },
+  { icon: "plane", title: "At the airport", label: "Passport", hidden: "Passport number, hidden until you tap Reveal" },
+];
 ---
 <Base title="atHand: Your Info, Ready" description="atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.">
-  <div class="wrap">
-    <h1>Your info, ready when you need it</h1>
-    <p class="lede">atHand keeps the details you look up all the time, such as people, vehicles, pets, homes, financial accounts, and contacts, in one place on your iPhone.</p>
-    <ComingSoon />
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-title">Your info, ready when you need it</h1>
+        <p class="lede">The details you look up all the time, for you and everyone you look after, in one place on your iPhone.</p>
+        <ComingSoon />
+      </div>
+      <div class="hero-shot">
+        <PhoneFrame shot="01-home" crop="full" hero alt="The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic." />
+      </div>
+    </div>
+  </section>
 
-    <h2>For the moments you need it</h2>
-    <p>At the doctor’s office, at a traffic stop, or at the airport, you need a member ID, a license number, or a passport number right away. atHand keeps them on your iPhone, for you and the people, vehicles, pets, and homes you look after.</p>
-
-    <h2>What it does</h2>
-    <ul>
-      <li>Keep records for people, vehicles, pets, homes, financial accounts, and contacts, or make a custom record for anything else.</li>
-      <li>Scan a driver’s license, passport, insurance card, VIN, vaccine record, or business card instead of typing. You check every field before it is saved.</li>
-      <li>Get a suggestion for the record that is likely to help right now, based on the time of day and, if you allow them, your calendar and location.</li>
-      <li>Lock atHand with Face ID, Touch ID, or your device passcode, and export an encrypted backup protected by a passphrase you choose.</li>
-    </ul>
-    <ul class="links">
-      <li><a href="/features.html">See all features</a></li>
-    </ul>
-
-    <section class="panel" aria-labelledby="privacy-summary">
-      <h2 id="privacy-summary">Privacy in short</h2>
-      <ul>
-        <li>Your information stays on your iPhone. It leaves only inside an encrypted backup file that you choose to export.</li>
-        <li>There is no account and no sign-in.</li>
-        <li>atHand connects to Apple and RevenueCat for purchases, to Google for anonymous scanning diagnostics, and, if you allow location, to Apple to look up the name of a nearby place. It never sends your scans, photos, recognized text, or anything you enter.</li>
-        <li>The developer added no advertising, tracking, analytics, or crash-reporting tools.</li>
+  <section class="section" aria-labelledby="moments-title">
+    <div class="container">
+      <h2 class="section-title" id="moments-title">For the moments you need it</h2>
+      <ul class="moments">
+        {moments.map((m) => (
+          <li class="moment">
+            <div class="moment-head">
+              <span class="glyph"><Icon name={m.icon} /></span>
+              <h3>{m.title}</h3>
+            </div>
+            <div class="record">
+              <span class="badge" aria-hidden="true">P</span>
+              <div>
+                <p class="record-name">Sam Rivera</p>
+                <p class="record-sub">{m.label}</p>
+              </div>
+            </div>
+            {m.hidden ? (
+              <p class="record-value"><span aria-hidden="true">•••••••••</span><span class="vh">{m.hidden}</span></p>
+            ) : (
+              <p class="record-value">{m.value}</p>
+            )}
+          </li>
+        ))}
       </ul>
-      <ul class="links">
-        <li><a href="/privacy-overview.html">How atHand handles your information</a></li>
-        <li><a href="/privacy.html">Read the full privacy policy</a></li>
-      </ul>
-    </section>
+    </div>
+  </section>
 
-    <h2>Free to start</h2>
-    <p>Your own record is free. A one-time purchase unlocks everything else. There is no subscription.</p>
-    <ul class="links">
-      <li><a href="/pricing.html">See pricing</a></li>
-    </ul>
-  </div>
+  <section class="section" aria-labelledby="features-title">
+    <div class="container">
+      <h2 class="section-title features-title" id="features-title">What it does</h2>
+      <ul class="features">
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>Everything you look after</h3>
+            <p>People, vehicles, pets, homes, and more, in one place.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="02-person-top" crop="full" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons." />
+          </div>
+        </li>
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>Scan instead of typing</h3>
+            <p>Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="04-check-what-we-read" crop="full" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button." />
+          </div>
+        </li>
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>The right record at the right time</h3>
+            <p>Suggestions from the time of day and, if you allow them, your calendar and location.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="01-home" crop="suggest" alt="Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact." />
+          </div>
+        </li>
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>Hidden until you need it</h3>
+            <p>Sensitive numbers stay masked until you tap Reveal.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="05-masked" crop="record" caption="Masked" class="pair" alt="A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button." />
+            <PhoneFrame shot="05-revealed" crop="record" caption="Revealed" class="pair" alt="The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked." />
+          </div>
+        </li>
+        <li class="feature">
+          <div class="feature-copy">
+            <h3>Locked to you</h3>
+            <p>Face ID, Touch ID, or your passcode. No password to remember.</p>
+          </div>
+          <div class="shot-panel">
+            <PhoneFrame shot="06-lock" crop="full" alt="The atHand lock screen. The atHand logo sits in the center, and below it the line “atHand is locked.” appears above an Unlock button." />
+          </div>
+        </li>
+      </ul>
+      <p class="more"><a class="cta" href="/features.html">See all features<Icon name="arrow" size={20} /></a></p>
+    </div>
+  </section>
+
+  <PrivacyBand labelledby="privacy-heading">
+    <h2 id="privacy-heading">Your information stays on your iPhone</h2>
+    <p slot="after"><a class="cta" href="/privacy-overview.html">How atHand handles your information<Icon name="arrow" size={20} /></a></p>
+  </PrivacyBand>
+
+  <section class="section" aria-labelledby="pricing-title">
+    <div class="container pricing-grid">
+      <div class="pricing-copy">
+        <h2 class="section-title" id="pricing-title">Free to start</h2>
+        <p class="section-line">Your own record is free. One purchase unlocks everything else. No subscription, no ads, no account.</p>
+        <p><a class="cta" href="/pricing.html">See pricing<Icon name="arrow" size={20} /></a></p>
+      </div>
+      <div class="shot-panel">
+        <PhoneFrame shot="07-paywall-perks" crop="perks" alt="The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account." />
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="closing-title">
+    <div class="container closing-inner">
+      <span class="closing-mark" aria-hidden="true"><Fragment set:html={markSvg} /></span>
+      <h2 class="section-title" id="closing-title">Coming soon to the App Store for iPhone.</h2>
+      <p class="section-line">Free to download. Your own record is free.</p>
+    </div>
+  </section>
 </Base>

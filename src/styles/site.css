@@ -364,3 +364,344 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) :is(footer.site a, .cta):hover { color: var(--text-body); }
 }
+
+/* Phone frame (HOME-DESIGN.md, Phone frame). The figure sets the width; the
+   .phone box inside it draws the bezel, so a caption sits below the phone. */
+
+.frame {
+  margin: 0;
+  width: var(--site-phone);
+  max-width: 100%;
+  min-width: 0;
+}
+.frame[data-hero] { width: var(--site-phone-hero); }
+.phone {
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-phone);
+  padding: var(--space-2);
+}
+.frame[data-hero] .phone { box-shadow: var(--shadow-soft); }
+.screen {
+  overflow: hidden;
+  border-radius: calc(var(--radius-phone) - var(--space-2));
+  border: 1px solid var(--divider);
+  background: var(--surface-page);
+  aspect-ratio: 1320 / 2696;
+}
+.screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;
+}
+.frame[data-crop="suggest"] .screen { aspect-ratio: 1320 / 1388; }
+.frame[data-crop="suggest"] img { object-position: 50% 11.62%; }
+.frame[data-crop="record"] .screen { aspect-ratio: 1320 / 1348; }
+.frame[data-crop="record"] img { object-position: 50% 11.32%; }
+/* The perks file is already the perks region, so the whole image shows. */
+.frame[data-crop="perks"] .screen { aspect-ratio: 1320 / 1208; }
+.frame[data-crop="perks"] img { object-position: 50% 50%; }
+.frame figcaption {
+  margin-top: var(--space-3);
+  text-align: center;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+/* Theme pairs, mirroring colors.css. The swap has no transition. The img
+   type selector keeps these rules above .screen img. */
+.screen img.shot-dark { display: none; }
+:root[data-theme="dark"] .screen img.shot-light { display: none; }
+:root[data-theme="dark"] .screen img.shot-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .screen img.shot-light { display: none; }
+  :root:not([data-theme="light"]) .screen img.shot-dark { display: block; }
+}
+
+/* Home sections. Adjacent sections share one --site-section gap; full-bleed
+   bands keep both. */
+
+.section { padding-block: var(--site-section); }
+.section + .section { padding-top: 0; }
+.section-title {
+  font-size: var(--site-h2);
+  margin: 0 0 var(--space-8);
+}
+
+/* Coming-soon line: plain text with a phone icon, not a pill. */
+.coming-soon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-body);
+}
+.coming-soon svg { flex: none; color: var(--text-muted); }
+
+/* Hero (HOME-DESIGN.md, Hero) */
+
+.hero-grid {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+  padding-block: var(--site-section);
+}
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+.hero-copy > * { margin: 0; }
+.hero h1 {
+  font-size: var(--site-display);
+  line-height: 1.08;
+  max-width: 12ch;
+  text-wrap: balance;
+}
+.hero .lede {
+  color: var(--text-muted);
+  max-width: 34rem;
+}
+.hero-shot {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+.hero + .section { padding-top: 0; }
+@media (min-width: 52.5em) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-12);
+  }
+  .hero-copy { gap: var(--space-8); }
+}
+
+/* Moments (HOME-DESIGN.md, Moments) */
+
+.moments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: var(--space-4);
+}
+.moment {
+  margin: 0;
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+.moment p { margin: 0; }
+.moment-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.moment h3 {
+  font-size: var(--text-lg);
+  margin: 0;
+}
+.glyph {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  border-radius: var(--radius-chip);
+  background: var(--surface-chip);
+  color: var(--text-body);
+}
+.record {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--divider);
+}
+.badge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  border-radius: var(--radius-chip);
+  background: var(--entity-person);
+  color: var(--white);
+  font: 700 var(--text-base)/1 var(--font-display);
+}
+:root[data-theme="dark"] .badge { color: var(--text-on-ink); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .badge { color: var(--text-on-ink); }
+}
+.record-name { font-weight: 700; line-height: 1.3; }
+.record-sub {
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+.record-value {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Features (HOME-DESIGN.md, Features). Even rows show the shot first on wide
+   screens through CSS order only; source order stays text, then image. */
+
+.features-title { margin-bottom: var(--space-10); }
+.features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--site-section);
+}
+.feature {
+  margin: 0;
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  min-width: 0;
+}
+.feature-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 28rem;
+  min-width: 0;
+}
+.feature-copy > * { margin: 0; }
+.feature h3 { font-size: var(--site-h3); }
+.feature-copy p,
+.section-line {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+.shot-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-10) var(--space-6);
+  background: var(--surface-chip);
+  border-radius: var(--radius-card);
+  min-width: 0;
+  max-width: 100%;
+}
+.frame.pair {
+  flex: 1 1 140px;
+  max-width: 240px;
+}
+@media (min-width: 52.5em) {
+  .feature {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-12);
+  }
+  .feature:nth-child(even) .shot-panel { order: -1; }
+}
+.more { margin: var(--space-10) 0 0; }
+
+/* Privacy band (HOME-DESIGN.md, Privacy band). Full bleed; the text keeps the
+   site gutter at every width. Links, icons, and the focus ring use
+   --text-on-cobalt, including on hover in dark. */
+
+.band {
+  background: var(--accent);
+  color: var(--text-on-cobalt);
+}
+.band-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-block: var(--site-section);
+}
+.band-inner > * { margin: 0; }
+.band h2 {
+  font-size: var(--site-h2);
+  max-width: 20ch;
+}
+.facts {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-6);
+}
+.facts li {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding-top: var(--space-5);
+  border-top: 1px solid currentColor;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.facts svg { flex: none; margin-top: 2px; }
+.band a,
+.band a:hover,
+:root[data-theme="dark"] .band .band-inner a:hover { color: var(--text-on-cobalt); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .band .band-inner a:hover { color: var(--text-on-cobalt); }
+}
+.band a:focus-visible { outline-color: var(--text-on-cobalt); }
+
+/* Pricing (HOME-DESIGN.md, Pricing) */
+
+.pricing-grid {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+}
+.pricing-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+.pricing-copy > * { margin: 0; }
+.pricing-copy .section-line { max-width: 30rem; }
+@media (min-width: 52.5em) {
+  .pricing-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-12);
+  }
+}
+
+/* Closing (HOME-DESIGN.md, Closing) */
+
+.closing { border-top: 1px solid var(--border-card); }
+.closing-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding-block: var(--site-section);
+  text-align: center;
+}
+.closing-inner > * { margin: 0; }
+.closing-mark {
+  display: block;
+  width: var(--logo-floor);
+  color: var(--text-link);
+}
+.closing-mark svg { display: block; width: 100%; height: auto; }

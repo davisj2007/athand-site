@@ -196,7 +196,7 @@ Live site after this wave: every page has the new header (two rows on a phone, o
 
 Phone frame and Home.
 
-- [ ] 04-07: Pre-cropped paywall image
+- [x] 04-07: Pre-cropped paywall image
   Requirements: VIS-01, VIS-09
   Files: src/assets/shots/07-paywall-perks-light.png, src/assets/shots/07-paywall-perks-dark.png, src/assets/shots/07-paywall-light.png (deleted), src/assets/shots/07-paywall-dark.png (deleted)
   Copy entries: none
@@ -207,7 +207,7 @@ Phone frame and Home.
   Acceptance: both derived files are 1320 by 1208 and byte-identical to a fresh crop of the originals at 4821a36; neither original exists; nothing in src/ names an original.
   Verify command: `D=$(mktemp -d) && for t in light dark; do f=src/assets/shots/07-paywall-perks-$t.png; test "$(sips -g pixelWidth -g pixelHeight $f | awk '/pixel/{print $2}' | tr '\n' ' ')" = "1320 1208 " || exit 1; git show 4821a36:src/assets/shots/07-paywall-$t.png > "$D/o-$t.png" && sips -c 1208 1320 --cropOffset 172 0 "$D/o-$t.png" --out "$D/c-$t.png" >/dev/null && cmp "$D/c-$t.png" $f || exit 1; test ! -e src/assets/shots/07-paywall-$t.png || exit 1; done && ! grep -rnE '07-paywall-(light|dark)' src && npm run build`
 
-- [ ] 04-08: PhoneFrame component and the alt-text fixture lines
+- [x] 04-08: PhoneFrame component and the alt-text fixture lines
   Requirements: VIS-01, VIS-02, A11Y-02
   Files: src/components/PhoneFrame.astro, src/styles/site.css, scripts/check-text.mjs, README.md
   Copy entries: none (alt text arrives with each use)
@@ -219,7 +219,7 @@ Phone frame and Home.
   Acceptance: PhoneFrame type-checks; site.css holds the four crops and the theme swap; check-text passes and fails on the alt cases below; the phase 03 fixtures (which have no `alt:` lines) still pass on today's pages.
   Verify command: `npm run check && npm run build && for s in 'aspect-ratio: 1320 / 2696' 'object-position: 50% 100%' 'aspect-ratio: 1320 / 1388' 'object-position: 50% 11.62%' 'aspect-ratio: 1320 / 1348' 'object-position: 50% 11.32%' 'aspect-ratio: 1320 / 1208' ':root:not([data-theme="light"])' '[data-theme="dark"]' 'box-shadow: var(--shadow-soft)'; do grep -qF -- "$s" src/styles/site.css || { echo "missing $s"; exit 1; }; done && test "$(grep -c 'box-shadow' src/styles/site.css)" = 1 && grep -q 'widths={\[360, 720\]}' src/components/PhoneFrame.astro && grep -q 'format="webp"' src/components/PhoneFrame.astro && ! grep -q 'eager: true' src/components/PhoneFrame.astro && D=$(mktemp -d) && printf '<!doctype html><html><head><title>T</title></head><body><main><p>Hi</p><img alt="A b"><img alt="A b"></main></body></html>' > "$D/a.html" && printf 'Hi\nalt: A b\n' > "$D/ok.txt" && node scripts/check-text.mjs "$D/a.html" "$D/ok.txt" && printf 'alt: C d\n' > "$D/miss.txt" && ! node scripts/check-text.mjs "$D/a.html" "$D/miss.txt" && printf '<!doctype html><html><head><title>T</title></head><body><main><img alt="A b"><img alt="Other"></main></body></html>' > "$D/b.html" && ! node scripts/check-text.mjs "$D/b.html" "$D/ok.txt" && printf '<!doctype html><html><head><title>T</title></head><body><main><p>Hi</p><img></main></body></html>' > "$D/c.html" && ! node scripts/check-text.mjs "$D/c.html" "$D/ok.txt" && for p in features pricing privacy-overview support; do node scripts/check-text.mjs dist/$p.html .planning/phases/03-pages-and-copy/copy/$p.txt || exit 1; done`
 
-- [ ] 04-09: Home hero and moments
+- [x] 04-09: Home hero and moments
   Requirements: VIS-01, VIS-07, VIS-11, A11Y-04
   Files: src/pages/index.astro, src/components/ComingSoon.astro, src/components/Icon.astro, src/styles/site.css
   Copy entries: HM1, HM2, HM3, HM4 (C1), HM5, HM6, HM7, HM8, A1
@@ -232,7 +232,7 @@ Phone frame and Home.
   Acceptance: one h1; the hero pair carries A1, `loading="eager"`, 360w and 720w WebP srcsets, width and height, and the hero sizes; three moment cards in order with their h3, label, record, and value; the badge and icons are aria-hidden (decision 11); Features and Pricing still pass their phase 03 fixtures.
   Verify command: `npm run build && node -e 'const fs=require("fs");const s=fs.readFileSync("dist/index.html","utf8");const m=s.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];if((m.match(/<h1\b/g)||[]).length!==1)throw "h1";const imgs=[...m.matchAll(/<img\b[^>]*>/g)].map(x=>x[0]);const hero=imgs.filter(i=>i.includes("The atHand home screen. A banner reads"));if(hero.length!==2||!hero.some(i=>/class="[^"]*shot-light/.test(i))||!hero.some(i=>/class="[^"]*shot-dark/.test(i)))throw "hero pair";for(const i of hero){if(!/loading="eager"/.test(i)||!/srcset="[^"]*\.webp 360w[^"]*\.webp 720w"/.test(i)||!/\bwidth="\d+"/.test(i)||!/\bheight="\d+"/.test(i)||!i.includes("sizes=\"(min-width: 52.5em) 340px, 280px\""))throw "hero attrs "+i}const t=m.replace(/<[^>]*>/g,"");let at=0;for(const w of ["At the doctor’s office","Insurance member ID","XYZ000000000","At a traffic stop","Driver’s license","D000-0000-0000","At the airport","Passport","Passport number, hidden until you tap Reveal"]){const k=t.indexOf(w,at);if(k<0)throw "order "+w;at=k}if(/<svg(?![^>]*aria-hidden="true")[^>]*>/.test(m))throw "svg not hidden"' && for p in features pricing; do node scripts/check-text.mjs dist/$p.html .planning/phases/03-pages-and-copy/copy/$p.txt || exit 1; done`
 
-- [ ] 04-10: Home feature rows one to four
+- [x] 04-10: Home feature rows one to four
   Requirements: VIS-01, VIS-07, VIS-11
   Files: src/pages/index.astro, src/styles/site.css
   Copy entries: HM9, HM10, HM11, HM12, HM13, HM15, A2, A3, A4, A5, A6
@@ -243,7 +243,7 @@ Phone frame and Home.
   Acceptance: four rows in order; the six images carry A2 to A6 (A4 on the suggest crop), all lazy with the non-hero sizes; figcaptions "Masked" and "Revealed"; the CTA links to /features.html.
   Verify command: `npm run build && node -e 'const fs=require("fs");const s=fs.readFileSync("dist/index.html","utf8");const m=s.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];const t=m.replace(/<[^>]*>/g,"");let at=0;for(const w of ["What it does","Everything you look after","People, vehicles, pets, homes, and more, in one place.","Scan instead of typing","Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.","The right record at the right time","Suggestions from the time of day and, if you allow them, your calendar and location.","Hidden until you need it","Sensitive numbers stay masked until you tap Reveal.","Masked","Revealed","See all features"]){const k=t.indexOf(w,at);if(k<0)throw "order "+w;at=k}const imgs=[...m.matchAll(/<img\b[^>]*>/g)].map(x=>x[0]);for(const a of ["Sam Rivera’s record in atHand.","The “Check what we read” screen","Close view of the atHand home screen.","A home record named Maple Street house.","The same home record after tapping Reveal."]){const p=imgs.filter(i=>i.includes(a));if(p.length!==2||p.some(i=>!/loading="lazy"/.test(i)||!i.includes("sizes=\"(min-width: 52.5em) 300px, 280px\"")))throw "img "+a}if(!/<figcaption[^>]*>\s*Masked\s*<\/figcaption>/.test(m)||!/<figcaption[^>]*>\s*Revealed\s*<\/figcaption>/.test(m))throw "captions";if(!/<a[^>]*class="cta"[^>]*href="\/features.html"|<a[^>]*href="\/features.html"[^>]*class="cta"/.test(m))throw "cta"' && npm run check:links`
 
-- [ ] 04-11: Privacy band, pricing, and closing on Home
+- [x] 04-11: Privacy band, pricing, and closing on Home
   Requirements: VIS-01, VIS-07, VIS-09, VIS-11, A11Y-04
   Files: src/pages/index.astro, src/components/PrivacyBand.astro, src/components/Icon.astro, src/styles/site.css
   Copy entries: HM16, HM17, HM18, HM19, HM20, HM21, HM22, HM23, HM24 (C1), HM25, A8
@@ -256,7 +256,7 @@ Phone frame and Home.
   Acceptance: band in a labelled section with the three facts in order and one CTA; no "RevenueCat", "Google", or "geocoding" and no /privacy.html link in Home main; pricing pair carries A8 and comes from the perks files; the coming-soon sentence appears exactly twice on Home (hero line and closing h2); no price pattern in Home text or alt text.
   Verify command: `npm run build && node -e 'const fs=require("fs");const s=fs.readFileSync("dist/index.html","utf8");const m=s.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];const band=m.match(/<section[^>]*class="band"[^>]*aria-labelledby="privacy-heading"[\s\S]*?<\/section>/);if(!band)throw "band";const bt=band[0].replace(/<[^>]*>/g,"");let at=0;for(const w of ["Your information stays on your iPhone","No account and no sign-in.","Scanning runs on your iPhone.","The developer added no advertising or tracking tools.","How atHand handles your information"]){const k=bt.indexOf(w,at);if(k<0)throw "band order "+w;at=k}if(bt.includes("Your information stays on your iPhone."))throw "HM16 period";const t=m.replace(/<[^>]*>/g,"");for(const w of ["RevenueCat","Google","geocoding"])if(t.includes(w))throw "disclosure on Home: "+w;if(m.includes("href=\"/privacy.html\""))throw "policy link in main";for(const w of ["Free to start","Your own record is free. One purchase unlocks everything else. No subscription, no ads, no account.","See pricing","Free to download. Your own record is free."])if(!t.includes(w))throw "missing "+w;if(t.includes("Free to start."))throw "HM21 period";if((t.match(/Coming soon to the App Store for iPhone\./g)||[]).length!==2)throw "coming soon count";const p=[...m.matchAll(/<img\b[^>]*>/g)].map(x=>x[0]).filter(i=>i.includes("The atHand unlock screen"));if(p.length!==2)throw "A8 pair";const alts=[...m.matchAll(/\salt="([^"]*)"/g)].map(x=>x[1]).join(" ");if(/\$\s*\d|\d\.\d\d(?!\d)|USD|€|£/.test(t+" "+alts))throw "price"' && ! ls dist/_astro | grep -E '07-paywall-(light|dark)' && npm run check:links`
 
-- [ ] 04-12: Home feature row five (06-lock) and the full Home checks
+- [x] 04-12: Home feature row five (06-lock) and the full Home checks
   Requirements: VIS-01, VIS-02, VIS-07, VIS-10, VIS-11, A11Y-02
   Files: src/pages/index.astro
   Copy entries: HM14, A9 (Approved in REVISE; decision 24)

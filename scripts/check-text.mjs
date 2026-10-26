@@ -1,7 +1,10 @@
 // Fails unless a built page holds the expected copy listed in a fixture file.
 // Fixture lines: "title: X" and "description: X" must equal the head values;
 // "href: U" requires a link to U inside <main>; "!X" must not appear in the
-// main text; any other line must appear in it. Blank and "#" lines are skipped.
+// main text; "alt: X" requires an <img> inside <main> whose alt is X, and when
+// a fixture has any "alt:" line, every <img> inside <main> must carry one of
+// those alts; any other line must appear in the main text. Blank and "#" lines
+// are skipped.
 // Usage: node scripts/check-text.mjs <dist html file> <fixture file>
 import { existsSync, readFileSync } from "node:fs";
 
@@ -62,12 +65,20 @@ for (const m of main.matchAll(/<a\b[^>]*>/gi)) {
   if (h) hrefs.push(decode(h[1] ?? h[2] ?? h[3]));
 }
 
+// Each <img> inside main with its decoded alt, or null when it has none.
+const alts = [];
+for (const m of main.matchAll(/<img\b[^>]*>/gi)) {
+  const a = m[0].match(/\salt\s*=\s*(?:"([^"]*)"|'([^']*)')/i);
+  alts.push(a ? clean(a[1] ?? a[2]) : null);
+}
+
 const lines = readFileSync(fixture, "utf8")
   .split(/\r?\n/)
   .map((l) => l.trim())
   .filter((l) => l !== "" && !l.startsWith("#"));
 
 const failures = [];
+const wantAlts = [];
 for (const line of lines) {
   if (line.startsWith("title: ")) {
     const want = line.slice(7);
@@ -78,11 +89,22 @@ for (const line of lines) {
   } else if (line.startsWith("href: ")) {
     const want = line.slice(6);
     if (!hrefs.includes(want)) failures.push(`href: ${want}`);
+  } else if (line.startsWith("alt: ")) {
+    const want = line.slice(5);
+    wantAlts.push(want);
+    if (!alts.includes(want)) failures.push(`alt: ${want}`);
   } else if (line.startsWith("!")) {
     const absent = line.slice(1);
     if (text.includes(absent)) failures.push(`present: ${absent}`);
   } else if (!text.includes(line)) {
     failures.push(`missing: ${line}`);
+  }
+}
+
+if (wantAlts.length) {
+  for (const a of alts) {
+    if (a === null) failures.push("missing alt");
+    else if (!wantAlts.includes(a)) failures.push(`unexpected alt: ${a}`);
   }
 }
 

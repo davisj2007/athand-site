@@ -23,10 +23,10 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 
 - src/pages/: one file per page. index.astro, features.astro, pricing.astro, privacy-overview.astro, privacy.astro, support.astro, and 404.astro build to /index.html, /features.html, /pricing.html, /privacy-overview.html, /privacy.html, /support.html, and /404.html. /privacy.html and /support.html are permanent URLs.
 - src/layouts/Base.astro: the shared page shell, head metadata, font and token imports, and the inline theme script.
-- src/components/: Header.astro (logo lockup, main navigation, and theme control), ThemeControl.astro (System, Light, and Dark buttons), ComingSoon.astro (the coming-soon line), and Footer.astro.
+- src/components/: Header.astro (logo lockup, main navigation, and theme control), ThemeControl.astro (System, Light, and Dark buttons), ComingSoon.astro (the coming-soon line), PhoneFrame.astro (one screenshot in a phone frame, light and dark, cropped by CSS), Icon.astro (inline line icons), and Footer.astro.
 - src/styles/tokens/: design tokens copied from the app repo. Do not edit them by hand.
 - src/styles/site.css: the site stylesheet, written against the token variables.
-- src/assets/: the logo mark SVG, copied from the app repo.
+- src/assets/: the logo mark SVG, copied from the app repo, and shots/, the App Store screenshots in light and dark pairs.
 - public/: files copied into dist/ as is, including CNAME.
 - scripts/: the check scripts, plain Node. check-layout.mjs and check-a11y.mjs use Playwright (and axe-core); the others use built-in modules only.
 
@@ -64,7 +64,7 @@ This check does not run in the Deploy workflow, because the app repo is private 
 
 ## check:text
 
-`node scripts/check-text.mjs` confirms that a built page holds the expected copy listed in a fixture file. Each fixture line is one string: `title:` and `description:` lines must equal the page's head values, `href:` lines require a link with that target inside `<main>`, lines starting with `!` must not appear in the main text, and every other line must appear in it. Blank lines and lines starting with `#` are skipped.
+`node scripts/check-text.mjs` confirms that a built page holds the expected copy listed in a fixture file. Each fixture line is one string: `title:` and `description:` lines must equal the page's head values, `href:` lines require a link with that target inside `<main>`, lines starting with `!` must not appear in the main text, `alt:` lines require an `<img>` inside `<main>` with exactly that alt text, and every other line must appear in it. When a fixture has any `alt:` line, every `<img>` inside `<main>` must carry one of the listed alts, so an image with a missing or unexpected alt fails. Blank lines and lines starting with `#` are skipped.
 
 ```bash
 node scripts/check-text.mjs dist/features.html .planning/phases/03-pages-and-copy/copy/features.txt
