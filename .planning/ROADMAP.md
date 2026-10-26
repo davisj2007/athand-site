@@ -40,17 +40,21 @@ Delivered by davisj2007/athand-site#17 through #22 (DISCUSS, ANSWERS, PLAN, EXEC
 
 Exit: every new page is live with Approved copy only, each claim cited in the PR, and the full privacy policy still at /privacy.html.
 
-## 04 visuals-and-polish: Not started
+## 04 visuals-and-polish: In progress
 
-Requirements: VIS-01..04, SEO-01..04, A11Y-01..06, FEAT-01.
+Requirements: VIS-01..11, SEO-01..04, A11Y-01..06, FEAT-01.
+Design contract: .planning/phases/04-visuals-and-polish/design/HOME-DESIGN.md (approved direction from Jake, 2026-10-25), with two reference builds beside it. Jake folded the redesign into this phase (2026-10-25).
 
-- Design Ref screenshots from athand-design-handoff/screenshots as placeholders, replaced by simulator captures from app phase 06 when they exist.
-- A CSS phone frame that swaps between light and dark with the theme.
-- An Open Graph image, a favicon, and an apple-touch-icon made from the app icon.
-- A sitemap, robots.txt, SoftwareApplication JSON-LD, and metadata that separates atHand from "Athan".
-- An accessibility audit: axe, VoiceOver in Safari, 400% zoom, both themes, and reduced motion.
+- The site becomes a visual showcase of the app, built to HOME-DESIGN.md: one 52.5em breakpoint, site variables in site.css (the 56px hero and 96px section gap as calc() values, no new tokens), a shared container and gutter.
+- A new header (two rows, then one) with a segmented System, Light, and Dark control, and a new footer.
+- App Store screenshots from src/assets/shots/ (1320 by 2868, light and dark, fictional sample data) in a PhoneFrame component that crops with CSS and swaps light and dark with the theme. The lock screen shows a placeholder until a 1320 by 2868 capture exists. No served image contains a price.
+- Home rebuilt in HOME-DESIGN.md order: hero, moments, five feature rows, a full-bleed privacy band, pricing, and closing. The network disclosures leave Home and stay in full on /privacy-overview.html.
+- Every other page gets a page top built from Home parts, with today's text below in a prose column: Features and Support gain jump lists, Pricing a fact row, Privacy overview the privacy band, and Support a contact card. /privacy.html and 404 stay text only.
+- Carried over: an Open Graph image, a favicon, and an apple-touch-icon made from the app icon; a sitemap, robots.txt, SoftwareApplication JSON-LD, and metadata that separates atHand from "Athan".
+- An accessibility audit: axe, VoiceOver in Safari, 320px and 400% zoom with no horizontal scroll and the side gutter kept, both themes, and reduced motion.
+- FEAT-01, the Features accessibility section, only once the app repo records its TestFlight VoiceOver and Dynamic Type passes.
 
-Exit: the audit passes with no open issues and Jake signs off the browser checklist.
+Exit: every page matches HOME-DESIGN.md with Approved copy only, the audit passes with no open issues, and Jake signs off the browser checklist.
 
 ## 05 launch-flip: Blocked (gated on App Store approval)
 
@@ -67,4 +71,4 @@ Exit: every page that mentions availability points to the live listing, and no c
 
 ## Order
 
-01, 02, and 03 done. Next 04, and 05 once Apple approves the app.
+01, 02, and 03 done. 04 in progress (DISCUSS). Then 05 once Apple approves the app.

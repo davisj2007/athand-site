@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>atHand home page reference build (light)</title>
+<!-- Design reference only, not production code. Built from the design canvas
+     (Design artifact dc6e54d7). Uses container queries at 840px on .site; the
+     production build uses @media (min-width: 52.5em). Fonts fall back to system
+     faces here; production self-hosts Space Grotesk and Inter. -->
+<style>
+body{margin:0}
+/* Design system tokens, copied from athand-site src/styles/tokens (app _ds at e7537e7). */
+.site{
+--font-display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+--font-ui:"Inter",ui-sans-serif,system-ui,sans-serif;
+--tracking-display:-0.03em;--tracking-label:0.01em;
+--text-xs:13px;--text-sm:15px;--text-base:17px;--text-md:17px;--text-lg:22px;--text-xl:28px;--text-2xl:36px;
+--leading-tight:1.15;--leading-normal:1.45;
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;
+--radius-card:14px;--radius-card-sm:12px;--radius-chip:100px;--radius-control:10px;--radius-badge:10px;--radius-phone:28px;
+--badge-size:40px;--touch-min:44px;--logo-floor:60px;
+--ease-standard:cubic-bezier(0.2,0,0,1);--dur-fast:120ms;--dur-base:200ms;
+container-type:inline-size;
+}
+.th-light{
+--ink:#14161C;--paper:#F6F5F1;--cobalt:#4C39C6;--white:#FFFFFF;
+--surface-page:var(--paper);--surface-card:#FFFFFF;--surface-chip:#F1EFE9;--surface-ink:var(--ink);
+--border-card:#E3E1D9;--divider:#EEEDE7;
+--text-body:var(--ink);--text-muted:#4A4C55;--text-faint:#6C6C64;--text-on-cobalt:#FFFFFF;--text-on-ink:var(--paper);--text-link:var(--cobalt);
+--accent:var(--cobalt);--accent-hover:#3E2DA8;--accent-press:#342591;
+--entity-person:#516EA9;--entity-vehicle:#39797F;--entity-pet:#3E7952;--entity-home:#8D663F;
+--shadow-soft:0 20px 50px rgba(20,22,28,0.10);
+}
+.th-dark{
+--ink:#ECEBE4;--paper:#0E0F13;--cobalt:#6A57E0;--white:#FFFFFF;
+--surface-page:#0E0F13;--surface-card:#191B22;--surface-chip:#23252E;--surface-ink:#F6F5F1;
+--border-card:#2A2C35;--divider:#22242C;
+--text-body:#ECEBE4;--text-muted:#A7A9B2;--text-faint:#8C8E96;--text-on-cobalt:#FFFFFF;--text-on-ink:#14161C;--text-link:#A99BF5;
+--accent:#6A57E0;--accent-hover:#7E6DE8;--accent-press:#5A47D0;
+--entity-person:#8AA0D4;--entity-vehicle:#5FAEB4;--entity-pet:#6FB187;--entity-home:#C79A6C;
+--shadow-soft:0 20px 50px rgba(0,0,0,0.5);
+}
+.site{background:var(--surface-page);color:var(--text-body);font:400 var(--text-base)/var(--leading-normal) var(--font-ui)}
+/* Site layer: phone first; every value derives from a token. */
+.page{
+--site-max:1200px;
+--site-gutter:var(--space-4);
+--site-section:var(--space-12);
+--site-display:var(--text-2xl);
+--site-h2:var(--text-xl);
+--site-h3:var(--text-lg);
+--site-phone:280px;
+--site-phone-hero:280px;
+}
+@container (min-width: 840px){
+.page{
+--site-gutter:var(--space-10);
+--site-section:calc(var(--space-12) * 2);
+--site-display:calc(var(--text-xl) * 2);
+--site-h2:var(--text-2xl);
+--site-h3:var(--text-xl);
+--site-phone:300px;
+--site-phone-hero:340px;
+}
+}
+.site *{box-sizing:border-box}
+.wrap{max-width:var(--site-max);margin:0 auto;padding:0 var(--site-gutter)}
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.site h1,.site h2,.site h3{font-family:var(--font-display);font-weight:700;letter-spacing:var(--tracking-display);margin:0;text-wrap:balance}
+.site p{margin:0;text-wrap:pretty}
+.site a{color:var(--text-link);text-underline-offset:0.18em;transition:color var(--dur-fast) var(--ease-standard),text-decoration-thickness var(--dur-fast) var(--ease-standard)}
+.site a:hover{color:var(--accent-hover)}
+.th-dark a:hover{color:var(--text-body)}
+.site a:focus-visible,.site button:focus-visible{outline:3px solid var(--text-link);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:var(--space-4);top:-80px;background:var(--surface-page);color:var(--text-link);padding:var(--space-2) var(--space-3);border:2px solid var(--text-link)}
+.skip:focus{top:var(--space-4)}
+.inline-link{text-decoration:underline;text-decoration-thickness:1px}
+.inline-link:hover{text-decoration-thickness:2px}
+.cta-link{display:inline-flex;align-items:center;gap:var(--space-2);min-height:var(--touch-min);font-weight:600;text-decoration:underline;text-decoration-thickness:1px}
+.cta-link:hover{text-decoration-thickness:2px}
+.cta-link svg{width:20px;height:20px;flex:none}
+
+/* Header */
+.hdr{border-bottom:1px solid var(--border-card)}
+.hdr-in{display:grid;grid-template-columns:1fr auto;grid-template-areas:"logo theme" "nav nav";align-items:center;column-gap:var(--space-4);padding-top:var(--space-3)}
+.lockup{grid-area:logo;display:inline-flex;align-items:center;gap:0.06em;min-height:var(--touch-min);font-size:var(--text-xl);line-height:1;color:var(--text-link);text-decoration:none;justify-self:start}
+.lockup:hover{text-decoration:none}
+.lockup svg{height:1em;width:auto}
+.lockup-word{font-family:var(--font-display);font-weight:700;letter-spacing:var(--tracking-display)}
+.nav{grid-area:nav;margin-top:var(--space-2);border-top:1px solid var(--divider)}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:space-between;column-gap:var(--space-4)}
+.nav a{display:inline-flex;align-items:center;min-height:var(--touch-min);min-width:var(--touch-min);font-weight:600;text-decoration:none}
+.nav a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:0.3em}
+.theme{grid-area:theme;display:flex;border:1px solid var(--border-card);border-radius:var(--radius-control);padding:2px;gap:2px;background:var(--surface-card)}
+.theme button{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-width:var(--touch-min);min-height:calc(var(--touch-min) - 6px);padding:0 var(--space-2);font:500 16px var(--font-ui);color:var(--text-body);background:transparent;border:0;border-radius:calc(var(--radius-control) - 2px);cursor:pointer;transition:background-color var(--dur-fast) var(--ease-standard),color var(--dur-fast) var(--ease-standard)}
+.theme button:hover{background:var(--surface-chip)}
+.theme button[aria-pressed="true"]{background:var(--text-body);color:var(--surface-page);font-weight:700}
+.theme svg{width:20px;height:20px;flex:none}
+.tlabel{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@container (min-width: 840px){
+.hdr-in{grid-template-columns:auto 1fr auto;grid-template-areas:"logo nav theme";column-gap:var(--space-8);padding-top:var(--space-4);padding-bottom:var(--space-4)}
+.nav{margin:0;border:0;justify-self:end}
+.nav ul{justify-content:flex-end;column-gap:var(--space-8)}
+.theme button{padding:0 var(--space-3)}
+.tlabel{position:static;width:auto;height:auto;overflow:visible;clip:auto}
+}
+@container (min-width: 360px){.hdr-in{padding-bottom:0}}
+
+/* Phone frame */
+.phone{margin:0;width:var(--site-phone);max-width:100%;background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-phone);padding:var(--space-2)}
+.phone.hero-frame{width:var(--site-phone-hero);box-shadow:var(--shadow-soft)}
+.screen{display:block;position:relative;overflow:hidden;border-radius:calc(var(--radius-phone) - var(--space-2));border:1px solid var(--divider);aspect-ratio:1320 / 2696;background:var(--surface-page)}
+.screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.screen.crop-suggest{aspect-ratio:1320 / 1388}
+.screen.crop-suggest img{object-position:50% 11.62%}
+.screen.crop-record{aspect-ratio:1320 / 1348}
+.screen.crop-record img{object-position:50% 11.32%}
+.screen.crop-perks{aspect-ratio:1320 / 1208}
+.screen.crop-perks img{object-position:50% 10.36%}
+.screen.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-2);background:var(--surface-chip);border:2px dashed var(--text-faint);text-align:center;padding:var(--space-6)}
+.ph-name{font:700 var(--text-lg)/1.2 var(--font-display);letter-spacing:var(--tracking-display)}
+.ph-note{color:var(--text-muted);font-size:16px}
+
+/* Sections */
+.section{padding:var(--site-section) 0}
+.section + .section{padding-top:0}
+.h2{font-size:var(--site-h2);line-height:var(--leading-tight)}
+.h3{font-size:var(--site-h3);line-height:var(--leading-tight)}
+.lede{font-size:var(--text-lg);line-height:var(--leading-normal);color:var(--text-muted);max-width:34rem}
+
+/* Hero */
+.hero{display:grid;gap:var(--space-10);align-items:center;padding-top:var(--site-section);padding-bottom:var(--site-section)}
+.hero h1{font-size:var(--site-display);line-height:1.08;max-width:12ch}
+.hero-copy{display:flex;flex-direction:column;gap:var(--space-6)}
+.soon{display:flex;align-items:center;gap:var(--space-3);font-weight:600;font-size:var(--text-base);color:var(--text-body)}
+.soon svg{width:24px;height:24px;flex:none;color:var(--text-muted)}
+.hero-shot{display:flex;justify-content:center}
+@container (min-width: 840px){
+.hero{grid-template-columns:minmax(0,1fr) auto;gap:var(--space-12)}
+.hero-copy{gap:var(--space-8)}
+}
+
+/* Moments */
+.moments-head{display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8)}
+.moments{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:var(--space-4)}
+.moment{background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--radius-card);padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-5)}
+.moment-head{display:flex;align-items:center;gap:var(--space-3)}
+.glyph{width:var(--touch-min);height:var(--touch-min);border-radius:var(--radius-chip);background:var(--surface-chip);display:inline-flex;align-items:center;justify-content:center;flex:none;color:var(--text-body)}
+.glyph svg{width:24px;height:24px}
+.moment h3{font-size:var(--text-lg);line-height:var(--leading-tight)}
+.record{display:flex;align-items:center;gap:var(--space-3);padding-top:var(--space-5);border-top:1px solid var(--divider)}
+.badge{width:var(--badge-size);height:var(--badge-size);border-radius:var(--radius-chip);background:var(--entity-person);display:inline-flex;align-items:center;justify-content:center;font:700 var(--text-base)/1 var(--font-display);flex:none}
+.th-light .badge{color:var(--white)}
+.th-dark .badge{color:var(--text-on-ink)}
+.rec-name{font:700 var(--text-base)/1.3 var(--font-ui)}
+.rec-sub{font-size:16px;line-height:1.35;color:var(--text-muted)}
+.rec-value{font:500 var(--text-lg)/1.2 var(--font-ui);letter-spacing:var(--tracking-label);font-variant-numeric:tabular-nums}
+
+/* Features */
+.features-head{display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-10)}
+.features{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--site-section)}
+.feat{display:grid;gap:var(--space-6);align-items:center}
+.feat-copy{display:flex;flex-direction:column;gap:var(--space-3);max-width:28rem}
+.feat-copy p{font-size:var(--text-lg);color:var(--text-muted)}
+.shot{background:var(--surface-chip);border-radius:var(--radius-card);padding:var(--space-10) var(--space-6);display:flex;justify-content:center;align-items:flex-start;gap:var(--space-4);flex-wrap:wrap}
+.pair-item{margin:0;display:flex;flex-direction:column;align-items:center;gap:var(--space-3);flex:1 1 140px;max-width:240px}
+.pair-item .phone{width:100%}
+.pair-item figcaption{font-weight:600;font-size:var(--text-base)}
+@container (min-width: 840px){
+.feat{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-12)}
+.feat:nth-child(even) .shot{order:-1}
+.feat:nth-child(even) .feat-copy{justify-self:start}
+}
+.all-features{margin-top:var(--space-10)}
+
+/* Privacy band */
+.band{background:var(--accent);color:var(--text-on-cobalt)}
+.band .wrap{padding-top:var(--site-section);padding-bottom:var(--site-section);display:flex;flex-direction:column;gap:var(--space-8)}
+.band h2{max-width:20ch}
+.facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:var(--space-6)}
+.fact{display:flex;align-items:flex-start;gap:var(--space-4);font-size:var(--text-lg);line-height:1.35;font-weight:500;padding-top:var(--space-5);border-top:1px solid currentColor}
+.fact svg{width:28px;height:28px;flex:none;margin-top:2px}
+.band a,.band a:hover{color:var(--text-on-cobalt)}
+.band a:focus-visible{outline-color:var(--text-on-cobalt)}
+
+/* Pricing */
+.pricing{display:grid;gap:var(--space-10);align-items:center}
+.pricing-copy{display:flex;flex-direction:column;gap:var(--space-5)}
+.pricing-copy p{font-size:var(--text-lg);color:var(--text-muted);max-width:30rem}
+@container (min-width: 840px){
+.pricing{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-12)}
+}
+
+/* Closing */
+.closing{border-top:1px solid var(--border-card)}
+.closing .wrap{padding-top:var(--site-section);padding-bottom:var(--site-section);display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-5)}
+.mark{color:var(--text-link);width:var(--logo-floor);height:auto}
+.closing p{font-size:var(--text-lg);color:var(--text-muted)}
+
+/* Footer */
+.ftr{border-top:1px solid var(--border-card);color:var(--text-muted)}
+.ftr .wrap{padding-top:var(--space-8);padding-bottom:var(--space-10);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--space-4) var(--space-8)}
+.ftr ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;column-gap:var(--space-6)}
+.ftr a{display:inline-flex;align-items:center;min-height:var(--touch-min);font-size:var(--text-base);text-decoration:underline;text-decoration-thickness:1px}
+.ftr a:hover{text-decoration-thickness:2px}
+
+@media (prefers-reduced-motion: reduce){.site *{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="site th-light">
+<div class="page">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="hdr">
+<div class="wrap hdr-in">
+<a class="lockup" href="/" aria-label="atHand, home" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" viewBox="215 30 350 280" fill="none" stroke="currentColor" aria-hidden="true"><path d="M 415 160 A 62 62 0 1 0 291 160 A 62 62 0 1 0 415 160 M 415 100 L 415 188 Q 415 210 437 210 L 545 210" stroke-width="16" stroke-linecap="round"></path><path d="M 505 158 L 505 260 Q 505 288 531 288" stroke-width="16" stroke-linecap="round"></path><path d="M 470 180 L 470 98 Q 470 45 417 45 L 283 45 Q 230 45 230 98 L 230 232 Q 230 285 283 285 L 417 285 Q 470 285 470 240" stroke-width="9" stroke-linecap="round"></path></svg><span class="lockup-word" aria-hidden="true">Hand</span></a>
+<nav class="nav" aria-label="Main">
+<ul>
+<li><a href="/features.html">Features</a></li>
+<li><a href="/pricing.html">Pricing</a></li>
+<li><a href="/privacy-overview.html">Privacy</a></li>
+<li><a href="/support.html">Support</a></li>
+</ul>
+</nav>
+<div class="theme" role="group" aria-label="Appearance">
+<button type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"></path></svg><span class="tlabel">System</span></button>
+<button type="button" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"></path></svg><span class="tlabel">Light</span></button>
+<button type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg><span class="tlabel">Dark</span></button>
+</div>
+</div>
+</header>
+
+<main id="main">
+
+<section class="wrap hero" aria-labelledby="hero-title">
+<div class="hero-copy">
+<h1 id="hero-title">Your info, ready when you need it</h1>
+<p class="lede">The details you look up all the time, for you and everyone you look after, in one place on your iPhone.</p>
+<p class="soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"></rect><path d="M10.5 18.5h3"></path></svg>Coming soon to the App Store for iPhone.</p>
+</div>
+<div class="hero-shot">
+<figure class="phone hero-frame">
+<span class="screen"><img src="../../../../src/assets/shots/01-home-light.png" alt="The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic."></span>
+</figure>
+</div>
+</section>
+
+<section class="wrap section" aria-labelledby="moments-title">
+<div class="moments-head">
+<h2 class="h2" id="moments-title">For the moments you need it</h2>
+</div>
+<ul class="moments">
+<li class="moment">
+<div class="moment-head"><span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"></rect><path d="M12 8v8M8 12h8"></path></svg></span><h3>At the doctor’s office</h3></div>
+<div class="record"><span class="badge" aria-hidden="true">P</span><div><p class="rec-name">Insurance member ID</p><p class="rec-sub">Sam Rivera</p></div></div>
+<p class="rec-value">XYZ000000000</p>
+</li>
+<li class="moment">
+<div class="moment-head"><span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16.5v-3.5l2-5a2 2 0 0 1 1.9-1.3h8.2A2 2 0 0 1 18 8l2 5v3.5z"></path><path d="M6 16.5v2M18 16.5v2M4.5 12.5h15"></path><circle cx="8" cy="14.5" r="0.6"></circle><circle cx="16" cy="14.5" r="0.6"></circle></svg></span><h3>At a traffic stop</h3></div>
+<div class="record"><span class="badge" aria-hidden="true">P</span><div><p class="rec-name">Driver’s license</p><p class="rec-sub">Sam Rivera</p></div></div>
+<p class="rec-value">D000-0000-0000</p>
+</li>
+<li class="moment">
+<div class="moment-head"><span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15.5v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0v5l-8 5v2l8-2.5v5l-2 1.5V21l3.5-1 3.5 1v-1.5l-2-1.5v-5z" transform="translate(0.5 0)"></path></svg></span><h3>At the airport</h3></div>
+<div class="record"><span class="badge" aria-hidden="true">P</span><div><p class="rec-name">Passport</p><p class="rec-sub">Sam Rivera</p></div></div>
+<p class="rec-value"><span aria-hidden="true">•••••••••</span><span class="vh">Passport number, hidden until you tap Reveal</span></p>
+</li>
+</ul>
+</section>
+
+<section class="wrap section" aria-labelledby="features-title">
+<div class="features-head">
+<h2 class="h2" id="features-title">What it does</h2>
+</div>
+<ul class="features">
+<li class="feat">
+<div class="feat-copy">
+<h3 class="h3">Everything you look after</h3>
+<p>People, vehicles, pets, homes, and more, in one place.</p>
+</div>
+<div class="shot">
+<figure class="phone"><span class="screen"><img src="../../../../src/assets/shots/02-person-top-light.png" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons."></span></figure>
+</div>
+</li>
+<li class="feat">
+<div class="feat-copy">
+<h3 class="h3">Scan instead of typing</h3>
+<p>Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.</p>
+</div>
+<div class="shot">
+<figure class="phone"><span class="screen"><img src="../../../../src/assets/shots/04-check-what-we-read-light.png" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link, three fields read from it (Member ID, Group number, and Insurance phone), and a Save to Person, Medical button."></span></figure>
+</div>
+</li>
+<li class="feat">
+<div class="feat-copy">
+<h3 class="h3">The right record at the right time</h3>
+<p>Suggestions from the time of day and, if you allow them, your calendar and location.</p>
+</div>
+<div class="shot">
+<figure class="phone"><span class="screen crop-suggest"><img src="../../../../src/assets/shots/01-home-light.png" alt="Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact."></span></figure>
+</div>
+</li>
+<li class="feat">
+<div class="feat-copy">
+<h3 class="h3">Hidden until you need it</h3>
+<p>Sensitive numbers stay masked until you tap Reveal.</p>
+</div>
+<div class="shot">
+<figure class="pair-item"><div class="phone"><span class="screen crop-record"><img src="../../../../src/assets/shots/05-masked-light.png" alt="A home record named Maple Street house. The alarm code and Wi-Fi password show as dots, each with a Reveal button."></span></div><figcaption>Masked</figcaption></figure>
+<figure class="pair-item"><div class="phone"><span class="screen crop-record"><img src="../../../../src/assets/shots/05-revealed-light.png" alt="The same home record after tapping Reveal. The alarm code shows 0000 with a Hide button, and the Wi-Fi password stays masked."></span></div><figcaption>Revealed</figcaption></figure>
+</div>
+</li>
+<li class="feat">
+<div class="feat-copy">
+<h3 class="h3">Locked to you</h3>
+<p>Face ID, Touch ID, or your passcode. No password to remember.</p>
+</div>
+<div class="shot">
+<figure class="phone"><span class="screen placeholder" role="img" aria-label="Placeholder for the atHand lock screen screenshot"><span class="ph-name" aria-hidden="true">06-lock</span><span class="ph-note" aria-hidden="true">Lock screen, 1320 by 2868</span></span></figure>
+</div>
+</li>
+</ul>
+<p class="all-features"><a class="cta-link" href="/features.html">See all features<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></p>
+</section>
+
+<section class="band" aria-labelledby="privacy-title">
+<div class="wrap">
+<h2 class="h2" id="privacy-title">Your information stays on your iPhone.</h2>
+<ul class="facts">
+<li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"></path><path d="M3 3l18 18"></path></svg><span>No account and no sign-in.</span></li>
+<li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M7.5 12h9"></path></svg><span>Scanning runs on your iPhone.</span></li>
+<li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.6 6.6C4.3 8.1 3 12 3 12s4 6 9 6a9 9 0 0 0 4.4-1.1M9.9 9.9a3 3 0 0 0 4.2 4.2"></path></svg><span>The developer added no advertising or tracking tools.</span></li>
+</ul>
+<p><a class="cta-link" href="/privacy-overview.html">How atHand handles your information<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></p>
+</div>
+</section>
+
+<section class="wrap section" style="padding-top: var(--site-section)" aria-labelledby="pricing-title">
+<div class="pricing">
+<div class="pricing-copy">
+<h2 class="h2" id="pricing-title">Free to start.</h2>
+<p>Your own record is free. One purchase unlocks everything else. No subscription, no ads, no account.</p>
+<p><a class="cta-link" href="/pricing.html">See pricing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></p>
+</div>
+<div class="shot">
+<figure class="phone"><span class="screen crop-perks"><img src="../../../../src/assets/shots/07-paywall-light.png" alt="The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account."></span></figure>
+</div>
+</div>
+</section>
+
+<section class="closing" aria-labelledby="closing-title">
+<div class="wrap">
+<svg class="mark" xmlns="http://www.w3.org/2000/svg" viewBox="215 30 350 280" fill="none" stroke="currentColor" aria-hidden="true"><path d="M 415 160 A 62 62 0 1 0 291 160 A 62 62 0 1 0 415 160 M 415 100 L 415 188 Q 415 210 437 210 L 545 210" stroke-width="16" stroke-linecap="round"></path><path d="M 505 158 L 505 260 Q 505 288 531 288" stroke-width="16" stroke-linecap="round"></path><path d="M 470 180 L 470 98 Q 470 45 417 45 L 283 45 Q 230 45 230 98 L 230 232 Q 230 285 283 285 L 417 285 Q 470 285 470 240" stroke-width="9" stroke-linecap="round"></path></svg>
+<h2 class="h2" id="closing-title">Coming soon to the App Store for iPhone.</h2>
+<p>Free to download. Your own record is free.</p>
+</div>
+</section>
+
+</main>
+
+<footer class="ftr">
+<div class="wrap">
+<nav aria-label="Footer">
+<ul>
+<li><a href="/privacy.html">Privacy policy</a></li>
+<li><a href="/support.html">Support</a></li>
+<li><a href="mailto:support@athandapp.com">support@athandapp.com</a></li>
+</ul>
+</nav>
+<p><a href="https://jacobdavis.co">Made by Jacob Davis</a></p>
+</div>
+</footer>
+
+</div>
+</div>
+</body>
+</html>
