@@ -318,7 +318,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: check-text passes against the phase 04 privacy-overview fixture; one h1, inside the band; the page names RevenueCat, Google ML Kit, and Apple's geocoding service; main has no link to /privacy-overview.html.
   Verify command: `npm run build && node scripts/check-text.mjs dist/privacy-overview.html .planning/phases/04-visuals-and-polish/copy/privacy-overview.txt && node -e 'const s=require("fs").readFileSync("dist/privacy-overview.html","utf8");const m=s.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];if((m.match(/<h1\b/g)||[]).length!==1)throw "h1";if(!/<section[^>]*class="band"[^>]*>[\s\S]*?<h1\b/.test(m))throw "h1 not in band";if(m.includes("href=\"/privacy-overview.html\""))throw "self link";for(const w of ["RevenueCat","Google ML Kit","Apple’s geocoding service"])if(!m.includes(w))throw w' && npm run check:links`
 
-- [ ] 04-17: Support contact card and jump list
+- [x] 04-17: Support contact card and jump list
   Requirements: VIS-08, VIS-11
   Files: src/pages/support.astro
   Copy entries: S1 to S58, SU1, SU2, SU3, SU4
