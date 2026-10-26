@@ -107,7 +107,7 @@ function measure() {
     for (let e = el; e; e = e.parentElement) {
       const cs = getComputedStyle(e);
       const r = e.getBoundingClientRect();
-      if ((cs.clip !== "auto" || cs.clipPath !== "none") && r.width <= 1 && r.height <= 1) return true;
+      if ((cs.getPropertyValue("clip") !== "auto" || cs.clipPath !== "none") && r.width <= 1 && r.height <= 1) return true;
     }
     return false;
   };

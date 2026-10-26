@@ -139,7 +139,7 @@ Foundation and chrome: the two browser checks, site variables and the breakpoint
   Acceptance: passes on a minimal valid page; fails on a page with an img without alt, on 12px text, on a 20px-tall standalone link, and on a transition that survives reduced motion.
   Verify command: `D=$(mktemp -d) && H='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>T</title><style>body{margin:0 16px;font-size:17px}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></head><body><main><h1>T</h1>' && printf '%s<p>ok</p></main></body></html>' "$H" > "$D/index.html" && node scripts/check-a11y.mjs "$D" && printf '%s<img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="10" height="10"></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && printf '%s<p style="font-size:12px">small</p></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && printf '%s<p><a href="/" style="display:inline-block;height:20px;width:120px">Home</a></p></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && printf '%s<p style="animation:x 1s">moves</p><style>@keyframes x{to{opacity:.5}}</style></main></body></html>' "$H" > "$D/index.html" && ! node scripts/check-a11y.mjs "$D" && grep -q '"check:a11y": "node scripts/check-a11y.mjs dist"' package.json`
 
-- [ ] 04-03: Site variables, breakpoint, container, type scale, and motion
+- [x] 04-03: Site variables, breakpoint, container, type scale, and motion
   Requirements: VIS-05
   Files: src/styles/site.css
   Copy entries: none
