@@ -207,7 +207,7 @@ Phone frame and Home.
   Acceptance: both derived files are 1320 by 1208 and byte-identical to a fresh crop of the originals at 4821a36; neither original exists; nothing in src/ names an original.
   Verify command: `D=$(mktemp -d) && for t in light dark; do f=src/assets/shots/07-paywall-perks-$t.png; test "$(sips -g pixelWidth -g pixelHeight $f | awk '/pixel/{print $2}' | tr '\n' ' ')" = "1320 1208 " || exit 1; git show 4821a36:src/assets/shots/07-paywall-$t.png > "$D/o-$t.png" && sips -c 1208 1320 --cropOffset 172 0 "$D/o-$t.png" --out "$D/c-$t.png" >/dev/null && cmp "$D/c-$t.png" $f || exit 1; test ! -e src/assets/shots/07-paywall-$t.png || exit 1; done && ! grep -rnE '07-paywall-(light|dark)' src && npm run build`
 
-- [ ] 04-08: PhoneFrame component and the alt-text fixture lines
+- [x] 04-08: PhoneFrame component and the alt-text fixture lines
   Requirements: VIS-01, VIS-02, A11Y-02
   Files: src/components/PhoneFrame.astro, src/styles/site.css, scripts/check-text.mjs, README.md
   Copy entries: none (alt text arrives with each use)
