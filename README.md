@@ -18,6 +18,7 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 - `npm run check:layout` loads every built page in Chromium and checks for sideways scrolling and the 16px gutter; see check:layout below.
 - `npm run check:a11y` runs axe-core and the site's own accessibility floor on every built page; see check:a11y below.
 - `node scripts/check-text.mjs` checks a built page against an expected-copy fixture; see check:text below.
+- `npm run og:image` renders public/og-image.png, the Open Graph image; see og:image below.
 
 ## Layout
 
@@ -95,3 +96,9 @@ npx playwright install chromium
 `npm run check:a11y` serves dist/ the same way and loads every page with reduced motion on, in light and dark, at 390 by 844 and 1280 by 800. It runs axe-core with its default rules and fails on any violation. It also fails on text below 16px, a body size other than 17px, a standalone link or button smaller than 44 by 44 CSS px (links inside sentences are exempt), any transition or animation that survives reduced motion, and any request to a host other than the local server.
 
 Like tokens:check, check:layout and check:a11y run locally before every PR and do not run in the Deploy workflow.
+
+## og:image
+
+`npm run og:image` renders public/og-image.png (1200 by 630) in Playwright's Chromium from an HTML page built in scripts/make-og-image.mjs. It uses the site's token CSS and self-hosted fonts, the lockup mark, and the app icon read from the app repo (`ATHAND_APP_DIR`, default ../athandapp) at the commit named in the script. Any request that is not `file:` or `data:` is blocked and fails the run. The PNG is committed and copied into dist/ as is; the build never runs the script.
+
+Regenerate it when the tagline, the app icon, the lockup, or the light color or type tokens change: update the icon commit in the script if needed, run the command, view the PNG, and commit it.

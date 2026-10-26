@@ -358,7 +358,7 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
   Acceptance: sizes 48, 32, and 180; the apple-touch-icon has no alpha; every built page links all three; the files are in dist/.
   Verify command: `for x in 'favicon.png 48' 'favicon-32.png 32' 'apple-touch-icon.png 180'; do set -- $x; test "$(sips -g pixelWidth -g pixelHeight public/$1 | awk '/pixel/{print $2}' | tr '\n' ' ')" = "$2 $2 " || exit 1; done && sips -g hasAlpha public/apple-touch-icon.png | grep -q 'hasAlpha: no' && npm run build && for f in dist/*.html; do grep -q 'rel="icon" type="image/png" sizes="48x48" href="/favicon.png"' "$f" && grep -q 'href="/favicon-32.png"' "$f" && grep -q 'rel="apple-touch-icon" href="/apple-touch-icon.png"' "$f" || { echo "$f"; exit 1; }; done && test -f dist/favicon.png && test -f dist/apple-touch-icon.png && npm run check:external`
 
-- [ ] 04-20: Open Graph image
+- [x] 04-20: Open Graph image
   Requirements: VIS-03
   Files: scripts/make-og-image.mjs, public/og-image.png, package.json, README.md
   Copy entries: M6
