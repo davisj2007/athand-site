@@ -15,6 +15,7 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 - `npm run preview` serves the built dist/ locally.
 - `npm run check` runs `astro check` (types and templates).
 - `npm run tokens:check`, `npm run check:external`, `npm run check:links`, and `npm run check:content` are described below.
+- `npm run check:layout` loads every built page in Chromium and checks for sideways scrolling and the 16px gutter; see check:layout below.
 - `node scripts/check-text.mjs` checks a built page against an expected-copy fixture; see check:text below.
 
 ## Layout
@@ -26,7 +27,7 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 - src/styles/site.css: the site stylesheet, written against the token variables.
 - src/assets/: the logo mark SVG, copied from the app repo.
 - public/: files copied into dist/ as is, including CNAME.
-- scripts/: the check scripts, plain Node with built-in modules only.
+- scripts/: the check scripts, plain Node. check-layout.mjs uses Playwright; the others use built-in modules only.
 
 ## Deploy
 
@@ -77,3 +78,15 @@ The Deploy workflow does not run this check; run it locally after any copy chang
 ```bash
 node scripts/check-main-text.mjs privacy support
 ```
+
+## check:layout
+
+`npm run check:layout` serves dist/ on 127.0.0.1 and loads every page in Playwright's Chromium, in light and dark, at 320 by 640, 390 by 844, 768 by 1024, 1280 by 800, and 1280 wide at 400% zoom (320 by 200 CSS px). It fails if a page scrolls sideways, if any rendered box crosses a viewport edge, or if any content element (text, images, icons, buttons, and inputs) in the header, main, or footer starts less than 16px from either edge. Full-bleed backgrounds may touch the edges. Any request to a host other than the local server also fails.
+
+Playwright and axe-core are pinned devDependencies used only by the checks; no page imports them. Download Playwright's Chromium once per machine:
+
+```bash
+npx playwright install chromium
+```
+
+Like tokens:check, this check runs locally before every PR and does not run in the Deploy workflow.

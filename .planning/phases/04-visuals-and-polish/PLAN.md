@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Plan
 
-Status: Draft
+Status: Approved (2026-10-25)
 
 ## Goal
 
@@ -111,7 +111,7 @@ Not changed: src/styles/tokens/, src/assets/logo-lockup-mark.svg, the other shot
 
 Foundation and chrome: the two browser checks, site variables and the breakpoint, the new header, theme control, and footer on every page. Page content stays in today's 68ch `.wrap` column until wave 3.
 
-- [ ] 04-01: Layout check (check:layout) and the pinned dev dependencies
+- [x] 04-01: Layout check (check:layout) and the pinned dev dependencies
   Requirements: VIS-10, A11Y-03
   Files: package.json, package-lock.json, scripts/check-layout.mjs, README.md
   Copy entries: none

@@ -13,7 +13,8 @@
     "tokens:check": "node scripts/tokens-check.mjs",
     "check:external": "node scripts/check-external.mjs dist",
     "check:content": "node scripts/check-main-text.mjs",
-    "check:links": "node scripts/check-links.mjs dist"
+    "check:links": "node scripts/check-links.mjs dist",
+    "check:layout": "node scripts/check-layout.mjs dist"
   },
   "dependencies": {
     "@astrojs/check": "0.9.12",
@@ -21,5 +22,9 @@
     "@fontsource/space-grotesk": "5.3.0",
     "astro": "7.4.2",
     "typescript": "6.0.3"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.64.1"
   }
 }
