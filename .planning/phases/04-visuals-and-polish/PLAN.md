@@ -1,6 +1,6 @@
 # Phase 04: visuals-and-polish - Plan
 
-Status: Approved (2026-10-25)
+Status: Draft (revised 2026-10-26 to unblock 04-23 and add 04-24; was Approved 2026-10-25)
 
 ## Goal
 
@@ -29,7 +29,7 @@ index.txt holds A9, approved as drafted in REVISE (decision 24). EXECUTE does no
 ## Requirement coverage
 
 - VIS-01: 04-07, 04-08, 04-09, 04-10, 04-11, 04-12, 04-14, 04-15
-- VIS-02: 04-08, 04-12 (rendered pairs), 04-14
+- VIS-02: 04-08, 04-12 (rendered pairs), 04-14, 04-24 (one displayed image per frame in every theme state)
 - VIS-03: 04-20, 04-21
 - VIS-04: 04-19
 - VIS-05: 04-03
@@ -44,7 +44,7 @@ index.txt holds A9, approved as drafted in REVISE (decision 24). EXECUTE does no
 - SEO-03: 04-23
 - SEO-04: 04-23, static check S15
 - A11Y-01: 04-02 (check:a11y, axe in light and dark), run in every wave's checks from 04-06 on
-- A11Y-02: VERIFY browser checklist (VoiceOver in Safari); 04-08 and 04-12 prove one alt per visible frame and the hidden image out of the accessibility tree
+- A11Y-02: VERIFY browser checklist (VoiceOver in Safari); 04-08 and 04-12 prove one alt per visible frame and the hidden image out of the accessibility tree; 04-24 keeps that true in check:a11y
 - A11Y-03: 04-01 (check:layout includes 1280 at 400%)
 - A11Y-04: 04-02 (axe color-contrast, 16px minimum, 17px body, 44px standalone targets), 04-09 and 04-11 (badge and band pairings named in HOME-DESIGN.md)
 - A11Y-05: 04-02 (check:a11y with reduced motion)
@@ -58,7 +58,7 @@ EXECUTE may change only these.
 Added:
 
 - scripts/check-layout.mjs
-- scripts/check-a11y.mjs
+- scripts/check-a11y.mjs (04-02; extended in 04-24)
 - scripts/make-og-image.mjs
 - src/components/Icon.astro
 - src/components/PhoneFrame.astro
@@ -79,7 +79,7 @@ Changed:
 - package.json (scripts, and the two devDependencies in 04-01; dependencies untouched)
 - package-lock.json (only through `npm install --save-dev --save-exact` in 04-01)
 - scripts/check-text.mjs (the `alt:` line type in 04-08)
-- README.md
+- scripts/check-external.mjs (skip the body of JSON-LD blocks in 04-23; added at REVISE 2026-10-26)- README.md
 - src/layouts/Base.astro
 - src/components/Header.astro
 - src/components/ThemeControl.astro
@@ -100,7 +100,7 @@ Deleted:
 - src/assets/shots/07-paywall-light.png
 - src/assets/shots/07-paywall-dark.png
 
-Not changed: src/styles/tokens/, src/assets/logo-lockup-mark.svg, the other shots in src/assets/shots/, public/CNAME, .github/workflows/deploy.yml, scripts/check-external.mjs, scripts/check-links.mjs, scripts/check-main-text.mjs, scripts/tokens-check.mjs, and the copy/ fixtures.
+Not changed: src/styles/tokens/, src/assets/logo-lockup-mark.svg, the other shots in src/assets/shots/, public/CNAME, .github/workflows/deploy.yml, scripts/check-links.mjs, scripts/check-main-text.mjs, scripts/tokens-check.mjs, and the copy/ fixtures.
 
 ## Steps for Jake outside the repo
 
@@ -346,7 +346,7 @@ Live site after this wave: Features, Pricing, Privacy overview, and Support have
 
 ## Wave 4
 
-Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD. Nothing a visitor reads changes.
+Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD, plus two check-script changes added at REVISE (2026-10-26): the JSON-LD exemption in check:external (04-23) and the one-displayed-image check in check:a11y (04-24). Nothing a visitor reads changes.
 
 - [x] 04-19: Favicon and apple-touch-icon
   Requirements: VIS-04
@@ -395,14 +395,30 @@ Metadata: icons, the Open Graph image and tags, sitemap, robots.txt, and JSON-LD
 
 - [ ] 04-23: SoftwareApplication JSON-LD on Home
   Requirements: SEO-03, SEO-04
-  Files: src/layouts/Base.astro, src/pages/index.astro
+  Files: src/layouts/Base.astro, src/pages/index.astro, scripts/check-external.mjs, README.md
   Copy entries: M3, M4, M5
+  Revised 2026-10-26: wave 4 EXECUTE stopped here because check:external reported the JSON-LD `"@context": "https://schema.org"` as a third-party request (SUMMARY.md, Blockers). JSON-LD is data the browser never fetches, so steps 4 and 5 and the fixture cases in the verify command were added.
   Steps:
   1. Base.astro: add `<slot name="head" />` at the end of head.
   2. index.astro: `<script type="application/ld+json" slot="head" set:html={JSON.stringify(ld)} />` where `ld` is `{"@context":"https://schema.org","@type":"SoftwareApplication","name":"atHand","alternateName":"atHand: Your Info, Ready","operatingSystem":"iOS","applicationCategory":"UtilitiesApplication","description":M5,"url":"https://athandapp.com/"}` (decision 16). No offers, price, rating, or download URL.
   3. No other page gets JSON-LD. No title or description changes (decision 14).
-  Acceptance: Home has exactly one JSON-LD block that parses to exactly those keys and values; no other page has one; static check S15 passes.
-  Verify command: `npm run build && node -e 'const fs=require("fs");for(const f of fs.readdirSync("dist").filter(f=>f.endsWith(".html"))){const s=fs.readFileSync("dist/"+f,"utf8");const b=[...s.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];if(f!=="index.html"){if(b.length)throw f+": JSON-LD";continue}if(b.length!==1)throw "count";const j=JSON.parse(b[0][1]);const want={"@context":"https://schema.org","@type":"SoftwareApplication","name":"atHand","alternateName":"atHand: Your Info, Ready","operatingSystem":"iOS","applicationCategory":"UtilitiesApplication","description":"A private household organizer for iPhone. atHand keeps the details you look up all the time, for you and everyone you look after, and suggests the right record when it can help.","url":"https://athandapp.com/"};if(JSON.stringify(j)!==JSON.stringify(want))throw JSON.stringify(j)}' && ! grep -rniwE 'athan|adhan|azan|prayers?|salah|salat|islam|islamic|muslim|mosque|quran|ramadan' dist --include='*.html' --include='*.xml' && npm run check:external`
+  4. scripts/check-external.mjs: in the inline-script loop of `markupUrls`, skip the body of a `<script>` whose `type` attribute, trimmed and compared case-insensitively, is `application/ld+json`. That is the only exemption: every other inline script body is still scanned for absolute URLs, and every `src` (including a JSON-LD script's `src`) is still checked by the attribute loop. Update the header comment to say so.
+  5. README.md, check:external section: say that the body of a `<script type="application/ld+json">` block is not scanned, because it is data the browser never fetches, while its `src` and every other script are.
+  Acceptance: Home has exactly one JSON-LD block that parses to exactly those keys and values; no other page has one; static check S15 passes; check:external passes a JSON-LD block containing https://schema.org and still fails an inline script containing https://example.com and a JSON-LD script with `src="https://example.com/x.json"`.
+  Verify command: `D=$(mktemp -d) && mkdir "$D/a" "$D/b" "$D/c" && printf '<!doctype html><script type="application/ld+json">{"@context":"https://schema.org"}</script>\n' > "$D/a/index.html" && printf '<!doctype html><script>fetch("https://example.com/")</script>\n' > "$D/b/index.html" && printf '<!doctype html><script type="application/ld+json" src="https://example.com/x.json"></script>\n' > "$D/c/index.html" && node scripts/check-external.mjs "$D/a" && ! node scripts/check-external.mjs "$D/b" > "$D/b.out" 2>&1 && grep -q 'inline <script>: https://example.com/' "$D/b.out" && ! node scripts/check-external.mjs "$D/c" > "$D/c.out" 2>&1 && grep -q '<script src>: https://example.com/x.json' "$D/c.out" && rm -rf "$D" && npm run build && node -e 'const fs=require("fs");for(const f of fs.readdirSync("dist").filter(f=>f.endsWith(".html"))){const s=fs.readFileSync("dist/"+f,"utf8");const b=[...s.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];if(f!=="index.html"){if(b.length)throw f+": JSON-LD";continue}if(b.length!==1)throw "count";const j=JSON.parse(b[0][1]);const want={"@context":"https://schema.org","@type":"SoftwareApplication","name":"atHand","alternateName":"atHand: Your Info, Ready","operatingSystem":"iOS","applicationCategory":"UtilitiesApplication","description":"A private household organizer for iPhone. atHand keeps the details you look up all the time, for you and everyone you look after, and suggests the right record when it can help.","url":"https://athandapp.com/"};if(JSON.stringify(j)!==JSON.stringify(want))throw JSON.stringify(j)}' && ! grep -rniwE 'athan|adhan|azan|prayers?|salah|salat|islam|islamic|muslim|mosque|quran|ramadan' dist --include='*.html' --include='*.xml' && npm run check:external`
+
+- [ ] 04-24: One displayed image per phone frame in check:a11y
+  Requirements: VIS-02, A11Y-02
+  Files: scripts/check-a11y.mjs, README.md
+  Copy entries: none
+  Added 2026-10-26 from the 2026-10-25 BACKLOG item: wave 2 shipped both theme images displayed in light for one task until the browser check caught it, and neither check:layout nor check:a11y noticed.
+  Steps:
+  1. check-a11y.mjs: a function that runs in the page and, for every `.screen`, counts the `img` descendants whose computed `display` is not `none` and whose `getBoundingClientRect()` has non-zero width and height. Any count other than 1 is a failure reported as `screen shows N images` with the frame's target (for example its `.frame` `data-crop`, or its index on the page).
+  2. Run it on every page and both widths in four theme states: the existing light and dark passes (stored preference light with OS light, dark with OS dark), and two System passes with the stored preference `system` and the OS appearance (`colorScheme`) light, then dark. The System passes create their contexts inside check-a11y.mjs (same request routing as `themedContext`, which stays unchanged in check-layout.mjs) and may run only this check; axe and `measure` keep running in the light and dark passes as today.
+  3. Update the header comment and the closing summary line (theme states instead of "2 themes"). README.md, check:a11y section: describe the check and the four theme states.
+  Acceptance: on the built site every `.screen` shows exactly one image in all four theme states; a fixture page whose pair has no theme CSS fails with `screen shows 2 images`; the same page with the site's theme-pair rules passes.
+  Verify command: `D=$(mktemp -d) && for v in ok bad; do mkdir "$D/$v" && printf '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="20"/>\n' > "$D/$v/s.svg"; done && H='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Fixture</title><style>body{font-size:17px}.screen img{display:block;width:100px;height:200px}THEME</style></head><body><main><h1>Fixture</h1><div class="screen"><img class="shot-light" src="/s.svg" alt="Light"><img class="shot-dark" src="/s.svg" alt="Dark"></div></main></body></html>' && T='.screen img.shot-dark{display:none}:root[data-theme="dark"] .screen img.shot-light{display:none}:root[data-theme="dark"] .screen img.shot-dark{display:block}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .screen img.shot-light{display:none}:root:not([data-theme="light"]) .screen img.shot-dark{display:block}}' && printf '%s\n' "${H/THEME/$T}" > "$D/ok/index.html" && printf '%s\n' "${H/THEME/}" > "$D/bad/index.html" && node scripts/check-a11y.mjs "$D/ok" && ! node scripts/check-a11y.mjs "$D/bad" > "$D/bad.out" 2>&1 && grep -q 'screen shows 2 images' "$D/bad.out" && rm -rf "$D" && npm run build && npm run check:a11y`
+  Note: at REVISE (2026-10-26) both fixture pages passed the current check-a11y.mjs, so the fixtures are otherwise clean and the bad case fails only through the new check.
 
 Wave 4 checks: everything in the wave 3 checks plus S15 to S18. Also open `npm run preview` in the built-in browser, confirm the favicon shows in the tab, and view public/og-image.png; record it in SUMMARY.md. The wave 4 PR lists the metadata strings with their citations (VIS-11).
 
@@ -427,10 +443,10 @@ Run from the repo root after `npm run build`. Each must succeed as written.
 - S13. No new tokens and dependencies as planned: `npm run tokens:check && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && node -e 'const p=require("./package.json");if(JSON.stringify(p.dependencies)!==JSON.stringify({"@astrojs/check":"0.9.12","@fontsource/inter":"5.3.0","@fontsource/space-grotesk":"5.3.0","astro":"7.4.2","typescript":"6.0.3"})||JSON.stringify(p.devDependencies)!==JSON.stringify({"axe-core":"4.14.0","playwright":"1.64.1"}))process.exit(1)' && ! grep -rl 'axe-core\|playwright' dist`
 - S14. No served image can show a price: `test ! -e src/assets/shots/07-paywall-light.png && test ! -e src/assets/shots/07-paywall-dark.png && ! grep -rnE '07-paywall-(light|dark)' src && test -z "$(find dist -name '*.png' ! -name favicon.png ! -name favicon-32.png ! -name apple-touch-icon.png ! -name og-image.png)" && test -z "$(find dist -name '*03-person-documents*')"`
 - S15. Athan disambiguation without religious wording: `! grep -rniwE 'athan|adhan|azan|prayers?|salah|salat|islam|islamic|muslim|mosque|quran|ramadan' dist --include='*.html' --include='*.xml' --include='*.txt'`
-- S16. Metadata on every page: re-run the verify commands of 04-19, 04-21, and 04-23.
+- S16. Metadata on every page: re-run the verify commands of 04-19, 04-21, and 04-23. 04-23's verify includes its check-external fixture cases: a JSON-LD block with https://schema.org passes, and an inline script with https://example.com and a JSON-LD script with a third-party `src` both fail.
 - S17. Sitemap and robots: re-run the verify command of 04-22.
 - S18. No script in content components or pages except the JSON-LD block: `test -z "$(grep -rn '<script' src/pages src/components | grep -v 'application/ld+json')"`
-- S19. Layout and accessibility checks: `npm run check:layout && npm run check:a11y`
+- S19. Layout and accessibility checks: `npm run check:layout && npm run check:a11y`. After 04-24, check:a11y also fails any `.screen` that does not show exactly one image in light, dark, and System with the OS appearance light and dark; VERIFY also re-runs 04-24's verify command so the fixture cases prove the check still fires.
 
 VERIFY also reads each page against its Copy drafts entries in order and heading level (the fixtures prove presence, not structure), compares Home and the page tops with HOME-DESIGN.md at 390 and 1280 px in both themes, and records the axe and layout results per page and theme (A11Y-06).
 
@@ -447,14 +463,17 @@ VERIFY also reads each page against its Copy drafts entries in order and heading
 
 ## Self-check
 
-Run 2026-10-25 at PLAN; re-run 2026-10-25 at REVISE (A9 approved, decision 24; Playwright for the OG image recorded as decision 25). No task, file, wave, or verify command changed beyond removing the A9 gate from 04-12; results below unchanged.
+Run 2026-10-25 at PLAN; re-run 2026-10-25 at REVISE (A9 approved, decision 24; Playwright for the OG image recorded as decision 25). No task, file, wave, or verify command changed beyond removing the A9 gate from 04-12.
+
+Re-run 2026-10-26 at REVISE (unblock 04-23; add 04-24). Changed: 04-23 gains scripts/check-external.mjs and README.md, steps 4 and 5, and three fixture cases in its verify; scripts/check-external.mjs moves from "Not changed" to "Changed"; new task 04-24 in wave 4; S16 and S19 name the new verify cases; VIS-02 and A11Y-02 coverage name 04-24. Before saving, the fixtures were run against the current scripts: check-external fails all three 04-23 cases today (the JSON-LD case is the blocker), and check-a11y passes both 04-24 fixture pages today (the gap the new check closes), so each verify fails before its task and can pass after it. Results:
 
 - All phase requirements covered: yes, with one planned exception. VIS-01 to VIS-11, SEO-01 to SEO-04, and A11Y-01 to A11Y-06 each map to tasks or to VERIFY steps above. FEAT-01 is deliberately outside the waves by decision 21 and is either added by REVISE or moved to phase 04.1 at SHIP.
-- Every task has acceptance and verify: yes. All 23 tasks.
+- Every task has acceptance and verify: yes. All 24 tasks.
+- check:external is narrowed, not weakened: the only exemption is the body of a `<script type="application/ld+json">` block, which the browser parses as data and never fetches. Every other inline script, every `src` (a JSON-LD `src` included), and every other request type stay checked, and 04-23's verify proves both failure cases still fail. The zero third-party request rule holds.
 - No conflict with the brief or CLAUDE.md: yes. Copy comes only from Approved entries via the fixtures (A9 Approved in REVISE, decision 24); no price in pages or served images (04-07, S5, S14); no "nothing leaves" wording (S4); no out-of-scope feature (S6); no third-party request at runtime (check:external in every task that adds head links or assets; the two dev dependencies never reach dist/, S13); tokens unchanged and no new tokens (S13); @Hand only in the lockup and the OG image logo (S3, 04-20); 17px body, 16px minimum, 44px targets, contrast, reduced motion, and 400% zoom (check:a11y, check:layout); /privacy.html and /support.html keep their URLs (S7); privacy and 404 main text unchanged (S8); no religious wording (S15).
-- Files in scope complete: yes. Every file a task names is listed, including the two deletions; deploy.yml, the token files, the other check scripts, and the fixtures are named as not changed.
-- Every wave leaves the live site whole: yes. Wave 1 changes chrome only and keeps main text; wave 2 rebuilds Home and touches other pages only through the coming-soon icon; wave 3 converts each page and removes `.wrap` in its last task, with all fixtures, check:content, and check:links at the wave's end; wave 4 adds metadata only. Each wave ends with check:links, check:layout, and check:a11y.
-- Waves are at most six tasks: yes (6, 6, 6, and 5).
+- Files in scope complete: yes. Every file a task names is listed, including the two deletions and scripts/check-external.mjs (04-23); deploy.yml, the token files, the other check scripts, and the fixtures are named as not changed.
+- Every wave leaves the live site whole: yes. Wave 1 changes chrome only and keeps main text; wave 2 rebuilds Home and touches other pages only through the coming-soon icon; wave 3 converts each page and removes `.wrap` in its last task, with all fixtures, check:content, and check:links at the wave's end; wave 4 adds metadata and two check-script changes, and the Deploy workflow's check:external passes the JSON-LD block once 04-23 lands. Each wave ends with check:links, check:layout, and check:a11y.
+- Waves are at most six tasks: yes (6, 6, 6, and 6).
 
 ## Fix wave
 
