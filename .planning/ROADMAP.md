@@ -68,6 +68,17 @@ Gate: do not start DISCUSS until the app repo records its TestFlight VoiceOver a
 
 Exit: the Features page carries the accessibility section with Approved copy only, each claim cited in the PR, and every phase 04 check still passes.
 
+## 04.2 design-polish: In progress
+
+Requirements: DSG-01.
+Inserted by Jake on 2026-10-26, independent of the 04.1 and 05 gates.
+
+- Triage every finding of `npx impeccable detect`, run by Jake outside the repo against dist/ built from main, as Fix, Decline, Already covered, or Not applicable, naming the rule, page, and element.
+- Fix only real issues that fit the brief's Brand section, HOME-DESIGN.md, and CLAUDE.md's hard rules. Any new or changed visible string is drafted in DISCUSS and approved in ANSWERS.
+- impeccable is never installed in this repo or added as a dependency.
+
+Exit: every finding is triaged in the phase CONTEXT.md, each Fix item is live with every phase 04 check still passing, and no locked rule changed.
+
 ## 05 launch-flip: Blocked (gated on App Store approval)
 
 Requirements: LCH-01..04.
@@ -83,4 +94,4 @@ Exit: every page that mentions availability points to the live listing, and no c
 
 ## Order
 
-01, 02, 03, and 04 done. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.
+01, 02, 03, and 04 done. 04.2 runs now; it has no gate. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.

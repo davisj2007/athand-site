@@ -70,6 +70,12 @@ Moved from phase 04 at SHIP (2026-10-26) under phase 04 CONTEXT.md decision 21.
 
 - FEAT-01: the Features page gains a section on VoiceOver, larger text (Dynamic Type), and light and dark, citing the brief's Accessibility floor and Release requirements. It is drafted only after the app repo records its TestFlight VoiceOver and Dynamic Type passes as done; until then it stays out of the site. Open
 
+## Design polish (phase 04.2)
+
+Inserted by Jake on 2026-10-26.
+
+- DSG-01: every finding of Jake's `npx impeccable detect` run against dist/ built from main is triaged in phase 04.2 CONTEXT.md as Fix, Decline (naming the locked rule), Already covered (citing the check or decision), or Not applicable (saying why); each Fix item ships with every phase 04 check passing; no token, typeface, or HOME-DESIGN.md specification changes; impeccable is not added to the repo. Open
+
 ## Launch flip (phase 05, gated on App Store approval)
 
 - LCH-01: the official Download on the App Store badge, from Apple's marketing resources and used per Apple's guidelines (size, clear space, no alteration), self-hosted. Open

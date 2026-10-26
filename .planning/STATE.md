@@ -1,18 +1,19 @@
 # State
 
-Current phase: 04.1 (features-accessibility), gated on the app repo's TestFlight VoiceOver and Dynamic Type passes.
-Current step: phase 04 SHIP done (2026-10-26). Next step for 04.1 is DISCUSS, once its gate opens.
-Phases 01, 02, 03, and 04 are Done (04 shipped 2026-10-26; VERIFY PASS, Jake's browser result PASS). Phase 05 is gated on App Store approval.
+Current phase: 04.2 (design-polish), inserted by Jake on 2026-10-26 with no gate.
+Current step: phase 04.2 DISCUSS done (2026-10-26). CONTEXT.md status Needs answers (one open question, no copy). Next step is ANSWERS.
+Phases 01, 02, 03, and 04 are Done. Phase 04.1 is gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
 
 ## Next action
 
-1. Jake reviews and merges the "Phase 04 SHIP" PR (branch ship/04-visuals-and-polish). Main gains only planning files; the live site does not change.
-2. When the app repo (davisj2007/athandapp) records its TestFlight VoiceOver and Dynamic Type passes as done (its phase 07 VERIFY): "DISCUSS phase 04.1. Follow .planning/README.md, step DISCUSS."
-3. When Apple approves atHand and the listing is live: DISCUSS phase 05. If both gates open, run 04.1 and 05 one at a time.
+1. Jake reviews and merges the "Phase 04.2 DISCUSS" PR (branch discuss/04.2-design-polish).
+2. Jake answers the open question in .planning/phases/04.2-design-polish/CONTEXT.md, then: "ANSWERS phase 04.2. Follow .planning/README.md, step ANSWERS." with the answer.
+3. Gates unchanged: DISCUSS phase 04.1 once the app repo records its TestFlight passes; DISCUSS phase 05 once Apple approves atHand. Run phases one at a time.
 
 ## Waiting on Jake
 
-- Review and merge the SHIP PR (branch ship/04-visuals-and-polish).
+- Review and merge the DISCUSS PR (branch discuss/04.2-design-polish).
+- Phase 04.2 open question 1: close with no site change, or run impeccable critique or audit outside the repo first.
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -22,7 +23,9 @@ None.
 
 ## Last session
 
-SHIP phase 04 (2026-10-26), local session on branch ship/04-visuals-and-polish from main (be8769b, VERIFY PR #34 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, all steps. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked VIS-01 to VIS-11, SEO-01 to SEO-04, and A11Y-01 to A11Y-06 Done in REQUIREMENTS.md, and phase 04 Done in ROADMAP.md. The app repo has not recorded its TestFlight VoiceOver and Dynamic Type passes (origin/main 60032bf, phase 07 at EXECUTE done, VERIFY not run), so per decision 21 FEAT-01 moved to a new inserted phase 04.1 (features-accessibility) in ROADMAP.md and REQUIREMENTS.md, gated on those passes. Planning files only; no site code changed.
+DISCUSS phase 04.2 (2026-10-26), local session on branch discuss/04.2-design-polish from main (84b67ce, phase 04 SHIP PR #35 merged). Jake authorized inserting phase 04.2 design-polish; added it to ROADMAP.md and DSG-01 to REQUIREMENTS.md. Triaged all 24 findings in handoff/impeccable-detect.txt (Jake's `npx impeccable detect` against dist/ from main; untracked) after measuring text insets in Chromium at 320, 390, and 1280 in light and dark: Fix 0; Decline 14 (overused-font Inter and Space Grotesk, brief Brand and the tokens rule); Already covered 2 (privacy band, check:layout and VIS-10); Not applicable 8 (theme control and closing, 15px and 49px or more text insets; padding sits on inner containers). No site code or copy changed; impeccable not installed. One open question: close now or run critique or audit first. App repo origin/main still 60032bf.
+
+Before that: SHIP phase 04 (2026-10-26), local session on branch ship/04-visuals-and-polish from main (be8769b, VERIFY PR #34 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, all steps. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked VIS-01 to VIS-11, SEO-01 to SEO-04, and A11Y-01 to A11Y-06 Done in REQUIREMENTS.md, and phase 04 Done in ROADMAP.md. The app repo has not recorded its TestFlight VoiceOver and Dynamic Type passes (origin/main 60032bf, phase 07 at EXECUTE done, VERIFY not run), so per decision 21 FEAT-01 moved to a new inserted phase 04.1 (features-accessibility) in ROADMAP.md and REQUIREMENTS.md, gated on those passes. Planning files only; no site code changed.
 
 Before that: VERIFY phase 04 (2026-10-26), local session on branch verify/04-visuals-and-polish from main (7555835, PR #33 merged). Result PASS, no Fix wave. All Checks pass (npm ci, build, check, tokens:check, check:external, check:links, check:content, check:layout, check:a11y with axe on all seven pages in light and dark), S1 to S19 pass, and every task verify passes except three clauses later planned tasks superseded (04-05's Base.astro diff, 04-09's svg check on the aria-hidden closing mark, and 04-12's no-PNG check, replaced by S14); recorded in VERIFY.md. Page outlines read from Playwright ARIA snapshots; screenshots at 390 and 1280 in both themes compared with HOME-DESIGN.md; OS flip on System swaps every frame. Live site at 7555835 serves every page, sitemap, robots, OG image, and icons. FEAT-01 stays outside the waves (decision 21). No new BACKLOG items. App repo origin/main still 60032bf.
 
