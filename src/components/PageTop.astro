@@ -1,0 +1,22 @@
+---
+// Page top for the pages other than Home (HOME-DESIGN.md, Other pages): the
+// hero grid one size down. The default slot holds the lede and anything after
+// it; the "visual" slot sits beside the copy from the breakpoint, below it
+// otherwise.
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+<section class="page-top" aria-labelledby="page-title">
+  <div class="container page-top-grid">
+    <div class="page-top-copy">
+      <h1 id="page-title">{title}</h1>
+      <slot />
+    </div>
+    <div class="page-top-visual">
+      <slot name="visual" />
+    </div>
+  </div>
+</section>

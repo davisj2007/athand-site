@@ -1,12 +1,25 @@
 ---
 import Base from "../layouts/Base.astro";
 import ComingSoon from "../components/ComingSoon.astro";
+import PageTop from "../components/PageTop.astro";
+import PhoneFrame from "../components/PhoneFrame.astro";
 ---
 <Base title="Pricing | atHand" description="atHand is a free download. A one-time purchase unlocks every record type. There is no subscription.">
-  <div class="wrap">
-    <h1>Pricing</h1>
+  <PageTop title="Pricing">
     <p class="lede">atHand is a free download. A one-time purchase unlocks full use. There is no subscription, no ads, and no account.</p>
     <ComingSoon />
+    <div class="shot-panel" slot="visual">
+      <PhoneFrame shot="07-paywall-perks" crop="perks" alt="The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account." />
+    </div>
+  </PageTop>
+
+  <div class="container">
+    <ul class="fact-row">
+      <li>Free to download</li>
+      <li>Your own record is free</li>
+      <li>One purchase unlocks everything else</li>
+    </ul>
+    <div class="prose">
 
     <h2>Free</h2>
     <p>Without a purchase, you can:</p>
@@ -36,5 +49,6 @@ import ComingSoon from "../components/ComingSoon.astro";
     <p>If you import a backup without the unlock, every record in it still appears on your home screen. Your own record stays free, and opening any other record asks you to unlock.</p>
 
     <p>Questions about purchases? <a href="/support.html">See Support</a>.</p>
+    </div>
   </div>
 </Base>

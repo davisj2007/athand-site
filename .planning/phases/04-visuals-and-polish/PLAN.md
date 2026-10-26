@@ -274,7 +274,7 @@ Live site after this wave: Home is the new showcase (hero, moments, five feature
 
 Page tops for the other pages, the prose column, and the final chrome for privacy and 404.
 
-- [ ] 04-13: PageTop and JumpList components, prose column, and page-top styles
+- [x] 04-13: PageTop and JumpList components, prose column, and page-top styles
   Requirements: VIS-08
   Files: src/components/PageTop.astro, src/components/JumpList.astro, src/styles/site.css
   Copy entries: FP2, SU3 (the jump list name "On this page", passed by each page)
@@ -285,7 +285,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: both components type-check; site.css holds the classes; no page changes yet.
   Verify command: `npm run check && npm run build && for c in '.prose' '.fact-row' '.contact-card' '.jump' '.page-top'; do grep -qF -- "$c" src/styles/site.css || exit 1; done && grep -q 'id="page-title"' src/components/PageTop.astro && grep -q 'aria-label={label}' src/components/JumpList.astro`
 
-- [ ] 04-14: Features page top and jump list
+- [x] 04-14: Features page top and jump list
   Requirements: VIS-01, VIS-02, VIS-08, VIS-11
   Files: src/pages/features.astro
   Copy entries: FE1 to FE30, C1, FP1, FP2, FP3, A2, A3
@@ -296,7 +296,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: check-text passes against the phase 04 features fixture (copy, jump hrefs, and alt text); one h1; six h2 with the six ids; check:links passes.
   Verify command: `npm run build && node scripts/check-text.mjs dist/features.html .planning/phases/04-visuals-and-polish/copy/features.txt && test "$(grep -o '<h1' dist/features.html | wc -l | tr -d ' ')" = 1 && for i in records scanning suggestions app-lock backups light-and-dark; do grep -q "<h2[^>]*id=\"$i\"" dist/features.html || exit 1; done && grep -q '<nav[^>]*aria-label="On this page"' dist/features.html && npm run check:links`
 
-- [ ] 04-15: Pricing page top and fact row
+- [x] 04-15: Pricing page top and fact row
   Requirements: VIS-01, VIS-08, VIS-09, VIS-11
   Files: src/pages/pricing.astro
   Copy entries: P1 to P19, C1, PP1, PP2, A8
@@ -307,7 +307,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: check-text passes against the phase 04 pricing fixture; the fact row has three items in order; no price pattern in the page's text or alt text.
   Verify command: `npm run build && node scripts/check-text.mjs dist/pricing.html .planning/phases/04-visuals-and-polish/copy/pricing.txt && node -e 'const s=require("fs").readFileSync("dist/pricing.html","utf8");const m=s.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];const r=m.match(/<ul[^>]*class="fact-row"[^>]*>([\s\S]*?)<\/ul>/);if(!r)throw "row";const items=[...r[1].matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)].map(x=>x[1].replace(/<[^>]*>/g,"").trim());if(JSON.stringify(items)!==JSON.stringify(["Free to download","Your own record is free","One purchase unlocks everything else"]))throw JSON.stringify(items);const t=m.replace(/<[^>]*>/g,"")+" "+[...m.matchAll(/\salt="([^"]*)"/g)].map(x=>x[1]).join(" ");if(/\$\s*\d|\d\.\d\d(?!\d)|USD|€|£/.test(t))throw "price"' && npm run check:links`
 
-- [ ] 04-16: Privacy overview band as page top
+- [x] 04-16: Privacy overview band as page top
   Requirements: VIS-08, VIS-11
   Files: src/pages/privacy-overview.astro
   Copy entries: V1 to V24, PV1 (V3, V4, HM17, HM18, HM19)
@@ -318,7 +318,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: check-text passes against the phase 04 privacy-overview fixture; one h1, inside the band; the page names RevenueCat, Google ML Kit, and Apple's geocoding service; main has no link to /privacy-overview.html.
   Verify command: `npm run build && node scripts/check-text.mjs dist/privacy-overview.html .planning/phases/04-visuals-and-polish/copy/privacy-overview.txt && node -e 'const s=require("fs").readFileSync("dist/privacy-overview.html","utf8");const m=s.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];if((m.match(/<h1\b/g)||[]).length!==1)throw "h1";if(!/<section[^>]*class="band"[^>]*>[\s\S]*?<h1\b/.test(m))throw "h1 not in band";if(m.includes("href=\"/privacy-overview.html\""))throw "self link";for(const w of ["RevenueCat","Google ML Kit","Apple’s geocoding service"])if(!m.includes(w))throw w' && npm run check:links`
 
-- [ ] 04-17: Support contact card and jump list
+- [x] 04-17: Support contact card and jump list
   Requirements: VIS-08, VIS-11
   Files: src/pages/support.astro
   Copy entries: S1 to S58, SU1, SU2, SU3, SU4
@@ -329,7 +329,7 @@ Page tops for the other pages, the prose column, and the final chrome for privac
   Acceptance: dist/support.html exists; check-text passes against the phase 04 support fixture; the seven group ids exist; check:links passes.
   Verify command: `npm run build && test -f dist/support.html && test ! -e dist/support && node scripts/check-text.mjs dist/support.html .planning/phases/04-visuals-and-polish/copy/support.txt && for i in backups purchases app-lock scanning suggestions permissions about; do grep -q "<h2[^>]*id=\"$i\"" dist/support.html || exit 1; done && grep -q '<nav[^>]*aria-label="On this page"' dist/support.html && npm run check:links`
 
-- [ ] 04-18: Privacy policy and 404 in the new layout, and `.wrap` removed
+- [x] 04-18: Privacy policy and 404 in the new layout, and `.wrap` removed
   Requirements: VIS-08, VIS-10
   Files: src/pages/privacy.astro, src/pages/404.astro, src/styles/site.css
   Copy entries: none (main text unchanged)
