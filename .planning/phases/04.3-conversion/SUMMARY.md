@@ -33,6 +33,20 @@ Measured: both fixed-theme frames are 220px wide at 390 and 1280 in both themes,
 
 Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-26): Features at 1280 in light and 390 in dark. The page top shows the jump list under the coming-soon line beside the 02-person-top stage; each section sets its h2 and intro beside its stage at 1280 and above it at 390; the Light and Dark frames show their own appearance in both site themes.
 
+Wave 3 (EXECUTE, 2026-10-26, branch execute/04.3-wave-3 from main at 165d8ab, REVISE PR #51 merged). PLAN.md set to Approved 2026-10-26; Jake approved the revised plan, including the Superseded checks, in the EXECUTE prompt.
+
+- 04.3-08: Home's h1 reads H-1 "Your important information, in one place, always at hand" and its line H-2 "Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs."; nothing else in index.astro changed. scripts/make-og-image.mjs sets OG-1; public/og-image.png regenerated (1200 by 630, icon from 60032bf). Base.astro's og:image:alt is OG-3 on every page. index.txt gains the REVISE header line, the new H-1 and H-2, and the earlier H-1 and H-2 as `!` lines (129 lines).
+
+Open Graph image by eye (step 3): the h1 sets in three balanced lines ("Your important / information, in one / place, always at hand") with no one-word line, OG-2 sits below it, and the copy block sits inside the 630px height with the icon and lockup as before, matching the REVISE measurement.
+
+Live site after this wave: Home's hero reads the new h1 and line above the unchanged chips and store slot; every page's social preview shows the regenerated image and the new og:image:alt. No URL moved; requests stay on athandapp.com.
+
+Wave 3 check results (2026-10-26): 04.3-08's verify command passes in full. Also `npm ci`, `npm run tokens:check` (4 files match; app repo origin/main 6219629, brief and _ds tokens unchanged since f4f2450), `npm run check:content`, `npm run check:links` (61 internal links), check-text on all five fixtures (index 129 lines, features 94, pricing 30, privacy-overview 30, support 81), measure.mjs hero, slot, rows, compare, features, and wrap (S26), phase 04.2 measure.mjs headings, stragglers, measure, and band (S20), `npm run check:external`, `npm run check:layout` (7 pages, 2 themes, 5 viewports), and `npm run check:a11y` (7 pages, 4 theme states, 2 widths): all pass. At the wave's end, S2, S6′, S14′ (the dist part), S27, S28, S29, S30, S31, and S32 also pass.
+
+Measured (measure.mjs hero): the h1 sets "Your important / information, / in one place, / always at hand" at 320, "Your important / information, in one / place, always at hand" at 390 and 1280, and in six lines at 840 (the BACKLOG item from REVISE); the line sets in five, four, four, and three lines at 320, 390, 840, and 1280. No one-word last line at any width.
+
+Browser check (built-in browser, the running `astro preview` at localhost:4321, 2026-10-26): Home at 800 in dark. The h1 and line read H-1 and H-2 above the four chips, as measured.
+
 ## Brief citations
 
 Claims placed in wave 1, with the citation CONTEXT.md gives for each:
@@ -69,6 +83,8 @@ Claims placed in wave 1, with the citation CONTEXT.md gives for each:
 - OG-1 "Your household’s IDs and insurance, ready on your iPhone": as H-1.
 - OG-3 "The atHand logo and the words “Your household’s IDs and insurance, ready on your iPhone.”": as H-1.
 
+(Wave 3 replaces H-1, H-2, OG-1, and OG-3 above; see Claims placed in wave 3.)
+
 Unchanged approved strings moved: A2 (Home row 1 to the Features page top), HM28 to HM30 (into SecretPair.astro, text unchanged).
 
 Claims placed in wave 2, with the citation CONTEXT.md gives for each:
@@ -88,6 +104,13 @@ Claims placed in wave 2, with the citation CONTEXT.md gives for each:
 - F-A1 "Close view of the atHand home screen in Light appearance, with the Flight to Denver banner and the Suggested for you list." and F-A2 "The same view in Dark appearance.": alt text, checked against the `suggest` crop and A4.
 - Reused as on Home: R1-2, R1-3, R2-1 to R2-4, R3-1 to R3-4, R5-1, R5-2, and HM28 to HM30 (citations as wave 1).
 
+Claims placed in wave 3, with the citation CONTEXT.md gives for each (decision 16):
+
+- H-1 "Your important information, in one place, always at hand": brief, Concept; Brand.
+- H-2 "Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs.": brief, Concept; Information architecture.
+- OG-1 "Your important information, in one place, always at hand": as H-1.
+- OG-3 "The atHand logo and the words “Your important information, in one place, always at hand.”": as H-1.
+
 Unchanged approved strings moved in wave 2: FE24 (from Locked to you to Hidden until you need it), FP3 (the jump list, into the page top).
 
 ## Commits
@@ -100,6 +123,7 @@ Unchanged approved strings moved in wave 2: FE24 (from Locked to you to Hidden u
 - 70c2ad7 phase 04.3 task 04.3-05: Open Graph image and og:image:alt
 - c0fb0df phase 04.3 task 04.3-06: PhoneFrame theme prop
 - 0df5b6f phase 04.3 task 04.3-07: the visual Features page
+- bff97ab phase 04.3 task 04.3-08: replaced hero copy, Open Graph headline, and og:image:alt
 
 ## Deviations
 
@@ -113,4 +137,5 @@ None.
 ## Follow-ups
 
 - Wave 2 has no deviations and adds no BACKLOG items.
-- Next: VERIFY phase 04.3. S32 differs from 8e854d9 only by the wave 1 measure.mjs change recorded under Deviations.
+- Wave 3 has no deviations and adds no BACKLOG items (the h1 at 840 was recorded at REVISE).
+- Next: VERIFY phase 04.3. All waves are checked. S32 differs from 8e854d9 only by the wave 1 measure.mjs change recorded under Deviations.
