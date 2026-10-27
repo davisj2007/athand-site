@@ -1,18 +1,17 @@
 # State
 
 Current phase: 04.3 (conversion), inserted by Jake on 2026-10-26 before phase 05, with no gate. Phase 04.1 stays gated on the app repo's TestFlight VoiceOver and Dynamic Type passes; phase 05 on App Store approval.
-Current step: phase 04.3 REVISE done (2026-10-26). PLAN.md status: Draft (revised): waves 1 and 2 (04.3-01 to 04.3-07) checked; wave 3 (04.3-08, the replaced hero copy, Open Graph headline, and og:image:alt) added and unchecked. Next step is EXECUTE wave 3, then VERIFY.
+Current step: phase 04.3 EXECUTE wave 3 done (2026-10-26). PLAN.md status: Approved 2026-10-26; all three waves (04.3-01 to 04.3-08) checked. Next step is VERIFY.
 Phases 01, 02, 03, 04, and 04.2 are Done.
 
 ## Next action
 
-1. Jake reviews and merges the REVISE PR (branch revise/04.3-hero-copy).
-2. Then: EXECUTE phase 04.3 wave 3 (04.3-08), with a prompt that says Jake approves the revised plan.
-3. Then: VERIFY phase 04.3.
+1. Jake reviews and merges the wave 3 PR (branch execute/04.3-wave-3).
+2. Then: VERIFY phase 04.3.
 
 ## Waiting on Jake
 
-- Review and merge the REVISE PR (branch revise/04.3-hero-copy), and approve the revised plan in the EXECUTE prompt.
+- Review and merge the wave 3 PR (branch execute/04.3-wave-3).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -22,7 +21,9 @@ None.
 
 ## Last session
 
-REVISE phase 04.3 (2026-10-26), local session on branch revise/04.3-hero-copy from main (d477642, wave 2 PR #50 merged). Applied Jake's hero copy change: in CONTEXT.md, H-1 "Your important information, in one place, always at hand" and H-2 "Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs." replace the earlier strings, OG-1 and OG-3 follow H-1, and decision 16 records it. PLAN.md (status Draft, revised): Facts confirmed at REVISE; wave 3 with task 04.3-08 (index.astro h1 and line, make-og-image.mjs h1 text, regenerated og-image.png, Base.astro og:image:alt, and the Home fixture with the earlier H-1 and H-2 as ! lines); S16′, S31, and S32 updated; the earlier strings in 04.3-02's and 04.3-05's verifies named as superseded; Risks and the self-check re-run (pass). measure.mjs: the H1 constant, a new H2 constant, and a one-word-last-line rule for the h1 and the line in the hero check (320, 390, 840, 1280). Measured the new strings on main's build: no one-word last line at any width; the OG image sets three balanced lines from 143 to 487 of 630. Dry-ran 04.3-08 on a temporary implementation: its full verify passed (og:image, astro check, measure hero and wrap, check-text on five pages, og:image:alt on every page, check:external, check:layout, check:a11y); the site files were then reverted. One BACKLOG item (the h1 sets in six lines at 840, as the earlier h1 did). App repo origin/main 6219629; the brief and _ds tokens unchanged since f4f2450. Planning files only; no site code changed.
+EXECUTE phase 04.3 wave 3 (2026-10-26), local session on branch execute/04.3-wave-3 from main (165d8ab, REVISE PR #51 merged). Set PLAN.md Approved 2026-10-26 (Jake approved the revised plan, including the Superseded checks). Completed 04.3-08 (bff97ab): Home's h1 and line read H-1 and H-2; make-og-image.mjs sets OG-1 and public/og-image.png is regenerated (three balanced lines inside 630px, checked by eye); og:image:alt is OG-3 on every page; index.txt carries the new strings and the earlier H-1 and H-2 as ! lines. 04.3-08's verify passes in full, as do npm ci, tokens:check, check:content, check:links, check-text on all five fixtures, S20, S26, and S2, S6′, S14′, S27 to S32. No deviations; no new BACKLOG items. Browser check recorded in SUMMARY.md. App repo origin/main still 6219629; the brief and _ds tokens unchanged since f4f2450.
+
+Before that: REVISE phase 04.3 (2026-10-26), local session on branch revise/04.3-hero-copy from main (d477642, wave 2 PR #50 merged). Applied Jake's hero copy change: in CONTEXT.md, H-1 "Your important information, in one place, always at hand" and H-2 "Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs." replace the earlier strings, OG-1 and OG-3 follow H-1, and decision 16 records it. PLAN.md (status Draft, revised): Facts confirmed at REVISE; wave 3 with task 04.3-08 (index.astro h1 and line, make-og-image.mjs h1 text, regenerated og-image.png, Base.astro og:image:alt, and the Home fixture with the earlier H-1 and H-2 as ! lines); S16′, S31, and S32 updated; the earlier strings in 04.3-02's and 04.3-05's verifies named as superseded; Risks and the self-check re-run (pass). measure.mjs: the H1 constant, a new H2 constant, and a one-word-last-line rule for the h1 and the line in the hero check (320, 390, 840, 1280). Measured the new strings on main's build: no one-word last line at any width; the OG image sets three balanced lines from 143 to 487 of 630. Dry-ran 04.3-08 on a temporary implementation: its full verify passed (og:image, astro check, measure hero and wrap, check-text on five pages, og:image:alt on every page, check:external, check:layout, check:a11y); the site files were then reverted. One BACKLOG item (the h1 sets in six lines at 840, as the earlier h1 did). App repo origin/main 6219629; the brief and _ds tokens unchanged since f4f2450. Planning files only; no site code changed.
 
 Before that: EXECUTE phase 04.3 wave 2 (2026-10-26), local session on branch execute/04.3-wave-2 from main (88e12c7, wave 1 PR #49 merged). Completed 04.3-06 (PhoneFrame `theme` prop; dist/ byte-identical after it) and 04.3-07 (the Features page: the jump list with F-J1 in the page top; seven `section.fsec` sections with F-I1 to F-I7 and one stage each; FE24 moved to the new Hidden until you need it section; the fixed Light and Dark 01-home frames; the Features page sections CSS block; the text-wrap lines with `.fsec h2` and `.fsec-intro`; features.txt to 94 lines). All checks pass after each task: npm ci, build, check, tokens:check, check:external, check:content, check:links, check-text on all five fixtures, check:layout, check:a11y, measure.mjs hero, slot, rows, compare, features, and wrap, and phase 04.2's headings, stragglers, measure, and band; at the end S2, S6′, S14′ (dist), S27, and S28 also pass. No deviations; no new BACKLOG items. Browser check recorded in SUMMARY.md. App repo origin/main still 6219629; the brief and _ds tokens are unchanged since f4f2450.
 

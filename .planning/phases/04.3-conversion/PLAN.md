@@ -1,6 +1,6 @@
 # Phase 04.3: conversion - Plan
 
-Status: Draft (revised 2026-10-26: wave 3, task 04.3-08, added for the replaced hero copy; waves 1 and 2 were Approved 2026-10-26 and are executed)
+Status: Approved 2026-10-26 (revised 2026-10-26: wave 3, task 04.3-08, added for the replaced hero copy; Jake approved the revised plan, including the Superseded checks, in the wave 3 EXECUTE prompt; waves 1 and 2 were Approved 2026-10-26 and are executed)
 
 ## Goal
 
@@ -298,7 +298,7 @@ Live site after this wave: Features shows the jump list in its page top, seven s
 
 The hero copy Jake replaced at REVISE (decision 16): Home's h1 and line, the Open Graph image headline, and every page's og:image:alt, in one task, so the social preview never disagrees with the hero.
 
-- [ ] 04.3-08: Replaced hero copy, Open Graph headline, and og:image:alt
+- [x] 04.3-08: Replaced hero copy, Open Graph headline, and og:image:alt
   Requirements: CNV-01, CNV-05, CNV-06, CNV-07
   Files: src/pages/index.astro, scripts/make-og-image.mjs, public/og-image.png, src/layouts/Base.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: H-1, H-2, OG-1, OG-3 (Approved, as replaced at REVISE 2026-10-26); OG-2, C1, and every chip (unchanged)
