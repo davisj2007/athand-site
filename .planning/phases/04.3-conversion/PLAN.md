@@ -251,7 +251,7 @@ Live site after this wave: Home shows the new hero with chips and the slot, the 
 
 The Features page. 04.3-07 uses the `theme` prop 04.3-06 adds, so run them in order.
 
-- [ ] 04.3-06: PhoneFrame `theme` prop
+- [x] 04.3-06: PhoneFrame `theme` prop
   Requirements: CNV-04
   Files: src/components/PhoneFrame.astro
   Copy entries: none

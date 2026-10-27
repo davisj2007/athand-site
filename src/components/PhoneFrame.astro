@@ -4,6 +4,8 @@
 // WebP and CSS shows the one that matches the theme, so the hidden one leaves
 // the accessibility tree and, when lazy, is not downloaded. The crop is CSS
 // (aspect-ratio and object-position by data-crop), so one file serves every view.
+// A frame with `theme` shows that appearance whatever the site theme: it loads
+// and renders only that file, with no shot-light or shot-dark class to swap.
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
@@ -14,9 +16,10 @@ interface Props {
   hero?: boolean;
   caption?: string;
   class?: string;
+  theme?: "light" | "dark";
 }
 
-const { shot, alt, crop, hero = false, caption, class: className } = Astro.props;
+const { shot, alt, crop, hero = false, caption, class: className, theme } = Astro.props;
 
 // Not eager, so a page imports only the shots it uses. Vite still emits every
 // PNG the pattern matches, and Astro deletes an original only once it has been
@@ -37,8 +40,9 @@ async function load(theme: "light" | "dark") {
   return (await loader()).default;
 }
 
-const light = await load("light");
-const dark = await load("dark");
+const fixed = theme ? await load(theme) : undefined;
+const light = theme ? undefined : await load("light");
+const dark = theme ? undefined : await load("dark");
 const sizes = hero ? "(min-width: 52.5em) 340px, 280px" : "(min-width: 52.5em) 300px, 280px";
 const loading = hero ? "eager" : "lazy";
 const width = 720;
@@ -47,8 +51,9 @@ const height = (src: ImageMetadata) => Math.round((width * src.height) / src.wid
 <figure class:list={["frame", className]} data-crop={crop} data-hero={hero || undefined}>
   <div class="phone">
     <div class="screen">
-      <Image src={light} alt={alt} widths={[360, 720]} format="webp" width={width} height={height(light)} sizes={sizes} loading={loading} class="shot-light" />
-      <Image src={dark} alt={alt} widths={[360, 720]} format="webp" width={width} height={height(dark)} sizes={sizes} loading={loading} class="shot-dark" />
+      {fixed && <Image src={fixed} alt={alt} widths={[360, 720]} format="webp" width={width} height={height(fixed)} sizes={sizes} loading={loading} />}
+      {light && <Image src={light} alt={alt} widths={[360, 720]} format="webp" width={width} height={height(light)} sizes={sizes} loading={loading} class="shot-light" />}
+      {dark && <Image src={dark} alt={alt} widths={[360, 720]} format="webp" width={width} height={height(dark)} sizes={sizes} loading={loading} class="shot-dark" />}
     </div>
   </div>
   {caption && <figcaption>{caption}</figcaption>}
