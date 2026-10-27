@@ -18,6 +18,17 @@ const moments = [
   { icon: "plane", title: "At the airport", label: "Passport", hidden: "Passport number, hidden until you tap Reveal" },
 ];
 
+// Comparison rows (phase 04.3, decisions 12 and 13). Every answer is a word plus a sentence; the icon is decoration.
+const columns = ["Photos of cards", "A notes app", "atHand"];
+const verdictIcon: Record<string, string> = { Yes: "check-circle", No: "minus-circle", Partly: "system", Varies: "system" };
+const compare = [
+  { q: "Finding the right detail fast", cells: [["Partly", "Find the photo, then zoom in to read the number."], ["Partly", "Search finds it if you typed it in."], ["Yes", "Each detail has its own labeled field."]] },
+  { q: "Records for the whole household in one place", cells: [["No", "Photos can share an album, but they are not organized by record."], ["Partly", "Up to you to set up, and not organized by record."], ["Yes", "A record for each person, vehicle, pet, and home."]] },
+  { q: "Locked behind Face ID", cells: [["Partly", "Only if you move them to a locked album."], ["Varies", "Some apps can lock individual notes."], ["Yes", "Face ID, Touch ID, or your passcode."]] },
+  { q: "No account to create", cells: [["Yes", "Taking a photo needs no account."], ["Varies", "Depends on the app."], ["Yes", "No account and no sign-in."]] },
+  { q: "Suggests a record when it can help", cells: [["No", "You look it up yourself."], ["No", "You look it up yourself."], ["Yes", "From the time of day and, if you allow them, your calendar and location."]] },
+];
+
 // SoftwareApplication structured data (decision 16): no offers, price, rating, or download URL.
 const ld = {
   "@context": "https://schema.org",
@@ -128,6 +139,33 @@ const ld = {
         </li>
       </ul>
       <p class="more"><a class="cta" href="/features.html">See all features<Icon name="arrow" size={20} /></a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="compare-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title" id="compare-title">Why not just use photos or notes?</h2>
+        <p class="section-line">Many people keep these details as photos of cards or in a notes app. Here’s how the three compare.</p>
+      </div>
+      <div class="cmp">
+        <div class="cmp-head" aria-hidden="true"><span></span><div class="cmp-head-cols"><span>Photos of cards</span><span>A notes app</span><span class="us">atHand</span></div></div>
+        <ul class="cmp-rows">
+          {compare.map((row) => (
+            <li class="cmp-row">
+              <h3 class="cmp-q">{row.q}</h3>
+              <dl class="cmp-cells">
+                {row.cells.map(([verdict, note], i) => (
+                  <div class:list={["cmp-cell", { us: i === 2 }]}>
+                    <dt>{columns[i]}</dt>
+                    <dd><span class="verdict"><Icon name={verdictIcon[verdict]} size={20} />{verdict}</span><span class="note">{note}</span></dd>
+                  </div>
+                ))}
+              </dl>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 

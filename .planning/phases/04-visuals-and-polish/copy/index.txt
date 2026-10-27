@@ -91,6 +91,38 @@ Your passcode
 # HM15
 See all features
 href: /features.html
+# W-1 to W-13a, the comparison (phase 04.3, decisions 12 and 13). The W-3 column names are each cell's dt; measure.mjs compare checks the verdict words.
+Why not just use photos or notes?
+Many people keep these details as photos of cards or in a notes app. Here’s how the three compare.
+Photos of cards
+A notes app
+Finding the right detail fast
+Find the photo, then zoom in to read the number.
+Search finds it if you typed it in.
+Each detail has its own labeled field.
+Records for the whole household in one place
+Photos can share an album, but they are not organized by record.
+Up to you to set up, and not organized by record.
+A record for each person, vehicle, pet, and home.
+Locked behind Face ID
+Only if you move them to a locked album.
+Some apps can lock individual notes.
+Face ID, Touch ID, or your passcode.
+No account to create
+Taking a photo needs no account.
+Depends on the app.
+No account and no sign-in.
+Suggests a record when it can help
+You look it up yourself.
+From the time of day and, if you allow them, your calendar and location.
+# Reference-build strings that ANSWERS replaced (decisions 12 and 13; correction b)
+!Most people keep these details
+!Mixed in with your other photos
+!Phone lock
+!Relies on your phone’s lock.
+!Works without searching
+!You search or scroll each time.
+!lists your records on the home screen
 # HM16 (revised in phase 04.2, decision 9; no period)
 What you add stays on your iPhone
 !What you add stays on your iPhone.

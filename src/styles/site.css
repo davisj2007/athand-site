@@ -897,6 +897,152 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   }
 }
 
+/* Comparison (HOME-DESIGN-AMENDMENTS.md, Why not just…): a list, not a
+   table. Each criterion is an h3 with a dl of three answers. Below the
+   breakpoint each row is a card and the dt labels show; from it the rows line
+   up under a visual header (aria-hidden) and the dt labels are visually
+   hidden but read. Every answer is a word plus a sentence, so nothing relies
+   on color or the icon. */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  max-width: 40rem;
+}
+.section-head > * { margin: 0; }
+.cmp-head { display: none; }
+.cmp-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.cmp-row {
+  margin: 0;
+  padding: var(--space-5);
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  min-width: 0;
+}
+.cmp-q {
+  font-size: var(--text-lg);
+  margin: 0 0 var(--space-3);
+}
+.cmp-cells { margin: 0; }
+.cmp-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--divider);
+  min-width: 0;
+}
+.cmp-cell dt {
+  font-weight: 700;
+  line-height: 1.3;
+}
+.cmp-cell dd {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.cmp-cell.us {
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-chip);
+  border-top: 0;
+  border-radius: var(--radius-card-sm);
+}
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.verdict svg { color: var(--text-muted); }
+.us .verdict svg { color: var(--text-link); }
+.note {
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+@media (min-width: 52.5em) {
+  .cmp-head,
+  .cmp-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 3fr);
+    column-gap: var(--space-4);
+  }
+  .cmp-head-cols,
+  .cmp-cells {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-4);
+  }
+  .cmp-head span {
+    padding: var(--space-4) var(--space-5);
+    font: 700 var(--text-lg)/var(--leading-tight) var(--font-display);
+    letter-spacing: var(--tracking-display);
+  }
+  .cmp-head .us {
+    background: var(--surface-card);
+    border: 1px solid var(--border-card);
+    border-bottom: 0;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    color: var(--text-link);
+  }
+  .cmp-rows { gap: 0; }
+  .cmp-row {
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    border-top: 1px solid var(--border-card);
+  }
+  .cmp-q {
+    font-size: var(--text-base);
+    font-family: var(--font-ui);
+    letter-spacing: 0;
+    line-height: 1.4;
+    margin: 0;
+    padding: var(--space-5) var(--space-5) var(--space-5) 0;
+  }
+  .cmp-cell {
+    padding: var(--space-5);
+    border-top: 0;
+  }
+  .cmp-cell dt {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  .cmp-cell.us {
+    margin: 0;
+    padding: var(--space-5);
+    background: var(--surface-card);
+    border-inline: 1px solid var(--border-card);
+    border-radius: 0;
+  }
+  .cmp-row:last-child .cmp-cell.us {
+    border-bottom: 1px solid var(--border-card);
+    border-radius: 0 0 var(--radius-card) var(--radius-card);
+  }
+}
+
 /* Privacy band (HOME-DESIGN.md, Privacy band). Full bleed; the text keeps the
    site gutter at every width. Links, icons, and the focus ring use
    --text-on-cobalt, including on hover in dark. The fill is --accent-press
@@ -1111,5 +1257,5 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 
 /* Headings balance their lines and paragraphs avoid a one-word last line;
    browsers without support keep the default wrapping. */
-:is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }
+:is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1, .cmp-q) { text-wrap: balance; }
 :is(.lede, .section-line, .f-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }
