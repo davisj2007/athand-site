@@ -233,7 +233,7 @@ Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the
   Acceptance: measure.mjs compare passes at 320, 390, 1280, and 400% zoom in both themes (structure, exact cells, gutters, no sideways scroll, 16px minimum, the ARIA reading order); the section sits between Features and the privacy band; check-text passes for Home; wrap passes; check:layout and check:a11y pass (the `dl` structure, the aria-hidden head, contrast of the atHand column in both themes).
   Verify command: `npm run build && npm run check && grep -qF 'aria-labelledby="compare-title"' src/pages/index.astro && grep -qF '<div class="cmp-head" aria-hidden="true">' src/pages/index.astro && ! grep -q 'cmp-cols\|<table' src/pages/index.astro src/styles/site.css && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && ! grep -n '@media' src/styles/site.css | grep -vE '\(min-width: 52\.5em\)|prefers-color-scheme: dark' && grep -qF ':is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1, .cmp-q) { text-wrap: balance; }' src/styles/site.css && node .planning/phases/04.3-conversion/measure.mjs compare && node .planning/phases/04.3-conversion/measure.mjs wrap && node scripts/check-text.mjs dist/index.html .planning/phases/04-visuals-and-polish/copy/index.txt && npm run check:links && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.3-05: Open Graph image and og:image:alt
+- [x] 04.3-05: Open Graph image and og:image:alt
   Requirements: CNV-05, CNV-06
   Files: scripts/make-og-image.mjs, public/og-image.png, src/layouts/Base.astro
   Copy entries: OG-1, OG-3 (Approved); OG-2 (unchanged)
