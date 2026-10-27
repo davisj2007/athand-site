@@ -1,18 +1,17 @@
 # State
 
 Current phase: 04.3 (conversion), inserted by Jake on 2026-10-26 before phase 05, with no gate. Phase 04.1 stays gated on the app repo's TestFlight VoiceOver and Dynamic Type passes; phase 05 on App Store approval.
-Current step: phase 04.3 DISCUSS done (2026-10-26). CONTEXT.md status: Needs answers (four open questions; all new copy awaits approval). Next step is ANSWERS phase 04.3.
+Current step: phase 04.3 ANSWERS done (2026-10-26). CONTEXT.md status: Ready (questions 1 to 4 answered as decisions 12 to 15; all copy Approved). Next step is PLAN phase 04.3.
 Phases 01, 02, 03, 04, and 04.2 are Done.
 
 ## Next action
 
-1. Jake merges the DISCUSS PR (branch discuss/04.3-conversion).
-2. Then: ANSWERS phase 04.3, with answers to the four questions in .planning/phases/04.3-conversion/CONTEXT.md and the copy approval.
+1. Jake merges the ANSWERS PR (branch answers/04.3-conversion).
+2. Then: PLAN phase 04.3.
 
 ## Waiting on Jake
 
-- Merge the DISCUSS PR (branch discuss/04.3-conversion).
-- Answers to phase 04.3 questions 1 to 4 and approval of the Copy drafts.
+- Merge the ANSWERS PR (branch answers/04.3-conversion).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -22,7 +21,9 @@ None.
 
 ## Last session
 
-DISCUSS phase 04.3 (2026-10-26), local session on branch discuss/04.3-conversion from main (a5596bd, phase 04.2 SHIP PR #45 merged). With Jake's authorization: inserted phase 04.3 "conversion" in ROADMAP.md and REQUIREMENTS.md (CNV-01 to CNV-07) before phase 05 with no gate; imported handoff/athand-04.3-conversion.zip (sha256 deebd763…, not committed) into .planning/phases/04.3-conversion/design/ byte for byte. Wrote CONTEXT.md: the twelve parts of phase 04's HOME-DESIGN.md the amendments supersede, Copy drafts re-cited to the brief or approved site strings with Jake's corrections a to d applied (H-6 is "Face ID or passcode lock": measured on one line at 320, 390, 840, and 1280 with the production fonts), and four open questions (comparison cells W-7p and row 5, unused screenshots, price at launch). Measured the reference builds in Chromium: no horizontal scroll at 320, 390, or 1280, no text below 16px, comparison inside the gutters at 320. Added the price-at-launch item to BACKLOG.md for phase 05. No site code changed. App repo origin/main 487b454; the brief and _ds tokens are unchanged since f4f2450.
+ANSWERS phase 04.3 (2026-10-26), local session on branch answers/04.3-conversion from main (4575f97, DISCUSS PR #46 merged). Recorded Jake's four answers, all the recommended defaults, as decisions 12 to 15 in CONTEXT.md: W-7p is "No" / "Photos can share an album, but they are not organized by record."; comparison row 5 becomes "Suggests a record when it can help" (both alternatives "No" / "You look it up yourself."; atHand "Yes" / "From the time of day and, if you allow them, your calendar and location."); every unused screenshot pair stays in src/assets/shots/, 06-lock joins PhoneFrame's glob exclusions, and the `lock` and `record` crop rules stay; phase 05 keeps no amount on the site. Marked every Copy draft Approved (Jake approved the copy as drafted with answers 1 and 2 applied); removed the open questions; status Ready. Updated the phase 05 price item in BACKLOG.md with the decision. Planning files only; no site code changed.
+
+Before that: DISCUSS phase 04.3 (2026-10-26), local session on branch discuss/04.3-conversion from main (a5596bd, phase 04.2 SHIP PR #45 merged). With Jake's authorization: inserted phase 04.3 "conversion" in ROADMAP.md and REQUIREMENTS.md (CNV-01 to CNV-07) before phase 05 with no gate; imported handoff/athand-04.3-conversion.zip (sha256 deebd763…, not committed) into .planning/phases/04.3-conversion/design/ byte for byte. Wrote CONTEXT.md: the twelve parts of phase 04's HOME-DESIGN.md the amendments supersede, Copy drafts re-cited to the brief or approved site strings with Jake's corrections a to d applied (H-6 is "Face ID or passcode lock": measured on one line at 320, 390, 840, and 1280 with the production fonts), and four open questions (comparison cells W-7p and row 5, unused screenshots, price at launch). Measured the reference builds in Chromium: no horizontal scroll at 320, 390, or 1280, no text below 16px, comparison inside the gutters at 320. Added the price-at-launch item to BACKLOG.md for phase 05. No site code changed. App repo origin/main 487b454; the brief and _ds tokens are unchanged since f4f2450.
 
 Before that: SHIP phase 04.2 (2026-10-26), local session on branch ship/04.2-design-polish from main (22030ce, VERIFY PR #44 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, no notes. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked DSG-01 Done in REQUIREMENTS.md and phase 04.2 Done in ROADMAP.md. Planning files only; no site code changed. The app repo has not recorded its TestFlight passes (origin/main 487b454, phase 07 at EXECUTE); the brief and _ds tokens are unchanged since f4f2450.
 
