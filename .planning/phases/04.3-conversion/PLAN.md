@@ -1,6 +1,6 @@
 # Phase 04.3: conversion - Plan
 
-Status: Draft
+Status: Approved 2026-10-26
 
 ## Goal
 
@@ -101,7 +101,7 @@ Each EXECUTE PR that places copy lists, under "Claims and citations", every Copy
 
 Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the icons from 04.3-01, and 04.3-04 follows 04.3-03 in index.astro and the fixture, so run them in order.
 
-- [ ] 04.3-01: Eighteen new icons
+- [x] 04.3-01: Eighteen new icons
   Requirements: CNV-02, CNV-04
   Files: src/components/Icon.astro
   Copy entries: none
