@@ -173,9 +173,15 @@ const checks = {
             const slot = copy.querySelector(".store-slot");
             const vw = document.documentElement.clientWidth;
             const lines = (el) => {
-              const range = document.createRange();
-              range.selectNodeContents(el);
-              return new Set([...range.getClientRects()].filter((r) => r.width > 1).map((r) => Math.round(r.top))).size;
+              // Text lines only: the icon's rect is not a line of text (its top
+              // differs from the text's by a fraction of a pixel, or sits
+              // between two lines when the chip wraps).
+              const rects = [...el.childNodes].filter((n) => n.nodeType === Node.TEXT_NODE).flatMap((n) => {
+                const range = document.createRange();
+                range.selectNodeContents(n);
+                return [...range.getClientRects()];
+              });
+              return new Set(rects.filter((r) => r.width > 1).map((r) => Math.round(r.top))).size;
             };
             const items = chips ? [...chips.children] : [];
             return {
