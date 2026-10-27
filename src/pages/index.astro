@@ -5,6 +5,10 @@ import ComingSoon from "../components/ComingSoon.astro";
 import Icon from "../components/Icon.astro";
 import PhoneFrame from "../components/PhoneFrame.astro";
 import PrivacyBand from "../components/PrivacyBand.astro";
+import RecordTypes from "../components/RecordTypes.astro";
+import ScanCard from "../components/ScanCard.astro";
+import SecretPair from "../components/SecretPair.astro";
+import SuggestionBanner from "../components/SuggestionBanner.astro";
 import markSvg from "../assets/logo-lockup-mark.svg?raw";
 
 // Moment card values are fictional samples matching the screenshots' sample household.
@@ -78,82 +82,49 @@ const ld = {
   <section class="section" aria-labelledby="features-title">
     <div class="container">
       <h2 class="section-title features-title" id="features-title">What it does</h2>
-      <ul class="features">
-        <li class="feature">
-          <div class="feature-copy">
+      <ul class="f-list">
+        <li class="f-span">
+          <div class="f-copy">
             <h3>Everything you look after</h3>
-            <p>People, vehicles, pets, homes, and more, in one place.</p>
+            <p>A record for each person, vehicle, pet, home, financial account, and contact, plus custom records with your own labels.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="02-person-top" crop="full" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons." />
-          </div>
+          <RecordTypes />
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-split">
+          <div class="f-copy">
             <h3>Scan instead of typing</h3>
             <p>Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="04-check-what-we-read" crop="fields" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone." />
+          <div class="stage">
+            <ScanCard />
+            <PhoneFrame shot="04-check-what-we-read" crop="fields" class="frame-sm" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone." />
           </div>
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-center">
+          <div class="f-copy">
             <h3>The right record at the right time</h3>
             <p>Suggestions from the time of day and, if you allow them, your calendar and location.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="01-home" crop="suggest" alt="Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact." />
-          </div>
+          <div class="stage"><SuggestionBanner /></div>
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-split flip">
+          <div class="f-copy">
             <h3>Hidden until you need it</h3>
             <p>Sensitive numbers stay masked until you tap Reveal.</p>
           </div>
-          <div class="shot-panel">
-            <figure class="pair">
-              <div class="secret">
-                <div class="record">
-                  <span class="badge badge-home" aria-hidden="true">H</span>
-                  <div>
-                    <p class="record-name">Maple Street house</p>
-                    <p class="record-sub">Alarm code</p>
-                  </div>
-                </div>
-                <div class="secret-row">
-                  <p class="record-value"><span aria-hidden="true">••••••••</span><span class="vh">Alarm code, hidden until you tap Reveal</span></p>
-                  <span class="secret-action" aria-hidden="true">Reveal</span>
-                </div>
-              </div>
-              <figcaption>Masked</figcaption>
-            </figure>
-            <figure class="pair">
-              <div class="secret">
-                <div class="record">
-                  <span class="badge badge-home" aria-hidden="true">H</span>
-                  <div>
-                    <p class="record-name">Maple Street house</p>
-                    <p class="record-sub">Alarm code</p>
-                  </div>
-                </div>
-                <div class="secret-row">
-                  <p class="record-value">0000</p>
-                  <span class="secret-action" aria-hidden="true">Hide</span>
-                </div>
-              </div>
-              <figcaption>Revealed</figcaption>
-            </figure>
-          </div>
+          <div class="stage"><SecretPair /></div>
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-lock">
+          <span class="lock-glyph" aria-hidden="true"><Icon name="lock" size={40} /></span>
+          <div class="f-copy">
             <h3>Locked to you</h3>
             <p>Face ID, Touch ID, or your passcode. No password to remember.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="06-lock" crop="lock" alt="Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button." />
-          </div>
+          <Chips label="Ways to unlock" items={[
+            { icon: "face-id", text: "Face ID" },
+            { icon: "fingerprint", text: "Touch ID" },
+            { icon: "keypad", text: "Your passcode" },
+          ]} />
         </li>
       </ul>
       <p class="more"><a class="cta" href="/features.html">See all features<Icon name="arrow" size={20} /></a></p>

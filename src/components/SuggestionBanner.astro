@@ -1,0 +1,11 @@
+---
+// An example suggestion banner, then the signals suggestions use as chips.
+import Chips from "./Chips.astro";
+import Icon from "./Icon.astro";
+---
+<div class="banner"><p><span class="vh">Example suggestion banner: </span>Flight to Denver, your <strong>recommended</strong> info is ready</p><Icon name="chevron" /></div>
+<Chips label="What suggestions use" class="signals" items={[
+  { icon: "clock", text: "Time of day" },
+  { icon: "calendar", text: "Your calendar, if you allow it" },
+  { icon: "pin", text: "Your location, if you allow it" },
+]} />

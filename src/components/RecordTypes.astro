@@ -1,0 +1,19 @@
+---
+// The seven record types as tiles, each with an aria-hidden icon badge; the label carries the meaning.
+import Icon from "./Icon.astro";
+
+const types = [
+  { label: "People", icon: "person", badge: "" },
+  { label: "Vehicles", icon: "car", badge: "badge-vehicle" },
+  { label: "Pets", icon: "paw", badge: "badge-pet" },
+  { label: "Homes", icon: "house", badge: "badge-home" },
+  { label: "Financial accounts", icon: "bank", badge: "badge-financial" },
+  { label: "Contacts", icon: "contact-card", badge: "badge-contact" },
+  { label: "Custom records", icon: "tag", badge: "badge-custom" },
+];
+---
+<ul class="entities" aria-label="Record types">
+  {types.map((t) => (
+    <li><span class:list={["badge", t.badge]} aria-hidden="true"><Icon name={t.icon} size={22} /></span>{t.label}</li>
+  ))}
+</ul>

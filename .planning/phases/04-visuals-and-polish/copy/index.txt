@@ -40,15 +40,36 @@ Passport
 Passport number, hidden until you tap Reveal
 # HM9
 What it does
-# HM10
+# HM10 h3 (unchanged) and R1-1 (replaces the row 1 line)
 Everything you look after
-People, vehicles, pets, homes, and more, in one place.
+A record for each person, vehicle, pet, home, financial account, and contact, plus custom records with your own labels.
+!People, vehicles, pets, homes, and more, in one place.
+# R1-3, the record types (R1-2, "Record types", names the list and is not main text)
+People
+Vehicles
+Pets
+Homes
+Financial accounts
+Contacts
+Custom records
 # HM11
 Scan instead of typing
 Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.
+# R2-1 to R2-4, the Check what we read card (sample data)
+Check what we read
+Change anything that’s wrong before you save.
+What we read
+Member ID
+Group number
+00000
 # HM12
 The right record at the right time
 Suggestions from the time of day and, if you allow them, your calendar and location.
+# R3-2 after the visually hidden R3-1, and R3-4 (R3-3, "What suggestions use", names the list)
+Example suggestion banner: Flight to Denver, your recommended info is ready
+Time of day
+Your calendar, if you allow it
+Your location, if you allow it
 # HM13
 Hidden until you need it
 Sensitive numbers stay masked until you tap Reveal.
@@ -63,6 +84,10 @@ Hide
 # HM14
 Locked to you
 Face ID, Touch ID, or your passcode. No password to remember.
+# R5-2 (R5-1, "Ways to unlock", names the list)
+Face ID
+Touch ID
+Your passcode
 # HM15
 See all features
 href: /features.html
@@ -105,11 +130,7 @@ Free to download. Your own record is free.
 !The developer added no advertising, tracking, analytics, or crash-reporting tools.
 !Read the full privacy policy
 !A one-time purchase unlocks everything else. There is no subscription.
-# Alt text. A1 hero; A2, A3r, A4 feature rows; A8 pricing
+# Alt text. A1 hero; A3r feature row 2 (shown from the breakpoint); A8 pricing. A2 moved to Features; A4 and A9r left Home (phase 04.3).
 alt: The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic.
-alt: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
 alt: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone.
-alt: Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact.
 alt: The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account.
-# A9r: phase 04.2, decision 15.
-alt: Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button.

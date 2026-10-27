@@ -78,5 +78,5 @@ Backups
 href: #backups
 Light and dark
 href: #light-and-dark
-# Alt text: A3r (phase 04.2, FX8; 02-person-top left the page top)
-alt: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone.
+# Alt text: A2 (phase 04.3: 02-person-top on the page top; A3r left the page)
+alt: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
