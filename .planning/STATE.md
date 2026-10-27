@@ -1,17 +1,17 @@
 # State
 
 Current phase: 04.3 (conversion), inserted by Jake on 2026-10-26 before phase 05, with no gate. Phase 04.1 stays gated on the app repo's TestFlight VoiceOver and Dynamic Type passes; phase 05 on App Store approval.
-Current step: phase 04.3 ANSWERS done (2026-10-26). CONTEXT.md status: Ready (questions 1 to 4 answered as decisions 12 to 15; all copy Approved). Next step is PLAN phase 04.3.
+Current step: phase 04.3 PLAN done (2026-10-26). PLAN.md status: Draft (2 waves, 7 tasks). Next step is EXECUTE phase 04.3 wave 1, once Jake approves the plan.
 Phases 01, 02, 03, 04, and 04.2 are Done.
 
 ## Next action
 
-1. Jake merges the ANSWERS PR (branch answers/04.3-conversion).
-2. Then: PLAN phase 04.3.
+1. Jake reviews PLAN.md, including its Superseded checks section, and merges the PLAN PR (branch plan/04.3-conversion).
+2. Then: EXECUTE phase 04.3 wave 1, with the prompt stating that Jake approves the plan (or REVISE with the changes).
 
 ## Waiting on Jake
 
-- Merge the ANSWERS PR (branch answers/04.3-conversion).
+- Review and merge the PLAN PR (branch plan/04.3-conversion); approve the plan, including the replaced checks (phase 04.2 measure row4, crops, and features-top; phase 04 S6 and S16), in the EXECUTE prompt.
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -21,7 +21,9 @@ None.
 
 ## Last session
 
-ANSWERS phase 04.3 (2026-10-26), local session on branch answers/04.3-conversion from main (4575f97, DISCUSS PR #46 merged). Recorded Jake's four answers, all the recommended defaults, as decisions 12 to 15 in CONTEXT.md: W-7p is "No" / "Photos can share an album, but they are not organized by record."; comparison row 5 becomes "Suggests a record when it can help" (both alternatives "No" / "You look it up yourself."; atHand "Yes" / "From the time of day and, if you allow them, your calendar and location."); every unused screenshot pair stays in src/assets/shots/, 06-lock joins PhoneFrame's glob exclusions, and the `lock` and `record` crop rules stay; phase 05 keeps no amount on the site. Marked every Copy draft Approved (Jake approved the copy as drafted with answers 1 and 2 applied); removed the open questions; status Ready. Updated the phase 05 price item in BACKLOG.md with the decision. Planning files only; no site code changed.
+PLAN phase 04.3 (2026-10-26), local session on branch plan/04.3-conversion from main (8e854d9, ANSWERS PR #47 merged). Wrote PLAN.md (Draft): wave 1 (04.3-01 to 04.3-05: 18 icons; hero with Chips.astro and the 56px store slot; the five live rows with RecordTypes, ScanCard, SuggestionBanner, and SecretPair components, 06-lock left out of the build, and 02-person-top moved to the Features page top in the same task so no shot ships as a PNG; the comparison; the Open Graph image and og:image:alt) and wave 2 (04.3-06 PhoneFrame `theme`, 04.3-07 the Features page with seven sections). Wrote .planning/phases/04.3-conversion/measure.mjs, a planning-only Playwright helper with six checks (hero, slot, rows, compare, features, wrap): on today's build five fail and wrap passes; on the reference builds the structure passes, failing only on pre-ANSWERS copy, one-image frames, and system-font chip wrapping. Named the checks this phase's design supersedes and their replacements: phase 04.2 measure row4, crops, and features-top; phase 04 S6 (S6′ strips the two period-less Approved fragments) and S16 (04-21's og:image:alt). Baseline on 8e854d9: every existing check passes. App repo origin/main still 487b454; the brief and _ds tokens are unchanged since f4f2450. Planning files only; no site code changed.
+
+Before that: ANSWERS phase 04.3 (2026-10-26), local session on branch answers/04.3-conversion from main (4575f97, DISCUSS PR #46 merged). Recorded Jake's four answers, all the recommended defaults, as decisions 12 to 15 in CONTEXT.md: W-7p is "No" / "Photos can share an album, but they are not organized by record."; comparison row 5 becomes "Suggests a record when it can help" (both alternatives "No" / "You look it up yourself."; atHand "Yes" / "From the time of day and, if you allow them, your calendar and location."); every unused screenshot pair stays in src/assets/shots/, 06-lock joins PhoneFrame's glob exclusions, and the `lock` and `record` crop rules stay; phase 05 keeps no amount on the site. Marked every Copy draft Approved (Jake approved the copy as drafted with answers 1 and 2 applied); removed the open questions; status Ready. Updated the phase 05 price item in BACKLOG.md with the decision. Planning files only; no site code changed.
 
 Before that: DISCUSS phase 04.3 (2026-10-26), local session on branch discuss/04.3-conversion from main (a5596bd, phase 04.2 SHIP PR #45 merged). With Jake's authorization: inserted phase 04.3 "conversion" in ROADMAP.md and REQUIREMENTS.md (CNV-01 to CNV-07) before phase 05 with no gate; imported handoff/athand-04.3-conversion.zip (sha256 deebd763…, not committed) into .planning/phases/04.3-conversion/design/ byte for byte. Wrote CONTEXT.md: the twelve parts of phase 04's HOME-DESIGN.md the amendments supersede, Copy drafts re-cited to the brief or approved site strings with Jake's corrections a to d applied (H-6 is "Face ID or passcode lock": measured on one line at 320, 390, 840, and 1280 with the production fonts), and four open questions (comparison cells W-7p and row 5, unused screenshots, price at launch). Measured the reference builds in Chromium: no horizontal scroll at 320, 390, or 1280, no text below 16px, comparison inside the gutters at 320. Added the price-at-launch item to BACKLOG.md for phase 05. No site code changed. App repo origin/main 487b454; the brief and _ds tokens are unchanged since f4f2450.
 
