@@ -138,4 +138,6 @@ None.
 
 - Wave 2 has no deviations and adds no BACKLOG items.
 - Wave 3 has no deviations and adds no BACKLOG items (the h1 at 840 was recorded at REVISE).
-- Next: VERIFY phase 04.3. All waves are checked. S32 differs from 8e854d9 only by the wave 1 measure.mjs change recorded under Deviations.
+- VERIFY (2026-10-27): result PASS, CNV-01 to CNV-07 PASS, no Fix wave. One BACKLOG item (chips on a stage take the `--surface-chip` fill the amendments specify, where the reference HTML draws `--surface-card` pills). Merged as 2f282ab (PR #53) and deployed.
+- SHIP (2026-10-27): VERIFY.md result PASS; Jake's browser checklist on https://athandapp.com: PASS, including VoiceOver on the comparison, the comparison at phone width, the new social preview in Messages, and the Features page sections and jump links; no notes. CNV-01 to CNV-07 are Done in REQUIREMENTS.md and phase 04.3 is Done in ROADMAP.md.
+- Next: phase 04.1 DISCUSS once the app repo records its TestFlight VoiceOver and Dynamic Type passes (not yet recorded; athandapp origin/main 6219629, phase 07 VERIFY done, SHIP not run); phase 05 DISCUSS once Apple approves atHand.
