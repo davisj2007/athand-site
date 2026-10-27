@@ -1,17 +1,17 @@
 # State
 
 Current phase: 04.3 (conversion), inserted by Jake on 2026-10-26 before phase 05, with no gate. Phase 04.1 stays gated on the app repo's TestFlight VoiceOver and Dynamic Type passes; phase 05 on App Store approval.
-Current step: phase 04.3 EXECUTE wave 1 done (2026-10-26). PLAN.md status: Approved 2026-10-26. Wave 1 (04.3-01 to 04.3-05) checked; wave 2 (04.3-06 and 04.3-07) remains.
+Current step: phase 04.3 EXECUTE wave 2 done (2026-10-26). PLAN.md status: Approved 2026-10-26. Both waves (04.3-01 to 04.3-07) checked; next step is VERIFY.
 Phases 01, 02, 03, 04, and 04.2 are Done.
 
 ## Next action
 
-1. Jake reviews and merges the wave 1 PR (branch execute/04.3-wave-1).
-2. Then: EXECUTE phase 04.3 wave 2.
+1. Jake reviews and merges the wave 2 PR (branch execute/04.3-wave-2).
+2. Then: VERIFY phase 04.3.
 
 ## Waiting on Jake
 
-- Review and merge the wave 1 PR (branch execute/04.3-wave-1).
+- Review and merge the wave 2 PR (branch execute/04.3-wave-2).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -21,7 +21,9 @@ None.
 
 ## Last session
 
-EXECUTE phase 04.3 wave 1 (2026-10-26), local session on branch execute/04.3-wave-1 from main (aaa6f33, PLAN PR #48 merged). Set PLAN.md Approved 2026-10-26. Completed 04.3-01 to 04.3-05: 18 icons; the hero with H-1, H-2, four trust chips (Chips.astro), and C1 in the 56px store slot; Home's five live rows (RecordTypes, ScanCard, SuggestionBanner, and SecretPair components), 06-lock left out of the build, and 02-person-top on the Features page top; the comparison list; the regenerated Open Graph image and og:image:alt OG-3. All checks pass after every task: npm ci, build, check, tokens:check, check:external, check:content, check:links, check-text on all five fixtures, check:layout, check:a11y, measure.mjs hero, slot, rows, compare, and wrap, and phase 04.2's headings, stragglers, measure, and band; at the end S2, S14′, S27, S28, S29, and S31 also pass. Two deviations, both Jake-approved in session and recorded in SUMMARY.md: measure.mjs hero now counts chip text lines only (it counted the icon rect as a line; S32 differs by that change), and `.f-lock .f-copy p` balances so HM14 does not end on one word at 390. Browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main moved to 6219629; the brief and _ds tokens are unchanged since f4f2450.
+EXECUTE phase 04.3 wave 2 (2026-10-26), local session on branch execute/04.3-wave-2 from main (88e12c7, wave 1 PR #49 merged). Completed 04.3-06 (PhoneFrame `theme` prop; dist/ byte-identical after it) and 04.3-07 (the Features page: the jump list with F-J1 in the page top; seven `section.fsec` sections with F-I1 to F-I7 and one stage each; FE24 moved to the new Hidden until you need it section; the fixed Light and Dark 01-home frames; the Features page sections CSS block; the text-wrap lines with `.fsec h2` and `.fsec-intro`; features.txt to 94 lines). All checks pass after each task: npm ci, build, check, tokens:check, check:external, check:content, check:links, check-text on all five fixtures, check:layout, check:a11y, measure.mjs hero, slot, rows, compare, features, and wrap, and phase 04.2's headings, stragglers, measure, and band; at the end S2, S6′, S14′ (dist), S27, and S28 also pass. No deviations; no new BACKLOG items. Browser check recorded in SUMMARY.md. App repo origin/main still 6219629; the brief and _ds tokens are unchanged since f4f2450.
+
+Before that: EXECUTE phase 04.3 wave 1 (2026-10-26), local session on branch execute/04.3-wave-1 from main (aaa6f33, PLAN PR #48 merged). Set PLAN.md Approved 2026-10-26. Completed 04.3-01 to 04.3-05: 18 icons; the hero with H-1, H-2, four trust chips (Chips.astro), and C1 in the 56px store slot; Home's five live rows (RecordTypes, ScanCard, SuggestionBanner, and SecretPair components), 06-lock left out of the build, and 02-person-top on the Features page top; the comparison list; the regenerated Open Graph image and og:image:alt OG-3. All checks pass after every task: npm ci, build, check, tokens:check, check:external, check:content, check:links, check-text on all five fixtures, check:layout, check:a11y, measure.mjs hero, slot, rows, compare, and wrap, and phase 04.2's headings, stragglers, measure, and band; at the end S2, S14′, S27, S28, S29, and S31 also pass. Two deviations, both Jake-approved in session and recorded in SUMMARY.md: measure.mjs hero now counts chip text lines only (it counted the icon rect as a line; S32 differs by that change), and `.f-lock .f-copy p` balances so HM14 does not end on one word at 390. Browser check recorded in SUMMARY.md. No new BACKLOG items. App repo origin/main moved to 6219629; the brief and _ds tokens are unchanged since f4f2450.
 
 Before that: PLAN phase 04.3 (2026-10-26), local session on branch plan/04.3-conversion from main (8e854d9, ANSWERS PR #47 merged). Wrote PLAN.md (Draft): wave 1 (04.3-01 to 04.3-05: 18 icons; hero with Chips.astro and the 56px store slot; the five live rows with RecordTypes, ScanCard, SuggestionBanner, and SecretPair components, 06-lock left out of the build, and 02-person-top moved to the Features page top in the same task so no shot ships as a PNG; the comparison; the Open Graph image and og:image:alt) and wave 2 (04.3-06 PhoneFrame `theme`, 04.3-07 the Features page with seven sections). Wrote .planning/phases/04.3-conversion/measure.mjs, a planning-only Playwright helper with six checks (hero, slot, rows, compare, features, wrap): on today's build five fail and wrap passes; on the reference builds the structure passes, failing only on pre-ANSWERS copy, one-image frames, and system-font chip wrapping. Named the checks this phase's design supersedes and their replacements: phase 04.2 measure row4, crops, and features-top; phase 04 S6 (S6′ strips the two period-less Approved fragments) and S16 (04-21's og:image:alt). Baseline on 8e854d9: every existing check passes. App repo origin/main still 487b454; the brief and _ds tokens are unchanged since f4f2450. Planning files only; no site code changed.
 
