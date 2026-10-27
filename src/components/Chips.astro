@@ -1,0 +1,16 @@
+---
+// A list of chips: non-interactive labels, each li with an aria-hidden icon.
+// The list name is read by assistive tech, not shown.
+import Icon from "./Icon.astro";
+
+interface Props {
+  label: string;
+  items: { icon: string; text: string }[];
+  class?: string;
+}
+
+const { label, items, class: className } = Astro.props;
+---
+<ul class:list={["chips", className]} aria-label={label}>
+  {items.map((i) => <li class="chip"><Icon name={i.icon} size={20} />{i.text}</li>)}
+</ul>

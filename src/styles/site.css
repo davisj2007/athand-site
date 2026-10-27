@@ -458,7 +458,7 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 .hero h1 {
   font-size: var(--site-display);
   line-height: 1.08;
-  max-width: 12ch;
+  max-width: 16ch;
   text-wrap: balance;
 }
 .hero .lede {
@@ -478,6 +478,41 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   }
   .hero-copy { gap: var(--space-8); }
 }
+
+/* Chip (HOME-DESIGN-AMENDMENTS.md, Chip): a non-interactive label with an
+   icon. Not a link or a button: no hover, no cursor change. */
+.chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.chip {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-3);
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-chip);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-body);
+}
+.chip svg { color: var(--text-link); }
+
+/* Store slot (HOME-DESIGN-AMENDMENTS.md, Hero): holds the coming-soon line at
+   56px tall; phase 05 swaps the line for the badge at --space-12 inside the
+   slot, so nothing around it moves. */
+.store-slot {
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--space-12) + var(--space-2));
+}
+.store-slot > * { margin: 0; }
 
 /* Moments (HOME-DESIGN.md, Moments) */
 

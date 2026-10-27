@@ -129,7 +129,7 @@ Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the
   Acceptance: the map holds the 11 existing and 18 new names (29), no existing entry is removed or changed, and each new body matches the list above; nothing renders differently (no page uses them yet).
   Verify command: `npm run build && npm run check && for n in person paw house bank contact-card tag check check-circle minus-circle lock face-id fingerprint keypad clock calendar pin chevron archive; do grep -qE "^  \"?$n\"?: '" src/components/Icon.astro || { echo "missing $n"; exit 1; }; done && test "$(grep -cE "^  \"?[a-z-]+\"?: '" src/components/Icon.astro)" = 29 && grep -qF 'M12 7v5l3 2' src/components/Icon.astro && grep -qF 'M9 6l6 6-6 6' src/components/Icon.astro && test -z "$(git diff -U0 8e854d9 -- src/components/Icon.astro | grep -E "^-  \"?[a-z-]+\"?: '")" && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.3-02: Hero with trust chips and the store slot
+- [x] 04.3-02: Hero with trust chips and the store slot
   Requirements: CNV-01, CNV-06, CNV-07
   Files: src/components/Chips.astro (new), src/styles/site.css, src/pages/index.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: H-1, H-2, H-3, H-4, H-5, H-6, H-7 (Approved); C1 (unchanged)

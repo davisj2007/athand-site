@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Chips from "../components/Chips.astro";
 import ComingSoon from "../components/ComingSoon.astro";
 import Icon from "../components/Icon.astro";
 import PhoneFrame from "../components/PhoneFrame.astro";
@@ -30,9 +31,15 @@ const ld = {
   <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <h1 id="hero-title">Your info, ready when you need it</h1>
-        <p class="lede">The details you look up all the time, for you and everyone you look after, in one place on your iPhone.</p>
-        <ComingSoon />
+        <h1 id="hero-title">Your household’s IDs and insurance, ready on your iPhone</h1>
+        <p class="lede">Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes.</p>
+        <Chips label="At a glance" class="trust" items={[
+          { icon: "person-slash", text: "No account" },
+          { icon: "phone", text: "Stored on your iPhone" },
+          { icon: "face-id", text: "Face ID or passcode lock" },
+          { icon: "check-circle", text: "One-time purchase, no subscription" },
+        ]} />
+        <div class="store-slot"><ComingSoon /></div>
       </div>
       <div class="hero-shot">
         <PhoneFrame shot="01-home" crop="full" hero alt="The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic." />
