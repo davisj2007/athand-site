@@ -1,17 +1,18 @@
 # State
 
 Current phase: 04.3 (conversion), inserted by Jake on 2026-10-26 before phase 05, with no gate. Phase 04.1 stays gated on the app repo's TestFlight VoiceOver and Dynamic Type passes; phase 05 on App Store approval.
-Current step: phase 04.3 EXECUTE wave 3 done (2026-10-26). PLAN.md status: Approved 2026-10-26; all three waves (04.3-01 to 04.3-08) checked. Next step is VERIFY.
+Current step: phase 04.3 VERIFY done (2026-10-27). VERIFY.md result: PASS. Next step is SHIP.
 Phases 01, 02, 03, 04, and 04.2 are Done.
 
 ## Next action
 
-1. Jake reviews and merges the wave 3 PR (branch execute/04.3-wave-3).
-2. Then: VERIFY phase 04.3.
+1. Jake reviews and merges the VERIFY PR (branch verify/04.3-conversion).
+2. Jake waits for the Deploy workflow on main to finish green, then runs the browser checklist in .planning/phases/04.3-conversion/VERIFY.md on https://athandapp.com.
+3. Then: SHIP phase 04.3, with Jake's browser result in the prompt.
 
 ## Waiting on Jake
 
-- Review and merge the wave 3 PR (branch execute/04.3-wave-3).
+- Review and merge the VERIFY PR (branch verify/04.3-conversion), then the browser checklist.
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -21,7 +22,9 @@ None.
 
 ## Last session
 
-EXECUTE phase 04.3 wave 3 (2026-10-26), local session on branch execute/04.3-wave-3 from main (165d8ab, REVISE PR #51 merged). Set PLAN.md Approved 2026-10-26 (Jake approved the revised plan, including the Superseded checks). Completed 04.3-08 (bff97ab): Home's h1 and line read H-1 and H-2; make-og-image.mjs sets OG-1 and public/og-image.png is regenerated (three balanced lines inside 630px, checked by eye); og:image:alt is OG-3 on every page; index.txt carries the new strings and the earlier H-1 and H-2 as ! lines. 04.3-08's verify passes in full, as do npm ci, tokens:check, check:content, check:links, check-text on all five fixtures, S20, S26, and S2, S6′, S14′, S27 to S32. No deviations; no new BACKLOG items. Browser check recorded in SUMMARY.md. App repo origin/main still 6219629; the brief and _ds tokens unchanged since f4f2450.
+VERIFY phase 04.3 (2026-10-27), local session on branch verify/04.3-conversion from main (f811d36, wave 3 PR #52 merged). Result PASS. npm ci, build, check, tokens:check, check:external, check:content, check:links, check:layout, and check:a11y pass; static checks S1 to S5, S7 to S13, S15, S18, S19, S6′, S14′, S20, and S26 to S32 pass, as do the verifies of 04-19, 04-21 (with OG-3), 04-22, 04-23, and 04-24. CNV-01 to CNV-07 PASS with evidence in VERIFY.md; no Fix wave. Read Home and Features as ARIA snapshots against the Copy drafts (order and heading levels match) and compared full-page screenshots at 320, 390, and 1280 in both themes with the reference builds: differences are Approved copy, plus the stage chip fill (the build follows the amendments' written Chip spec, the reference HTML differs) and the Features App lock stage stacking; one BACKLOG item. Browser checklist for Jake in VERIFY.md (20 steps). App repo origin/main still 6219629; the brief and _ds tokens unchanged since f4f2450.
+
+Before that: EXECUTE phase 04.3 wave 3 (2026-10-26), local session on branch execute/04.3-wave-3 from main (165d8ab, REVISE PR #51 merged). Set PLAN.md Approved 2026-10-26 (Jake approved the revised plan, including the Superseded checks). Completed 04.3-08 (bff97ab): Home's h1 and line read H-1 and H-2; make-og-image.mjs sets OG-1 and public/og-image.png is regenerated (three balanced lines inside 630px, checked by eye); og:image:alt is OG-3 on every page; index.txt carries the new strings and the earlier H-1 and H-2 as ! lines. 04.3-08's verify passes in full, as do npm ci, tokens:check, check:content, check:links, check-text on all five fixtures, S20, S26, and S2, S6′, S14′, S27 to S32. No deviations; no new BACKLOG items. Browser check recorded in SUMMARY.md. App repo origin/main still 6219629; the brief and _ds tokens unchanged since f4f2450.
 
 Before that: REVISE phase 04.3 (2026-10-26), local session on branch revise/04.3-hero-copy from main (d477642, wave 2 PR #50 merged). Applied Jake's hero copy change: in CONTEXT.md, H-1 "Your important information, in one place, always at hand" and H-2 "Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs." replace the earlier strings, OG-1 and OG-3 follow H-1, and decision 16 records it. PLAN.md (status Draft, revised): Facts confirmed at REVISE; wave 3 with task 04.3-08 (index.astro h1 and line, make-og-image.mjs h1 text, regenerated og-image.png, Base.astro og:image:alt, and the Home fixture with the earlier H-1 and H-2 as ! lines); S16′, S31, and S32 updated; the earlier strings in 04.3-02's and 04.3-05's verifies named as superseded; Risks and the self-check re-run (pass). measure.mjs: the H1 constant, a new H2 constant, and a one-word-last-line rule for the h1 and the line in the hero check (320, 390, 840, 1280). Measured the new strings on main's build: no one-word last line at any width; the OG image sets three balanced lines from 143 to 487 of 630. Dry-ran 04.3-08 on a temporary implementation: its full verify passed (og:image, astro check, measure hero and wrap, check-text on five pages, og:image:alt on every page, check:external, check:layout, check:a11y); the site files were then reverted. One BACKLOG item (the h1 sets in six lines at 840, as the earlier h1 did). App repo origin/main 6219629; the brief and _ds tokens unchanged since f4f2450. Planning files only; no site code changed.
 
