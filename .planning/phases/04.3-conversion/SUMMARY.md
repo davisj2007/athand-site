@@ -20,6 +20,19 @@ Measured: chips 1 to 3 set on one line at 320, 390, 840, and 1280, chip 4 on two
 
 Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-26): Home at 1280 in light and 390 in dark. The hero h1 sets in three lines with the chips and the coming-soon line below; the record types tiles, the Check what we read card beside the 04 crop (1280 only), the banner and signals, the pair, the lock card, and the comparison (grid with the atHand column at 1280, cards with visible column names at 390) all render as HOME-DESIGN-AMENDMENTS.md describes.
 
+Wave 2 (EXECUTE, 2026-10-26, branch execute/04.3-wave-2 from main at 88e12c7, wave 1 PR #49 merged):
+
+- 04.3-06: PhoneFrame.astro gains `theme?: "light" | "dark"`. With `theme`, it loads only that file and renders one image with no `shot-light` or `shot-dark` class, so the theme swap never hides it; without it, the pair renders as before. No page used the prop in this task: the built dist/ was byte-identical to the build before the change.
+- 04.3-07: the Features page. The jump list (with F-J1 "Hidden until you need it" between Suggestions and App lock) moves into the page top after C1. The single prose column becomes seven `section.fsec` sections (records, scanning, suggestions, hidden, app-lock, backups, light-and-dark), each with its h2, an intro (F-I1 to F-I7), one stage, and its paragraphs unchanged; FE24 moves to the new Hidden until you need it section. Stages: RecordTypes, ScanCard, SuggestionBanner (stacked), SecretPair, the lock circle with the Ways to unlock chips, the Encrypted backup card with three facts (F-B1, F-B2), and the fixed Light and Dark 01-home `suggest` frames (F-A1, F-A2, F-C1). site.css gains the Features page sections block, and the text-wrap lines name `.fsec h2` and `.fsec-intro`. features.txt gains the lines PLAN gives (94 lines).
+
+Live site after this wave: Features shows the jump list in its page top, seven sections each with a visual beside its h2, and the fixed Light and Dark frames; every paragraph keeps its text, and the six existing anchors stay, plus #hidden. Features requests only the 02-person-top and 01-home WebP files.
+
+Wave 2 check results (2026-10-26): `npm ci`, `npm run build`, `npm run check` (0 errors), `npm run tokens:check` (4 files match; app repo origin/main 6219629, brief and _ds tokens unchanged since f4f2450), `npm run check:external`, `npm run check:content`, `npm run check:links` (61 internal links), check-text on all five fixtures (index 127 lines, features 94, pricing 30, privacy-overview 30, support 81), measure.mjs hero, slot, rows, compare, features, and wrap (S26), phase 04.2 measure.mjs headings, stragglers, measure, and band (S20), `npm run check:layout` (7 pages, 2 themes, 5 viewports), and `npm run check:a11y` (7 pages, 4 theme states, 2 widths): all pass, with each task's verify command run after its task. At the wave's end, S2, S6′, S14′ (the dist part), S27, and S28 also pass.
+
+Measured: both fixed-theme frames are 220px wide at 390 and 1280 in both themes, and the Light frame shows 01-home-light and the Dark frame 01-home-dark under the light and the dark site theme.
+
+Browser check (built-in browser, `astro preview` at localhost:4321, 2026-10-26): Features at 1280 in light and 390 in dark. The page top shows the jump list under the coming-soon line beside the 02-person-top stage; each section sets its h2 and intro beside its stage at 1280 and above it at 390; the Light and Dark frames show their own appearance in both site themes.
+
 ## Brief citations
 
 Claims placed in wave 1, with the citation CONTEXT.md gives for each:
@@ -58,6 +71,25 @@ Claims placed in wave 1, with the citation CONTEXT.md gives for each:
 
 Unchanged approved strings moved: A2 (Home row 1 to the Features page top), HM28 to HM30 (into SecretPair.astro, text unchanged).
 
+Claims placed in wave 2, with the citation CONTEXT.md gives for each:
+
+- F-J1 "Hidden until you need it": Jake’s correction (d), matching its h2 (F-H1); the six FP3 labels unchanged.
+- F-H1 "Hidden until you need it": HM13 h3 (approved).
+- F-I1 "Everything you look after, each in its own record.": brief, Information architecture; FE6.
+- F-I2 "Point your camera at a document, then check what atHand read.": brief, Document capture; FE11, FE13.
+- F-I3 "atHand can suggest a record before you go looking for it.": brief, Concept; FE16.
+- F-I4 "Sensitive numbers stay masked until you tap Reveal.": HM13 line (approved); brief, Secure fields.
+- F-I5 "Face ID, Touch ID, or your passcode. No password to remember.": HM14 line (approved); brief, App lock.
+- F-I6 "An encrypted copy of your records, saved where you choose.": brief, Backup and restore; FE26.
+- F-B1 "Encrypted backup" / "Protected by a passphrase you choose": brief, Backup and restore; FE26.
+- F-B2 "Your records and photos", "Saved wherever you like", "A one-time copy, not sync": brief, Backup and restore; FE26, FE27.
+- F-I7 "Light or dark, your choice.": brief, Brand (System / Light / Dark setting); FE30.
+- F-C1 "Light", "Dark": captions, no claim.
+- F-A1 "Close view of the atHand home screen in Light appearance, with the Flight to Denver banner and the Suggested for you list." and F-A2 "The same view in Dark appearance.": alt text, checked against the `suggest` crop and A4.
+- Reused as on Home: R1-2, R1-3, R2-1 to R2-4, R3-1 to R3-4, R5-1, R5-2, and HM28 to HM30 (citations as wave 1).
+
+Unchanged approved strings moved in wave 2: FE24 (from Locked to you to Hidden until you need it), FP3 (the jump list, into the page top).
+
 ## Commits
 
 - bd40e39 phase 04.3 task 04.3-01: eighteen new icons
@@ -66,6 +98,8 @@ Unchanged approved strings moved: A2 (Home row 1 to the Features page top), HM28
 - d1397e1 phase 04.3 task 04.3-03: live feature rows, and 02-person-top on the Features page top
 - 480a0e4 phase 04.3 task 04.3-04: the comparison
 - 70c2ad7 phase 04.3 task 04.3-05: Open Graph image and og:image:alt
+- c0fb0df phase 04.3 task 04.3-06: PhoneFrame theme prop
+- 0df5b6f phase 04.3 task 04.3-07: the visual Features page
 
 ## Deviations
 
@@ -78,4 +112,5 @@ None.
 
 ## Follow-ups
 
-- Wave 2 (04.3-06 and 04.3-07): PhoneFrame `theme` and the visual Features page.
+- Wave 2 has no deviations and adds no BACKLOG items.
+- Next: VERIFY phase 04.3. S32 differs from 8e854d9 only by the wave 1 measure.mjs change recorded under Deviations.
