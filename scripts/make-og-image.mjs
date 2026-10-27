@@ -69,7 +69,7 @@ ${css}
 <img class="icon" alt="" src="data:image/png;base64,${icon.toString("base64")}">
 <div class="copy">
   <div class="lockup">${mark}<span>Hand</span></div>
-  <h1>Your household’s IDs and insurance, ready on your iPhone</h1>
+  <h1>Your important information, in one place, always at hand</h1>
   <p>A private household organizer for iPhone</p>
 </div>
 </body>

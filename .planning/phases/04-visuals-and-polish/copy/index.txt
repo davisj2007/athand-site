@@ -5,15 +5,18 @@
 # "alt: X" lines (added by task 04-08) require an <img> in <main> with alt X, and every <img> in <main> must match one of them.
 # Phase 04.2 (phase 04.2 CONTEXT.md, decisions 9 to 15): HM16 revised; HM28 to HM30 added; A3 and A9 replaced by A3r and A9r; A5 and A6 removed.
 # Phase 04.3 (phase 04.3 CONTEXT.md, Copy drafts, Approved 2026-10-26): H-1 and H-2 replace HM2 and HM3; chips H-4 to H-7; rows R1-1 to R5-2; comparison W-1 to W-13a; A2, A4, and A9r leave Home.
+# Phase 04.3 REVISE (phase 04.3 CONTEXT.md, decision 16, Approved 2026-10-26): H-1 and H-2 replaced; the earlier H-1 and H-2 become ! lines.
 # HM1 (H1, H2, unchanged)
 title: atHand: Your Info, Ready
 description: atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.
-# H-1 (replaces HM2; no period)
-Your household’s IDs and insurance, ready on your iPhone
-!Your household’s IDs and insurance, ready on your iPhone.
+# H-1 (replaces HM2 and the earlier H-1; no period)
+Your important information, in one place, always at hand
+!Your important information, in one place, always at hand.
+!Your household’s IDs and insurance, ready on your iPhone
 !Your info, ready when you need it
-# H-2 (replaces HM3)
-Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes.
+# H-2 (replaces HM3 and the earlier H-2)
+Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs.
+!Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes.
 !The details you look up all the time, for you and everyone you look after, in one place on your iPhone.
 # H-4 to H-7, the trust chips (H-3, "At a glance", names the list and is not main text)
 No account
