@@ -4,13 +4,23 @@
 # with "!" must not appear in <main>; every other line must appear in <main>.
 # "alt: X" lines (added by task 04-08) require an <img> in <main> with alt X, and every <img> in <main> must match one of them.
 # Phase 04.2 (phase 04.2 CONTEXT.md, decisions 9 to 15): HM16 revised; HM28 to HM30 added; A3 and A9 replaced by A3r and A9r; A5 and A6 removed.
+# Phase 04.3 (phase 04.3 CONTEXT.md, Copy drafts, Approved 2026-10-26): H-1 and H-2 replace HM2 and HM3; chips H-4 to H-7; rows R1-1 to R5-2; comparison W-1 to W-13a; A2, A4, and A9r leave Home.
 # HM1 (H1, H2, unchanged)
 title: atHand: Your Info, Ready
 description: atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.
-# HM2
-Your info, ready when you need it
-# HM3
-The details you look up all the time, for you and everyone you look after, in one place on your iPhone.
+# H-1 (replaces HM2; no period)
+Your household’s IDs and insurance, ready on your iPhone
+!Your household’s IDs and insurance, ready on your iPhone.
+!Your info, ready when you need it
+# H-2 (replaces HM3)
+Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes.
+!The details you look up all the time, for you and everyone you look after, in one place on your iPhone.
+# H-4 to H-7, the trust chips (H-3, "At a glance", names the list and is not main text)
+No account
+Stored on your iPhone
+Face ID or passcode lock
+One-time purchase, no subscription
+!Locked with Face ID
 # HM4 (C1; also HM24)
 Coming soon to the App Store for iPhone.
 # HM5
@@ -30,15 +40,36 @@ Passport
 Passport number, hidden until you tap Reveal
 # HM9
 What it does
-# HM10
+# HM10 h3 (unchanged) and R1-1 (replaces the row 1 line)
 Everything you look after
-People, vehicles, pets, homes, and more, in one place.
+A record for each person, vehicle, pet, home, financial account, and contact, plus custom records with your own labels.
+!People, vehicles, pets, homes, and more, in one place.
+# R1-3, the record types (R1-2, "Record types", names the list and is not main text)
+People
+Vehicles
+Pets
+Homes
+Financial accounts
+Contacts
+Custom records
 # HM11
 Scan instead of typing
 Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.
+# R2-1 to R2-4, the Check what we read card (sample data)
+Check what we read
+Change anything that’s wrong before you save.
+What we read
+Member ID
+Group number
+00000
 # HM12
 The right record at the right time
 Suggestions from the time of day and, if you allow them, your calendar and location.
+# R3-2 after the visually hidden R3-1, and R3-4 (R3-3, "What suggestions use", names the list)
+Example suggestion banner: Flight to Denver, your recommended info is ready
+Time of day
+Your calendar, if you allow it
+Your location, if you allow it
 # HM13
 Hidden until you need it
 Sensitive numbers stay masked until you tap Reveal.
@@ -53,9 +84,45 @@ Hide
 # HM14
 Locked to you
 Face ID, Touch ID, or your passcode. No password to remember.
+# R5-2 (R5-1, "Ways to unlock", names the list)
+Face ID
+Touch ID
+Your passcode
 # HM15
 See all features
 href: /features.html
+# W-1 to W-13a, the comparison (phase 04.3, decisions 12 and 13). The W-3 column names are each cell's dt; measure.mjs compare checks the verdict words.
+Why not just use photos or notes?
+Many people keep these details as photos of cards or in a notes app. Here’s how the three compare.
+Photos of cards
+A notes app
+Finding the right detail fast
+Find the photo, then zoom in to read the number.
+Search finds it if you typed it in.
+Each detail has its own labeled field.
+Records for the whole household in one place
+Photos can share an album, but they are not organized by record.
+Up to you to set up, and not organized by record.
+A record for each person, vehicle, pet, and home.
+Locked behind Face ID
+Only if you move them to a locked album.
+Some apps can lock individual notes.
+Face ID, Touch ID, or your passcode.
+No account to create
+Taking a photo needs no account.
+Depends on the app.
+No account and no sign-in.
+Suggests a record when it can help
+You look it up yourself.
+From the time of day and, if you allow them, your calendar and location.
+# Reference-build strings that ANSWERS replaced (decisions 12 and 13; correction b)
+!Most people keep these details
+!Mixed in with your other photos
+!Phone lock
+!Relies on your phone’s lock.
+!Works without searching
+!You search or scroll each time.
+!lists your records on the home screen
 # HM16 (revised in phase 04.2, decision 9; no period)
 What you add stays on your iPhone
 !What you add stays on your iPhone.
@@ -95,11 +162,7 @@ Free to download. Your own record is free.
 !The developer added no advertising, tracking, analytics, or crash-reporting tools.
 !Read the full privacy policy
 !A one-time purchase unlocks everything else. There is no subscription.
-# Alt text. A1 hero; A2, A3r, A4 feature rows; A8 pricing
+# Alt text. A1 hero; A3r feature row 2 (shown from the breakpoint); A8 pricing. A2 moved to Features; A4 and A9r left Home (phase 04.3).
 alt: The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic.
-alt: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
 alt: The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone.
-alt: Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact.
 alt: The atHand unlock screen, headed “Unlock everything atHand knows.” Its list reads: add your household, vehicles, pets, homes, and more; scan documents for every record, not just yours; your information stays on this device; one purchase, no subscription, no ads, no account.
-# A9r: phase 04.2, decision 15.
-alt: Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button.

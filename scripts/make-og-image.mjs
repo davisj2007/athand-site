@@ -60,6 +60,7 @@ ${css}
     font: 700 56px/1.1 var(--font-display);
     letter-spacing: var(--tracking-display);
     color: var(--text-body);
+    text-wrap: balance;
   }
   p { margin: 0; font: 500 30px/1.3 var(--font-ui); color: var(--text-muted); }
 </style>
@@ -68,7 +69,7 @@ ${css}
 <img class="icon" alt="" src="data:image/png;base64,${icon.toString("base64")}">
 <div class="copy">
   <div class="lockup">${mark}<span>Hand</span></div>
-  <h1>Your info, ready when you need it</h1>
+  <h1>Your household’s IDs and insurance, ready on your iPhone</h1>
   <p>A private household organizer for iPhone</p>
 </div>
 </body>

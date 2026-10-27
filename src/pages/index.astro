@@ -1,9 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
+import Chips from "../components/Chips.astro";
 import ComingSoon from "../components/ComingSoon.astro";
 import Icon from "../components/Icon.astro";
 import PhoneFrame from "../components/PhoneFrame.astro";
 import PrivacyBand from "../components/PrivacyBand.astro";
+import RecordTypes from "../components/RecordTypes.astro";
+import ScanCard from "../components/ScanCard.astro";
+import SecretPair from "../components/SecretPair.astro";
+import SuggestionBanner from "../components/SuggestionBanner.astro";
 import markSvg from "../assets/logo-lockup-mark.svg?raw";
 
 // Moment card values are fictional samples matching the screenshots' sample household.
@@ -11,6 +16,17 @@ const moments = [
   { icon: "cross", title: "At the doctor’s office", label: "Insurance member ID", value: "XYZ000000000" },
   { icon: "car", title: "At a traffic stop", label: "Driver’s license", value: "D000-0000-0000" },
   { icon: "plane", title: "At the airport", label: "Passport", hidden: "Passport number, hidden until you tap Reveal" },
+];
+
+// Comparison rows (phase 04.3, decisions 12 and 13). Every answer is a word plus a sentence; the icon is decoration.
+const columns = ["Photos of cards", "A notes app", "atHand"];
+const verdictIcon: Record<string, string> = { Yes: "check-circle", No: "minus-circle", Partly: "system", Varies: "system" };
+const compare = [
+  { q: "Finding the right detail fast", cells: [["Partly", "Find the photo, then zoom in to read the number."], ["Partly", "Search finds it if you typed it in."], ["Yes", "Each detail has its own labeled field."]] },
+  { q: "Records for the whole household in one place", cells: [["No", "Photos can share an album, but they are not organized by record."], ["Partly", "Up to you to set up, and not organized by record."], ["Yes", "A record for each person, vehicle, pet, and home."]] },
+  { q: "Locked behind Face ID", cells: [["Partly", "Only if you move them to a locked album."], ["Varies", "Some apps can lock individual notes."], ["Yes", "Face ID, Touch ID, or your passcode."]] },
+  { q: "No account to create", cells: [["Yes", "Taking a photo needs no account."], ["Varies", "Depends on the app."], ["Yes", "No account and no sign-in."]] },
+  { q: "Suggests a record when it can help", cells: [["No", "You look it up yourself."], ["No", "You look it up yourself."], ["Yes", "From the time of day and, if you allow them, your calendar and location."]] },
 ];
 
 // SoftwareApplication structured data (decision 16): no offers, price, rating, or download URL.
@@ -30,9 +46,15 @@ const ld = {
   <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <h1 id="hero-title">Your info, ready when you need it</h1>
-        <p class="lede">The details you look up all the time, for you and everyone you look after, in one place on your iPhone.</p>
-        <ComingSoon />
+        <h1 id="hero-title">Your household’s IDs and insurance, ready on your iPhone</h1>
+        <p class="lede">Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes.</p>
+        <Chips label="At a glance" class="trust" items={[
+          { icon: "person-slash", text: "No account" },
+          { icon: "phone", text: "Stored on your iPhone" },
+          { icon: "face-id", text: "Face ID or passcode lock" },
+          { icon: "check-circle", text: "One-time purchase, no subscription" },
+        ]} />
+        <div class="store-slot"><ComingSoon /></div>
       </div>
       <div class="hero-shot">
         <PhoneFrame shot="01-home" crop="full" hero alt="The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic." />
@@ -71,85 +93,79 @@ const ld = {
   <section class="section" aria-labelledby="features-title">
     <div class="container">
       <h2 class="section-title features-title" id="features-title">What it does</h2>
-      <ul class="features">
-        <li class="feature">
-          <div class="feature-copy">
+      <ul class="f-list">
+        <li class="f-span">
+          <div class="f-copy">
             <h3>Everything you look after</h3>
-            <p>People, vehicles, pets, homes, and more, in one place.</p>
+            <p>A record for each person, vehicle, pet, home, financial account, and contact, plus custom records with your own labels.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="02-person-top" crop="full" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons." />
-          </div>
+          <RecordTypes />
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-split">
+          <div class="f-copy">
             <h3>Scan instead of typing</h3>
             <p>Licenses, passports, insurance cards, VINs, and more. You check every field before it is saved.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="04-check-what-we-read" crop="fields" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone." />
+          <div class="stage">
+            <ScanCard />
+            <PhoneFrame shot="04-check-what-we-read" crop="fields" class="frame-sm" alt="The “Check what we read” screen after scanning an insurance card. It shows the card photo with a Retake photo link and three fields read from it: Member ID, Group number, and Insurance phone." />
           </div>
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-center">
+          <div class="f-copy">
             <h3>The right record at the right time</h3>
             <p>Suggestions from the time of day and, if you allow them, your calendar and location.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="01-home" crop="suggest" alt="Close view of the atHand home screen. A banner reads “Flight to Denver, your recommended info is ready,” and a Suggested for you list shows Flight to Denver tomorrow at 8:00 AM, Vet for weekend errands, and a recently viewed contact." />
-          </div>
+          <div class="stage"><SuggestionBanner /></div>
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-split flip">
+          <div class="f-copy">
             <h3>Hidden until you need it</h3>
             <p>Sensitive numbers stay masked until you tap Reveal.</p>
           </div>
-          <div class="shot-panel">
-            <figure class="pair">
-              <div class="secret">
-                <div class="record">
-                  <span class="badge badge-home" aria-hidden="true">H</span>
-                  <div>
-                    <p class="record-name">Maple Street house</p>
-                    <p class="record-sub">Alarm code</p>
-                  </div>
-                </div>
-                <div class="secret-row">
-                  <p class="record-value"><span aria-hidden="true">••••••••</span><span class="vh">Alarm code, hidden until you tap Reveal</span></p>
-                  <span class="secret-action" aria-hidden="true">Reveal</span>
-                </div>
-              </div>
-              <figcaption>Masked</figcaption>
-            </figure>
-            <figure class="pair">
-              <div class="secret">
-                <div class="record">
-                  <span class="badge badge-home" aria-hidden="true">H</span>
-                  <div>
-                    <p class="record-name">Maple Street house</p>
-                    <p class="record-sub">Alarm code</p>
-                  </div>
-                </div>
-                <div class="secret-row">
-                  <p class="record-value">0000</p>
-                  <span class="secret-action" aria-hidden="true">Hide</span>
-                </div>
-              </div>
-              <figcaption>Revealed</figcaption>
-            </figure>
-          </div>
+          <div class="stage"><SecretPair /></div>
         </li>
-        <li class="feature">
-          <div class="feature-copy">
+        <li class="f-lock">
+          <span class="lock-glyph" aria-hidden="true"><Icon name="lock" size={40} /></span>
+          <div class="f-copy">
             <h3>Locked to you</h3>
             <p>Face ID, Touch ID, or your passcode. No password to remember.</p>
           </div>
-          <div class="shot-panel">
-            <PhoneFrame shot="06-lock" crop="lock" alt="Close view of the atHand lock screen: the atHand logo, the line “atHand is locked.”, and an Unlock button." />
-          </div>
+          <Chips label="Ways to unlock" items={[
+            { icon: "face-id", text: "Face ID" },
+            { icon: "fingerprint", text: "Touch ID" },
+            { icon: "keypad", text: "Your passcode" },
+          ]} />
         </li>
       </ul>
       <p class="more"><a class="cta" href="/features.html">See all features<Icon name="arrow" size={20} /></a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="compare-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title" id="compare-title">Why not just use photos or notes?</h2>
+        <p class="section-line">Many people keep these details as photos of cards or in a notes app. Here’s how the three compare.</p>
+      </div>
+      <div class="cmp">
+        <div class="cmp-head" aria-hidden="true"><span></span><div class="cmp-head-cols"><span>Photos of cards</span><span>A notes app</span><span class="us">atHand</span></div></div>
+        <ul class="cmp-rows">
+          {compare.map((row) => (
+            <li class="cmp-row">
+              <h3 class="cmp-q">{row.q}</h3>
+              <dl class="cmp-cells">
+                {row.cells.map(([verdict, note], i) => (
+                  <div class:list={["cmp-cell", { us: i === 2 }]}>
+                    <dt>{columns[i]}</dt>
+                    <dd><span class="verdict"><Icon name={verdictIcon[verdict]} size={20} />{verdict}</span><span class="note">{note}</span></dd>
+                  </div>
+                ))}
+              </dl>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 

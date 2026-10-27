@@ -1,6 +1,6 @@
 # Phase 04.3: conversion - Plan
 
-Status: Draft
+Status: Approved 2026-10-26
 
 ## Goal
 
@@ -101,7 +101,7 @@ Each EXECUTE PR that places copy lists, under "Claims and citations", every Copy
 
 Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the icons from 04.3-01, and 04.3-04 follows 04.3-03 in index.astro and the fixture, so run them in order.
 
-- [ ] 04.3-01: Eighteen new icons
+- [x] 04.3-01: Eighteen new icons
   Requirements: CNV-02, CNV-04
   Files: src/components/Icon.astro
   Copy entries: none
@@ -129,7 +129,7 @@ Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the
   Acceptance: the map holds the 11 existing and 18 new names (29), no existing entry is removed or changed, and each new body matches the list above; nothing renders differently (no page uses them yet).
   Verify command: `npm run build && npm run check && for n in person paw house bank contact-card tag check check-circle minus-circle lock face-id fingerprint keypad clock calendar pin chevron archive; do grep -qE "^  \"?$n\"?: '" src/components/Icon.astro || { echo "missing $n"; exit 1; }; done && test "$(grep -cE "^  \"?[a-z-]+\"?: '" src/components/Icon.astro)" = 29 && grep -qF 'M12 7v5l3 2' src/components/Icon.astro && grep -qF 'M9 6l6 6-6 6' src/components/Icon.astro && test -z "$(git diff -U0 8e854d9 -- src/components/Icon.astro | grep -E "^-  \"?[a-z-]+\"?: '")" && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.3-02: Hero with trust chips and the store slot
+- [x] 04.3-02: Hero with trust chips and the store slot
   Requirements: CNV-01, CNV-06, CNV-07
   Files: src/components/Chips.astro (new), src/styles/site.css, src/pages/index.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: H-1, H-2, H-3, H-4, H-5, H-6, H-7 (Approved); C1 (unchanged)
@@ -154,7 +154,7 @@ Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the
   Acceptance: the hero reads H-1, H-2, four chips, then C1 in a 56px slot; chips 1 to 3 on one line at 320, 390, 840, and 1280 and chip 4 on at most two lines at 320; a 48px badge stand-in moves nothing; check-text passes for Home; check:layout and check:a11y pass (chip contrast, 16px text).
   Verify command: `npm run build && npm run check && grep -qF '<h1 id="hero-title">Your household’s IDs and insurance, ready on your iPhone</h1>' src/pages/index.astro && grep -qF 'max-width: 16ch;' src/styles/site.css && ! grep -qF 'max-width: 12ch;' src/styles/site.css && grep -qF 'min-height: calc(var(--space-12) + var(--space-2));' src/styles/site.css && grep -qF '<div class="store-slot"><ComingSoon /></div>' src/pages/index.astro && node .planning/phases/04.3-conversion/measure.mjs hero && node .planning/phases/04.3-conversion/measure.mjs slot && for p in index features pricing privacy-overview support; do node scripts/check-text.mjs dist/$p.html .planning/phases/04-visuals-and-polish/copy/$p.txt || exit 1; done && test "$(grep -o 'Coming soon to the App Store for iPhone.' dist/index.html | wc -l | tr -d ' ')" = 2 && npm run check:links && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.3-03: Live feature rows, and 02-person-top on the Features page top
+- [x] 04.3-03: Live feature rows, and 02-person-top on the Features page top
   Requirements: CNV-02, CNV-04, CNV-06, CNV-07
   Files: src/components/RecordTypes.astro (new), src/components/ScanCard.astro (new), src/components/SuggestionBanner.astro (new), src/components/SecretPair.astro (new), src/components/PhoneFrame.astro, src/styles/site.css, src/pages/index.astro, src/pages/features.astro, .planning/phases/04-visuals-and-polish/copy/index.txt, .planning/phases/04-visuals-and-polish/copy/features.txt
   Copy entries: R1-1, R1-2, R1-3, R2-1, R2-2, R2-3, R2-4, R3-1, R3-2, R3-3, R3-4, R5-1, R5-2 (Approved); HM10 to HM14, HM15, HM28 to HM30, A3r (unchanged); A2 (moved to Features); A4, A9r, and the old row 1 line (Removed)
@@ -189,7 +189,7 @@ Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the
   Acceptance: Home's rows render as measure.mjs rows describes in both themes at 390 and 1280; the only shots Home requests are 01-home, 04-check-what-we-read, and 07-paywall-perks; the Features page top shows 02-person-top in a stage; dist/ holds no 06-lock, 05, or 03 file and no PNG beyond the four icons and the OG image, while every PNG stays in src/assets/shots/; check-text passes for every page; the phase 04.2 measure checks headings, stragglers, measure, and band still pass, and wrap passes; check:layout and check:a11y pass (badge icon contrast, the banner, one image per frame, 16px minimum).
   Verify command: `npm run build && npm run check && ! grep -qE 'class="feature|class="features"' src/pages/index.astro && ! grep -qE '^\.feature(-copy)?\b|^  \.feature\b' src/styles/site.css && ! grep -nE '02-person-top|06-lock|crop="suggest"' src/pages/index.astro && grep -qF 'shot="02-person-top" crop="full"' src/pages/features.astro && ! grep -qF '04-check-what-we-read' src/pages/features.astro && grep -qF '"!../assets/shots/06-lock-*.png"' src/components/PhoneFrame.astro && test -f src/assets/shots/06-lock-light.png && test -f src/assets/shots/06-lock-dark.png && test -z "$(find dist -name '*06-lock*' -o -name '*05-masked*' -o -name '*05-revealed*' -o -name '*03-person-documents*')" && test -z "$(find dist -name '*.png' ! -name favicon.png ! -name favicon-32.png ! -name apple-touch-icon.png ! -name og-image.png)" && grep -qF ':is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }' src/styles/site.css && grep -qF ':is(.lede, .section-line, .f-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }' src/styles/site.css && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && node .planning/phases/04.3-conversion/measure.mjs rows && node .planning/phases/04.3-conversion/measure.mjs wrap && for c in headings stragglers measure band; do node .planning/phases/04.2-design-polish/measure.mjs $c || exit 1; done && for p in index features pricing privacy-overview support; do node scripts/check-text.mjs dist/$p.html .planning/phases/04-visuals-and-polish/copy/$p.txt || exit 1; done && npm run check:links && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.3-04: The comparison
+- [x] 04.3-04: The comparison
   Requirements: CNV-03, CNV-06, CNV-07
   Files: src/pages/index.astro, src/styles/site.css, .planning/phases/04-visuals-and-polish/copy/index.txt
   Copy entries: W-1, W-2, W-3, W-4, W-5p, W-5n, W-5a, W-6, W-7p, W-7n, W-7a, W-8, W-9p, W-9n, W-9a, W-10, W-11p, W-11n, W-11a, W-12, W-13p, W-13n, W-13a (Approved; decisions 5, 6, 12, and 13)
@@ -233,7 +233,7 @@ Home, and the Open Graph image that matches its hero. 04.3-02 to 04.3-04 use the
   Acceptance: measure.mjs compare passes at 320, 390, 1280, and 400% zoom in both themes (structure, exact cells, gutters, no sideways scroll, 16px minimum, the ARIA reading order); the section sits between Features and the privacy band; check-text passes for Home; wrap passes; check:layout and check:a11y pass (the `dl` structure, the aria-hidden head, contrast of the atHand column in both themes).
   Verify command: `npm run build && npm run check && grep -qF 'aria-labelledby="compare-title"' src/pages/index.astro && grep -qF '<div class="cmp-head" aria-hidden="true">' src/pages/index.astro && ! grep -q 'cmp-cols\|<table' src/pages/index.astro src/styles/site.css && ! grep -oE '(^|[;{ ])--[a-z0-9-]+\s*:' src/styles/site.css | grep -v -- '--site-' && ! grep -n '@media' src/styles/site.css | grep -vE '\(min-width: 52\.5em\)|prefers-color-scheme: dark' && grep -qF ':is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1, .cmp-q) { text-wrap: balance; }' src/styles/site.css && node .planning/phases/04.3-conversion/measure.mjs compare && node .planning/phases/04.3-conversion/measure.mjs wrap && node scripts/check-text.mjs dist/index.html .planning/phases/04-visuals-and-polish/copy/index.txt && npm run check:links && npm run check:layout && npm run check:a11y`
 
-- [ ] 04.3-05: Open Graph image and og:image:alt
+- [x] 04.3-05: Open Graph image and og:image:alt
   Requirements: CNV-05, CNV-06
   Files: scripts/make-og-image.mjs, public/og-image.png, src/layouts/Base.astro
   Copy entries: OG-1, OG-3 (Approved); OG-2 (unchanged)

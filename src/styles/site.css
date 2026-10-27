@@ -458,7 +458,7 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 .hero h1 {
   font-size: var(--site-display);
   line-height: 1.08;
-  max-width: 12ch;
+  max-width: 16ch;
   text-wrap: balance;
 }
 .hero .lede {
@@ -478,6 +478,41 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   }
   .hero-copy { gap: var(--space-8); }
 }
+
+/* Chip (HOME-DESIGN-AMENDMENTS.md, Chip): a non-interactive label with an
+   icon. Not a link or a button: no hover, no cursor change. */
+.chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.chip {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-3);
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-chip);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-body);
+}
+.chip svg { color: var(--text-link); }
+
+/* Store slot (HOME-DESIGN-AMENDMENTS.md, Hero): holds the coming-soon line at
+   56px tall; phase 05 swaps the line for the badge at --space-12 inside the
+   slot, so nothing around it moves. */
+.store-slot {
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--space-12) + var(--space-2));
+}
+.store-slot > * { margin: 0; }
 
 /* Moments (HOME-DESIGN.md, Moments) */
 
@@ -587,35 +622,13 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   color: var(--text-link);
 }
 
-/* Features (HOME-DESIGN.md, Features). Even rows show the shot first on wide
-   screens through CSS order only; source order stays text, then image. */
+/* Features (HOME-DESIGN-AMENDMENTS.md, Feature rows): five rows, each a live
+   card or stage beside its copy. Rows 2 and 4 put copy and a stage side by
+   side from the breakpoint; .flip puts the stage first through CSS order only,
+   so source order stays copy, then visual. */
 
 .features-title { margin-bottom: var(--space-10); }
-.features {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--site-section);
-}
-.feature {
-  margin: 0;
-  display: grid;
-  gap: var(--space-6);
-  align-items: center;
-  min-width: 0;
-}
-.feature-copy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  max-width: 28rem;
-  min-width: 0;
-}
-.feature-copy > * { margin: 0; }
-.feature h3 { font-size: var(--site-h3); }
-.feature-copy p,
+.f-copy p,
 .section-line {
   font-size: var(--text-lg);
   line-height: var(--leading-normal);
@@ -639,14 +652,396 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   margin: 0;
   min-width: 0;
 }
+.more { margin: var(--space-10) 0 0; }
+
+/* Stage (HOME-DESIGN-AMENDMENTS.md, Stage): the --surface-chip panel that
+   holds a live card or a crop. */
+.stage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-4);
+  background: var(--surface-chip);
+  border-radius: var(--radius-card);
+  min-width: 0;
+}
+/* Chips on a stage or the lock card (HOME-DESIGN-AMENDMENTS.md, Chip). */
+.stage .chip,
+.f-lock .chip {
+  background: var(--surface-chip);
+  border-color: var(--surface-chip);
+}
+
+/* Mock card (HOME-DESIGN-AMENDMENTS.md, Mock card): live HTML in the
+   moments-card style. */
+.mock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1 1 17rem;
+  max-width: 26rem;
+  min-width: 0;
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  text-align: left;
+}
+.mock p { margin: 0; }
+.mock-title {
+  font: 700 var(--text-lg)/var(--leading-tight) var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+.mock-sub {
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+.mock-label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Entity badges (HOME-DESIGN-AMENDMENTS.md, Entity badges): the badge holds
+   a 22px icon instead of an initial. */
+.badge svg { flex: none; }
+.badge-vehicle { background: var(--entity-vehicle); }
+.badge-pet { background: var(--entity-pet); }
+.badge-financial { background: var(--entity-financial); }
+.badge-contact { background: var(--entity-contact); }
+.badge-custom { background: var(--entity-custom); }
+
+/* Feature rows (HOME-DESIGN-AMENDMENTS.md, Feature rows) */
+.f-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+.f-list > li { margin: 0; }
+.f-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 28rem;
+  min-width: 0;
+}
+.f-copy > * { margin: 0; }
+.f-copy h3 { font-size: var(--site-h3); }
+
+/* Row 1, span card: copy beside the record types inside one card. */
+.f-span {
+  display: grid;
+  gap: var(--space-8);
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+}
+.entities {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(7rem, 100%), 1fr));
+  gap: var(--space-3);
+}
+.entities li {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface-page);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-card-sm);
+  font-weight: 600;
+  line-height: 1.25;
+  min-width: 0;
+}
+.stage .entities { flex: 1 1 100%; }
+.stage .entities li {
+  background: var(--surface-card);
+  border-color: var(--border-card);
+}
+
+/* Rows 2 and 4, split: copy and a stage side by side. */
+.f-split {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+.field-list {
+  margin: 0;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card-sm);
+}
+.field-list > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+}
+.field-list > div + div { border-top: 1px solid var(--divider); }
+.field-list dt {
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+.field-list dd {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+}
+.frame-sm {
+  display: none;
+  width: 200px;
+}
+
+/* Row 3, center: copy centered above a full-width stage. */
+.f-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  text-align: center;
+}
+.f-center .f-copy { align-items: center; }
+.f-center .stage {
+  width: 100%;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 34rem;
+  padding: var(--space-5) var(--space-5) var(--space-5) var(--space-6);
+  background: var(--accent);
+  color: var(--text-on-cobalt);
+  border-radius: var(--radius-card);
+  font-size: var(--text-lg);
+  line-height: 1.35;
+  text-align: left;
+}
+.banner p {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+.signals { justify-content: center; }
+
+/* Row 5, lock card: glyph, copy, and the three ways in. */
+.f-lock {
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+}
+/* Chromium’s pretty still leaves one word on the last line at 390px here,
+   so this line balances instead (Jake approved in EXECUTE). */
+.f-lock .f-copy p { text-wrap: balance; }
+.lock-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--space-12) + var(--space-8));
+  height: calc(var(--space-12) + var(--space-8));
+  border-radius: var(--radius-chip);
+  background: var(--surface-chip);
+  color: var(--text-link);
+}
+
 @media (min-width: 52.5em) {
-  .feature {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  .f-list { gap: var(--site-section); }
+  .f-span {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: var(--space-12);
+    padding: var(--space-12);
+  }
+  .f-split {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: var(--space-12);
   }
-  .feature:nth-child(even) .shot-panel { order: -1; }
+  .f-split.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .f-split.flip .stage { order: -1; }
+  .stage { padding: var(--space-10); }
+  .f-center .stage { padding: var(--space-12) var(--space-10); }
+  .frame-sm { display: block; }
+  .f-lock {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-10);
+    padding: var(--space-10) var(--space-12);
+  }
+  .f-lock .chips {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
-.more { margin: var(--space-10) 0 0; }
+
+/* Comparison (HOME-DESIGN-AMENDMENTS.md, Why not just…): a list, not a
+   table. Each criterion is an h3 with a dl of three answers. Below the
+   breakpoint each row is a card and the dt labels show; from it the rows line
+   up under a visual header (aria-hidden) and the dt labels are visually
+   hidden but read. Every answer is a word plus a sentence, so nothing relies
+   on color or the icon. */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  max-width: 40rem;
+}
+.section-head > * { margin: 0; }
+.cmp-head { display: none; }
+.cmp-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.cmp-row {
+  margin: 0;
+  padding: var(--space-5);
+  background: var(--surface-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  min-width: 0;
+}
+.cmp-q {
+  font-size: var(--text-lg);
+  margin: 0 0 var(--space-3);
+}
+.cmp-cells { margin: 0; }
+.cmp-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--divider);
+  min-width: 0;
+}
+.cmp-cell dt {
+  font-weight: 700;
+  line-height: 1.3;
+}
+.cmp-cell dd {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.cmp-cell.us {
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-chip);
+  border-top: 0;
+  border-radius: var(--radius-card-sm);
+}
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.verdict svg { color: var(--text-muted); }
+.us .verdict svg { color: var(--text-link); }
+.note {
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+@media (min-width: 52.5em) {
+  .cmp-head,
+  .cmp-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 3fr);
+    column-gap: var(--space-4);
+  }
+  .cmp-head-cols,
+  .cmp-cells {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-4);
+  }
+  .cmp-head span {
+    padding: var(--space-4) var(--space-5);
+    font: 700 var(--text-lg)/var(--leading-tight) var(--font-display);
+    letter-spacing: var(--tracking-display);
+  }
+  .cmp-head .us {
+    background: var(--surface-card);
+    border: 1px solid var(--border-card);
+    border-bottom: 0;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    color: var(--text-link);
+  }
+  .cmp-rows { gap: 0; }
+  .cmp-row {
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    border-top: 1px solid var(--border-card);
+  }
+  .cmp-q {
+    font-size: var(--text-base);
+    font-family: var(--font-ui);
+    letter-spacing: 0;
+    line-height: 1.4;
+    margin: 0;
+    padding: var(--space-5) var(--space-5) var(--space-5) 0;
+  }
+  .cmp-cell {
+    padding: var(--space-5);
+    border-top: 0;
+  }
+  .cmp-cell dt {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  .cmp-cell.us {
+    margin: 0;
+    padding: var(--space-5);
+    background: var(--surface-card);
+    border-inline: 1px solid var(--border-card);
+    border-radius: 0;
+  }
+  .cmp-row:last-child .cmp-cell.us {
+    border-bottom: 1px solid var(--border-card);
+    border-radius: 0 0 var(--radius-card) var(--radius-card);
+  }
+}
 
 /* Privacy band (HOME-DESIGN.md, Privacy band). Full bleed; the text keeps the
    site gutter at every width. Links, icons, and the focus ring use
@@ -862,5 +1257,5 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 
 /* Headings balance their lines and paragraphs avoid a one-word last line;
    browsers without support keep the default wrapping. */
-:is(.section-title, .feature h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1) { text-wrap: balance; }
-:is(.lede, .section-line, .feature-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }
+:is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1, .cmp-q) { text-wrap: balance; }
+:is(.lede, .section-line, .f-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }
