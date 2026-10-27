@@ -1,18 +1,17 @@
 # State
 
-Current phase: 04.3 (conversion), inserted by Jake on 2026-10-26 before phase 05, with no gate. Phase 04.1 stays gated on the app repo's TestFlight VoiceOver and Dynamic Type passes; phase 05 on App Store approval.
-Current step: phase 04.3 VERIFY done (2026-10-27). VERIFY.md result: PASS. Next step is SHIP.
-Phases 01, 02, 03, 04, and 04.2 are Done.
+Current phase: 04.1 (features-accessibility), gated on the app repo's TestFlight VoiceOver and Dynamic Type passes. Phase 05 is gated on App Store approval.
+Current step: phase 04.3 SHIP done (2026-10-27). Next step is DISCUSS for whichever gated phase opens first: 04.1 or 05.
+Phases 01, 02, 03, 04, 04.2, and 04.3 are Done.
 
 ## Next action
 
-1. Jake reviews and merges the VERIFY PR (branch verify/04.3-conversion).
-2. Jake waits for the Deploy workflow on main to finish green, then runs the browser checklist in .planning/phases/04.3-conversion/VERIFY.md on https://athandapp.com.
-3. Then: SHIP phase 04.3, with Jake's browser result in the prompt.
+1. Jake merges the SHIP PR (branch ship/04.3-conversion).
+2. Then: DISCUSS phase 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes, or DISCUSS phase 05 once Apple approves atHand and the listing is live. Run phases one at a time.
 
 ## Waiting on Jake
 
-- Review and merge the VERIFY PR (branch verify/04.3-conversion), then the browser checklist.
+- Merge the SHIP PR (branch ship/04.3-conversion).
 - App repo, outside this site: the TestFlight VoiceOver and Dynamic Type passes that gate phase 04.1 (FEAT-01); the car-connectivity brief-versus-code item and the Settings location string in BACKLOG.md.
 - App Store approval, which gates phase 05.
 
@@ -22,7 +21,9 @@ None.
 
 ## Last session
 
-VERIFY phase 04.3 (2026-10-27), local session on branch verify/04.3-conversion from main (f811d36, wave 3 PR #52 merged). Result PASS. npm ci, build, check, tokens:check, check:external, check:content, check:links, check:layout, and check:a11y pass; static checks S1 to S5, S7 to S13, S15, S18, S19, S6′, S14′, S20, and S26 to S32 pass, as do the verifies of 04-19, 04-21 (with OG-3), 04-22, 04-23, and 04-24. CNV-01 to CNV-07 PASS with evidence in VERIFY.md; no Fix wave. Read Home and Features as ARIA snapshots against the Copy drafts (order and heading levels match) and compared full-page screenshots at 320, 390, and 1280 in both themes with the reference builds: differences are Approved copy, plus the stage chip fill (the build follows the amendments' written Chip spec, the reference HTML differs) and the Features App lock stage stacking; one BACKLOG item. Browser checklist for Jake in VERIFY.md (20 steps). App repo origin/main still 6219629; the brief and _ds tokens unchanged since f4f2450.
+SHIP phase 04.3 (2026-10-27), local session on branch ship/04.3-conversion from main (2f282ab, VERIFY PR #53 merged). VERIFY.md result is PASS; Jake's browser checklist on https://athandapp.com: PASS, including VoiceOver on the comparison, the comparison at phone width, the new social preview in Messages, and the Features page sections and jump links; no notes. Recorded the result in VERIFY.md, finalized SUMMARY.md, marked CNV-01 to CNV-07 Done in REQUIREMENTS.md and phase 04.3 Done in ROADMAP.md. Planning files only; no site code changed. The app repo has not recorded its TestFlight passes (origin/main 6219629, phase 07 VERIFY done, SHIP not run); the brief and _ds tokens are unchanged since f4f2450.
+
+Before that: VERIFY phase 04.3 (2026-10-27), local session on branch verify/04.3-conversion from main (f811d36, wave 3 PR #52 merged). Result PASS. npm ci, build, check, tokens:check, check:external, check:content, check:links, check:layout, and check:a11y pass; static checks S1 to S5, S7 to S13, S15, S18, S19, S6′, S14′, S20, and S26 to S32 pass, as do the verifies of 04-19, 04-21 (with OG-3), 04-22, 04-23, and 04-24. CNV-01 to CNV-07 PASS with evidence in VERIFY.md; no Fix wave. Read Home and Features as ARIA snapshots against the Copy drafts (order and heading levels match) and compared full-page screenshots at 320, 390, and 1280 in both themes with the reference builds: differences are Approved copy, plus the stage chip fill (the build follows the amendments' written Chip spec, the reference HTML differs) and the Features App lock stage stacking; one BACKLOG item. Browser checklist for Jake in VERIFY.md (20 steps). App repo origin/main still 6219629; the brief and _ds tokens unchanged since f4f2450.
 
 Before that: EXECUTE phase 04.3 wave 3 (2026-10-26), local session on branch execute/04.3-wave-3 from main (165d8ab, REVISE PR #51 merged). Set PLAN.md Approved 2026-10-26 (Jake approved the revised plan, including the Superseded checks). Completed 04.3-08 (bff97ab): Home's h1 and line read H-1 and H-2; make-og-image.mjs sets OG-1 and public/og-image.png is regenerated (three balanced lines inside 630px, checked by eye); og:image:alt is OG-3 on every page; index.txt carries the new strings and the earlier H-1 and H-2 as ! lines. 04.3-08's verify passes in full, as do npm ci, tokens:check, check:content, check:links, check-text on all five fixtures, S20, S26, and S2, S6′, S14′, S27 to S32. No deviations; no new BACKLOG items. Browser check recorded in SUMMARY.md. App repo origin/main still 6219629; the brief and _ds tokens unchanged since f4f2450.
 

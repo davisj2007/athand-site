@@ -96,4 +96,4 @@ Run after this PR merges and the Deploy workflow on main finishes green, on http
 
 ## Jake's browser result
 
-(recorded at SHIP)
+PASS (recorded at SHIP, 2026-10-27). Jake ran the browser checklist on https://athandapp.com after the VERIFY PR merged (merge 2f282ab, PR #53) and the headline change deployed, including VoiceOver on the comparison, the comparison at phone width, the new social preview in Messages, and the Features page sections and jump links; all steps pass. Notes: none.

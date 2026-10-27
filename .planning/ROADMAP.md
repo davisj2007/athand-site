@@ -80,9 +80,10 @@ Inserted by Jake on 2026-10-26, independent of the 04.1 and 05 gates.
 
 Exit: every finding is triaged in the phase CONTEXT.md, each Fix item is live with every phase 04 check still passing, and no locked rule changed.
 
-## 04.3 conversion: In progress
+## 04.3 conversion: Done
 
 Requirements: CNV-01..07.
+Delivered by davisj2007/athand-site#46 through #53 (DISCUSS, ANSWERS, PLAN, EXECUTE waves 1 and 2, REVISE, EXECUTE wave 3, and VERIFY), all merged to main, plus this SHIP PR. Jake's browser checklist passed on 2026-10-27.
 Inserted by Jake on 2026-10-26, before phase 05, with no gate.
 Design contract: .planning/phases/04.3-conversion/design/HOME-DESIGN-AMENDMENTS.md (Claude Design canvas c990cb96, imported at DISCUSS), which amends the named sections of phase 04's HOME-DESIGN.md; phase 04.3 CONTEXT.md lists exactly which.
 
@@ -112,4 +113,4 @@ Exit: every page that mentions availability points to the live listing, and no c
 
 ## Order
 
-01, 02, 03, 04, and 04.2 done. 04.3 runs now, before 05, with no gate. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.
+01, 02, 03, 04, 04.2, and 04.3 done. 04.1 once the app repo records its TestFlight VoiceOver and Dynamic Type passes. 05 once Apple approves the app. The two gates are independent; whichever opens first runs first.
