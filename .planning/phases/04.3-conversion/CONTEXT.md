@@ -93,6 +93,7 @@ Where COPY.md (imported) and this file's Copy drafts differ, this file wins. COP
 13. Comparison row 5 is replaced by "Suggests a record when it can help" (W-12, W-13p, W-13n, W-13a): Photos of cards "No" / "You look it up yourself."; A notes app "No" / "You look it up yourself."; atHand "Yes" / "From the time of day and, if you allow them, your calendar and location." It compares the one thing only atHand does, with a claim plainly true of both alternatives. The comparison keeps five rows. Source: Jake, ANSWERS prompt item 2 (the recommended default).
 14. Unused screenshots: every unused pair stays in src/assets/shots/ (03-person-documents, the 05 pair, and, after this phase, 06-lock). 06-lock is added to PhoneFrame's glob exclusions beside 03 and the 05 pair so it does not ship. The `lock` and `record` crop rules in src/styles/site.css stay, so a later phase can bring either back. Source: Jake, ANSWERS prompt item 3 (the recommended default).
 15. Price at launch, for phase 05: no amount on the site; the site says "one-time purchase", and the App Store listing shows the localized price (brief, Business model and entitlement: the app shows the store's localized price, never a hardcoded amount). Recorded in the phase 05 item in BACKLOG.md; this phase keeps no amount anywhere. Source: Jake, ANSWERS prompt item 4 (the recommended default).
+16. Hero copy replaced after wave 2 (REVISE, 2026-10-26): Jake replaced H-1 and H-2 with the strings in Copy drafts, and H-1 carries to OG-1 and OG-3. The earlier H-1 and H-2 become `!` lines in the Home fixture so they cannot return. Task 04.3-08 places them. Source: Jake, REVISE prompt items 1 and 2.
 
 ## Copy drafts
 
@@ -100,9 +101,9 @@ IDs follow the design's COPY.md, so the two can be compared; comparison cells ge
 
 ### Home: hero
 
-H-1. Hero h1: "Your household’s IDs and insurance, ready on your iPhone". Replaces HM2. Brief: Concept ("personal reference information ... doctor’s office, traffic stop, airport"); Information architecture (Person: driver’s license, passport, insurance); Privacy (stored on the device). No period, as HM2. Status: Approved.
+H-1. Hero h1: "Your important information, in one place, always at hand". Replaces HM2, and replaces the earlier H-1 "Your household’s IDs and insurance, ready on your iPhone" (decision 16). Brief: Concept (local-only reference utility for everyday and urgent situations); Brand (the name atHand). No period, as HM2. Status: Approved (Jake, REVISE prompt, 2026-10-26).
 
-H-2. Hero line: "Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes." Replaces HM3. Brief: Information architecture (Person, Vehicle, Pet, Home; "Entities are nested records"); "everyone you look after" from HM3 (approved). "Scattered through photos and notes" describes the alternatives the comparison names, without a claim about how many people do it. Status: Approved.
+H-2. Hero line: "Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs." Replaces HM3, and replaces the earlier H-2 "Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes." (decision 16). Brief: Concept; Information architecture (Person, Vehicle, Pet, Home). Describes the alternatives the comparison names, with no claim about how many people use them. Status: Approved (Jake, REVISE prompt, 2026-10-26).
 
 H-3. Chip list name (aria-label, not shown): "At a glance". Names the list for screen readers. Status: Approved.
 
@@ -250,15 +251,15 @@ F-A2. Dark frame alt (01-home, `suggest`, `theme="dark"`): "The same view in Dar
 
 ### Metadata and Open Graph image
 
-OG-1. Open Graph image h1 (public/og-image.png): "Your household’s IDs and insurance, ready on your iPhone". As H-1; with `text-wrap: balance` (Jake approved) it sets in three lines inside the 630px height (design measurement: top 143, bottom 487). Status: Approved.
+OG-1. Open Graph image h1 (public/og-image.png): "Your important information, in one place, always at hand". As H-1 (decision 16); with `text-wrap: balance` (Jake approved) it sets in three lines ("Your important / information, in one / place, always at hand") inside the 630px height (measured at REVISE with the production script: copy block top 143, bottom 487). Status: Approved (Jake, REVISE prompt, 2026-10-26).
 
 OG-2. Open Graph image line: "A private household organizer for iPhone". Unchanged.
 
-OG-3. og:image:alt, Base.astro, every page: "The atHand logo and the words “Your household’s IDs and insurance, ready on your iPhone.”" Replaces the HM2 quote. Status: Approved.
+OG-3. og:image:alt, Base.astro, every page: "The atHand logo and the words “Your important information, in one place, always at hand.”" Replaces the HM2 quote, and the earlier OG-3 that quoted the earlier H-1 (decision 16). Status: Approved (Jake, REVISE prompt, 2026-10-26).
 
 Unchanged: the title "atHand: Your Info, Ready", every meta description, og:title, og:description, and the SoftwareApplication structured data (LD-1).
 
-Copy awaits approval: none. Every draft above is Approved (Jake, ANSWERS prompt, 2026-10-26).
+Copy awaits approval: none. Every draft above is Approved (Jake, ANSWERS prompt, 2026-10-26; H-1, H-2, OG-1, and OG-3 as replaced in the REVISE prompt, 2026-10-26).
 
 ## Open questions for Jake
 

@@ -3,7 +3,8 @@
 // commands; it is not a site check and is not wired into package.json.
 // Usage: node .planning/phases/04.3-conversion/measure.mjs <check> [--ref]
 // Checks:
-//   hero      CNV-01: hero order, the four chips, and the 56px store slot
+//   hero      CNV-01: hero order and copy, the four chips, the 56px store slot,
+//             and no one-word last line in the h1 or the line (04.3-08)
 //   slot      CNV-07: a 48px badge in the store slot moves nothing around it
 //   rows      CNV-02: Home's five feature rows as live cards; only the planned shots load
 //   compare   CNV-03: the comparison list at 320, 390, 1280, and 400% zoom, and its reading structure
@@ -34,7 +35,9 @@ const VIEWPORTS = {
 };
 
 // Approved copy (phase 04.3 CONTEXT.md, Copy drafts).
-const H1 = "Your household’s IDs and insurance, ready on your iPhone";
+// H-1 and H-2 as replaced at REVISE (decision 16).
+const H1 = "Your important information, in one place, always at hand";
+const H2 = "Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs.";
 const CHIPS = ["No account", "Stored on your iPhone", "Face ID or passcode lock", "One-time purchase, no subscription"];
 const C1 = "Coming soon to the App Store for iPhone.";
 const ROWS = ["Everything you look after", "Scan instead of typing", "The right record at the right time", "Hidden until you need it", "Locked to you"];
@@ -166,7 +169,8 @@ const checks = {
     for (const width of [320, 390, 840, 1280]) {
       for (const state of ["light", "dark"]) {
         await run("index.html", state, width, async (p, at, fail, note) => {
-          const r = await p.evaluate(() => {
+          const r = await p.evaluate((fn) => {
+            const linesOf = new Function(`return (${fn})`)();
             const copy = document.querySelector("main .hero-copy");
             if (!copy) return null;
             const chips = copy.querySelector("ul.chips");
@@ -187,6 +191,8 @@ const checks = {
             return {
               order: [...copy.children].map((c) => c.tagName + (c.classList.length ? "." + [...c.classList].join(".") : "")),
               h1: copy.querySelector("h1")?.textContent,
+              lede: copy.querySelector("p.lede")?.textContent,
+              wrap: [copy.querySelector("h1"), copy.querySelector("p.lede")].filter(Boolean).map((el) => linesOf(el).map((l) => l.join(" "))),
               label: chips?.getAttribute("aria-label"),
               chips: items.map((li) => ({
                 tag: li.tagName,
@@ -206,10 +212,15 @@ const checks = {
                 kids: [...slot.children].map((c) => c.tagName + "." + c.className + ":" + c.textContent.trim()),
               },
             };
-          });
+          }, linesOf.toString());
           if (!r) return fail(`${at}: no .hero-copy`);
           if (!same(r.order.map((o) => o.split(".")[0] + (o.includes("lede") ? ".lede" : o.includes("chips") ? ".chips" : o.includes("store-slot") ? ".store-slot" : "")), ["H1", "P.lede", "UL.chips", "DIV.store-slot"])) fail(`${at}: hero copy order ${r.order.join(", ")}`);
           if (norm(r.h1) !== H1) fail(`${at}: h1 "${norm(r.h1)}"`);
+          if (norm(r.lede) !== H2) fail(`${at}: hero line "${norm(r.lede)}"`);
+          for (const lines of r.wrap) {
+            if (lines.length > 1 && lines.at(-1).split(" ").length === 1) fail(`${at}: ends on one word: ${lines.join(" / ")}`);
+          }
+          if (state === "light") note(`${at}: h1 ${r.wrap[0]?.join(" / ")}; line ${r.wrap[1]?.length} lines`);
           if (r.label !== "At a glance") fail(`${at}: chip list name "${r.label}"`);
           if (!same(r.chips.map((c) => norm(c.text)), CHIPS)) fail(`${at}: chips ${r.chips.map((c) => norm(c.text)).join(" | ")}`);
           r.chips.forEach((c, i) => {

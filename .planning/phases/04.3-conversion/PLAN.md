@@ -1,6 +1,6 @@
 # Phase 04.3: conversion - Plan
 
-Status: Approved 2026-10-26
+Status: Draft (revised 2026-10-26: wave 3, task 04.3-08, added for the replaced hero copy; waves 1 and 2 were Approved 2026-10-26 and are executed)
 
 ## Goal
 
@@ -20,16 +20,26 @@ Build the amended Home and Features pages and the new Open Graph image from HOME
 - Phase 04's S2 greps src/pages and src/components for a straight apostrophe between letters, comments included, so comments in the new components avoid contractions or use ’.
 - zsh expands unquoted globs and `=`-words, so every grep below quotes its patterns.
 
+## Facts confirmed at REVISE (2026-10-26)
+
+- This repo: main at d477642 (wave 2 PR #50 merged); waves 1 and 2 checked. Jake replaced H-1 and H-2 (CONTEXT.md, decision 16); OG-1 and OG-3 follow H-1.
+- App repo: origin/main 6219629; the brief and the _ds tokens are unchanged since f4f2450. The new copy cites Concept, Brand, and Information architecture, all present in Brief v4.13.
+- Measured on main's build with the new strings swapped into the hero (production fonts, Chromium): the h1 sets "Your important / information, / in one place, / always at hand" at 320, "Your important / information, in one / place, always at hand" at 390 and 1280, and in six lines at 840 ("Your / important / information, / in one place, / always / at hand"); the line sets in five, four, four, and three lines. No one-word last line at any of the four widths, and no sideways scroll. The earlier H-1 also set in six lines at 840 (the hero column just above the breakpoint), so that is not new; BACKLOG.md records it.
+- The Open Graph script with OG-1 sets the h1 in three balanced lines ("Your important / information, in one / place, always at hand") with the copy block from 143 to 487 inside the 630px height.
+- measure.mjs hero and wrap pass on that build with the new copy; on main's build as it stands, hero fails only on the h1 and line text.
+
 ## Measurement helper
 
 .planning/phases/04.3-conversion/measure.mjs, written at PLAN, measures the acceptance criteria that need a browser. It runs dist/ in Chromium through the pinned Playwright (1.64.1) with check-layout.mjs's server and page helpers, like phase 04.2's helper. It is a planning artifact: not a site check, not added to package.json, and not changed by EXECUTE. If it is wrong, EXECUTE stops and records a blocker. Usage: `node .planning/phases/04.3-conversion/measure.mjs <check>`; each check exits 1 on failure.
 
-- hero (CNV-01): Home at 320, 390, 840, and 1280 in light and dark. `.hero-copy` children are h1, `p.lede`, `ul.chips`, `div.store-slot` in that order; the h1 is H-1; the list is named "At a glance" and holds four `li.chip` reading H-4 to H-7 in order, each with no link, button, or tabindex, no pointer cursor, an aria-hidden icon, and its right edge inside the 16px gutter. Chips 1 to 3 set on one line at every width and chip 4 on one line except two at 320 (CONTEXT.md, Measured). The slot's min-height computes to 56px, its height is at least 56px, and it holds only `p.coming-soon` with C1. Prints the chip row count.
+- hero (CNV-01): Home at 320, 390, 840, and 1280 in light and dark. `.hero-copy` children are h1, `p.lede`, `ul.chips`, `div.store-slot` in that order; the h1 is H-1 and the line H-2 (as replaced at REVISE), and neither ends on a one-word last line (added at REVISE for 04.3-08); the list is named "At a glance" and holds four `li.chip` reading H-4 to H-7 in order, each with no link, button, or tabindex, no pointer cursor, an aria-hidden icon, and its right edge inside the 16px gutter. Chips 1 to 3 set on one line at every width and chip 4 on one line except two at 320 (CONTEXT.md, Measured). The slot's min-height computes to 56px, its height is at least 56px, and it holds only `p.coming-soon` with C1. Prints the chip row count.
 - slot (CNV-01, CNV-07): Home at 320, 390, and 1280. Records the top and height of the slot, the h1, the chips, the hero shot, and the section after the hero; replaces the slot's content with a 144 by 48px box (the badge at `--space-12`); every value must be unchanged.
 - rows (CNV-02): Home at 390 and 1280 in light and dark. `ul.f-list` holds five rows with the HM10 to HM14 h3s and the classes f-span, f-split, f-center, f-split flip, f-lock; only row 2 has images (the light and dark 04 pair); no control anywhere in the rows. Record types list (R1-2, R1-3, each tile with an aria-hidden icon badge); the Check what we read card (R2-1 to R2-4); the 04 frame `data-crop="fields"` in row 2, 200px wide from the breakpoint and not rendered below it; the banner reads R3-1 plus R3-2 with "recommended" in `strong`, and computes to `--text-on-cobalt` on `--accent`; the signal chips (R3-3, R3-4); the Masked and Revealed pair on a `.stage`; the aria-hidden lock circle and the unlock chips (R5-1, R5-2); every icon aria-hidden. After scrolling to the end, no shot other than 01-home, 04-check-what-we-read, and 07-paywall-perks is requested.
 - compare (CNV-03): Home at 320, 390, 1280, and 1280 at 400% zoom (320 by 200 at device scale 4), in light and dark. The section `aria-labelledby="compare-title"` sits between the Features section and the privacy band, with W-1 and W-2; `.cmp-head` is aria-hidden, hidden below the breakpoint and a grid from it, naming W-3; `ul.cmp-rows` holds five rows, each one h3 (W-4, W-6, W-8, W-10, W-12) and a `dl` of three cells whose `dt` is the column name (shown below the breakpoint, visually hidden from it), whose verdict and note match CONTEXT.md exactly, and whose third cell is `.us`. Every icon is aria-hidden. No sideways scroll, no box inside `.section-head` or `.cmp` outside the 16px gutters, and no text below 16px. Playwright's ARIA snapshot of the rows reads a list with five level-3 headings, each column name as a term five times, and fifteen definitions. Prints the comparison height.
 - features (CNV-04): Features at 390 and 1280 in light and dark. The page top shows one `full` 02-person-top frame on a `.stage` with alt A2; the jump list "On this page" is in the page-top copy (not the prose) with seven links, FP3 plus F-J1, each to its h2; seven `section.fsec` sections in order, each `aria-labelledby` its h2's id, with FE5, FE10, FE15, F-H1, FE20, FE25, and FE29, one intro (F-I1 to F-I7), and one stage; FE24 is in the Hidden section's prose and in no other; each stage holds its planned visual (record types, the scan card, banner and signals, the Masked and Revealed pair, the lock circle and unlock chips, the backup card with F-B1 and F-B2, and the Light and Dark frames); the two frames are `suggest` crops, each `.screen` holds one image, the first shows 01-home-light and the second 01-home-dark whatever the site theme, with F-A1 and F-A2 and the F-C1 captions. After scrolling, only 02-person-top and 01-home shots are requested.
 - wrap (CNV-07): Home and Features at 320, 390, and 1280. No heading in `.hero h1`, `.section-title`, `.f-copy h3`, `.moment h3`, `.band h2`, `.fsec h2`, `.cmp-q`, `.prose h2`, `.prose h3`, or `.page-top h1` with three or more words wraps to a one-word last line; at 390 and 1280, no `.lede`, `.section-line`, `.f-copy p`, `.fsec-intro`, `.prose p`, `.prose li`, or `.facts li` does. This carries phase 04.2's headings and stragglers checks (FX1, FX2) onto the renamed and new elements.
+
+Revised at REVISE (2026-10-26): the H1 constant becomes the new H-1, an H2 constant is added for the line, and the hero check gains the one-word-last-line rule for the h1 and the line, using the existing `linesOf`. Nothing else in the helper changes; EXECUTE still does not edit it.
 
 Run at PLAN: against today's build, hero, slot, rows, compare, and features fail (no chips, slot, rows list, comparison, or sections) and wrap passes. With `--ref` (the reference builds, served from the repo root, system fonts), slot passes; hero, rows, compare, and features fail only on the pre-ANSWERS copy listed in Facts, the reference's one-image frames on Home, and font-dependent wrapping of chips with system fonts (chip 3 on two lines at 840, chip 4 on three at 320; CONTEXT.md measured one and two lines with the production fonts). The compare check's ARIA snapshot structure passes on the reference.
 
@@ -40,6 +50,7 @@ CNV-07 asks every phase 04 and 04.2 check to keep passing. Four of them assert e
 - Phase 04.2 measure.mjs row4 (the pair inside a `.feature` row's `.shot-panel`), crops (Home rows 2 and 5 with the `fields` and `lock` crops at 300px), and features-top (one 04 `fields` frame on the Features page top, no 02-person-top request): replaced by this phase's rows and features checks. The pair, the row 2 `fields` crop values, and the crop CSS stay as they are. headings, stragglers, measure, and band keep running as written (S20); headings and stragglers lose the selectors this phase renames, which the wrap check covers.
 - Phase 04 S6 (subscription and sync sentences): the Approved chip H-7 "One-time purchase, no subscription" and fact F-B2 "A one-time copy, not sync" have no period, so S6's sentence match would join them to the next sentence. S6′ removes exactly those two strings from the main text first and is otherwise unchanged.
 - Phase 04 S16 (04-21's verify): it hard-codes og:image:alt M2. S16′ runs 04-21's verify with M2 replaced by OG-3.
+- This phase's 04.3-02 and 04.3-05 verify commands (entry added at REVISE): they hard-code the earlier H-1, OG-1, and OG-3, which 04.3-08 replaces (decision 16). Once 04.3-08 lands, 04.3-08's verify stands in for those string checks; the rest of 04.3-02's and 04.3-05's verifies run as written.
 
 ## Expected-copy fixtures
 
@@ -58,11 +69,11 @@ Tasks that port CSS from the reference builds follow these rules, so the result 
 
 ## Requirement coverage
 
-- CNV-01: 04.3-02 (hero, chips, store slot); measure hero and slot (S26).
+- CNV-01: 04.3-02 (hero, chips, store slot), 04.3-08 (the replaced h1 and line); measure hero and slot (S26).
 - CNV-02: 04.3-01 (icons), 04.3-03 (rows, the shared row components, the 06-lock exclusion, and the Features page-top shot that leaves Home); measure rows.
 - CNV-03: 04.3-04; measure compare (320, 400% zoom, structure without color, the ARIA reading order).
 - CNV-04: 04.3-03 (02-person-top on the Features page top), 04.3-06 (PhoneFrame `theme`), 04.3-07 (the Features page); measure features.
-- CNV-05: 04.3-05; S16′, S29, S30, S31.
+- CNV-05: 04.3-05, 04.3-08 (OG-1 and OG-3 as replaced); S16′, S29, S30, S31.
 - CNV-06: every copy task names its Copy drafts entries and places them verbatim; each EXECUTE PR lists every placed claim with its citation (PR description for copy, below); no price (S5), no token or site variable (S11, S13, S27), no dependency (S13, S27).
 - CNV-07: each task's verify; S1 to S19 with S6′ and S16′; S20; S26; wrap; the slot and compare measurements; unused shots stay in src/assets/shots/ and out of dist/ (S14′).
 
@@ -78,12 +89,12 @@ Changed by EXECUTE:
 - src/components/SecretPair.astro, new (04.3-03)
 - src/components/PhoneFrame.astro (04.3-03, 04.3-06)
 - src/styles/site.css (04.3-02, 04.3-03, 04.3-04, 04.3-07)
-- src/pages/index.astro (04.3-02, 04.3-03, 04.3-04)
+- src/pages/index.astro (04.3-02, 04.3-03, 04.3-04; 04.3-08, the h1 and line text only)
 - src/pages/features.astro (04.3-03, 04.3-07)
-- src/layouts/Base.astro (04.3-05, the og:image:alt line only)
-- scripts/make-og-image.mjs (04.3-05, the h1 rule and text only)
-- public/og-image.png (04.3-05, regenerated)
-- .planning/phases/04-visuals-and-polish/copy/index.txt (04.3-02, 04.3-03, 04.3-04)
+- src/layouts/Base.astro (04.3-05, 04.3-08; the og:image:alt line only)
+- scripts/make-og-image.mjs (04.3-05, the h1 rule and text only; 04.3-08, the h1 text only)
+- public/og-image.png (04.3-05, 04.3-08; regenerated)
+- .planning/phases/04-visuals-and-polish/copy/index.txt (04.3-02, 04.3-03, 04.3-04, 04.3-08)
 - .planning/phases/04-visuals-and-polish/copy/features.txt (04.3-03, 04.3-07)
 - .planning/phases/04.3-conversion/PLAN.md (task boxes and status), SUMMARY.md (new), and .planning/STATE.md, as every EXECUTE session
 
@@ -95,7 +106,7 @@ None. No GitHub settings change and no new dependency. Playwright's Chromium is 
 
 ## PR description for copy
 
-Each EXECUTE PR that places copy lists, under "Claims and citations", every Copy draft ID it places with its exact string and the citation CONTEXT.md gives for it (for example "H-5 'Stored on your iPhone': brief, Privacy; brief, Onboarding"), plus any unchanged approved string it moves (A2, FE24, HM28 to HM30). Wave 1 lists H-1 to H-7, R1-1 to R5-2, W-1 to W-13a, OG-1, and OG-3; wave 2 lists F-J1, F-H1, F-I1 to F-I7, F-B1, F-B2, F-C1, F-A1, and F-A2, and the R and HM strings reused on Features.
+Each EXECUTE PR that places copy lists, under "Claims and citations", every Copy draft ID it places with its exact string and the citation CONTEXT.md gives for it (for example "H-5 'Stored on your iPhone': brief, Privacy; brief, Onboarding"), plus any unchanged approved string it moves (A2, FE24, HM28 to HM30). Wave 1 lists H-1 to H-7, R1-1 to R5-2, W-1 to W-13a, OG-1, and OG-3; wave 2 lists F-J1, F-H1, F-I1 to F-I7, F-B1, F-B2, F-C1, F-A1, and F-A2, and the R and HM strings reused on Features; wave 3 lists H-1, H-2, OG-1, and OG-3 as replaced at REVISE, with the citations CONTEXT.md gives (H-1 and OG-1: brief, Concept; brief, Brand. H-2: brief, Concept; brief, Information architecture).
 
 ## Wave 1
 
@@ -283,6 +294,34 @@ The Features page. 04.3-07 uses the `theme` prop 04.3-06 adds, so run them in or
 
 Live site after this wave: Features shows the jump list in its page top, seven sections each with a visual beside its h2, the new Hidden until you need it section, and the fixed Light and Dark frames; every paragraph keeps its text. /features.html keeps its URL and its six existing anchors (#records, #scanning, #suggestions, #app-lock, #backups, #light-and-dark) and gains #hidden, so no inbound link breaks. Every fixture, check:links, check:layout, and check:a11y pass at the wave's end.
 
+## Wave 3
+
+The hero copy Jake replaced at REVISE (decision 16): Home's h1 and line, the Open Graph image headline, and every page's og:image:alt, in one task, so the social preview never disagrees with the hero.
+
+- [ ] 04.3-08: Replaced hero copy, Open Graph headline, and og:image:alt
+  Requirements: CNV-01, CNV-05, CNV-06, CNV-07
+  Files: src/pages/index.astro, scripts/make-og-image.mjs, public/og-image.png, src/layouts/Base.astro, .planning/phases/04-visuals-and-polish/copy/index.txt
+  Copy entries: H-1, H-2, OG-1, OG-3 (Approved, as replaced at REVISE 2026-10-26); OG-2, C1, and every chip (unchanged)
+  Steps:
+  1. src/pages/index.astro:49-50: the h1 text becomes H-1 `Your important information, in one place, always at hand` (no period); the `p.lede` text becomes H-2 `Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs.`. Nothing else in the file changes: the chips, the store slot, the hero shot and A1, the title, the description, and the JSON-LD stay. site.css does not change (`.hero h1` already has `max-width: 16ch` and `text-wrap: balance`, and `.lede` `text-wrap: pretty`; Facts confirmed at REVISE).
+  2. scripts/make-og-image.mjs:72: the h1 text becomes OG-1 `Your important information, in one place, always at hand`. Nothing else changes; `text-wrap: balance` and ICON_REF stay.
+  3. Run `npm run og:image` to rewrite public/og-image.png. Open it and record in SUMMARY.md, by eye, that the h1 sets in three balanced lines ("Your important / information, in one / place, always at hand"), with no one-word line, OG-2 below it, and the whole copy block inside the 630px height with the icon and lockup as before (REVISE measured top 143, bottom 487).
+  4. src/layouts/Base.astro:49: the content becomes OG-3 `The atHand logo and the words “Your important information, in one place, always at hand.”`, keeping the pattern. No other line in Base.astro changes; every page gets it through Base.
+  5. index.txt: below the "# Phase 04.3" header line add `# Phase 04.3 REVISE (phase 04.3 CONTEXT.md, decision 16, Approved 2026-10-26): H-1 and H-2 replaced; the earlier H-1 and H-2 become ! lines.` Replace the seven lines from `# H-1 (replaces HM2; no period)` through `!The details you look up all the time, for you and everyone you look after, in one place on your iPhone.` with:
+     `# H-1 (replaces HM2 and the earlier H-1; no period)`
+     `Your important information, in one place, always at hand`
+     `!Your important information, in one place, always at hand.`
+     `!Your household’s IDs and insurance, ready on your iPhone`
+     `!Your info, ready when you need it`
+     `# H-2 (replaces HM3 and the earlier H-2)`
+     `Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs.`
+     `!Keep IDs, insurance, vehicle, pet, and home details for everyone you look after in one app, organized by record instead of scattered through photos and notes.`
+     `!The details you look up all the time, for you and everyone you look after, in one place on your iPhone.`
+  Acceptance: Home's h1 reads H-1 and its line H-2, in both themes; neither ends on a one-word last line at 320, 390, 840, or 1280; no other heading or paragraph on Home or Features does (wrap); the Open Graph image is 1200 by 630, differs from main's, and sets OG-1 in three balanced lines inside the 630px height by eye; every page's og:image:alt is OG-3; the earlier H-1 and H-2 are gone from src, scripts, and dist HTML; the title, meta descriptions, og:title, og:description, and JSON-LD are unchanged; check-text passes for all five pages; check:external, check:layout, and check:a11y pass.
+  Verify command: `npm run og:image && test "$(sips -g pixelWidth -g pixelHeight public/og-image.png | awk '/pixel/{print $2}' | tr '\n' ' ')" = "1200 630 " && ! git diff --quiet d477642 -- public/og-image.png && grep -qF '<h1>Your important information, in one place, always at hand</h1>' scripts/make-og-image.mjs && grep -qF '<h1 id="hero-title">Your important information, in one place, always at hand</h1>' src/pages/index.astro && grep -qF '<p class="lede">Stop scrolling through photos, notes, and other apps for IDs, insurance cards, and the details your household needs.</p>' src/pages/index.astro && test "$(git diff -U0 d477642 -- src/pages/index.astro | grep -cE '^[-+][^-+]')" = 4 && test "$(git diff -U0 d477642 -- scripts/make-og-image.mjs | grep -cE '^[-+][^-+]')" = 2 && test "$(git diff -U0 d477642 -- src/layouts/Base.astro | grep -cE '^[-+][^-+]')" = 2 && npm run build && npm run check && node .planning/phases/04.3-conversion/measure.mjs hero && node .planning/phases/04.3-conversion/measure.mjs wrap && for p in index features pricing privacy-overview support; do node scripts/check-text.mjs dist/$p.html .planning/phases/04-visuals-and-polish/copy/$p.txt || exit 1; done && node -e 'const fs=require("fs");const want="The atHand logo and the words “Your important information, in one place, always at hand.”";const pages=fs.readdirSync("dist").filter(f=>f.endsWith(".html"));if(pages.length<7){console.error("only "+pages.length+" pages");process.exitCode=1}for(const f of pages){const m=fs.readFileSync("dist/"+f,"utf8").match(/<meta property="og:image:alt" content="([^"]*)"/);const got=m&&m[1].replace(/&#39;/g,"\x27").replace(/&quot;/g,"\"").replace(/&amp;/g,"&");if(got!==want){console.error(f+": "+got);process.exitCode=1}}' && ! grep -rqF 'Your household’s IDs and insurance, ready on your iPhone' src scripts && ! grep -rqF 'Your household’s IDs and insurance, ready on your iPhone' dist --include='*.html' && ! grep -rqF 'organized by record instead of scattered through photos and notes' src && ! grep -rqF 'organized by record instead of scattered through photos and notes' dist --include='*.html' && npm run check:external && npm run check:layout && npm run check:a11y`
+
+Live site after this wave: Home's hero reads the new h1 and line above the unchanged chips and store slot; every page's social preview shows the regenerated image and the new og:image:alt. No URL moves, no request leaves athandapp.com, and every fixture, check:layout, and check:a11y pass.
+
 ## Static checks for VERIFY
 
 Run from the repo root after `npm ci` and `npm run build`. S1 to S19 are phase 04's static checks (.planning/phases/04-visuals-and-polish/PLAN.md, Static checks for VERIFY), re-run as written except S6, S14, and S16, which this plan replaces (Superseded checks); S10 uses the phase 04 fixtures as amended by this plan.
@@ -290,15 +329,15 @@ Run from the repo root after `npm ci` and `npm run build`. S1 to S19 are phase 0
 - S1 to S5, S7 to S13, S15, and S17 to S19: as phase 04.
 - S6′. As phase 04's S6, with the two Approved fragments removed from the main text before the sentence match: `! grep -rniw -e android -e ipad -e icloud -e carplay -e bluetooth -e ai -e 'apple health' -e 'artificial intelligence' -e 'car connectivity' dist --include='*.html' && node -e 'const fs=require("fs");const ok=["There is no subscription.","There is no subscription, no ads, and no account.","A backup is a one-time copy, not sync.","No subscription, no ads, no account."];const cut=["One-time purchase, no subscription","A one-time copy, not sync"];for(const f of fs.readdirSync("dist").filter(f=>f.endsWith(".html"))){let m=fs.readFileSync("dist/"+f,"utf8").match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1].replace(/<[^>]*>/g,"").replace(/\s+/g," ");for(const c of cut)m=m.split(c).join(" ");for(const s of m.match(/[^.?]*\b(subscriptions?|sync)\b[^.]*\./gi)||[])if(!ok.includes(s.trim())){console.error(f+": "+s.trim());process.exitCode=1}}'`
 - S14′. As phase 04's S14, plus the 05 pair and 06-lock left out of dist/ and every unused pair kept in src/assets/shots/ (decision 14): `test ! -e src/assets/shots/07-paywall-light.png && test ! -e src/assets/shots/07-paywall-dark.png && ! grep -rnE '07-paywall-(light|dark)' src && test -z "$(find dist -name '*.png' ! -name favicon.png ! -name favicon-32.png ! -name apple-touch-icon.png ! -name og-image.png)" && test -z "$(find dist -name '*03-person-documents*' -o -name '*05-masked*' -o -name '*05-revealed*' -o -name '*06-lock*')" && for f in 03-person-documents 05-masked 05-revealed 06-lock; do test -f src/assets/shots/$f-light.png && test -f src/assets/shots/$f-dark.png || exit 1; done`
-- S16′. Re-run the verify commands of phase 04 tasks 04-19 and 04-23 as written, and 04-21's with its `"og:image:alt"` value changed from M2 to OG-3, `The atHand logo and the words “Your household’s IDs and insurance, ready on your iPhone.”`.
+- S16′. Re-run the verify commands of phase 04 tasks 04-19 and 04-23 as written, and 04-21's with its `"og:image:alt"` value changed from M2 to OG-3 as replaced at REVISE, `The atHand logo and the words “Your important information, in one place, always at hand.”`.
 - S20. Phase 04.2's measurements that still apply: `for c in headings stragglers measure band; do node .planning/phases/04.2-design-polish/measure.mjs $c || exit 1; done`
 - S26. Every phase 04.3 measurement: `for c in hero slot rows compare features wrap; do node .planning/phases/04.3-conversion/measure.mjs $c || exit 1; done`
 - S27. Tokens, typefaces, and dependencies unchanged since ANSWERS: `npm run tokens:check && git diff --quiet 8e854d9 -- src/styles/tokens package.json package-lock.json`
 - S28. Only the planned files changed in src/, scripts/, and public/: `test -z "$(git diff --name-only 8e854d9 -- src scripts public | grep -vxE 'src/styles/site.css|src/pages/index.astro|src/pages/features.astro|src/components/(Icon|PhoneFrame|Chips|RecordTypes|ScanCard|SuggestionBanner|SecretPair)\.astro|src/layouts/Base.astro|scripts/make-og-image.mjs|public/og-image.png')"`
 - S29. The title, meta descriptions, and structured data are unchanged (og:title and og:description come from the same props in Base.astro): `grep -qF '<Base title="atHand: Your Info, Ready" description="atHand keeps your household’s reference information on your iPhone and suggests the right record when it can help.">' src/pages/index.astro && grep -qF '<Base title="Features | atHand" description="What atHand does on iPhone: records for your household, document scanning, suggestions, app lock, and encrypted backups.">' src/pages/features.astro && diff <(git show 8e854d9:src/pages/index.astro | sed -n '/^const ld = {/,/^};/p') <(sed -n '/^const ld = {/,/^};/p' src/pages/index.astro) && test "$(git diff -U0 8e854d9 -- src/layouts/Base.astro | grep -cE '^[-+][^-+]')" = 2` (the process substitution works in zsh and bash)
 - S30. The Open Graph image is regenerated with the planned script change: `test "$(sips -g pixelWidth -g pixelHeight public/og-image.png | awk '/pixel/{print $2}' | tr '\n' ' ')" = "1200 630 " && ! git diff --quiet 8e854d9 -- public/og-image.png && test "$(git diff -U0 8e854d9 -- scripts/make-og-image.mjs | grep -cE '^[-+][^-+]')" = 3 && grep -qF 'text-wrap: balance;' scripts/make-og-image.mjs`
-- S31. HM2 and the removed strings are gone: `! grep -rqF 'Your info, ready when you need it' src scripts && ! grep -rqF 'Your info, ready when you need it' dist --include='*.html' && ! grep -rqF 'People, vehicles, pets, homes, and more, in one place.' dist --include='*.html' && ! grep -rqF 'Close view of the atHand lock screen' dist --include='*.html' && ! grep -qF 'a Suggested for you list shows Flight to Denver tomorrow' dist/index.html`
-- S32. The design contracts are unchanged: `git diff --quiet 8e854d9 -- .planning/phases/04-visuals-and-polish/design .planning/phases/04.3-conversion/design .planning/phases/04.3-conversion/measure.mjs .planning/phases/04.2-design-polish/measure.mjs`
+- S31. HM2, the earlier H-1 and H-2, and the removed strings are gone: `! grep -rqF 'Your household’s IDs and insurance, ready on your iPhone' src scripts && ! grep -rqF 'Your household’s IDs and insurance, ready on your iPhone' dist --include='*.html' && ! grep -rqF 'organized by record instead of scattered through photos and notes' src dist --include='*.astro' --include='*.html' && ! grep -rqF 'Your info, ready when you need it' src scripts && ! grep -rqF 'Your info, ready when you need it' dist --include='*.html' && ! grep -rqF 'People, vehicles, pets, homes, and more, in one place.' dist --include='*.html' && ! grep -rqF 'Close view of the atHand lock screen' dist --include='*.html' && ! grep -qF 'a Suggested for you list shows Flight to Denver tomorrow' dist/index.html`
+- S32. The design contracts are unchanged, and no EXECUTE task commit edited this phase's measure.mjs (it changed only in planning commits: bb952ed, Jake-approved in wave 1, and the REVISE commit): `git diff --quiet 8e854d9 -- .planning/phases/04-visuals-and-polish/design .planning/phases/04.3-conversion/design .planning/phases/04.2-design-polish/measure.mjs && ! git log --format=%s 8e854d9..HEAD -- .planning/phases/04.3-conversion/measure.mjs | grep -q ' task '`
 
 VERIFY also reads Home and Features against the Copy drafts in order and heading level (the fixtures prove presence, not structure), compares both pages with HOME-DESIGN-AMENDMENTS.md at 320, 390, and 1280 px in both themes, records the axe and layout results per page and theme, and writes Jake's browser checklist (README, VERIFY step 5), including VoiceOver on the comparison (each row a heading, each answer named by its column), the chips read as one list, the Light and Dark frames under each site theme, and 400% zoom on the comparison.
 
@@ -313,7 +352,9 @@ VERIFY also reads Home and Features against the Copy drafts in order and heading
 - Fixed-theme frames load at 220px with the existing `sizes`, which names 280 and 300px, so the browser may pick the 720w file. It is one file per frame and was already the case for 300px frames.
 - The store slot. Phase 05 swaps C1 for the badge; the slot check proves a 48px box moves nothing at 320, 390, and 1280. The badge's own artwork and link come in phase 05 (LCH-01, LCH-02).
 - The Open Graph image needs ../athandapp at 60032bf (present). A web session clones the app repo beside this one first (README, Where things live).
-- Rollback: revert the wave's PR on main; the Deploy workflow republishes the previous build. Wave 1 reverts Home, the Features page-top shot, the OG image, og:image:alt, and their fixture lines together. Wave 2 reverts the Features page to its wave 1 state and its fixture lines.
+- The h1 at 840. Just above the breakpoint the hero column is narrow, and the new H-1 sets in six lines there, with "Your" and "always" alone on inner lines (the earlier H-1 also set in six). The last line is two words, so the check passes; BACKLOG.md records it for a later layout pass. Copy and CSS do not change in 04.3-08 for it.
+- The Open Graph image by eye. 04.3-08 regenerates it; the REVISE measurement shows three balanced lines inside 630px. If the committed PNG differs (a font or Chromium change), EXECUTE stops and records a blocker.
+- Rollback: revert the wave's PR on main; the Deploy workflow republishes the previous build. Wave 1 reverts Home, the Features page-top shot, the OG image, og:image:alt, and their fixture lines together. Wave 2 reverts the Features page to its wave 1 state and its fixture lines. Wave 3 reverts the hero copy, the OG image, og:image:alt, and their fixture lines together, back to the earlier H-1 and H-2.
 
 ## Self-check
 
@@ -326,6 +367,16 @@ Run 2026-10-26 at PLAN.
 - Every wave leaves the live site whole: yes. Wave 1 changes Home and moves its displaced shot to the Features page top in the same task, and regenerates the OG image with its alt; wave 2 rebuilds Features with every existing anchor kept. Each task updates its fixture in the same commit, and each wave ends with check-text, check:links, check:layout, and check:a11y.
 - Waves are at most six tasks: yes (5 and 2).
 - Baseline: today's build (8e854d9) passes every existing check (Facts).
+
+Re-run 2026-10-26 at REVISE (wave 3, task 04.3-08, for the replaced hero copy).
+
+- All phase requirements covered: yes. 04.3-08 adds to CNV-01 and CNV-05 and keeps CNV-06 and CNV-07; nothing is dropped.
+- Every task has acceptance and verify: yes, all eight. 04.3-08's verify runs measure.mjs hero (320, 390, 840, and 1280, both themes, now with the one-word-last-line rule for the h1 and the line) and wrap, check-text on all five pages, the og:image:alt check on every page, check:external, check:layout, and check:a11y; the Open Graph image is checked by eye and recorded (step 3).
+- No conflict with the brief or CLAUDE.md: yes. H-1, H-2, OG-1, and OG-3 are Jake's approved strings, placed verbatim and cited (H-1: Concept, Brand; H-2: Concept, Information architecture); no "nothing leaves your phone" wording; atHand in prose and alt text, @Hand only in the lockup; no em dash, Oxford comma in H-2, curly apostrophes and quotes; no third-party request.
+- Files in scope complete: yes. 04.3-08 touches only files already in scope; Files in scope names it on each.
+- Every wave leaves the live site whole: yes. Wave 3 changes the hero text, the OG image, and the alt in one task, and the fixture in the same commit.
+- Waves are at most six tasks: yes (5, 2, and 1).
+- Baseline: main d477642's build passes measure.mjs wrap; hero fails only on the h1 and line text, which 04.3-08 changes; with the new strings swapped in, hero and wrap pass (Facts confirmed at REVISE).
 
 ## Fix wave
 
