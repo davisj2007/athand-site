@@ -261,7 +261,7 @@ The Features page. 04.3-07 uses the `theme` prop 04.3-06 adds, so run them in or
   Acceptance: no page uses the prop yet, so every page's HTML for frames is unchanged; astro check passes with the new prop type.
   Verify command: `npm run build && npm run check && grep -qF 'theme?: "light" | "dark";' src/components/PhoneFrame.astro && test "$(grep -o 'class="shot-light"' dist/index.html | wc -l | tr -d ' ')" = 3 && test "$(grep -o 'class="shot-dark"' dist/index.html | wc -l | tr -d ' ')" = 3 && npm run check:a11y`
 
-- [ ] 04.3-07: The visual Features page
+- [x] 04.3-07: The visual Features page
   Requirements: CNV-04, CNV-06, CNV-07
   Files: src/pages/features.astro, src/styles/site.css, .planning/phases/04-visuals-and-polish/copy/features.txt
   Copy entries: F-J1, F-H1, F-I1 to F-I7, F-B1, F-B2, F-C1, F-A1, F-A2 (Approved); R1-2, R1-3, R2-1 to R2-4, R3-1 to R3-4, R5-1, R5-2 (Approved, as Home); FE3 to FE30 except FE24's place, FP3, A2, HM28 to HM30 (unchanged); FE24 (moved); A3r (left in 04.3-03)

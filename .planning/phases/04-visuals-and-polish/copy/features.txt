@@ -1,5 +1,6 @@
 # Expected copy for dist/features.html, phase 04. Phase 03 Approved strings (CONTEXT.md of phase 03, Approved 2026-10-24) plus the phase 04 entries at the end (phase 04 CONTEXT.md, Approved 2026-10-25).
 # Format: see index.txt.
+# Phase 04.3 (phase 04.3 CONTEXT.md, Copy drafts, Approved 2026-10-26): the jump list moves into the page top with F-J1; seven sections, each with an intro (F-I1 to F-I7) and one visual; FE24 moves to the new Hidden until you need it section (F-H1).
 title: Features | atHand
 description: What atHand does on iPhone: records for your household, document scanning, suggestions, app lock, and encrypted backups.
 # FE3
@@ -72,11 +73,61 @@ Scanning
 href: #scanning
 Suggestions
 href: #suggestions
+# F-J1 (phase 04.3), between Suggestions and App lock; also the F-H1 h2
+Hidden until you need it
+href: #hidden
+!Hidden fields
 App lock
 href: #app-lock
 Backups
 href: #backups
 Light and dark
 href: #light-and-dark
-# Alt text: A2 (phase 04.3: 02-person-top on the page top; A3r left the page)
+# F-I1 to F-I7, the section intros
+Everything you look after, each in its own record.
+Point your camera at a document, then check what atHand read.
+atHand can suggest a record before you go looking for it.
+Sensitive numbers stay masked until you tap Reveal.
+Face ID, Touch ID, or your passcode. No password to remember.
+An encrypted copy of your records, saved where you choose.
+Light or dark, your choice.
+# Section visuals: R1-3; R2-1 to R2-4; R3-1 with R3-2, and R3-4; HM28 to HM30 with the HM13 captions; R5-2; F-B1 and F-B2; F-C1
+People
+Vehicles
+Pets
+Homes
+Financial accounts
+Contacts
+Custom records
+Check what we read
+Change anything that’s wrong before you save.
+What we read
+Member ID
+XYZ000000000
+Group number
+00000
+Example suggestion banner: Flight to Denver, your recommended info is ready
+Time of day
+Your calendar, if you allow it
+Your location, if you allow it
+Masked
+Revealed
+Maple Street house
+Alarm code
+Alarm code, hidden until you tap Reveal
+0000
+Hide
+Face ID
+Touch ID
+Your passcode
+Encrypted backup
+Protected by a passphrase you choose
+Your records and photos
+Saved wherever you like
+A one-time copy, not sync
+Light
+Dark
+# Alt text: A2 page top; F-A1 and F-A2 the Light and dark frames (phase 04.3)
 alt: Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons.
+alt: Close view of the atHand home screen in Light appearance, with the Flight to Denver banner and the Suggested for you list.
+alt: The same view in Dark appearance.

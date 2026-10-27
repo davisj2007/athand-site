@@ -1206,6 +1206,77 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   font-weight: 600;
 }
 
+/* Features page sections (HOME-DESIGN-AMENDMENTS.md, Features page): each
+   section sets its h2 and intro beside one stage, then its prose below. */
+.fsec {
+  border-top: 1px solid var(--border-card);
+  padding-block: var(--space-12);
+}
+.fsec-top {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  margin-bottom: var(--space-8);
+}
+.fsec-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 28rem;
+  min-width: 0;
+}
+.fsec-copy > * { margin: 0; }
+.fsec h2 { font-size: var(--site-h2); }
+.fsec-intro {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+.fsec .prose { padding-bottom: 0; }
+.fsec .prose > :last-child { margin-bottom: 0; }
+.stage-stack { flex-direction: column; }
+.stage .lock-glyph { background: var(--surface-card); }
+.mock .record {
+  border-top: 0;
+  padding-top: 0;
+}
+.mock .glyph { color: var(--text-link); }
+.fact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.fact-list li {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  line-height: 1.4;
+}
+.fact-list svg {
+  flex: none;
+  color: var(--text-link);
+  margin-top: 1px;
+}
+.theme-pair {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+}
+.theme-pair .frame { width: 220px; }
+
+@media (min-width: 52.5em) {
+  .fsec { padding-block: var(--site-section); }
+  .fsec-top {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-12);
+  }
+}
+
 /* Fact row: three items in the moment-card style. */
 .fact-row {
   list-style: none;
@@ -1257,5 +1328,5 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 
 /* Headings balance their lines and paragraphs avoid a one-word last line;
    browsers without support keep the default wrapping. */
-:is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1, .cmp-q) { text-wrap: balance; }
-:is(.lede, .section-line, .f-copy p, .prose p, .prose li, .facts li) { text-wrap: pretty; }
+:is(.section-title, .f-copy h3, .moment h3, .band h2, .prose h2, .prose h3, .page-top h1, .cmp-q, .fsec h2) { text-wrap: balance; }
+:is(.lede, .section-line, .f-copy p, .fsec-intro, .prose p, .prose li, .facts li) { text-wrap: pretty; }
