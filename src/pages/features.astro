@@ -1,7 +1,7 @@
 ---
+import AppStoreBadge from "../components/AppStoreBadge.astro";
 import Base from "../layouts/Base.astro";
 import Chips from "../components/Chips.astro";
-import ComingSoon from "../components/ComingSoon.astro";
 import Icon from "../components/Icon.astro";
 import JumpList from "../components/JumpList.astro";
 import PageTop from "../components/PageTop.astro";
@@ -24,7 +24,7 @@ const jump = [
 <Base title="Features | atHand" description="What atHand does on iPhone: records for your household, document scanning, suggestions, app lock, and encrypted backups.">
   <PageTop title="Features">
     <p class="lede">atHand stores the details you look up all the time and brings up the right record when it can help.</p>
-    <ComingSoon />
+    <AppStoreBadge />
     <JumpList label="On this page" links={jump} />
     <div class="stage" slot="visual"><PhoneFrame shot="02-person-top" crop="full" alt="Sam Rivera’s record in atHand. A Personal section lists full name, relationship, and date of birth, followed by Medical and Documents sections, each with Scan and Upload buttons." /></div>
   </PageTop>
