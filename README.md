@@ -24,7 +24,7 @@ This repository builds athandapp.com, the marketing, privacy, and support site f
 
 - src/pages/: one file per page. index.astro, features.astro, pricing.astro, privacy-overview.astro, privacy.astro, support.astro, and 404.astro build to /index.html, /features.html, /pricing.html, /privacy-overview.html, /privacy.html, /support.html, and /404.html. /privacy.html and /support.html are permanent URLs.
 - src/layouts/Base.astro: the shared page shell, head metadata, font and token imports, and the inline theme script.
-- src/components/: Header.astro (logo lockup, main navigation, and theme control), ThemeControl.astro (System, Light, and Dark buttons), ComingSoon.astro (the coming-soon line), PhoneFrame.astro (one screenshot in a phone frame, light and dark, cropped by CSS), Icon.astro (inline line icons), and Footer.astro.
+- src/components/: Header.astro (logo lockup, main navigation, and theme control), ThemeControl.astro (System, Light, and Dark buttons), AppStoreBadge.astro (the App Store badge, linked to the listing), PhoneFrame.astro (one screenshot in a phone frame, light and dark, cropped by CSS), Icon.astro (inline line icons), and Footer.astro.
 - src/styles/tokens/: design tokens copied from the app repo. Do not edit them by hand.
 - src/styles/site.css: the site stylesheet, written against the token variables.
 - src/assets/: the logo mark SVG, copied from the app repo, and shots/, the App Store screenshots in light and dark pairs.

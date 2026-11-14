@@ -429,17 +429,6 @@ footer.site a:hover { text-decoration-thickness: 2px; }
   margin: 0 0 var(--space-8);
 }
 
-/* Coming-soon line: plain text with a phone icon, not a pill. */
-.coming-soon {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--text-body);
-}
-.coming-soon svg { flex: none; color: var(--text-muted); }
-
 /* Hero (HOME-DESIGN.md, Hero) */
 
 .hero-grid {
