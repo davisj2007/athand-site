@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Chips from "../components/Chips.astro";
-import ComingSoon from "../components/ComingSoon.astro";
+import AppStoreBadge from "../components/AppStoreBadge.astro";
 import Icon from "../components/Icon.astro";
 import PhoneFrame from "../components/PhoneFrame.astro";
 import PrivacyBand from "../components/PrivacyBand.astro";
@@ -54,7 +54,7 @@ const ld = {
           { icon: "face-id", text: "Face ID or passcode lock" },
           { icon: "check-circle", text: "One-time purchase, no subscription" },
         ]} />
-        <div class="store-slot"><ComingSoon /></div>
+        <div class="store-slot"><AppStoreBadge /></div>
       </div>
       <div class="hero-shot">
         <PhoneFrame shot="01-home" crop="full" hero alt="The atHand home screen. A banner reads “Flight to Denver, your recommended info is ready.” Below it are a search field, three suggested records, Your People with Sam Rivera, and Your Vehicles with a 2020 Honda Civic." />
@@ -190,8 +190,9 @@ const ld = {
   <section class="closing" aria-labelledby="closing-title">
     <div class="container closing-inner">
       <span class="closing-mark" aria-hidden="true"><Fragment set:html={markSvg} /></span>
-      <h2 class="section-title" id="closing-title">Coming soon to the App Store for iPhone.</h2>
+      <h2 class="section-title" id="closing-title">Get atHand on the App Store for iPhone.</h2>
       <p class="section-line">Free to download. Your own record is free.</p>
+      <AppStoreBadge />
     </div>
   </section>
 </Base>

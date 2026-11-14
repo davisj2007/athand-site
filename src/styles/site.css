@@ -504,15 +504,40 @@ footer.site a:hover { text-decoration-thickness: 2px; }
 }
 .chip svg { color: var(--text-link); }
 
-/* Store slot (HOME-DESIGN-AMENDMENTS.md, Hero): holds the coming-soon line at
-   56px tall; phase 05 swaps the line for the badge at --space-12 inside the
-   slot, so nothing around it moves. */
+/* Store slot (HOME-DESIGN-AMENDMENTS.md, Hero): 56px tall; it holds the App
+   Store badge at --space-12, so nothing around it moves. */
 .store-slot {
   display: flex;
   align-items: center;
   min-height: calc(var(--space-12) + var(--space-2));
 }
 .store-slot > * { margin: 0; }
+
+/* App Store badge (Apple's App Store marketing guidelines): Apple's artwork,
+   unaltered, 48px tall (minimum 40px onscreen, and the 44px target). Every
+   parent sets it with a flex gap of 20px or more, beyond the one-quarter
+   height (12px) clear space, and nothing sits beside it. The black
+   badge shows in the light theme and the white badge in the dark theme. */
+.store-badge {
+  display: inline-block;
+  flex: none;
+  border-radius: 8px;
+  line-height: 0;
+  text-decoration: none;
+}
+.page-top-copy > .store-badge { align-self: flex-start; }
+.store-badge img {
+  display: block;
+  width: auto;
+  height: var(--space-12);
+}
+.store-badge .badge-dark { display: none; }
+:root[data-theme="dark"] .store-badge .badge-light { display: none; }
+:root[data-theme="dark"] .store-badge .badge-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .store-badge .badge-light { display: none; }
+  :root:not([data-theme="light"]) .store-badge .badge-dark { display: block; }
+}
 
 /* Moments (HOME-DESIGN.md, Moments) */
 
