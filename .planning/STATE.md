@@ -21,7 +21,7 @@ None.
 
 ## Last session
 
-App Store badge (2026-11-13), at Jake's direct request, outside the DISCUSS-to-SHIP loop: one PR on branch launch/app-store-badge from main (abbfd0d). Apple approved atHand, and the listing (id6817842698) returns 200. Apple's official US-UK "Download on the App Store" badges, black and white, downloaded by Jake from Apple Marketing Tools and served unaltered from public/badges/, now replace the coming-soon line in the Home hero and on Pricing, and the Home closing heading reads "Get atHand on the App Store for iPhone." with the badge below it. LCH-01 is met for those pages. The Features coming-soon line and the apple-itunes-app meta tag (LCH-02 to LCH-04) are in BACKLOG.md for the rest of phase 05.
+App Store badge (2026-11-13), at Jake's direct request, outside the DISCUSS-to-SHIP loop: one PR on branch launch/app-store-badge from main (abbfd0d). Apple approved atHand, and the listing (id6817842698) returns 200. Apple's official US-UK "Download on the App Store" badges, black and white, downloaded by Jake from Apple Marketing Tools and served unaltered from public/badges/, replace the coming-soon line on Home (hero), Pricing, and Features. The Home closing heading reads "Get atHand on the App Store for iPhone." with the badge below it. Support's "free download" now links to the listing. Every page carries the apple-itunes-app meta tag. ComingSoon.astro and the `.coming-soon` rules are deleted. Jake merged PR #55 (Home and Pricing badge) first; this follow-up PR on branch launch/finish-flip builds the rest, so all phase 05 requirements (LCH-01 to LCH-04) are built once it merges. REQUIREMENTS.md and ROADMAP.md are not marked Done, because Jake's review and browser check come first.
 
 ## Previous session
 
