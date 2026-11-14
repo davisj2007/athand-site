@@ -1,0 +1,14 @@
+---
+// Apple's official "Download on the App Store" badge (US-UK, from Apple
+// Marketing Tools), served unaltered from public/badges/. The black badge
+// shows in the light theme and the white badge in the dark theme; CSS hides
+// the other, which also removes it from the accessibility tree. The link
+// carries the accessible name, so both images are decorative.
+// Apple: minimum 40px tall onscreen, clear space of one-quarter the height,
+// no alteration. The badge is 48px tall here, which also meets the 44px target.
+export const APP_STORE_URL = "https://apps.apple.com/app/athand-your-info-ready/id6817842698";
+---
+<a class="store-badge" href={APP_STORE_URL} aria-label="Download atHand on the App Store">
+  <img class="badge-light" src="/badges/app-store-black.svg" alt="" width="144" height="48">
+  <img class="badge-dark" src="/badges/app-store-white.svg" alt="" width="144" height="48">
+</a>
