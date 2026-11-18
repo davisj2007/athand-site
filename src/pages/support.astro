@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import JumpList from "../components/JumpList.astro";
 import PageTop from "../components/PageTop.astro";
+import { APP_STORE_URL } from "../components/AppStoreBadge.astro";
 
 const jump = [
   { href: "#backups", text: "Backups" },
@@ -58,7 +59,7 @@ const jump = [
     <h2 id="purchases">Purchases</h2>
 
     <h3>How much does atHand cost?</h3>
-    <p>atHand is a <a href="https://apps.apple.com/app/athand-your-info-ready/id6817842698">free download on the App Store</a>. The unlock is a one-time purchase, and the App Store shows its price in your local currency before you buy. <a href="/pricing.html">See Pricing</a> for what is free and what the unlock adds.</p>
+    <p>atHand is a <a href={APP_STORE_URL}>free download on the App Store</a>. The unlock is a one-time purchase, and the App Store shows its price in your local currency before you buy. <a href="/pricing.html">See Pricing</a> for what is free and what the unlock adds.</p>
 
     <h3>How do I restore my purchase?</h3>
     <p>Open atHand on an iPhone signed in to the Apple ID you used to buy the unlock, then tap Restore purchase in Settings or on the unlock screen. If it does not work, email me.</p>
